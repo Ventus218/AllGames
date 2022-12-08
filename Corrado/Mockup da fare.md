@@ -1,8 +1,5 @@
-- Registrazione
 - Login
 - Pagina gestione delle community
     - Fondare community
     - Ricerca community con Unisciti community
-- Pagina profilo personale
-    - Aggiunta post (testo, zero o più contenuti multimediali, zero o più tag)
 - Ricerca generale (utenti o community)
