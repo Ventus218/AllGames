@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Fri Dec  9 09:31:27 2022 
+-- * Generation date: Fri Dec  9 12:54:23 2022 
 -- * LUN file: C:\Users\Alberto\OneDrive - Alma Mater Studiorum Università di Bologna\Tecnologie Web\ALL_GAMES.lun 
 -- * Schema: ALL_GAMES/1-1-1 
 -- ********************************************* 
@@ -71,7 +71,7 @@ create table NOTIFICA (
      constraint IDNOTIFICA primary key (Id));
 
 create table PARTECIPAZIONE_COMMUNITY (
-     Community char(1) not null,
+     Community varchar(64) not null,
      Utente int not null,
      constraint IDPARTECIPAZIONE_COMMUNITY primary key (Community, Utente));
 
