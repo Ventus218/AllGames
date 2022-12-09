@@ -1,10 +1,10 @@
 -- *********************************************
 -- * SQL MySQL generation                      
 -- *--------------------------------------------
--- * DB-MAIN version: 11.0.2              
--- * Generator date: Sep 14 2021              
--- * Generation date: Wed Dec  7 14:35:41 2022 
--- * LUN file: C:\Users\alessandro.venturin6\OneDrive - Alma Mater Studiorum Università di Bologna\Tecnologie Web\Progetto\DB\ALL_GAMES.lun 
+-- * DB-MAIN version: 10.0.3              
+-- * Generator date: Aug 17 2017              
+-- * Generation date: Fri Dec  9 09:31:27 2022 
+-- * LUN file: C:\Users\Alberto\OneDrive - Alma Mater Studiorum Università di Bologna\Tecnologie Web\ALL_GAMES.lun 
 -- * Schema: ALL_GAMES/1-1-1 
 -- ********************************************* 
 
@@ -28,7 +28,7 @@ create table C_MULTIMEDIALE_POST (
      constraint IDC_MULTIMEDIALE_POST primary key (Url));
 
 create table COMMENTO (
-     Id int not null,
+     Id int not null auto_increment,
      Testo varchar(512) not null,
      Timestamp date not null,
      Post int not null,
@@ -51,7 +51,7 @@ create table MI_PIACE (
      constraint IDMI_PIACE_ID primary key (Utente, Post));
 
 create table NOTIFICA (
-     Id int not null,
+     Id int not null auto_increment,
      Letta char not null,
      Timestamp date not null,
      Ricevente int not null,
@@ -76,7 +76,7 @@ create table PARTECIPAZIONE_COMMUNITY (
      constraint IDPARTECIPAZIONE_COMMUNITY primary key (Community, Utente));
 
 create table POST (
-     Id int not null,
+     Id int not null auto_increment,
      Testo varchar(2048) not null,
      Timestamp date not null,
      Utente int not null,
@@ -84,7 +84,7 @@ create table POST (
      constraint IDPOST primary key (Id));
 
 create table RISPOSTA (
-     Id int not null,
+     Id int not null auto_increment,
      Testo varchar(512) not null,
      Timestamp date not null,
      Risponditore int not null,
@@ -101,7 +101,7 @@ create table TAG_IN_POST (
      constraint IDTAG_IN_POST primary key (Tag, Post));
 
 create table UTENTE (
-     Id int not null,
+     Id int not null auto_increment,
      Username varchar(32) not null,
      PasswordHash varchar(128) not null,
      Nome varchar(32) not null,
@@ -111,7 +111,9 @@ create table UTENTE (
      Email varchar(128) not null,
      Telefono varchar(32) not null,
      UrlImmagine varchar(256) not null,
-     constraint IDUTENTE primary key (Id));
+     constraint IDUTENTE primary key (Id),
+     constraint IDUTENTE_1 unique (Username),
+     constraint IDUTENTE_2 unique (Email));
 
 
 -- Constraints Section
@@ -241,9 +243,4 @@ alter table TAG_IN_POST add constraint FKRIFERIMENTO
 
 -- Index Section
 -- _____________ 
-
-
--- Triggers Section
--- _____________ 
-
 
