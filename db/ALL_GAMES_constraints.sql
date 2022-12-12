@@ -39,3 +39,97 @@ alter table NOTIFICA add constraint FKGENERA_N_RISPOSTA
      references RISPOSTA (Id)
      on delete set null;
 
+
+/* CHECKS FOR NOTIFICA */
+
+CREATE PROCEDURE checkNotificaFollowConsistency(IN notifica INT)
+BEGIN
+
+    IF EXISTS   (SELECT * FROM NOTIFICA N
+                WHERE N.Id = notifica AND N.NotificaFollow = TRUE AND (
+                      (N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE OR N.NotificaRisposta != FALSE) OR
+                      (N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
+                ))
+    THEN
+        SIGNAL SQLSTATE '45000';
+    END IF;
+
+END;
+
+CREATE PROCEDURE checkNotificaMiPiaceConsistency(IN notifica INT)
+BEGIN
+
+    IF EXISTS   (SELECT * FROM NOTIFICA N
+                WHERE N.Id = notifica AND N.NotificaMiPiace = TRUE AND (
+                      (N.NotificaFollow != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE OR N.NotificaRisposta != FALSE) OR
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
+                ))
+    THEN
+        SIGNAL SQLSTATE '45000';
+    END IF;
+
+END;
+
+CREATE PROCEDURE checkNotificaPostCommunityConsistency(IN notifica INT)
+BEGIN
+
+    IF EXISTS   (SELECT * FROM NOTIFICA N
+                WHERE N.Id = notifica AND N.NotificaPostCommunity = TRUE AND (
+                      (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaCommento != FALSE OR N.NotificaRisposta != FALSE) OR
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
+                ))
+    THEN
+        SIGNAL SQLSTATE '45000';
+    END IF;
+
+END;
+
+CREATE PROCEDURE checkNotificaCommentoConsistency(IN notifica INT)
+BEGIN
+
+    IF EXISTS   (SELECT * FROM NOTIFICA N
+                WHERE N.Id = notifica AND N.NotificaCommento = TRUE AND (
+                      (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaRisposta != FALSE) OR
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
+                ))
+    THEN
+        SIGNAL SQLSTATE '45000';
+    END IF;
+
+END;
+
+
+CREATE PROCEDURE checkNotificaRispostaConsistency(IN notifica INT)
+BEGIN
+
+    IF EXISTS   (SELECT * FROM NOTIFICA N
+                WHERE N.Id = notifica AND N.NotificaRisposta = TRUE AND (
+                      (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE) OR
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
+                ))
+    THEN
+        SIGNAL SQLSTATE '45000';
+    END IF;
+
+END;
+
+
+CREATE OR REPLACE TRIGGER checkGerarchiaNotifica_afterInsert AFTER INSERT ON NOTIFICA
+    FOR EACH ROW
+    BEGIN
+        CALL checkNotificaFollowConsistency(NEW.Id);
+        CALL checkNotificaMiPiaceConsistency(NEW.Id);
+        CALL checkNotificaPostCommunityConsistency(NEW.Id);
+        CALL checkNotificaCommentoConsistency(NEW.Id);
+        CALL checkNotificaRispostaConsistency(NEW.Id);
+    END;
+
+CREATE OR REPLACE TRIGGER checkGerarchiaNotifica_afterUpdate AFTER UPDATE ON NOTIFICA
+    FOR EACH ROW
+    BEGIN
+        CALL checkNotificaFollowConsistency(NEW.Id);
+        CALL checkNotificaMiPiaceConsistency(NEW.Id);
+        CALL checkNotificaPostCommunityConsistency(NEW.Id);
+        CALL checkNotificaCommentoConsistency(NEW.Id);
+        CALL checkNotificaRispostaConsistency(NEW.Id);
+    END;
