@@ -167,3 +167,26 @@ CREATE OR REPLACE TRIGGER checkGerarchiaNotifica_afterUpdate AFTER UPDATE ON NOT
         CALL checkNotificaCommentoConsistency(NEW.Id);
         CALL checkNotificaRispostaConsistency(NEW.Id);
     END;
+
+
+/* AUTOMATICALLY DELETING TAG IF IT'S NOT USED IN ANY POST */
+
+CREATE PROCEDURE deleteTagIfUnused(IN tag VARCHAR(32))
+BEGIN
+
+    IF NOT EXISTS   (SELECT * FROM TAG_IN_POST T
+                    WHERE T.Tag = tag)
+    THEN
+        DELETE FROM TAG
+        WHERE Nome = tag;
+    END IF;
+
+END;
+
+CREATE OR REPLACE TRIGGER deleteTagIfUnused_DELETE AFTER DELETE ON TAG_IN_POST
+FOR EACH ROW
+CALL deleteTagIfUnused(OLD.Tag);
+
+CREATE OR REPLACE TRIGGER deleteTagIfUnused_UPDATE AFTER UPDATE ON TAG_IN_POST
+FOR EACH ROW
+CALL deleteTagIfUnused(OLD.Tag);
