@@ -1,3 +1,37 @@
+/* ADDING ON DELETE CASCADE TO IMPLEMENT COMPOSITION SEMANTIC */
+
+alter table MI_PIACE drop constraint FKPRESENZA;
+
+alter table MI_PIACE add constraint FKPRESENZA
+     foreign key (Post)
+     references POST (Id)
+     on delete cascade;
+
+
+alter table TAG_IN_POST drop constraint FKTAGGATO;
+
+alter table TAG_IN_POST add constraint FKTAGGATO
+     foreign key (Post)
+     references POST (Id)
+     on delete cascade;
+
+
+alter table COMMENTO drop constraint FKPOSSESSO;
+
+alter table COMMENTO add constraint FKPOSSESSO
+     foreign key (Post)
+     references POST (Id)
+     on delete cascade;
+
+
+alter table RISPOSTA drop constraint FKRICEZIONE;
+
+alter table RISPOSTA add constraint FKRICEZIONE
+     foreign key (Commento)
+     references COMMENTO (Id)
+     on delete cascade;
+
+
 /* ADDING ON DELETE SET NULL FOR NOTIFICA FOREIGN KEYS */
 
 alter table NOTIFICA drop constraint FKGENERA_N_FOLLOW_FK;
