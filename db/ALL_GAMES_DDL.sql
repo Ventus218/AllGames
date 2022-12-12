@@ -3,8 +3,8 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Fri Dec  9 12:54:23 2022 
--- * LUN file: C:\Users\Alberto\OneDrive - Alma Mater Studiorum Università di Bologna\Tecnologie Web\ALL_GAMES.lun 
+-- * Generation date: Mon Dec 12 10:58:10 2022 
+-- * LUN file: C:\Users\Alberto\Desktop\AllGames\db\ALL_GAMES.lun 
 -- * Schema: ALL_GAMES/1-1-1 
 -- ********************************************* 
 
@@ -110,7 +110,7 @@ create table UTENTE (
      Genere char(1) not null,
      Email varchar(128) not null,
      Telefono varchar(32) not null,
-     UrlImmagine varchar(256) not null,
+     UrlImmagine varchar(256),
      constraint IDUTENTE primary key (Id),
      constraint IDUTENTE_1 unique (Username),
      constraint IDUTENTE_2 unique (Email));
