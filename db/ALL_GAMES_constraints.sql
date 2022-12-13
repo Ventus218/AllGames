@@ -1,5 +1,13 @@
 /* ADDING ON DELETE CASCADE TO IMPLEMENT COMPOSITION SEMANTIC */
 
+alter table POST drop constraint FKAPPARTENENZA;
+
+alter table POST add constraint FKAPPARTENENZA
+     foreign key (Community)
+     references COMMUNITY (Nome)
+     on delete cascade;
+     
+
 alter table MI_PIACE drop constraint FKPRESENZA;
 
 alter table MI_PIACE add constraint FKPRESENZA
