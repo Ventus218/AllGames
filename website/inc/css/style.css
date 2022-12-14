@@ -1,0 +1,14 @@
+body ul button>img {
+    width: 15px;
+}
+
+body ul li a {
+    border-radius: .5em !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    padding: 0 !important;
+}
+
+h1 {
+    font-weight: bold;
+}
