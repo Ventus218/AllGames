@@ -36,6 +36,16 @@
         }
     } */
 
+    /* https://www.php.net/manual/en/mysqli.multi-query.php */
+    function clearStoredResults($db){
+        do {
+             if ($res = $db->store_result()) {
+               $res->free();
+             }
+        } while ($db->more_results() && $db->next_result());        
+        
+    }
+
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         die("Si accettano solo richieste POST.");
@@ -55,14 +65,20 @@
     var_dump($result);
 
     $ddl = file_get_contents("/allgames/db/scripts/ALL_GAMES_DDL.sql");
-    $db->multi_query($ddl);
+    $result = $db->multi_query($ddl);
+    var_dump($result);
+
+    clearStoredResults($db);
 
     $constr = file_get_contents("/allgames/db/scripts/ALL_GAMES_constraints.sql");
-    $db->multi_query($constr);
+    $result = $db->multi_query($constr);
+    var_dump($result);
+
+    clearStoredResults($db);
 
     $notif = file_get_contents("/allgames/db/scripts/generazione_notifiche.sql");
-    $db->multi_query($notif);
+    $result = $db->multi_query($notif);
+    var_dump($result);
 
-
-
+    clearStoredResults($db);
 ?>
