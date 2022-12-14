@@ -22,6 +22,11 @@ Per tutte le generalizzazioni è stato scelto di accorpare le entità e utilizza
 ![Database - Schema Relazionale](./img/db/Schema%20Relazionale.png)
 
 ### SQL
-Grazie al tool DB-Main si è genrato automaticamente uno [script SQL](../db/ALL_GAMES_DDL.sql) per la creazione del database, // DA FARE ---> al quale sono stati aggiunti manualmente alcune query per la realizzazione dei vincoli persi durante la modellazione.
+Grazie al tool DB-Main si è genrato automaticamente uno script SQL ([ALL_GAMES_DDL](../db/ALL_GAMES_DDL.sql)) per la creazione del database.
 
-Sono inoltre stati aggiunti dei trigger per la generazione delle notifiche in maniera da rendere il tutto più efficiente e trasparente al server. <--- DA FARE //
+Si sono scritti inoltre i seguenti script SQL:
+- [ALL_GAMES_constraints](../db/ALL_GAMES_constraints.sql) che ha tre compiti
+    - Implementa la semantica della relazione di composizione creando un vincolo di *ON DELETE CASCADE* sulle relazioni che lo necessitano.
+    - Controlla la consistenza delle tuple di NOTIFICA, in quanto scegliendo di collassare verso l'alto la gerarchia si rischia di avere inserimenti inconsistenti.
+    - Implementa, utlizzando un trigger che elimina il TAG se non sono più presenti TAG_IN_POST a lui relativi, il vincolo di cardinalità minima secondo il quale ogni TAG deve avere almeno un TAG_IN_POST.
+- [generazione_notifiche](../db/generazione_notifiche.sql) crea dei trigger che effettuano la generazione automatica delle notifiche allo scattare degli eventi di rilievo (follow, mi piace, etc...)
