@@ -14,7 +14,7 @@ h1 {
 }
 
 .bg-blur {
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
 }
 
 .mt-6 {
@@ -27,4 +27,16 @@ article {
 
 article header > a {
     font-size: 0.6rem !important;
+}
+
+article header img {
+    width: 50px;
+}
+
+article section img {
+    width: 75px;
+}
+
+footer img{
+    width: 50px;
 }
