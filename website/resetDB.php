@@ -1,55 +1,28 @@
 <?php
-    /* just to remember syntax
-
-
-    function sizeOfSet($set, $db) {
-        $stmt = $db->prepare("SELECT COUNT(id) as N FROM insiemi WHERE insieme = ?");
-        $stmt->bind_param('i',$set);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC)[0]["N"];
-    }
-
-    function contentOfSet($set, $db) {
-        $stmt = $db->prepare("SELECT valore FROM insiemi WHERE insieme = ?");
-        $stmt->bind_param('i',$set);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $ass_arr = $result->fetch_all(MYSQLI_ASSOC);
-        $arr = array();
-        foreach ($ass_arr as $elem) {
-            array_push($arr, $elem["valore"]);
-        }
-        return $arr;
-    }
-
-    function getNewId($db) {
-        $result = $db->query("SELECT DISTINCT insieme FROM insiemi ORDER BY insieme DESC");
-        return $result->fetch_all(MYSQLI_ASSOC)[0]["insieme"] + 1;
-    }
-
-    function createNewSet($content, $id, $db) {
-        foreach ($content as $c) {
-            $stmt = $db->prepare("INSERT INTO insiemi(valore, insieme) VALUE (?, ?)");
-            $stmt->bind_param('ii', $c, $id);
-            $stmt->execute();
-        }
-    } */
-
     /* https://www.php.net/manual/en/mysqli.multi-query.php */
-    function clearStoredResults($db){
+    function consume_multi_query_results($db) {
         do {
              if ($res = $db->store_result()) {
-               $res->free();
-             }
-        } while ($db->more_results() && $db->next_result());        
-        
+                $res->free();
+            }
+        } while ($db->more_results() && $db->next_result());
     }
 
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        die("Si accettano solo richieste POST.");
+        exit("Si accettano solo richieste POST.");
     }
+
+    /* AUTHORIZATION https://www.php.net/manual/en/features.http-auth.php */
+    if (!isset($_SERVER["PHP_AUTH_USER"]) || !isset($_SERVER["PHP_AUTH_PW"])) {
+        header('HTTP/1.1 401 Unauthorized');
+        exit;
+    }
+    if ($_SERVER["PHP_AUTH_USER"] !== "admin" || $_SERVER["PHP_AUTH_PW"] !== "passw") {
+        header('HTTP/1.1 401 Unauthorized');
+        exit;
+    }
+
 
     $servername = "localhost";
     $username = "root";
@@ -61,24 +34,41 @@
         die("Connessione fallita al mysql");
     }
 
-    $result = $db->query("DROP DATABASE IF EXISTS ALL_GAMES");
-    var_dump($result);
+    try {
+        $db->query("DROP DATABASE IF EXISTS ALL_GAMES");
+    } catch (Exception $e) {
+        header('HTTP/1.1 500 Internal Server Error');
+        exit("Qualcosa è andato storto eliminando il vecchio database se presente.\nERROR: ".$e->getMessage());;
+    }
 
-    $ddl = file_get_contents("/allgames/db/scripts/ALL_GAMES_DDL.sql");
-    $result = $db->multi_query($ddl);
-    var_dump($result);
+    try {
+        $ddl = file_get_contents("/allgames/db/scripts/ALL_GAMES_DDL.sql");
+        $db->multi_query($ddl);
+        consume_multi_query_results($db);
+    } catch (Exception $e) {
+        header('HTTP/1.1 500 Internal Server Error');
+        exit("Qualcosa è andato storto nella creazione del database.\nERROR: ".$e->getMessage());
+    }
 
-    clearStoredResults($db);
+    try {
+        $constr = file_get_contents("/allgames/db/scripts/ALL_GAMES_constraints.sql");
+        $db->multi_query($constr);
+        consume_multi_query_results($db);
+    } catch (Exception $e) {
+        header('HTTP/1.1 500 Internal Server Error');
+        exit("Qualcosa è andato storto nella creazione dei constraints.\n".$e->getMessage());
+    }
 
-    $constr = file_get_contents("/allgames/db/scripts/ALL_GAMES_constraints.sql");
-    $result = $db->multi_query($constr);
-    var_dump($result);
+    try {
+        $notif = file_get_contents("/allgames/db/scripts/generazione_notifiche.sql");
+        $result = $db->multi_query($notif);
+        consume_multi_query_results($db);
+    } catch (Exception $e) {
+        header('HTTP/1.1 500 Internal Server Error');
+        exit("Qualcosa è andato storto nella creazione dei trigger per le notifiche.\nERROR: ".$e->getMessage());
+    }
 
-    clearStoredResults($db);
+    $db->close();
 
-    $notif = file_get_contents("/allgames/db/scripts/generazione_notifiche.sql");
-    $result = $db->multi_query($notif);
-    var_dump($result);
-
-    clearStoredResults($db);
+    echo("Il reset del database è riuscito.");
 ?>
