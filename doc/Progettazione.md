@@ -46,3 +46,7 @@ Si sono scritti inoltre i seguenti script SQL:
     - Controlla la consistenza delle tuple di NOTIFICA, in quanto scegliendo di collassare verso l'alto la gerarchia si rischia di avere inserimenti inconsistenti.
     - Implementa, utlizzando un trigger che elimina il TAG se non sono più presenti TAG_IN_POST a lui relativi, il vincolo di cardinalità minima secondo il quale ogni TAG deve avere almeno un TAG_IN_POST.
 - [generazione_notifiche](../db/generazione_notifiche.sql) crea dei trigger che effettuano la generazione automatica delle notifiche allo scattare degli eventi di rilievo (follow, mi piace, etc...)
+
+### Contenuti multimediali
+Dei contenuti multimediali sul database viene salvato solamente l'URL e non i dati che invece verranno salvati sul file system.
+Questo significa che se viene eliminata una tupla nel database riguardante un contenuto multimediale bisogna assicurarsi di eliminarlo anche dal file system.

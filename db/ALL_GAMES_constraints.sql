@@ -6,6 +6,13 @@ alter table POST add constraint FKAPPARTENENZA
      foreign key (Community)
      references COMMUNITY (Nome)
      on delete cascade;
+
+
+alter table C_MULTIMEDIALE_POST drop constraint FKINTEGRAZIONE;
+
+alter table C_MULTIMEDIALE_POST add constraint FKINTEGRAZIONE
+     foreign key (Post)
+     references POST (Id);
      
 
 alter table MI_PIACE drop constraint FKPRESENZA;
