@@ -1,4 +1,7 @@
 <?php
+
+    require_once("../../inc/php/utils.php");
+
     /* https://www.php.net/manual/en/mysqli.multi-query.php */
     function consume_multi_query_results($db) {
         do {
@@ -31,14 +34,13 @@
 
     $db = new mysqli($servername, $username, $password, "", $port);
     if($db->connect_error) {
-        die("Connessione fallita al mysql");
+        internalServerError("Connessione fallita a mysql");
     }
 
     try {
-        $db->query("DROP DATABASE IF EXISTS ALL_GAMES");
+        $db->query("DROP DATABAsSE IF EXISTS ALL_GAMES");
     } catch (Exception $e) {
-        header('HTTP/1.1 500 Internal Server Error');
-        exit("Qualcosa è andato storto eliminando il vecchio database se presente.\nERROR: ".$e->getMessage());;
+        internalServerError("Qualcosa è andato storto eliminando il vecchio database se presente.", $e);
     }
 
     try {
@@ -46,8 +48,7 @@
         $db->multi_query($ddl);
         consume_multi_query_results($db);
     } catch (Exception $e) {
-        header('HTTP/1.1 500 Internal Server Error');
-        exit("Qualcosa è andato storto nella creazione del database.\nERROR: ".$e->getMessage());
+        internalServerError("Qualcosa è andato storto nella creazione del database.", $e);
     }
 
     try {
@@ -55,8 +56,7 @@
         $db->multi_query($constr);
         consume_multi_query_results($db);
     } catch (Exception $e) {
-        header('HTTP/1.1 500 Internal Server Error');
-        exit("Qualcosa è andato storto nella creazione dei constraints.\n".$e->getMessage());
+        internalServerError("Qualcosa è andato storto nella creazione dei constraints.", $e);
     }
 
     try {
@@ -64,8 +64,7 @@
         $result = $db->multi_query($notif);
         consume_multi_query_results($db);
     } catch (Exception $e) {
-        header('HTTP/1.1 500 Internal Server Error');
-        exit("Qualcosa è andato storto nella creazione dei trigger per le notifiche.\nERROR: ".$e->getMessage());
+        internalServerError("Qualcosa è andato storto nella creazione dei trigger per le notifiche.", $e);
     }
 
     $db->close();
