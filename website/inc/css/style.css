@@ -1,14 +1,30 @@
-body ul button>img {
+ul button>img {
     width: 15px;
 }
 
-body ul li a {
-    border-radius: .5em !important;
+ul li a {
+    border-radius: .8rem !important;
     font-weight: bold !important;
-    font-size: 1.2em !important;
-    padding: 0 !important;
+    font-size: 1.2rem !important;
 }
 
 h1 {
     font-weight: bold;
+    font-size: 2.2rem;
+}
+
+.bg-blur {
+    backdrop-filter: blur(1px);
+}
+
+.mt-6 {
+    margin-top: 4.5rem;
+}
+
+article {
+    width: 90% !important;
+}
+
+article header > a {
+    font-size: 0.6rem !important;
 }

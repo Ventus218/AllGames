@@ -9,31 +9,31 @@
     <link rel="stylesheet" href="inc/css/style.css" />
     <title>AllGames</title>
 </head>
-<body class="bg-black">
+<body class="bg-black text-white">
     <!--Container of all the page-->
     <div class="container-fluid p-0 overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row p-2 fixed-top">
-            <div class="col-7">
-                <header class="text-white">
-                    <h1 >AllGames</h1>
+        <div class="row p-2 fixed-top bg-blur">
+            <div class="col-6">
+                <header>
+                    <h1 class="text-center">AllGames</h1>
                 </header>
             </div>
 
             <!--Menù of create post button, create community button and notifications-->
-            <div class="col-5">
-                <ul class="nav nav-pills"> 
+            <div class="col-6">
+                <ul class="nav nav-pills mt-2"> 
                     <!--Create a community button-->
                     <li class="col-6 nav-item">
-                        <a class="mt-1 nav-link border border-light text-center text-white col-9 pb-1" id="plus-community-image" href="#">
+                        <a class="nav-link border border-light text-center text-white p-0 pb-1 me-4" id="plus-community-image" href="#">
                             +
                             <!--Da inserire un'immagine-->c
                         </a>
                     </li>
                     <!--Create a post button-->
-                    <li class="col-5 nav-item">
-                        <a class="nav-link mt-1 border border-light text-center text-white col-6 pb-1" href="#">
+                    <li class="col-4 nav-item">
+                        <a class="nav-link border border-light text-center text-white p-0 pb-1 me-3" href="#">
                             +
                         </a>
                     </li>
@@ -43,6 +43,44 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mt-6">
+                <article class="bg-secondary container">
+                    <header>
+                        <img src="#" alt="Immagine profilo di Th3 Pr0K1ll3r">
+                        <h2>Th3 Pr0K1ll3r</h2>
+                        <a class="btn btn-warning rounded-pill p-1 py-0" href="#"><strong>DarkSouls</strong></a>
+                    </header>
+                </article>
+            </div>
+        </div>
+        
+        <div class="row fixed-bottom">
+            <hr>
+            <div class="col-12">
+                <footer>
+                    <ul class="nav nav-pills"> 
+                        <!--Home-->
+                        <li class="col-3 nav-item">
+                            <a class="nav-link" href="#"><!--Da inserire un'immagine--></a>
+                        </li>
+                        <!--Searh-->
+                        <li class="col-3 nav-item">
+                            <a class="nav-link" href="#"><!--Da inserire un'immagine--></a>
+                        </li>
+                        <!--User-->
+                        <li class="col-3 nav-item">
+                            <a class="nav-link" href="#"><!--Da inserire un'immagine--></a>
+                        </li>
+                        <!--Settings-->
+                        <li class="col-3 nav-item">
+                            <a class="nav-link" href="#"><!--Da inserire un'immagine--></a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>  
         </div>
     </div>
 
