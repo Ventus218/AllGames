@@ -24,4 +24,12 @@
         }
     }
 
+    function dateTimeFromSQLDate(string $sqlDate): DateTime {
+        return new DateTime($sqlDate);
+    }
+
+    function sqlDateFromDateTime(DateTime $dateTime): string {
+        return $dateTime->format('Y-m-d H:i:s');
+    }
+
 ?>
