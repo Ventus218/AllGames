@@ -4,5 +4,4 @@
     require_once("db/Database.php");
     $db = new Database("localhost", "root", "", "ALL_GAMES", 3306);
 
-    var_dump($db->getAllUtenti());
 ?>
