@@ -11,6 +11,7 @@
         case CONTENUTO_MULTIMEDIALE_POST = "C_MULTIMEDIALE_POST";
         case MI_PIACE = "MI_PIACE";
         case COMMENTO = "COMMENTO";
+        case RISPOSTA = "RISPOSTA";
     }
 
 ?>
