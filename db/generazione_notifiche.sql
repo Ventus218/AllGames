@@ -76,7 +76,7 @@ BEGIN
 
     SET UtenteCommento = (SELECT P.Utente FROM POST P JOIN COMMENTO C ON (P.Id = C.Post) WHERE C.Id = commento);
 
-    INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, Commento, NotificaRisposta, Risposta)
+    INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, NotificaRisposta, Risposta)
         SELECT FALSE, current_date(), UtenteCommento, risponditore, FALSE, FALSE, FALSE, FALSE, TRUE, risposta;
 END;
 
