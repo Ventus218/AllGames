@@ -154,7 +154,7 @@ BEGIN
     IF EXISTS   (SELECT * FROM NOTIFICA N
                 WHERE N.Id = notifica AND N.NotificaRisposta = TRUE AND (
                       (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE) OR
-                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
                 ))
     THEN
         SIGNAL SQLSTATE '45004';
