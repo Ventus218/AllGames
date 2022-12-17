@@ -114,7 +114,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45001';
     END IF;
 
 END;
@@ -128,7 +128,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45002';
     END IF;
 
 END;
@@ -142,7 +142,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45003';
     END IF;
 
 END;
@@ -157,7 +157,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45004';
     END IF;
 
 END;
