@@ -5,7 +5,8 @@
         
         public function __construct(
             public readonly string $nome,
-            public readonly string $urlImmagine
+            public readonly string $urlImmagine,
+            public readonly int $fondatore
         ) {}
 
         public static function getAllOn(Database $db): array {
@@ -28,7 +29,8 @@
             
             return new CommunityDTO(
                 $row["Nome"],
-                $row["UrlImmagine"]
+                $row["UrlImmagine"],
+                $row["Fondatore"]
             );
         }
     }
@@ -38,13 +40,15 @@
 
         public function __construct(
             private string $nome,
-            private string $urlImmagine
+            private string $urlImmagine,
+            private int $fondatore
         ) {}
 
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Nome' => $this->nome,
-                'UrlImmagine' => $this->urlImmagine
+                'UrlImmagine' => $this->urlImmagine,
+                'Fondatore' => $this->fondatore
             ));
         }
     }

@@ -41,10 +41,10 @@
         $comm_amazzoni = "Le comm_amazzoni (WoW)";
 
         $communitys = array(
-            new CommunityCreateDTO($comm_amantiDS, ""), // URL MANCANTE
-            new CommunityCreateDTO($comm_retroGaming, ""), // URL MANCANTE
-            new CommunityCreateDTO($comm_tutorial, ""), // URL MANCANTE
-            new CommunityCreateDTO($comm_amazzoni, "") // URL MANCANTE
+            new CommunityCreateDTO($comm_amantiDS, "", $u_youdied), // URL MANCANTE
+            new CommunityCreateDTO($comm_retroGaming, "", $u_rob), // URL MANCANTE
+            new CommunityCreateDTO($comm_tutorial, "", $u_killer), // URL MANCANTE
+            new CommunityCreateDTO($comm_amazzoni, "", $u_amaz) // URL MANCANTE
         );
 
         foreach ($communitys as $community) {

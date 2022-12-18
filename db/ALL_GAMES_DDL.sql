@@ -3,8 +3,8 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Mon Dec 12 10:58:10 2022 
--- * LUN file: C:\Users\Alberto\Desktop\AllGames\db\ALL_GAMES.lun 
+-- * Generation date: Sun Dec 18 21:23:14 2022 
+-- * LUN file: C:\Users\Alessandro Venturini\Desktop\AllGames\db\ALL_GAMES.lun 
 -- * Schema: ALL_GAMES/1-1-1 
 -- ********************************************* 
 
@@ -38,6 +38,7 @@ create table COMMENTO (
 create table COMMUNITY (
      Nome varchar(64) not null,
      UrlImmagine varchar(256) not null,
+     Fondatore int not null,
      constraint IDCOMMUNITY primary key (Nome));
 
 create table FOLLOW (
@@ -134,6 +135,10 @@ alter table COMMENTO add constraint FKPOSSESSO
 
 alter table COMMENTO add constraint FKCOMMENTA
      foreign key (Commentatore)
+     references UTENTE (Id);
+
+alter table COMMUNITY add constraint FKFONDAZIONE
+     foreign key (Fondatore)
      references UTENTE (Id);
 
 -- Not implemented
