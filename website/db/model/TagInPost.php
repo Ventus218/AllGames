@@ -16,6 +16,15 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, string $tag, int $post): self {
+            $row = $db->getOneByID(self::schema, array(
+                'Tag' => $tag,
+                'Post' => $post
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): TagInPostDTO {
             return new TagInPostDTO(
                 $row["Tag"],

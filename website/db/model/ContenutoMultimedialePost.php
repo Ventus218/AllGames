@@ -19,6 +19,14 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, string $url): self {
+            $row = $db->getOneByID(self::schema, array(
+                'Url' => $url
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): ContenutoMultimedialePostDTO {
             return new ContenutoMultimedialePostDTO(
                 $row["Url"],

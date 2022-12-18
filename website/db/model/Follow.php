@@ -16,6 +16,15 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, int $utenteSeguace, int $utenteSeguito): self {
+            $row = $db->getOneByID(self::schema, array(
+                'UtenteSeguace' => $utenteSeguace,
+                'UtenteSeguito' => $utenteSeguito
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): FollowDTO {
             return new FollowDTO(
                 $row["UtenteSeguace"],

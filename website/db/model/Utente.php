@@ -24,6 +24,14 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, int $id): self {
+            $row = $db->getOneByID(self::schema, array(
+                'Id' => $id
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): UtenteDTO {
             return new UtenteDTO(
                 $row["Id"],

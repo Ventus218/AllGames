@@ -16,6 +16,15 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, int $post, int $utente): self {
+            $row = $db->getOneByID(self::schema, array(
+                'Post' => $post,
+                'Utente' => $utente
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): MiPiaceDTO {
             return new MiPiaceDTO(
                 $row["Post"],

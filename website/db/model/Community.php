@@ -16,6 +16,14 @@
             return $arr;
         }
 
+        public static function getOneByID(Database $db, string $nome): self {
+            $row = $db->getOneByID(self::schema, array(
+                'Nome' => $nome
+            ));
+
+            return self::fromDBRow($row);
+        }
+
         public static function fromDBRow(array $row): CommunityDTO {
             
             return new CommunityDTO(
