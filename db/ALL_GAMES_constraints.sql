@@ -6,6 +6,13 @@ alter table POST add constraint FKAPPARTENENZA
      foreign key (Community)
      references COMMUNITY (Nome)
      on delete cascade;
+
+
+alter table C_MULTIMEDIALE_POST drop constraint FKINTEGRAZIONE;
+
+alter table C_MULTIMEDIALE_POST add constraint FKINTEGRAZIONE
+     foreign key (Post)
+     references POST (Id);
      
 
 alter table MI_PIACE drop constraint FKPRESENZA;
@@ -107,7 +114,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45001';
     END IF;
 
 END;
@@ -121,7 +128,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45002';
     END IF;
 
 END;
@@ -132,10 +139,10 @@ BEGIN
     IF EXISTS   (SELECT * FROM NOTIFICA N
                 WHERE N.Id = notifica AND N.NotificaCommento = TRUE AND (
                       (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaRisposta != FALSE) OR
-                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45003';
     END IF;
 
 END;
@@ -147,10 +154,10 @@ BEGIN
     IF EXISTS   (SELECT * FROM NOTIFICA N
                 WHERE N.Id = notifica AND N.NotificaRisposta = TRUE AND (
                       (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE) OR
-                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45004';
     END IF;
 
 END;
