@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class RispostaDTO {
         private const schema = Schemas::RISPOSTA;
 
@@ -32,7 +30,7 @@
         }
     }
 
-    class RispostaCreateDTO implements CreatableEntity {
+    class RispostaCreateDTO  {
         private const schema = Schemas::RISPOSTA;
 
         public function __construct(
@@ -44,24 +42,17 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            if (is_null($this->id)) {
-                $stmt = $db->prepare("INSERT INTO ".RispostaCreateDTO::schema->value."(Id, Testo, Timestamp, Risponditore, Commento) VALUE(?,?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("issii", $this->id, $this->testo, $timestamp, $this->risponditore, $this->commento);
-            } else {
-                $stmt = $db->prepare("INSERT INTO ".RispostaCreateDTO::schema->value."(Testo, Timestamp, Risponditore, Commento) VALUE(?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("ssii", $this->testo, $timestamp, $this->risponditore, $this->commento);
-            }
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Id' => $this->id,
+                'Testo' => $this->testo,
+                'Timestamp' => sqlDateFromDateTime($this->timestamp),
+                'Risponditore' => $this->risponditore,
+                'Commento' => $this->commento
+            ));
         }
     }
 
-    class RispostaDeleteDTO implements DeletableEntity {
+    class RispostaDeleteDTO {
         private const schema = Schemas::RISPOSTA;
 
         public function __construct(
@@ -69,14 +60,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".RispostaDeleteDTO::schema->value." WHERE Id = ?");
-            $stmt->bind_param("i", $this->id);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(RispostaDTO $dto) {

@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class ContenutoMultimedialePostDTO {
         private const schema = Schemas::CONTENUTO_MULTIMEDIALE_POST;
 
@@ -32,7 +30,7 @@
         }
     }
 
-    class ContenutoMultimedialePostCreateDTO implements CreatableEntity {
+    class ContenutoMultimedialePostCreateDTO  {
         private const schema = Schemas::CONTENUTO_MULTIMEDIALE_POST;
 
         public function __construct(
@@ -44,18 +42,17 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".ContenutoMultimedialePostCreateDTO::schema->value."(Url, Ordine, Post, Video, Immagine) VALUE(?, ?, ?, ?, ?)");
-            $stmt->bind_param("siiii", $this->url, $this->ordine, $this->post, $this->video, $this->immagine);
-            
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Url' => $this->url,
+                'Ordine' => $this->ordine,
+                'Post' => $this->post,
+                'Video' => $this->video,
+                'Immagine' => $this->immagine
+            ));
         }
     }
 
-    class ContenutoMultimedialePostDeleteDTO implements DeletableEntity {
+    class ContenutoMultimedialePostDeleteDTO {
         private const schema = Schemas::CONTENUTO_MULTIMEDIALE_POST;
 
         public function __construct(
@@ -63,14 +60,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".ContenutoMultimedialePostDeleteDTO::schema->value." WHERE Url = ?");
-            $stmt->bind_param("s", $this->url);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Url' => $this->url
+            ));
         }
 
         public static function from(ContenutoMultimedialePostDTO $dto) {

@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class FollowDTO {
         private const schema = Schemas::FOLLOW;
 
@@ -26,7 +24,7 @@
         }
     }
 
-    class FollowCreateDTO implements CreatableEntity {
+    class FollowCreateDTO  {
         private const schema = Schemas::FOLLOW;
 
         public function __construct(
@@ -35,18 +33,14 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".FollowCreateDTO::schema->value."(UtenteSeguace, UtenteSeguito) VALUE(?, ?)");
-            $stmt->bind_param("ii", $this->utenteSeguace, $this->utenteSeguito);
-            
-            return $stmt;
+            return $db->create(self::schema, array(
+                'UtenteSeguace' => $this->utenteSeguace,
+                'UtenteSeguito' => $this->utenteSeguito
+            ));
         }
     }
 
-    class FollowDeleteDTO implements DeletableEntity {
+    class FollowDeleteDTO {
         private const schema = Schemas::FOLLOW;
 
         public function __construct(
@@ -55,14 +49,10 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".FollowDeleteDTO::schema->value." WHERE UtenteSeguace = ? AND UtenteSeguito = ?");
-            $stmt->bind_param("ii", $this->utenteSeguace, $this->utenteSeguito);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'UtenteSeguace' => $this->utenteSeguace,
+                'UtenteSeguito' => $this->utenteSeguito
+            ));
         }
 
         public static function from(FollowDTO $dto) {

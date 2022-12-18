@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class CommunityDTO {
         private const schema = Schemas::COMMUNITY;
         
@@ -27,7 +25,7 @@
         }
     }
 
-    class CommunityCreateDTO implements CreatableEntity {
+    class CommunityCreateDTO  {
         private const schema = Schemas::COMMUNITY;
 
         public function __construct(
@@ -36,13 +34,10 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".CommunityCreateDTO::schema->value."(Nome, UrlImmagine) VALUE(?,?)");
-            $stmt->bind_param("ss", $this->nome, $this->urlImmagine);
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Nome' => $this->nome,
+                'UrlImmagine' => $this->urlImmagine
+            ));
         }
     }
 

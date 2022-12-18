@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class TagInPostDTO {
         private const schema = Schemas::TAG_IN_POST;
 
@@ -26,7 +24,7 @@
         }
     }
 
-    class TagInPostCreateDTO implements CreatableEntity {
+    class TagInPostCreateDTO  {
         private const schema = Schemas::TAG_IN_POST;
 
         public function __construct(
@@ -35,18 +33,14 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".TagInPostCreateDTO::schema->value."(Tag, Post) VALUE(?, ?)");
-            $stmt->bind_param("si", $this->tag, $this->post);
-            
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Tag' => $this->tag,
+                'Post' => $this->post
+            ));
         }
     }
 
-    class TagInPostDeleteDTO implements DeletableEntity {
+    class TagInPostDeleteDTO {
         private const schema = Schemas::TAG_IN_POST;
 
         public function __construct(
@@ -55,14 +49,10 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".TagInPostDeleteDTO::schema->value." WHERE Tag = ? AND Post = ?");
-            $stmt->bind_param("si", $this->tag, $this->post);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Tag' => $this->tag,
+                'Post' => $this->post
+            ));
         }
 
         public static function from(TagInPostDTO $dto) {

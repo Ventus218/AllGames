@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class TagDTO {
         private const schema = Schemas::TAG;
 
@@ -24,7 +22,7 @@
         }
     }
 
-    class TagCreateDTO implements CreatableEntity {
+    class TagCreateDTO  {
         private const schema = Schemas::TAG;
 
         public function __construct(
@@ -32,18 +30,13 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".TagCreateDTO::schema->value."(Nome) VALUE(?)");
-            $stmt->bind_param("s", $this->nome);
-            
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Nome' => $this->nome
+            ));
         }
     }
 
-    class TagDeleteDTO implements DeletableEntity {
+    class TagDeleteDTO {
         private const schema = Schemas::TAG;
 
         public function __construct(
@@ -51,14 +44,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".TagDeleteDTO::schema->value." WHERE Nome = ?");
-            $stmt->bind_param("s", $this->nome);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Nome' => $this->nome
+            ));
         }
 
         public static function from(TagDTO $dto) {

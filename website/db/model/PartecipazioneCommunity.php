@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class PartecipazioneCommunityDTO {
         private const schema = Schemas::PARTECIPAZIONE_COMMUNITY;
 
@@ -26,7 +24,7 @@
         }
     }
 
-    class PartecipazioneCommunityCreateDTO implements CreatableEntity {
+    class PartecipazioneCommunityCreateDTO  {
         private const schema = Schemas::PARTECIPAZIONE_COMMUNITY;
 
         public function __construct(
@@ -35,18 +33,14 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("INSERT INTO ".PartecipazioneCommunityCreateDTO::schema->value."(Utente, Community) VALUE(?, ?)");
-            $stmt->bind_param("is", $this->utente, $this->community);
-            
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Utente' => $this->utente,
+                'Community' => $this->community
+            ));
         }
     }
 
-    class PartecipazioneCommunityDeleteDTO implements DeletableEntity {
+    class PartecipazioneCommunityDeleteDTO {
         private const schema = Schemas::PARTECIPAZIONE_COMMUNITY;
 
         public function __construct(
@@ -55,14 +49,10 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".PartecipazioneCommunityDeleteDTO::schema->value." WHERE Utente = ? AND Community = ?");
-            $stmt->bind_param("is", $this->utente, $this->community);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Utente' => $this->utente,
+                'Community' => $this->community
+            ));
         }
 
         public static function from(PartecipazioneCommunityDTO $dto) {

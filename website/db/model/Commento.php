@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class CommentoDTO {
         private const schema = Schemas::COMMENTO;
 
@@ -25,14 +23,14 @@
             return new CommentoDTO(
                 $row["Id"],
                 $row["Testo"],
-                $row["Timestamp"],
+                dateTimeFromSQLDate($row["Timestamp"]),
                 $row["Post"],
                 $row["Commentatore"]
             );
         }
     }
 
-    class CommentoCreateDTO implements CreatableEntity {
+    class CommentoCreateDTO  {
         private const schema = Schemas::COMMENTO;
 
         public function __construct(
@@ -44,7 +42,13 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
+            return $db->create(self::schema, array(
+                'Id' => $this->id,
+                'Testo' => $this->testo,
+                'Timestamp' => sqlDateFromDateTime($this->timestamp),
+                'Post' => $this->post,
+                'Commentatore' => $this->commentatore
+            ));
         }
 
         public function creationPreparedStatement(mysqli $db): mysqli_stmt {
@@ -61,7 +65,7 @@
         }
     }
 
-    class CommentoDeleteDTO implements DeletableEntity {
+    class CommentoDeleteDTO {
         private const schema = Schemas::COMMENTO;
 
         public function __construct(
@@ -69,14 +73,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".CommentoDeleteDTO::schema->value." WHERE Id = ?");
-            $stmt->bind_param("i", $this->id);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(CommentoDTO $dto) {

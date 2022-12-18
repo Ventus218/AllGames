@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class UtenteDTO {
         private const schema = Schemas::UTENTE;
 
@@ -42,7 +40,7 @@
         }
     }
 
-    class UtenteCreateDTO implements CreatableEntity {
+    class UtenteCreateDTO  {
         private const schema = Schemas::UTENTE;
 
         public function __construct(
@@ -59,24 +57,22 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            if (is_null($this->id)) {
-                $stmt = $db->prepare("INSERT INTO ".UtenteCreateDTO::schema->value."(Id, Username, PasswordHash, Nome, Cognome, DataNascita, Genere, Email, Telefono, UrlImmagine) VALUE(?,?,?,?,?,?,?,?,?,?)");
-                $sqlDate = sqlDateFromDateTime($this->dataNascita);
-                $stmt->bind_param("isssssssss", $this->id, $this->username, $this->passwordHash, $this->nome, $this->cognome, $sqlDate, $this->genere, $this->email, $this->telefono, $this->urlImmagine);
-            } else {
-                $stmt = $db->prepare("INSERT INTO ".UtenteCreateDTO::schema->value."(Username, PasswordHash, Nome, Cognome, DataNascita, Genere, Email, Telefono, UrlImmagine) VALUE(?,?,?,?,?,?,?,?,?)");
-                $sqlDate = sqlDateFromDateTime($this->dataNascita);
-                $stmt->bind_param("sssssssss", $this->username, $this->passwordHash, $this->nome, $this->cognome, $sqlDate, $this->genere, $this->email, $this->telefono, $this->urlImmagine);
-            }
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Id' => $this->id,
+                'Username' => $this->username,
+                'PasswordHash' => $this->passwordHash,
+                'Nome' => $this->nome,
+                'Cognome' => $this->cognome,
+                'DataNascita' => sqlDateFromDateTime($this->dataNascita),
+                'Genere' => $this->genere,
+                'Email' => $this->email,
+                'Telefono' => $this->telefono,
+                'UrlImmagine' => $this->urlImmagine,
+            ));
         }
     }
 
-    class UtenteDeleteDTO implements DeletableEntity {
+    class UtenteDeleteDTO {
         private const schema = Schemas::UTENTE;
 
         public function __construct(
@@ -84,14 +80,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".UtenteDeleteDTO::schema->value." WHERE Id = ?");
-            $stmt->bind_param("i", $this->id);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(UtenteDTO $dto) {
@@ -101,7 +92,7 @@
         }
     }
 
-    class UtenteUpdateDTO implements UpdatableEntity {
+    class UtenteUpdateDTO {
         private const schema = Schemas::UTENTE;
 
         public function __construct(
@@ -118,15 +109,20 @@
         ) {}
 
         public function updateOn(Database $db) {
-            return $db->update($this);
-        }
-
-        public function updatePreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("UPDATE ".UtenteUpdateDTO::schema->value." SET Username = ?, PasswordHash = ?, Nome = ?, Cognome = ?, DataNascita = ?, Genere = ?, Email = ?, Telefono = ?, UrlImmagine = ? WHERE Id = ?");
-            $sqlDate = sqlDateFromDateTime($this->dataNascita);
-            $stmt->bind_param("sssssssssi", $this->username, $this->passwordHash, $this->nome, $this->cognome, $sqlDate, $this->genere, $this->email, $this->telefono, $this->urlImmagine, $this->id);
-
-            return $stmt;
+            return $db->update(self::schema, array(
+                'Id' => $this->id,
+                'Username' => $this->username,
+                'PasswordHash' => $this->passwordHash,
+                'Nome' => $this->nome,
+                'Cognome' => $this->cognome,
+                'DataNascita' => sqlDateFromDateTime($this->dataNascita),
+                'Genere' => $this->genere,
+                'Email' => $this->email,
+                'Telefono' => $this->telefono,
+                'UrlImmagine' => $this->urlImmagine,
+            ), array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(UtenteDTO $dto) {

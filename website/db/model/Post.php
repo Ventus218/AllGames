@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class PostDTO {
         private const schema = Schemas::POST;
 
@@ -32,7 +30,7 @@
         }
     }
 
-    class PostCreateDTO implements CreatableEntity {
+    class PostCreateDTO  {
         private const schema = Schemas::POST;
 
         public function __construct(
@@ -44,24 +42,17 @@
         ) {}
 
         public function createOn(Database $db): ?int {
-            return $db->create($this);
-        }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            if (is_null($this->id)) {
-                $stmt = $db->prepare("INSERT INTO ".PostCreateDTO::schema->value."(Id, Testo, Timestamp, Utente, Community) VALUE(?,?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("issis", $this->id, $this->testo, $timestamp, $this->utente, $this->community);
-            } else {
-                $stmt = $db->prepare("INSERT INTO ".PostCreateDTO::schema->value."(Testo, Timestamp, Utente, Community) VALUE(?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("ssis", $this->testo, $timestamp, $this->utente, $this->community);
-            }
-            return $stmt;
+            return $db->create(self::schema, array(
+                'Id' => $this->id,
+                'Testo' => $this->testo,
+                'Timestamp' => sqlDateFromDateTime($this->timestamp),
+                'Utente' => $this->utente,
+                'Community' => $this->community
+            ));
         }
     }
 
-    class PostDeleteDTO implements DeletableEntity {
+    class PostDeleteDTO {
         private const schema = Schemas::POST;
 
         public function __construct(
@@ -69,14 +60,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".PostDeleteDTO::schema->value." WHERE Id = ?");
-            $stmt->bind_param("i", $this->id);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(PostDTO $dto) {

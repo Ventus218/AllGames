@@ -1,7 +1,5 @@
 <?php
 
-    require_once("interfaces/Entity.php");
-
     class NotificaDTO {
         private const schema = Schemas::NOTIFICA;
 
@@ -56,7 +54,7 @@
         }
     }
 
-    class NotificaDeleteDTO implements DeletableEntity {
+    class NotificaDeleteDTO {
         private const schema = Schemas::NOTIFICA;
 
         public function __construct(
@@ -64,14 +62,9 @@
         ) {}
 
         public function deleteOn(Database $db) {
-            return $db->delete($this);
-        }
-
-        public function deletionPreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("DELETE FROM ".NotificaDeleteDTO::schema->value." WHERE Id = ?");
-            $stmt->bind_param("i", $this->id);
-
-            return $stmt;
+            return $db->delete(self::schema, array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(NotificaDTO $dto) {
@@ -81,7 +74,7 @@
         }
     }
 
-    class NotificaUpdateDTO implements UpdatableEntity {
+    class NotificaUpdateDTO {
         private const schema = Schemas::NOTIFICA;
 
         public function __construct(
@@ -105,15 +98,27 @@
         ) {}
 
         public function updateOn(Database $db) {
-            return $db->update($this);
-        }
-
-        public function updatePreparedStatement(mysqli $db): mysqli_stmt {
-            $stmt = $db->prepare("UPDATE ".NotificaUpdateDTO::schema->value." SET Letta = ?, Timestamp = ?, Ricevente = ?, AttoreSorgente = ?, NotificaFollow = ?, UtenteSeguace = ?, UtenteSeguito = ?, NotificaMiPiace = ?, Utente = ?, Post = ?, NotificaPostCommunity = ?, PostCommunity = ?, NotificaCommento = ?, Commento = ?, NotificaRisposta = ?, Risposta = ? WHERE Id = ?");
-            $timestamp = sqlDateFromDateTime($this->timestamp);
-            $stmt->bind_param("isiiiiiiiiiiiiiii", $this->letta, $timestamp, $this->ricevente, $this->attoreSorgente, $this->isNotificaFollow, $this->utenteSeguace, $this->utenteSeguito, $this->isNotificaMiPiace, $this->liker, $this->postPiaciuto, $this->isNotificaPostCommunity, $this->postCommunity, $this->isNotificaCommento, $this->commento, $this->isNotificaRisposta, $this->risposta, $this->id);
-
-            return $stmt;
+            return $db->update(self::schema, array(
+                'Id' => $this->id,
+                'Letta' => $this->letta,
+                'Timestamp' => sqlDateFromDateTime($this->timestamp),
+                'Ricevente' => $this->ricevente,
+                'AttoreSorgente' => $this->attoreSorgente,
+                'NotificaFollow' => $this->isNotificaFollow,
+                'UtenteSeguace' => $this->utenteSeguace,
+                'UtenteSeguito' => $this->utenteSeguito,
+                'NotificaMiPiace' => $this->isNotificaMiPiace,
+                'Utente' => $this->liker,
+                'Post' => $this->postPiaciuto,
+                'NotificaPostCommunity' => $this->isNotificaPostCommunity,
+                'PostCommunity' => $this->postCommunity,
+                'NotificaCommento' => $this->isNotificaCommento,
+                'Commento' => $this->commento,
+                'NotificaRisposta' => $this->isNotificaRisposta,
+                'Risposta' => $this->risposta,
+            ), array(
+                'Id' => $this->id
+            ));
         }
 
         public static function from(NotificaDTO $dto) {
