@@ -114,7 +114,7 @@
             public string $genere,
             public string $email,
             public string $telefono,
-            public ?string $urlImmagine,
+            public ?string $urlImmagine
         ) {}
 
         public function updateOn(Database $db) {
