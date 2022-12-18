@@ -12,6 +12,7 @@
         case MI_PIACE = "MI_PIACE";
         case COMMENTO = "COMMENTO";
         case RISPOSTA = "RISPOSTA";
+        case NOTIFICA = "NOTIFICA";
     }
 
 ?>
