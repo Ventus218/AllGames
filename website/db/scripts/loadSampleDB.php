@@ -55,6 +55,7 @@
             new PartecipazioneCommunityCreateDTO($u_youdied, $comm_amantiDS),
             new PartecipazioneCommunityCreateDTO($u_got, $comm_amantiDS),
             new PartecipazioneCommunityCreateDTO($u_drac, $comm_amantiDS),
+            new PartecipazioneCommunityCreateDTO($u_killer, $comm_amantiDS),
             new PartecipazioneCommunityCreateDTO($u_rob, $comm_retroGaming),
             new PartecipazioneCommunityCreateDTO($u_youdied, $comm_retroGaming),
             new PartecipazioneCommunityCreateDTO($u_killer, $comm_tutorial),

@@ -211,3 +211,26 @@ CALL deleteTagIfUnused(OLD.Tag);
 
 ALTER TABLE UTENTE
 ADD CHECK ( Genere = 'M' OR Genere = 'F' OR Genere = 'U');
+
+
+/* CHECKING THAT THE USER WHICH IS POSTING INSIDE A COMMUNITY IS A MEMBER OF THE COMMUNITY */
+
+CREATE PROCEDURE checkPostCommunityIsAllowed(IN utente INT, IN community VARCHAR(64))
+BEGIN
+
+    IF NOT EXISTS   (SELECT * FROM PARTECIPAZIONE_COMMUNITY PC
+                    WHERE PC.Utente = Utente
+                    AND PC.Community = community)
+    THEN
+        SIGNAL SQLSTATE '45005' SET MESSAGE_TEXT = 'user not allowed to post in this community';
+    END IF;
+
+END;
+
+CREATE OR REPLACE TRIGGER checkPostCommunityIsAllowed BEFORE INSERT ON POST
+    FOR EACH ROW
+    BEGIN
+        IF NEW.Community IS NOT NULL THEN
+            CALL checkPostCommunityIsAllowed(NEW.Utente, NEW.Community);
+        END IF;
+    END;
