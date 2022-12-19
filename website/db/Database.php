@@ -7,10 +7,13 @@
         private $db;
 
         public function __construct($servername, $username, $password, $dbname, $port) {
+            /* https://stackoverflow.com/questions/14578243/turning-query-errors-to-exceptions-in-mysqli */
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
             $this->db = new mysqli($servername, $username, $password, $dbname, $port);
             if ($this->db->connect_error) {
                 internalServerError("Connessione a MySQL fallita: " . $this->db->connect_error);
-            }        
+            }    
         }
 
         public function __destruct() {
@@ -49,8 +52,10 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param($types, ...array_values($ids));
             
-            if (!$stmt->execute()) {
-                throw new DatabaseException("getOneByID(".$schema->value.", $ids): Qualcosa è andato storto durante il caricamento dell'oggetto.\n".$stmt->error);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("getOneByID(".$schema->value.", $ids): Qualcosa è andato storto durante il caricamento dell'oggetto.\nSQL error: ".$stmt->error);
             }
 
             $result = $stmt->get_result();
@@ -75,8 +80,10 @@
         public function getAll(Schemas $schema): array {
             $stmt = $this->db->prepare("SELECT * FROM ".$schema->value);
             
-            if (!$stmt->execute()) {
-                throw new DatabaseException("getAll(".$schema->value."): Qualcosa è andato storto durante il caricamento degli oggetti.\n".$stmt->error);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("getAll(".$schema->value."): Qualcosa è andato storto durante il caricamento degli oggetti.\nSQL error: ".$stmt->error);
             }
 
             $result = $stmt->get_result();
@@ -130,8 +137,10 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param($types, ...array_values($fields));
             
-            if (!$stmt->execute()) {
-                throw new DatabaseException("create(".$schema->value.", $fields): Qualcosa è andato storto durante la creazione dell'oggetto.\n".$stmt->error);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("create(".$schema->value.", $fields): Qualcosa è andato storto durante la creazione dell'oggetto.\nSQL error: ".$stmt->error);
             }
 
             return $stmt->insert_id;
@@ -179,8 +188,10 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param($types, ...array_values($ids));
             
-            if (!$stmt->execute()) {
-                throw new DatabaseException("delete(".$schema->value.", $ids): Qualcosa è andato storto durante l'eliminazione dell'oggetto.\n".$stmt->error);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("delete(".$schema->value.", $ids): Qualcosa è andato storto durante l'eliminazione dell'oggetto.\nSQL error: ".$stmt->error);
             }
         }
 
@@ -243,8 +254,10 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param($types, ...array_merge(array_values($fields), array_values($ids)));
 
-            if (!$stmt->execute()) {
-                throw new DatabaseException("update(".$schema->value.", $ids): Qualcosa è andato storto durante l'aggiornamento dell'oggetto.\n".$stmt->error);
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("update(".$schema->value.", $ids): Qualcosa è andato storto durante l'aggiornamento dell'oggetto.\nSQL error: ".$stmt->error);
             }
         }
 

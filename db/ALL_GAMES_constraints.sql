@@ -100,7 +100,7 @@ BEGIN
                       (N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'checkNotificaFollowConsistency failed';
     END IF;
 
 END;
@@ -114,7 +114,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45001';
+        SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = 'checkNotificaMiPiaceConsistency failed';
     END IF;
 
 END;
@@ -128,7 +128,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45002';
+        SIGNAL SQLSTATE '45002' SET MESSAGE_TEXT = 'checkNotificaPostCommunityConsistency failed';
     END IF;
 
 END;
@@ -142,7 +142,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45003';
+        SIGNAL SQLSTATE '45003' SET MESSAGE_TEXT = 'checkNotificaCommentoConsistency failed';
     END IF;
 
 END;
@@ -157,7 +157,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45004';
+        SIGNAL SQLSTATE '45004' SET MESSAGE_TEXT = 'checkNotificaRispostaConsistency failed';
     END IF;
 
 END;
