@@ -1,5 +1,11 @@
 <?php
 
+    enum GenereUtente: string {
+        case MASCHIO = "M";
+        case FEMMINA = "F";
+        CASE NON_DEFINITO = "U";
+    }
+
     class UtenteDTO {
         private const schema = Schemas::UTENTE;
 
@@ -10,7 +16,7 @@
             public readonly string $nome,
             public readonly string $cognome,
             public readonly DateTime $dataNascita,
-            public readonly string $genere,
+            public readonly GenereUtente $genere,
             public readonly string $email,
             public readonly string $telefono,
             public readonly ?string $urlImmagine
@@ -40,7 +46,7 @@
                 $row["Nome"],
                 $row["Cognome"],
                 dateTimeFromSQLDate($row["DataNascita"]),
-                $row["Genere"],
+                GenereUtente::from($row["Genere"]),
                 $row["Email"],
                 $row["Telefono"],
                 $row["UrlImmagine"]
@@ -57,7 +63,7 @@
             private string $nome,
             private string $cognome,
             private DateTime $dataNascita,
-            private string $genere,
+            private GenereUtente $genere,
             private string $email,
             private string $telefono,
             private ?string $urlImmagine,
@@ -72,7 +78,7 @@
                 'Nome' => $this->nome,
                 'Cognome' => $this->cognome,
                 'DataNascita' => sqlDateFromDateTime($this->dataNascita),
-                'Genere' => $this->genere,
+                'Genere' => $this->genere->value,
                 'Email' => $this->email,
                 'Telefono' => $this->telefono,
                 'UrlImmagine' => $this->urlImmagine,
@@ -110,7 +116,7 @@
             public string $nome,
             public string $cognome,
             public DateTime $dataNascita,
-            public string $genere,
+            public GenereUtente $genere,
             public string $email,
             public string $telefono,
             public ?string $urlImmagine
@@ -124,7 +130,7 @@
                 'Nome' => $this->nome,
                 'Cognome' => $this->cognome,
                 'DataNascita' => sqlDateFromDateTime($this->dataNascita),
-                'Genere' => $this->genere,
+                'Genere' => $this->genere->value,
                 'Email' => $this->email,
                 'Telefono' => $this->telefono,
                 'UrlImmagine' => $this->urlImmagine,

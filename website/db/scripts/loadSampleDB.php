@@ -23,12 +23,12 @@
         $u_drac = 6;
 
         $utenti = array(
-            new UtenteCreateDTO("YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), "M", "AlbertoAmbrosio@gmail.com", "3333333333", NULL, $u_youdied),
-            new UtenteCreateDTO("TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), "F", "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz),
-            new UtenteCreateDTO("gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), "F", "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got),
-            new UtenteCreateDTO("Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), "M", "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer),
-            new UtenteCreateDTO("roberuti", "pass", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), "M", "RobertoMalaguti@gmail.com", "3333333333", NULL, $u_rob),
-            new UtenteCreateDTO("Draco4ever", "pass", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), "F", "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac)
+            new UtenteCreateDTO("YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", NULL, $u_youdied),
+            new UtenteCreateDTO("TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz),
+            new UtenteCreateDTO("gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got),
+            new UtenteCreateDTO("Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer),
+            new UtenteCreateDTO("roberuti", "pass", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), GenereUtente::NON_DEFINITO, "RobertoMalaguti@gmail.com", "3333333333", NULL, $u_rob),
+            new UtenteCreateDTO("Draco4ever", "pass", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), GenereUtente::FEMMINA, "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac)
         );
 
         foreach ($utenti as $utente) {
