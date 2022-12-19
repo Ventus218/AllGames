@@ -30,7 +30,7 @@ create table C_MULTIMEDIALE_POST (
 create table COMMENTO (
      Id int not null auto_increment,
      Testo varchar(512) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Post int not null,
      Commentatore int not null,
      constraint IDCOMMENTO_ID primary key (Id));
@@ -54,7 +54,7 @@ create table MI_PIACE (
 create table NOTIFICA (
      Id int not null auto_increment,
      Letta char not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Ricevente int not null,
      AttoreSorgente int not null,
      NotificaFollow char not null,
@@ -79,7 +79,7 @@ create table PARTECIPAZIONE_COMMUNITY (
 create table POST (
      Id int not null auto_increment,
      Testo varchar(2048) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Utente int not null,
      Community varchar(64),
      constraint IDPOST primary key (Id));
@@ -87,7 +87,7 @@ create table POST (
 create table RISPOSTA (
      Id int not null auto_increment,
      Testo varchar(512) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Risponditore int not null,
      Commento int not null,
      constraint IDRISPOSTA_ID primary key (Id));

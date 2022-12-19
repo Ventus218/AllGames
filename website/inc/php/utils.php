@@ -25,10 +25,13 @@
     }
 
     function dateTimeFromSQLDate(string $sqlDate): DateTime {
-        return new DateTime($sqlDate);
+        $dt = new DateTime($sqlDate, new DateTimeZone("UTC"));
+        $dt->setTimezone(new DateTimeZone(date_default_timezone_get()));
+        return $dt;
     }
 
     function sqlDateFromDateTime(DateTime $dateTime): string {
+        $dateTime->setTimezone(new DateTimeZone("UTC"));
         return $dateTime->format('Y-m-d H:i:s');
     }
 
