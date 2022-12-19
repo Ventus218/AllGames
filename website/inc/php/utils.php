@@ -4,10 +4,14 @@
     * Must be called before any output.
     * An exception can be given as parameter for debugging purposes.
     */
-    function internalServerError($message, Exception $error = null) {
+    function internalServerError(?string $message = null, Exception $error = null) {
         header('HTTP/1.1 500 Internal Server Error');
+        if (is_null($message)) {
+            $message = "Si è verificato un errore...";
+        }
+
         if (isset($error)) {
-            $message = $message."\nERROR: ".$error->getMessage();
+            $message = $message."\nERROR: ".$error->__toString();
         }
         exit($message);
     }

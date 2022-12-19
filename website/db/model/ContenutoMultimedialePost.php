@@ -11,6 +11,9 @@
             public readonly bool $immagine
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(ContenutoMultimedialePostDTO::schema) as $row) {
@@ -19,6 +22,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, string $url): self {
             $row = $db->getOneByID(self::schema, array(
                 'Url' => $url
@@ -49,6 +55,9 @@
             private bool $immagine
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Url' => $this->url,
@@ -67,6 +76,9 @@
             private string $url
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Url' => $this->url

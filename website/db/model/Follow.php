@@ -8,6 +8,9 @@
             public readonly int $utenteSeguito
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(FollowDTO::schema) as $row) {
@@ -16,6 +19,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, int $utenteSeguace, int $utenteSeguito): self {
             $row = $db->getOneByID(self::schema, array(
                 'UtenteSeguace' => $utenteSeguace,
@@ -41,6 +47,9 @@
             private int $utenteSeguito
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'UtenteSeguace' => $this->utenteSeguace,
@@ -57,6 +66,9 @@
             private int $utenteSeguito
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'UtenteSeguace' => $this->utenteSeguace,

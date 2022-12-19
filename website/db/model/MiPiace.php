@@ -8,6 +8,9 @@
             public readonly int $utente
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(MiPiaceDTO::schema) as $row) {
@@ -16,6 +19,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, int $post, int $utente): self {
             $row = $db->getOneByID(self::schema, array(
                 'Post' => $post,
@@ -41,6 +47,9 @@
             private int $utente
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Post' => $this->post,
@@ -57,6 +66,9 @@
             private int $utente
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Post' => $this->post,

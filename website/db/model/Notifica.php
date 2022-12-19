@@ -23,6 +23,9 @@
             public readonly ?int $risposta
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(NotificaDTO::schema) as $row) {
@@ -31,6 +34,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
                 'Id' => $id
@@ -69,6 +75,9 @@
             private int $id
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Id' => $this->id
@@ -105,6 +114,9 @@
             public ?int $risposta
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function updateOn(Database $db) {
             return $db->update(self::schema, array(
                 'Id' => $this->id,

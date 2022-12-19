@@ -8,6 +8,9 @@
             public readonly string $community
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(PartecipazioneCommunityDTO::schema) as $row) {
@@ -16,6 +19,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, int $utente, string $community): self {
             $row = $db->getOneByID(self::schema, array(
                 'Utente' => $utente,
@@ -41,6 +47,9 @@
             private string $community
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Utente' => $this->utente,
@@ -57,6 +66,9 @@
             private string $community
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Utente' => $this->utente,

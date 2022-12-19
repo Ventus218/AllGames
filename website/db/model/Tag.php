@@ -7,6 +7,9 @@
             public readonly string $nome
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(TagDTO::schema) as $row) {
@@ -15,6 +18,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, string $nome): self {
             $row = $db->getOneByID(self::schema, array(
                 'Nome' => $nome
@@ -37,6 +43,9 @@
             private string $nome
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Nome' => $this->nome
@@ -51,6 +60,9 @@
             private string $nome
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Nome' => $this->nome

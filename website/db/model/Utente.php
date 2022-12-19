@@ -22,6 +22,9 @@
             public readonly ?string $urlImmagine
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getAllOn(Database $db): array {
             $arr = array();
             foreach ($db->getAll(UtenteDTO::schema) as $row) {
@@ -30,6 +33,9 @@
             return $arr;
         }
 
+        /**
+         * @throws DatabaseException
+         */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
                 'Id' => $id
@@ -70,6 +76,9 @@
             private ?int $id = null
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
                 'Id' => $this->id,
@@ -93,6 +102,9 @@
             private int $id
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
                 'Id' => $this->id
@@ -122,6 +134,9 @@
             public ?string $urlImmagine
         ) {}
 
+        /**
+         * @throws DatabaseException
+         */
         public function updateOn(Database $db) {
             return $db->update(self::schema, array(
                 'Id' => $this->id,
