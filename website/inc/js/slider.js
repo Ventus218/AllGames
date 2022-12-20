@@ -61,12 +61,30 @@ for (let i = 0; i < sliders.length; i++) {
         images[images.length-1].classList.add("me-3");
 
         preButton.addEventListener("click", () => {
-            
+            if (first-1 >= 0) {
+                //Se si può andare a sinistra, rendo invisibile l'ultima immagine attualmente visibile e vado indietro
+                images[third].classList.remove("d-inline");
+                images[third].classList.add("d-none");
+                //Tolgo il margine a sinistra della prima immagine e la do alla nuova prima immagine
+                images[first].classList.remove("ms-3");
+
+                //Diminuisco gli indici, poichè mi sposto a sinistra di 1 immagine
+                first--;
+                second--;
+                third--;
+
+                //Faccio comparire l'immagine precedente a quelle che erano visibili prima
+                images[first].classList.remove("d-none");
+                images[first].classList.add("d-inline");
+                images[first].classList.add("ms-3")
+            }            
         });
 
         nextButton.addEventListener("click", () => {
+            //Rendo invisibile la prima immagine che era visibile prima per rendere visiva la prossima
             images[first].classList.remove("d-inline");
             images[first].classList.add("d-none");
+            //Tolgo il margine a sinistra della prima immagine e la do alla nuova prima immagine
             images[first].classList.remove("ms-3");
 
             //Aumento di 1 gli indici, poichè mi sposto a destra di 1 immagine.
