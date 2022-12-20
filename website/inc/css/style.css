@@ -25,7 +25,7 @@ h1 {
 }
 
 .bg-blur {
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(25px);
     background-color: rgba(0, 0, 0, 0.85);
 }
 
