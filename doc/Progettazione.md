@@ -40,4 +40,4 @@ Per JavaScript non si usa alcun framework o libreria.
 
 ### JavaScript
 
-I file JavaScript utilizzati necessitano delle classi di Bootstrap per esempio per cambiare il display a dei tag di HTML, quindi sono compatibili sono con il Bootstrap (oppure bisognerebbe crearsi delle classi CSS da zero che siano il più simili possibile a quelle del bootstrap usate dagli script, il che non è un'ottima idea).
+Il file JavaScript sliding.js necessita delle classi di Bootstrap per esempio per cambiare il display a dei tag di HTML (oppure bisognerebbe crearsi delle classi CSS da zero che siano il più simili possibile e con lo stesso nome di quelle del bootstrap usate dagli script, il che non è un'ottima idea).
