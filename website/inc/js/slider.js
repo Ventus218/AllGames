@@ -8,16 +8,13 @@ for (let i = 0; i < sliders.length; i++) {
     let nextButton;
     //Trovo dopo quali sono le immagini a cui applicare lo slide (id = "slider") e i bottoni per lo sliding (id = "prev" e id = "next")
     for (let i = 0; i < slider.length; i++) {
-        switch(slider[i].id) {
-            case "slider":
-                slide = slider[i];
-                break;
-            case "prev":
-                preButton = slider[i];
-                break;
-            case "next":
-                nextButton = slider[i];
-                break;
+        const list = slider[i].classList;
+        if(list.contains("carousel-inner")) {
+            slide = slider[i];
+        } else if (list.contains("carousel-control-prev")) {
+            preButton = slider[i];
+        } else if (list.contains("carousel-control-next")) {
+            nextButton = slider[i];
         }
     }
 
