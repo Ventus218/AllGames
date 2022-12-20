@@ -30,3 +30,14 @@ Si sono scritti inoltre i seguenti script SQL:
     - Controlla la consistenza delle tuple di NOTIFICA, in quanto scegliendo di collassare verso l'alto la gerarchia si rischia di avere inserimenti inconsistenti.
     - Implementa, utlizzando un trigger che elimina il TAG se non sono più presenti TAG_IN_POST a lui relativi, il vincolo di cardinalità minima secondo il quale ogni TAG deve avere almeno un TAG_IN_POST.
 - [generazione_notifiche](../db/generazione_notifiche.sql) crea dei trigger che effettuano la generazione automatica delle notifiche allo scattare degli eventi di rilievo (follow, mi piace, etc...)
+
+
+## FrontEnd
+
+La scelta di utilizzare il Bootstrap per il CSS è stata fatta principalmente per poter realizzare il sito più velocemente.
+
+Per JavaScript non si usa alcun framework o libreria.
+
+### JavaScript
+
+I file JavaScript utilizzati necessitano delle classi di Bootstrap per esempio per cambiare il display a dei tag di HTML, quindi sono compatibili sono con il Bootstrap (oppure bisognerebbe crearsi delle classi CSS da zero che siano il più simili possibile a quelle del bootstrap usate dagli script, il che non è un'ottima idea).
