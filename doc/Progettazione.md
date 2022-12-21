@@ -50,3 +50,14 @@ Si sono scritti inoltre i seguenti script SQL:
 ### Contenuti multimediali
 Dei contenuti multimediali sul database viene salvato solamente l'URL e non i dati che invece verranno salvati sul file system.
 Questo significa che se viene eliminata una tupla nel database riguardante un contenuto multimediale bisogna assicurarsi di eliminarlo anche dal file system.
+
+## FrontEnd
+
+La scelta di utilizzare il Bootstrap per il CSS è stata fatta principalmente per poter realizzare il sito più velocemente.
+
+Per JavaScript non si usa alcun framework o libreria.
+
+### JavaScript
+
+Il file JavaScript sliding.js necessita delle classi di Bootstrap per esempio per cambiare il display a dei tag di HTML 
+(oppure bisognerebbe crearsi delle classi CSS da zero che siano il più simili possibile e con lo stesso nome di quelle del bootstrap usate dagli script, il che non è un'ottima idea).
