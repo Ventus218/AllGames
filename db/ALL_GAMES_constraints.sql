@@ -6,6 +6,13 @@ alter table POST add constraint FKAPPARTENENZA
      foreign key (Community)
      references COMMUNITY (Nome)
      on delete cascade;
+
+
+alter table C_MULTIMEDIALE_POST drop constraint FKINTEGRAZIONE;
+
+alter table C_MULTIMEDIALE_POST add constraint FKINTEGRAZIONE
+     foreign key (Post)
+     references POST (Id);
      
 
 alter table MI_PIACE drop constraint FKPRESENZA;
@@ -93,7 +100,7 @@ BEGIN
                       (N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'checkNotificaFollowConsistency failed';
     END IF;
 
 END;
@@ -107,7 +114,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45001' SET MESSAGE_TEXT = 'checkNotificaMiPiaceConsistency failed';
     END IF;
 
 END;
@@ -121,7 +128,7 @@ BEGIN
                       (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.Commento IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45002' SET MESSAGE_TEXT = 'checkNotificaPostCommunityConsistency failed';
     END IF;
 
 END;
@@ -132,10 +139,10 @@ BEGIN
     IF EXISTS   (SELECT * FROM NOTIFICA N
                 WHERE N.Id = notifica AND N.NotificaCommento = TRUE AND (
                       (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaRisposta != FALSE) OR
-                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Risposta IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45003' SET MESSAGE_TEXT = 'checkNotificaCommentoConsistency failed';
     END IF;
 
 END;
@@ -147,10 +154,10 @@ BEGIN
     IF EXISTS   (SELECT * FROM NOTIFICA N
                 WHERE N.Id = notifica AND N.NotificaRisposta = TRUE AND (
                       (N.NotificaFollow != FALSE OR N.NotificaMiPiace != FALSE OR N.NotificaPostCommunity != FALSE OR N.NotificaCommento != FALSE) OR
-                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.NotificaPostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
+                      (N.UtenteSeguito IS NOT NULL OR N.UtenteSeguace IS NOT NULL OR N.Utente IS NOT NULL OR N.Post IS NOT NULL OR N.PostCommunity IS NOT NULL OR N.Commento IS NOT NULL)
                 ))
     THEN
-        SIGNAL SQLSTATE '45000';
+        SIGNAL SQLSTATE '45004' SET MESSAGE_TEXT = 'checkNotificaRispostaConsistency failed';
     END IF;
 
 END;
@@ -198,3 +205,32 @@ CALL deleteTagIfUnused(OLD.Tag);
 CREATE OR REPLACE TRIGGER deleteTagIfUnused_UPDATE AFTER UPDATE ON TAG_IN_POST
 FOR EACH ROW
 CALL deleteTagIfUnused(OLD.Tag);
+
+
+/* CHECKING ACCEPTED VALUES FOR UTENTE.Genere */
+
+ALTER TABLE UTENTE
+ADD CHECK ( Genere = 'M' OR Genere = 'F' OR Genere = 'U');
+
+
+/* CHECKING THAT THE USER WHICH IS POSTING INSIDE A COMMUNITY IS A MEMBER OF THE COMMUNITY */
+
+CREATE PROCEDURE checkPostCommunityIsAllowed(IN utente INT, IN community VARCHAR(64))
+BEGIN
+
+    IF NOT EXISTS   (SELECT * FROM PARTECIPAZIONE_COMMUNITY PC
+                    WHERE PC.Utente = Utente
+                    AND PC.Community = community)
+    THEN
+        SIGNAL SQLSTATE '45005' SET MESSAGE_TEXT = 'user not allowed to post in this community';
+    END IF;
+
+END;
+
+CREATE OR REPLACE TRIGGER checkPostCommunityIsAllowed BEFORE INSERT ON POST
+    FOR EACH ROW
+    BEGIN
+        IF NEW.Community IS NOT NULL THEN
+            CALL checkPostCommunityIsAllowed(NEW.Utente, NEW.Community);
+        END IF;
+    END;

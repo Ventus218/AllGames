@@ -3,8 +3,8 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 10.0.3              
 -- * Generator date: Aug 17 2017              
--- * Generation date: Mon Dec 12 10:58:10 2022 
--- * LUN file: C:\Users\Alberto\Desktop\AllGames\db\ALL_GAMES.lun 
+-- * Generation date: Sun Dec 18 21:23:14 2022 
+-- * LUN file: C:\Users\Alessandro Venturini\Desktop\AllGames\db\ALL_GAMES.lun 
 -- * Schema: ALL_GAMES/1-1-1 
 -- ********************************************* 
 
@@ -30,7 +30,7 @@ create table C_MULTIMEDIALE_POST (
 create table COMMENTO (
      Id int not null auto_increment,
      Testo varchar(512) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Post int not null,
      Commentatore int not null,
      constraint IDCOMMENTO_ID primary key (Id));
@@ -38,6 +38,7 @@ create table COMMENTO (
 create table COMMUNITY (
      Nome varchar(64) not null,
      UrlImmagine varchar(256) not null,
+     Fondatore int not null,
      constraint IDCOMMUNITY primary key (Nome));
 
 create table FOLLOW (
@@ -53,7 +54,7 @@ create table MI_PIACE (
 create table NOTIFICA (
      Id int not null auto_increment,
      Letta char not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Ricevente int not null,
      AttoreSorgente int not null,
      NotificaFollow char not null,
@@ -78,7 +79,7 @@ create table PARTECIPAZIONE_COMMUNITY (
 create table POST (
      Id int not null auto_increment,
      Testo varchar(2048) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Utente int not null,
      Community varchar(64),
      constraint IDPOST primary key (Id));
@@ -86,7 +87,7 @@ create table POST (
 create table RISPOSTA (
      Id int not null auto_increment,
      Testo varchar(512) not null,
-     Timestamp date not null,
+     Timestamp datetime not null,
      Risponditore int not null,
      Commento int not null,
      constraint IDRISPOSTA_ID primary key (Id));
@@ -134,6 +135,10 @@ alter table COMMENTO add constraint FKPOSSESSO
 
 alter table COMMENTO add constraint FKCOMMENTA
      foreign key (Commentatore)
+     references UTENTE (Id);
+
+alter table COMMUNITY add constraint FKFONDAZIONE
+     foreign key (Fondatore)
      references UTENTE (Id);
 
 -- Not implemented
