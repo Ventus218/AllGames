@@ -33,6 +33,10 @@ h1 {
     margin-top: 4.5rem;
 }
 
+.mb-6 {
+    margin-bottom: 4.5rem;
+}
+
 article {
     width: 90% !important;
 }
