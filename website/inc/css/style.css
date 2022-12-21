@@ -1,3 +1,7 @@
+ul>li>a>img  {
+    width: 20px;
+}
+
 ul button>img {
     width: 15px;
 }
@@ -67,5 +71,5 @@ article footer a img {
 }
 
 footer img{
-    width: 40px;
+    width: 40px !important;
 }
