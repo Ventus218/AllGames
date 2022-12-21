@@ -23,6 +23,51 @@
         /**
          * @param Schemas $schema The schema on which the query will be executed.
          * 
+         * @param array $filters An associative array where each key represents the attribute name and each value represents the value to be used.
+         * Filters are applied with the AND logic operator.
+         * 
+         * @return ?array An associative array where each key is the attribute name and each value the value retrieved. Returns null if no object was found.
+         * 
+         * @throws DatabaseException
+         */
+        public function query(Schemas $schema, $filters): array {
+
+            $keys = array_keys($filters);
+
+            $query = "SELECT * FROM ".$schema->value;
+
+            $types = "";
+
+            for ($i=0; $i < sizeof($keys); $i++) { 
+                $key = $keys[$i];
+                
+                if ($i === 0) {
+                    $query = $query.(" WHERE ".$key." = ? ");
+                } else {
+                    $query = $query.("AND ".$key." = ?");
+                }
+                $types = $types.Database::getTypeCharOf($filters[$key]);
+            }
+
+            $stmt = $this->db->prepare($query);
+            if (sizeof($filters) !== 0) {
+                $stmt->bind_param($types, ...array_values($filters));
+            }
+            
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("query(".$schema->value.", $filters): Qualcosa è andato storto durante l'esecuzione della query.\nSQL error: ".$stmt->error);
+            }
+
+            $result = $stmt->get_result();
+
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * @param Schemas $schema The schema on which the query will be executed.
+         * 
          * @param array $ids An associative array where each key represents the attribute name and each value represents the value to be used.
          * The $ids array must contain all the components of the object identifier.
          * 
@@ -32,35 +77,8 @@
          */
         public function getOneByID(Schemas $schema, array $ids): ?array {
 
-            $keys = array_keys($ids);
-
-            $query = "SELECT * FROM ".$schema->value." WHERE ";
-
-            $types = "";
-
-            for ($i=0; $i < sizeof($keys); $i++) { 
-                $key = $keys[$i];
-                
-                if ($i === 0) {
-                    $query = $query.($key." = ? ");
-                } else {
-                    $query = $query.("AND ".$key." = ?");
-                }
-                $types = $types.Database::getTypeCharOf($ids[$key]);
-            }
-
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param($types, ...array_values($ids));
+            $arr = $this->query($schema, $ids);
             
-            try {
-                $stmt->execute();
-            } catch (Exception $e) {
-                throw new DatabaseException("getOneByID(".$schema->value.", $ids): Qualcosa è andato storto durante il caricamento dell'oggetto.\nSQL error: ".$stmt->error);
-            }
-
-            $result = $stmt->get_result();
-
-            $arr = $result->fetch_all(MYSQLI_ASSOC);
             if (sizeof($arr) == 1) {
                 return $arr[0];
             } else if (sizeof($arr) == 0) {
@@ -78,17 +96,7 @@
          * @throws DatabaseException
          */
         public function getAll(Schemas $schema): array {
-            $stmt = $this->db->prepare("SELECT * FROM ".$schema->value);
-            
-            try {
-                $stmt->execute();
-            } catch (Exception $e) {
-                throw new DatabaseException("getAll(".$schema->value."): Qualcosa è andato storto durante il caricamento degli oggetti.\nSQL error: ".$stmt->error);
-            }
-
-            $result = $stmt->get_result();
-
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->query($schema, array());
         }
 
         /**
