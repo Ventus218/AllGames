@@ -15,20 +15,20 @@
 
         <!--Top bar of the page-->
         <div class="row p-2 fixed-top bg-blur">
-            <div class="col-5 ms-2">
+            <div class="col-6 ps-4">
                 <header>
                     <h1 class="text-center">AllGames</h1>
                 </header>
             </div>
 
-            <!--Menù of create post button, create community button and notifications-->
-            <div class="col-6 ms-2">
+            <!--Menu with create post button, create community button and notifications-->
+            <div class="col-6">
                 <ul class="nav nav-pills mt-2"> 
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
                         <a class="nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" id="plus-community-image" href="#">
                             +
-                            <img src="inc/img/demo.png" alt="Crea community">
+                            <img src="inc/img/demo.png" alt="Crea community" id="crea-community" />
                         </a>
                     </li>
                     <div class="col-1"></div>
@@ -40,15 +40,22 @@
                     </li>
                     <div class="col-1"></div>
                     <!--Notifications button-->
-                    <li class="col-3 nav-item">
-                        <a class="nav-link" href="#">
-                            <img src="inc/img/demo_2.png" alt="Notifiche">
+                    <li class="col-2 nav-item">
+                        <a class="nav-link p-0 position-relative" href="#">
+                            <img id="notifiche" src="inc/img/demo_2.png" alt="Notifiche" />
+                            <span class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger p-1">
+                                <!--Number of new notifications-->
+                                12
+                                <!--For screen readers-->
+                                <span class="visually-hidden">Nuove notifiche</span>
+                            </span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
 
+        <!--All of the posts-->
         <div class="row mb-6">
             <div class="col-12 mt-6 d-flex">
                 <article class="mx-auto">
@@ -62,9 +69,10 @@
                         </header>
 
                         <section>
+                            <!--Text of the post-->
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
 
-                            <!-- Carousel -->
+                            <!-- Image/video carousel -->
                             <div class="slider carousel">
                                 <div class="carousel-inner">
                                     <img src="inc/img/demo.png" alt="" />
@@ -253,6 +261,7 @@
             </div>
         </div>
         
+        <!--Footer of the page, with Home, Search, User and Settings buttons.-->
         <div class="row fixed-bottom bg-black">
             <hr class="mb-1">
             <div class="col-12 mb-1">
@@ -288,6 +297,7 @@
         </div>
     </div>
 
+    <!--JS script for the image/videos slider (or carousel) on the posts-->
     <script src="inc/js/slider.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

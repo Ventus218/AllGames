@@ -1,5 +1,9 @@
-ul>li>a>img  {
+#crea-community  {
     width: 20px;
+}
+
+#notifiche {
+    width: 35px;
 }
 
 ul button>img {
