@@ -1,5 +1,7 @@
 <?php
 
+    require_once(__DIR__."/../../inc/php/utils.php");
+
     enum GenereUtente: string {
         case MASCHIO = "M";
         case FEMMINA = "F";
@@ -42,6 +44,25 @@
             ));
 
             return self::fromDBRow($row);
+        }
+
+        /**
+         * @throws DatabaseException
+         */
+        public static function getOneByUsername(Database $db, string $username): ?self {
+            $rows = $db->query(self::schema, array(
+                'Username' => $username
+            ));
+
+            if (sizeof($rows) > 1) {
+                internalServerError("Sembra esistano più utenti con lo stesso username. Questo implica una violazione precedentemente avvenuta dei vincoli del database.");
+            }
+
+            if ($rows[0]) {
+                return self::fromDBRow($rows[0]);
+            } else {
+                return null;
+            }
         }
 
         public static function fromDBRow(array $row): UtenteDTO {
