@@ -54,14 +54,12 @@
                 'Username' => $username
             ));
 
-            if (sizeof($rows) > 1) {
-                internalServerError("Sembra esistano più utenti con lo stesso username. Questo implica una violazione precedentemente avvenuta dei vincoli del database.");
-            }
-
-            if ($rows[0]) {
+            if (sizeof($rows) === 0) {
+                return null;
+            } else if (sizeof($rows) === 1) {
                 return self::fromDBRow($rows[0]);
             } else {
-                return null;
+                internalServerError("Sembra esistano più utenti con lo stesso username. Questo implica una violazione precedentemente avvenuta dei vincoli del database.");
             }
         }
 
