@@ -7,6 +7,6 @@
     } else {
         // set various templateParams...
 
-        require(__DIR__."/templates/index.php");
+        require(__DIR__."/templates/index-template.php");
     }
 ?>

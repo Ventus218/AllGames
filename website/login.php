@@ -6,7 +6,7 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require(__DIR__."/templates/login.php");
+        require(__DIR__."/templates/login-template.php");
 
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST["username"]) || !isset($_POST["password"])) {
@@ -25,7 +25,7 @@
             }
         } else {
             $templateParams["login-error"] = "Username o password errati";
-            require(__DIR__."/templates/login.php");
+            require(__DIR__."/templates/login-template.php");
         }
     } else {
         internalServerError("Sono accettate solo richieste GET o POST");
