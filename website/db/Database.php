@@ -1,7 +1,7 @@
 <?php
 
-    require_once("model/Schemas.php");
-    require_once("DatabaseException.php");
+    require_once(__DIR__."/model/Schemas.php");
+    require_once(__DIR__."/DatabaseException.php");
 
     class Database {
         private $db;
