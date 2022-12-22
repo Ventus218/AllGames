@@ -6,15 +6,15 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require(__DIR__."/templates/login.html");
+        require(__DIR__."/templates/login.php");
 
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!isset($_POST["Username"]) || !isset($_POST["Password"])) {
+        if (!isset($_POST["username"]) || !isset($_POST["password"])) {
             internalServerError("Richiesti Username e Password");    
         }
 
-        $username = $_POST["Username"];
-        $password = $_POST["Password"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
         if ($utente = authenticateUtente($username, $password, $db)) {
             startSessionForUtente($utente);
@@ -25,7 +25,7 @@
             }
         } else {
             $templateParams["login-error"] = "Username o password errati";
-            require(__DIR__."/templates/login.html");
+            require(__DIR__."/templates/login.php");
         }
     } else {
         internalServerError("Sono accettate solo richieste GET o POST");
