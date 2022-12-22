@@ -77,3 +77,23 @@ article footer a img {
 footer img{
     width: 40px !important;
 }
+
+form input[type="submit"] {
+    font-weight: bold;
+    border-radius: .8rem !important;
+}
+
+input.form-control {
+    background-color: black;
+    border: none;
+    border-bottom: 3px solid #545454;
+    border-radius: 0px;
+    padding: 0px;
+    color: white !important;
+}
+
+input.form-control:focus {
+    background-color: black;
+    border-bottom: 3px solid #545454;
+    box-shadow: none;
+}
