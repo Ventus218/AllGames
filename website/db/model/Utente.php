@@ -50,7 +50,7 @@
          * @throws DatabaseException
          */
         public static function getOneByUsername(Database $db, string $username): ?self {
-            $rows = $db->query(self::schema, array(
+            $rows = $db->select(self::schema, array(
                 'Username' => $username
             ));
 

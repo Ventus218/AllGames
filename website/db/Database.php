@@ -30,7 +30,7 @@
          * 
          * @throws DatabaseException
          */
-        public function query(Schemas $schema, $filters): array {
+        public function select(Schemas $schema, $filters): array {
 
             $keys = array_keys($filters);
 
@@ -57,7 +57,7 @@
             try {
                 $stmt->execute();
             } catch (Exception $e) {
-                throw new DatabaseException("query(".$schema->value.", $filters): Qualcosa è andato storto durante l'esecuzione della query.\nSQL error: ".$stmt->error);
+                throw new DatabaseException("select(".$schema->value.", $filters): Qualcosa è andato storto durante l'esecuzione della query.\nSQL error: ".$stmt->error);
             }
 
             $result = $stmt->get_result();
@@ -77,7 +77,7 @@
          */
         public function getOneByID(Schemas $schema, array $ids): ?array {
 
-            $arr = $this->query($schema, $ids);
+            $arr = $this->select($schema, $ids);
             
             if (sizeof($arr) == 1) {
                 return $arr[0];
@@ -96,7 +96,7 @@
          * @throws DatabaseException
          */
         public function getAll(Schemas $schema): array {
-            return $this->query($schema, array());
+            return $this->select($schema, array());
         }
 
         /**
