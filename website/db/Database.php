@@ -26,7 +26,7 @@
          * @param array $filters An associative array where each key represents the attribute name and each value represents the value to be used.
          * Filters are applied with the AND logic operator.
          * 
-         * @return ?array An associative array where each key is the attribute name and each value the value retrieved. Returns null if no object was found.
+         * @return array An associative array where each key is the attribute name and each value the value retrieved.
          * 
          * @throws DatabaseException
          */
