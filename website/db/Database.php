@@ -21,6 +21,38 @@
         }
 
         /**
+         * @param string $query The query to be executed
+         * 
+         * @param array $params An array of parameters that will be substituted to the ? char inside the query.
+         * 
+         * @return array An associative array where each key is the attribute name and each value the value retrieved.
+         * 
+         * @throws DatabaseException
+         */
+        public function executeQuery(string $query, array $params): array {
+
+            $stmt = $this->db->prepare($query);
+
+            if (sizeof($params) !== 0) {
+                $types = "";
+                foreach ($params as $param) {
+                    $types = $types.self::getTypeCharOf($param);
+                }
+                $stmt->bind_param($types, ...$params);
+            }
+            
+            try {
+                $stmt->execute();
+            } catch (Exception $e) {
+                throw new DatabaseException("executeQuery(".$query.", $params): Qualcosa è andato storto durante l'esecuzione della query.\nSQL error: ".$stmt->error);
+            }
+
+            $result = $stmt->get_result();
+
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
          * @param Schemas $schema The schema on which the query will be executed.
          * 
          * @param array $filters An associative array where each key represents the attribute name and each value represents the value to be used.
