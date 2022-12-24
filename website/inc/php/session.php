@@ -21,6 +21,7 @@
     }
 
     function startSessionForUtente(UtenteDTO $user) {
+        $_SESSION["USER_ID"] = $user->id;
         $_SESSION["USER_USERNAME"] = $user->username;
         $_SESSION["LAST_INTERACTION"] = time();
     }
@@ -43,4 +44,19 @@
         }
     }
 
+    function getSessionUserId(): ?int {
+        if (isset($_SESSION["USER_ID"])) {
+            return $_SESSION["USER_ID"];
+        } else {
+            return null;
+        }
+    }
+
+    function getSessionUserUsername(): ?int {
+        if (isset($_SESSION["USER_USERNAME"])) {
+            return $_SESSION["USER_USERNAME"];
+        } else {
+            return null;
+        }
+    }
 ?>
