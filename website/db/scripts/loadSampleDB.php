@@ -65,6 +65,7 @@
 
         $follows = array(
             new FollowCreateDTO($u_amaz, $u_drac),
+            new FollowCreateDTO($u_amaz, $u_got),
             new FollowCreateDTO($u_got, $u_youdied),
             new FollowCreateDTO($u_killer, $u_youdied),
             new FollowCreateDTO($u_killer, $u_amaz),
