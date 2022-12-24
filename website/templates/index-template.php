@@ -56,31 +56,45 @@
             </div>
         </div>
 
-        <!--All of the posts-->
         <div class="row mb-6">
+        <!--Template post-->
+
+            <?php foreach($templateParams["posts_data"] as $postData):
+                $post = $postData["post"];
+                $utente = $postData["utente"];
+                $tags = $postData["tags"];
+                $multim = $postData["c_multimediali"];
+                $commenti = $postData["commenti"];
+                $miPiace = $postData["mi_piace"];
+            ?>
             <div class="col-12 mt-6 d-flex">
                 <article class="mx-auto">
                     <div class="bg-gray rounded-top p-3">
                         <header>
                             <div class="clearfix">
-                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di Th3 Pr0K1ll3r" />
-                                <h2>Th3 Pr0K1ll3r</h2>
+                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                <h2> <?php echo $utente->username; ?> </h2>
                             </div>
-                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong>DarkSouls</strong></a>
+                            <?php foreach($tags as $tag): ?>
+                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong> <?php echo $tag->tag; ?> </strong></a>
+                            <?php endforeach; ?>
                         </header>
 
                         <section>
                             <!--Text of the post-->
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ../incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                            <p> <?php echo $post->testo; ?> </p>
 
                             <!-- Image/video carousel -->
+                            <?php if(sizeof($multim) > 0): ?>
                             <div class="slider carousel">
                                 <div class="carousel-inner">
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
+                                    <?php foreach($multim as $m): ?>
+                                        <?php if($m->immagine): ?>
+                                        <img src=" <?php echo $m->url; ?> " alt="" />
+                                        <?php else: ?>
+                                        <img src=" <?php echo $m->url; ?> " alt="" />
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </div>
 
                                 <!-- Left and right controls/icons -->
@@ -91,6 +105,7 @@
                                     <span class="carousel-control-next-icon"></span>
                                 </button>
                             </div>
+                            <?php endif; ?>
                         </section>
                     </div>
 
@@ -98,169 +113,17 @@
                         <footer class="d-flex">
                             <div class="mx-auto">
                                 <a class="btn btn-outline-light border-lightgray border-2" href="#">
-                                    <strong>1056</strong> Commenti
+                                    <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                 </a>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="../inc/img/demo.png" alt="Like"> <strong>30600</strong>
+                                    <img src="../inc/img/demo.png" alt="Like"> <strong> <?php echo $miPiace ?> </strong>
                                 </a>
                             </div>
                         </footer>
                     </div>
                 </article>
             </div>
-            <div class="col-12 mt-4 d-flex">
-                <article class="mx-auto">
-                    <div class="bg-gray rounded-top p-3">
-                        <header>
-                            <div class="clearfix">
-                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di Th3 Pr0K1ll3r" />
-                                <h2>Th3 Pr0K1ll3r</h2>
-                            </div>
-                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong>DarkSouls</strong></a>
-                        </header>
-
-                        <section>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ../incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-
-                            <!-- Carousel -->
-                            <div class="slider carousel">
-                                <div class="carousel-inner">
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                </div>
-
-                                <!-- Left and right controls/icons -->
-                                <button class="carousel-control-prev d-none" type="button">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </button>
-                                <button class="carousel-control-next d-none" type="button">
-                                    <span class="carousel-control-next-icon"></span>
-                                </button>
-                            </div>
-
-                        </section>
-                    </div>
-
-                    <div class="bg-gray rounded-bottom p-2 mt-1">
-                        <footer class="d-flex">
-                            <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="#">
-                                    <strong>1056</strong> Commenti
-                                </a>
-                                <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="../inc/img/demo.png" alt="Like"> <strong>30600</strong>
-                                </a>
-                            </div>
-                        </footer>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-12 mt-4 d-flex">
-                <article class="mx-auto">
-                    <div class="bg-gray rounded-top p-3">
-                        <header>
-                            <div class="clearfix">
-                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di Th3 Pr0K1ll3r" />
-                                <h2>Th3 Pr0K1ll3r</h2>
-                            </div>
-                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong>DarkSouls</strong></a>
-                        </header>
-
-                        <section>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ../incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-
-                            <!-- Carousel -->
-                            <div class="slider carousel">
-                                <div class="carousel-inner">
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                </div>
-
-                                <!-- Left and right controls/icons -->
-                                <button class="carousel-control-prev d-none" type="button">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </button>
-                                <button class="carousel-control-next d-none" type="button">
-                                    <span class="carousel-control-next-icon"></span>
-                                </button>
-                            </div>
-
-                        </section>
-                    </div>
-
-                    <div class="bg-gray rounded-bottom p-2 mt-1">
-                        <footer class="d-flex">
-                            <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="#">
-                                    <strong>1056</strong> Commenti
-                                </a>
-                                <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="../inc/img/demo.png" alt="Like"> <strong>30600</strong>
-                                </a>
-                            </div>
-                        </footer>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-12 mt-4 d-flex">
-                <article class="mx-auto">
-                    <div class="bg-gray rounded-top p-3">
-                        <header>
-                            <div class="clearfix">
-                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di Th3 Pr0K1ll3r" />
-                                <h2>Th3 Pr0K1ll3r</h2>
-                            </div>
-                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong>DarkSouls</strong></a>
-                        </header>
-
-                        <section>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ../incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-
-                            <!-- Carousel -->
-                            <div class="slider carousel">
-                                <div class="carousel-inner">
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                    <img src="../inc/img/demo.png" alt="" />
-                                    <img src="../inc/img/demo_2.png" alt="" />
-                                </div>
-
-                                <!-- Left and right controls/icons -->
-                                <button class="carousel-control-prev d-none" type="button">
-                                    <span class="carousel-control-prev-icon"></span>
-                                </button>
-                                <button class="carousel-control-next d-none" type="button">
-                                    <span class="carousel-control-next-icon"></span>
-                                </button>
-                            </div>
-
-                        </section>
-                    </div>
-
-                    <div class="bg-gray rounded-bottom p-2 mt-1">
-                        <footer class="d-flex">
-                            <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="#">
-                                    <strong>1056</strong> Commenti
-                                </a>
-                                <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="../inc/img/demo.png" alt="Like"> <strong>30600</strong>
-                                </a>
-                            </div>
-                        </footer>
-                    </div>
-                </article>
-            </div>
-        </div>
+            <?php endforeach; ?>
         
         <!--Footer of the page, with Home, Search, User and Settings buttons.-->
         <div class="row fixed-bottom bg-black">
