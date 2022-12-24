@@ -113,18 +113,18 @@
         }
 
         $posts = array(
-            new PostCreateDTO("Cosa pensate di Elden Ring, il nuovo gioco di FromSoftware?\nSarà il degno successore di Dark Souls?", new Datetime(), $u_youdied, $comm_amantiDS, 1),
-            new PostCreateDTO("Oggi pomeriggio ci vediamo su Stwitch per la seconda live di Bloodborn", new Datetime(), $u_youdied, NULL, 2),
-            new PostCreateDTO("Qualcuno vuole unirsi alla mia gilda su World of Warcraft?\nCi chiamiamo \"Le amazzoni\".", new Datetime(), $u_amaz, NULL, 3),
-            new PostCreateDTO("Ci troviamo online stasera alle 19 per sconfiggere il penultimo boss!\nForza amazzoni!", new Datetime(), $u_amaz, $comm_amazzoni, 4),
-            new PostCreateDTO("Guardate il mio nuovo personaggio :)", new Datetime(), $u_amaz, $comm_amazzoni, 5),
-            new PostCreateDTO("Elden ring è troppo difficile, FA SCHIFO!", new Datetime(), $u_got, NULL, 6),
-            new PostCreateDTO("La grafica di Uncharted 4 è fantasticaaa <3 <3", new Datetime(), $u_got, NULL, 7),
-            new PostCreateDTO("Qualcuno saprebbe dirmi come sbloccare l'achievement \"Il distruttore\" su Dark Souls 3? Mi manca solo quello per fare 100%", new Datetime(), $u_killer, $comm_amantiDS, 8),
-            new PostCreateDTO("Dove trovo l'Ender Dragon?", new Datetime(), $u_killer, $comm_tutorial, 9),
-            new PostCreateDTO("Cerco qualcuno per giocare con me a Fortnite", new Datetime(), $u_killer, NULL, 10),
-            new PostCreateDTO("HAHAHAAH CHE BUUUUG!!!!", new Datetime(), $u_killer, NULL, 11),
-            new PostCreateDTO("Vorrei provare per la prima volta un RPG, qualcuno saprebbe darmi qualche consiglio?", new Datetime(), $u_drac, NULL, 12)
+            new PostCreateDTO("Cosa pensate di Elden Ring, il nuovo gioco di FromSoftware?\nSarà il degno successore di Dark Souls?", dateTimeFromSQLDate("2022-02-26 18:31:00"), $u_youdied, $comm_amantiDS, 1),
+            new PostCreateDTO("Oggi pomeriggio ci vediamo su Stwitch per la seconda live di Bloodborn", dateTimeFromSQLDate("2022-08-22 10:15:00"), $u_youdied, NULL, 2),
+            new PostCreateDTO("Qualcuno vuole unirsi alla mia gilda su World of Warcraft?\nCi chiamiamo \"Le amazzoni\".", dateTimeFromSQLDate("2022-07-02 19:00:00"), $u_amaz, NULL, 3),
+            new PostCreateDTO("Ci troviamo online stasera alle 19 per sconfiggere il penultimo boss!\nForza amazzoni!", dateTimeFromSQLDate("2022-10-12 15:58:00"), $u_amaz, $comm_amazzoni, 4),
+            new PostCreateDTO("Guardate il mio nuovo personaggio :)", dateTimeFromSQLDate("2022-08-03 23:27:00"), $u_amaz, $comm_amazzoni, 5),
+            new PostCreateDTO("Elden ring è troppo difficile, FA SCHIFO!", dateTimeFromSQLDate("2022-03-01 10:20:00"), $u_got, NULL, 6),
+            new PostCreateDTO("La grafica di Uncharted 4 è fantasticaaa <3 <3", dateTimeFromSQLDate("2022-12-01 16:10:00"), $u_got, NULL, 7),
+            new PostCreateDTO("Qualcuno saprebbe dirmi come sbloccare l'achievement \"Il distruttore\" su Dark Souls 3? Mi manca solo quello per fare 100%", dateTimeFromSQLDate("2022-11-10 18:40:00"), $u_killer, $comm_amantiDS, 8),
+            new PostCreateDTO("Dove trovo l'Ender Dragon?", dateTimeFromSQLDate("2022-08-01 10:15:00"), $u_killer, $comm_tutorial, 9),
+            new PostCreateDTO("Cerco qualcuno per giocare con me a Fortnite", dateTimeFromSQLDate("2022-08-24 15:10:00"), $u_killer, NULL, 10),
+            new PostCreateDTO("HAHAHAAH CHE BUUUUG!!!!", dateTimeFromSQLDate("2022-09-15 15:20:00"), $u_killer, NULL, 11),
+            new PostCreateDTO("Vorrei provare per la prima volta un RPG, qualcuno saprebbe darmi qualche consiglio?", dateTimeFromSQLDate("2022-10-08 21:40:00"), $u_drac, NULL, 12)
         );
 
         foreach ($posts as $p) {
@@ -201,16 +201,16 @@
 
 
         $commenti = array(
-            new CommentoCreateDTO("Vieni a vedere qualche mio tutorial se vuoi migliorare.", new DateTime(), 6, $u_youdied, 1),
-            new CommentoCreateDTO("Cosa ne dici di provare World Of Warcraft\n Ho fondato una gilda (Le Amazzoni) che è diventata molto nota in Italia. Se vuoi possiamo aiutarti con le prime fasi di gioco!!! :)", new DateTime(), 12, $u_amaz, 2),
-            new CommentoCreateDTO("Assolutamente no, lagga ed è troppo sbilanciato!", new DateTime(), 1, $u_got, 3),
-            new CommentoCreateDTO("Non fa ridere..", new DateTime(), 11, $u_got, 4),
-            new CommentoCreateDTO("Non provare Elden Ring.", new DateTime(), 12, $u_got, 5),
-            new CommentoCreateDTO("Troppo belloooooooo °o°", new DateTime(), 1, $u_killer, 6),
-            new CommentoCreateDTO("Come non detto, ci sono appena riuscito.", new DateTime(), 8, $u_killer, 7),
-            new CommentoCreateDTO("Se hai la Switch prova Zelda Breath of the Wild. Tutti dicono sia molto bello e io sono d'accordo!", new DateTime(), 12, $u_killer, 8),
-            new CommentoCreateDTO("Prova con Divinity 2 Ego Draconis, è un po' vecchio ma proprio per questo penso sia la scelta migliore per un neofita.", new DateTime(), 1, $u_rob, 9),
-            new CommentoCreateDTO("Ci sarò!", new DateTime(), 4, $u_drac, 10)
+            new CommentoCreateDTO("Vieni a vedere qualche mio tutorial se vuoi migliorare.", dateTimeFromSQLDate("2022-03-01 12:30:00"), 6, $u_youdied, 1),
+            new CommentoCreateDTO("Cosa ne dici di provare World Of Warcraft\n Ho fondato una gilda (Le Amazzoni) che è diventata molto nota in Italia. Se vuoi possiamo aiutarti con le prime fasi di gioco!!! :)", dateTimeFromSQLDate("2022-10-09 10:32:00"), 12, $u_amaz, 2),
+            new CommentoCreateDTO("Assolutamente no, lagga ed è troppo sbilanciato!", dateTimeFromSQLDate("2022-02-28 22:15:00"), 1, $u_got, 3),
+            new CommentoCreateDTO("Non fa ridere..", dateTimeFromSQLDate("2022-09-15 16:15:00"), 11, $u_got, 4),
+            new CommentoCreateDTO("Non provare Elden Ring.", dateTimeFromSQLDate("2022-10-09 15:30:00"), 12, $u_got, 5),
+            new CommentoCreateDTO("Troppo belloooooooo °o°", dateTimeFromSQLDate("2022-02-27 10:05:00"), 1, $u_killer, 6),
+            new CommentoCreateDTO("Come non detto, ci sono appena riuscito.", dateTimeFromSQLDate("2022-11-10 23:20:00"), 8, $u_killer, 7),
+            new CommentoCreateDTO("Se hai la Switch prova Zelda Breath of the Wild. Tutti dicono sia molto bello e io sono d'accordo!", dateTimeFromSQLDate("2022-10-09 16:12:00"), 12, $u_killer, 8),
+            new CommentoCreateDTO("Prova con Divinity 2 Ego Draconis, è un po' vecchio ma proprio per questo penso sia la scelta migliore per un neofita.", dateTimeFromSQLDate("2022-10-10 6:40:00"), 12, $u_rob, 9),
+            new CommentoCreateDTO("Ci sarò!", dateTimeFromSQLDate("2022-10-12 16:21:00"), 4, $u_drac, 10)
         );
 
         foreach ($commenti as $c) {
@@ -218,14 +218,14 @@
         }
 
         $risposte = array(
-            new RispostaCreateDTO("Non sono io a dover migliorare, è il gioco...", new DateTime(), $u_got, 1, 1),
-            new RispostaCreateDTO("Stai calmina, stava solo cercando di essere gentile...", new DateTime(), $u_killer, 1, 2),
-            new RispostaCreateDTO("Grazie mille, penso proprio che entrerò anche nella vostra community :)", new DateTime(), $u_drac, 2, 3),
-            new RispostaCreateDTO("Come te.. :P", new DateTime(), $u_killer, 4, 4),
-            new RispostaCreateDTO("Concordo", new DateTime(), $u_amaz, 6, 5),
-            new RispostaCreateDTO("Grazie!", new DateTime(), $u_drac, 8, 6),
-            new RispostaCreateDTO("Sembra interessante, grazie mille!", new DateTime(), $u_drac, 9, 7),
-            new RispostaCreateDTO("Grandeee!", new DateTime(), $u_amaz, 10, 8)
+            new RispostaCreateDTO("Non sono io a dover migliorare, è il gioco...", dateTimeFromSQLDate("2022-03-01 12:35:00"), $u_got, 1, 1),
+            new RispostaCreateDTO("Stai calmina, stava solo cercando di essere gentile...", dateTimeFromSQLDate("2022-03-01 12:58:00"), $u_killer, 1, 2),
+            new RispostaCreateDTO("Grazie mille, penso proprio che entrerò anche nella vostra community :)", dateTimeFromSQLDate("2022-10-09 10:55:00"), $u_drac, 2, 3),
+            new RispostaCreateDTO("Come te.. :P", dateTimeFromSQLDate("2022-09-15 16:21:00"), $u_killer, 4, 4),
+            new RispostaCreateDTO("Concordo", dateTimeFromSQLDate("2022-02-27 10:28:00"), $u_amaz, 6, 5),
+            new RispostaCreateDTO("Grazie!", dateTimeFromSQLDate("2022-10-09 18:02:00"), $u_drac, 8, 6),
+            new RispostaCreateDTO("Sembra interessante, grazie mille!", dateTimeFromSQLDate("2022-10-10 8:20:00"), $u_drac, 9, 7),
+            new RispostaCreateDTO("Grandeee!", dateTimeFromSQLDate("2022-10-12 16:30:00"), $u_amaz, 10, 8)
         );
 
         foreach ($risposte as $r) {
