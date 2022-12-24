@@ -1,5 +1,13 @@
 <?php
 
+    class CommentoKeys {
+        public const id = 'Id';
+        public const testo = 'Testo';
+        public const timestamp = 'Timestamp';
+        public const post = 'Post';
+        public const commentatore = 'Commentatore';
+    }
+
     class CommentoDTO {
         private const schema = Schemas::COMMENTO;
 
@@ -27,7 +35,7 @@
          */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
-                'Id' => $id
+                CommentoKeys::id => $id
             ));
 
             return self::fromDBRow($row);
@@ -35,11 +43,11 @@
 
         public static function fromDBRow(array $row): CommentoDTO {
             return new CommentoDTO(
-                $row["Id"],
-                $row["Testo"],
-                dateTimeFromSQLDate($row["Timestamp"]),
-                $row["Post"],
-                $row["Commentatore"]
+                $row[CommentoKeys::id],
+                $row[CommentoKeys::testo],
+                dateTimeFromSQLDate($row[CommentoKeys::timestamp]),
+                $row[CommentoKeys::post],
+                $row[CommentoKeys::commentatore]
             );
         }
     }
@@ -60,11 +68,11 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Id' => $this->id,
-                'Testo' => $this->testo,
-                'Timestamp' => sqlDateFromDateTime($this->timestamp),
-                'Post' => $this->post,
-                'Commentatore' => $this->commentatore
+                CommentoKeys::id => $this->id,
+                CommentoKeys::testo => $this->testo,
+                CommentoKeys::timestamp => sqlDateFromDateTime($this->timestamp),
+                CommentoKeys::post => $this->post,
+                CommentoKeys::commentatore => $this->commentatore
             ));
         }
     }
@@ -81,7 +89,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Id' => $this->id
+                CommentoKeys::id => $this->id
             ));
         }
 

@@ -1,5 +1,11 @@
 <?php
 
+    class CommunityKeys {
+        public const nome = 'Nome';
+        public const urlImmagine = 'UrlImmagine';
+        public const fondatore = 'Fondatore';
+    }
+
     class CommunityDTO {
         private const schema = Schemas::COMMUNITY;
         
@@ -25,7 +31,7 @@
          */
         public static function getOneByID(Database $db, string $nome): self {
             $row = $db->getOneByID(self::schema, array(
-                'Nome' => $nome
+                CommunityKeys::nome => $nome
             ));
 
             return self::fromDBRow($row);
@@ -34,9 +40,9 @@
         public static function fromDBRow(array $row): CommunityDTO {
             
             return new CommunityDTO(
-                $row["Nome"],
-                $row["UrlImmagine"],
-                $row["Fondatore"]
+                $row[CommunityKeys::nome],
+                $row[CommunityKeys::urlImmagine],
+                $row[CommunityKeys::fondatore]
             );
         }
     }
@@ -55,9 +61,9 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Nome' => $this->nome,
-                'UrlImmagine' => $this->urlImmagine,
-                'Fondatore' => $this->fondatore
+                CommunityKeys::nome => $this->nome,
+                CommunityKeys::urlImmagine => $this->urlImmagine,
+                CommunityKeys::fondatore => $this->fondatore
             ));
         }
     }

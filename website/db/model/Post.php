@@ -1,5 +1,13 @@
 <?php
 
+    class PostKeys {
+        public const id = 'Id';
+        public const testo = 'Testo';
+        public const timestamp = 'Timestamp';
+        public const utente = 'Utente';
+        public const community = 'Community';
+    }
+
     class PostDTO {
         private const schema = Schemas::POST;
 
@@ -27,7 +35,7 @@
          */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
-                'Id' => $id
+                PostKeys::id =>$id
             ));
 
             return self::fromDBRow($row);
@@ -35,11 +43,11 @@
 
         public static function fromDBRow(array $row): PostDTO {
             return new PostDTO(
-                $row["Id"],
-                $row["Testo"],
-                dateTimeFromSQLDate($row["Timestamp"]),
-                $row["Utente"],
-                $row["Community"],
+                $row[PostKeys::id],
+                $row[PostKeys::testo],
+                dateTimeFromSQLDate($row[PostKeys::timestamp]),
+                $row[PostKeys::utente],
+                $row[PostKeys::community],
             );
         }
     }
@@ -60,11 +68,11 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Id' => $this->id,
-                'Testo' => $this->testo,
-                'Timestamp' => sqlDateFromDateTime($this->timestamp),
-                'Utente' => $this->utente,
-                'Community' => $this->community
+                PostKeys::id =>$this->id,
+                PostKeys::testo =>$this->testo,
+                PostKeys::timestamp => sqlDateFromDateTime($this->timestamp),
+                PostKeys::utente => $this->utente,
+                PostKeys::community => $this->community
             ));
         }
     }
@@ -81,7 +89,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Id' => $this->id
+                PostKeys::id =>$this->id
             ));
         }
 

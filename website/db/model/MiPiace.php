@@ -1,5 +1,10 @@
 <?php
 
+    class MiPiaceKeys {
+        public const post = 'Post';
+        public const utente = 'Utente';
+    }
+
     class MiPiaceDTO {
         private const schema = Schemas::MI_PIACE;
 
@@ -24,8 +29,8 @@
          */
         public static function getOneByID(Database $db, int $post, int $utente): self {
             $row = $db->getOneByID(self::schema, array(
-                'Post' => $post,
-                'Utente' => $utente
+                MiPiaceKeys::post => $post,
+                MiPiaceKeys::utente => $utente
             ));
 
             return self::fromDBRow($row);
@@ -33,8 +38,8 @@
 
         public static function fromDBRow(array $row): MiPiaceDTO {
             return new MiPiaceDTO(
-                $row["Post"],
-                $row["Utente"]
+                $row[MiPiaceKeys::post],
+                $row[MiPiaceKeys::utente]
             );
         }
     }
@@ -52,8 +57,8 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Post' => $this->post,
-                'Utente' => $this->utente
+                MiPiaceKeys::post => $this->post,
+                MiPiaceKeys::utente => $this->utente
             ));
         }
     }
@@ -71,8 +76,8 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Post' => $this->post,
-                'Utente' => $this->utente
+                MiPiaceKeys::post => $this->post,
+                MiPiaceKeys::utente => $this->utente
             ));
         }
 

@@ -2,6 +2,19 @@
 
     require_once(__DIR__."/../../inc/php/utils.php");
 
+    class UtenteKeys {
+        public const id = 'Id';
+        public const username = 'Username';
+        public const passwordHash = 'PasswordHash';
+        public const nome = 'Nome';
+        public const cognome = 'Cognome';
+        public const dataNascita = 'DataNascita';
+        public const genere = 'Genere';
+        public const email = 'Email';
+        public const telefono = 'Telefono';
+        public const urlImmagine = 'UrlImmagine';
+    }
+
     enum GenereUtente: string {
         case MASCHIO = "M";
         case FEMMINA = "F";
@@ -40,7 +53,7 @@
          */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
-                'Id' => $id
+                UtenteKeys::id => $id
             ));
 
             return self::fromDBRow($row);
@@ -51,7 +64,7 @@
          */
         public static function getOneByUsername(Database $db, string $username): ?self {
             $rows = $db->select(self::schema, array(
-                'Username' => $username
+                UtenteKeys::username => $username
             ));
 
             if (sizeof($rows) === 0) {
@@ -65,16 +78,16 @@
 
         public static function fromDBRow(array $row): UtenteDTO {
             return new UtenteDTO(
-                $row["Id"],
-                $row["Username"],
-                $row["PasswordHash"],
-                $row["Nome"],
-                $row["Cognome"],
-                dateTimeFromSQLDate($row["DataNascita"]),
-                GenereUtente::from($row["Genere"]),
-                $row["Email"],
-                $row["Telefono"],
-                $row["UrlImmagine"]
+                $row[UtenteKeys::id],
+                $row[UtenteKeys::username],
+                $row[UtenteKeys::passwordHash],
+                $row[UtenteKeys::nome],
+                $row[UtenteKeys::cognome],
+                dateTimeFromSQLDate($row[UtenteKeys::dataNascita]),
+                GenereUtente::from($row[UtenteKeys::genere]),
+                $row[UtenteKeys::email],
+                $row[UtenteKeys::telefono],
+                $row[UtenteKeys::urlImmagine]
             );
         }
     }
@@ -100,16 +113,16 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Id' => $this->id,
-                'Username' => $this->username,
-                'PasswordHash' => $this->passwordHash,
-                'Nome' => $this->nome,
-                'Cognome' => $this->cognome,
-                'DataNascita' => sqlDateFromDateTime($this->dataNascita),
-                'Genere' => $this->genere->value,
-                'Email' => $this->email,
-                'Telefono' => $this->telefono,
-                'UrlImmagine' => $this->urlImmagine,
+                UtenteKeys::id => $this->id,
+                UtenteKeys::username => $this->username,
+                UtenteKeys::passwordHash => $this->passwordHash,
+                UtenteKeys::nome => $this->nome,
+                UtenteKeys::cognome => $this->cognome,
+                UtenteKeys::dataNascita => sqlDateFromDateTime($this->dataNascita),
+                UtenteKeys::genere => $this->genere->value,
+                UtenteKeys::email => $this->email,
+                UtenteKeys::telefono => $this->telefono,
+                UtenteKeys::urlImmagine => $this->urlImmagine,
             ));
         }
     }
@@ -126,7 +139,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Id' => $this->id
+                UtenteKeys::id => $this->id
             ));
         }
 
@@ -158,18 +171,18 @@
          */
         public function updateOn(Database $db) {
             return $db->update(self::schema, array(
-                'Id' => $this->id,
-                'Username' => $this->username,
-                'PasswordHash' => $this->passwordHash,
-                'Nome' => $this->nome,
-                'Cognome' => $this->cognome,
-                'DataNascita' => sqlDateFromDateTime($this->dataNascita),
-                'Genere' => $this->genere->value,
-                'Email' => $this->email,
-                'Telefono' => $this->telefono,
-                'UrlImmagine' => $this->urlImmagine,
+                UtenteKeys::id => $this->id,
+                UtenteKeys::username => $this->username,
+                UtenteKeys::passwordHash => $this->passwordHash,
+                UtenteKeys::nome => $this->nome,
+                UtenteKeys::cognome => $this->cognome,
+                UtenteKeys::dataNascita => sqlDateFromDateTime($this->dataNascita),
+                UtenteKeys::genere => $this->genere->value,
+                UtenteKeys::email => $this->email,
+                UtenteKeys::telefono => $this->telefono,
+                UtenteKeys::urlImmagine => $this->urlImmagine
             ), array(
-                'Id' => $this->id
+                UtenteKeys::id => $this->id
             ));
         }
 

@@ -1,5 +1,10 @@
 <?php
 
+    class PartecipazioneCommunityKeys {
+        public const utente = 'Utente';
+        public const community = 'Community';
+    }
+
     class PartecipazioneCommunityDTO {
         private const schema = Schemas::PARTECIPAZIONE_COMMUNITY;
 
@@ -24,8 +29,8 @@
          */
         public static function getOneByID(Database $db, int $utente, string $community): self {
             $row = $db->getOneByID(self::schema, array(
-                'Utente' => $utente,
-                'Community' => $community
+                PartecipazioneCommunityKeys::utente => $utente,
+                PartecipazioneCommunityKeys::community => $community
             ));
 
             return self::fromDBRow($row);
@@ -33,8 +38,8 @@
 
         public static function fromDBRow(array $row): PartecipazioneCommunityDTO {
             return new PartecipazioneCommunityDTO(
-                $row["Utente"],
-                $row["Community"]
+                $row[PartecipazioneCommunityKeys::utente],
+                $row[PartecipazioneCommunityKeys::community]
             );
         }
     }
@@ -52,8 +57,8 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Utente' => $this->utente,
-                'Community' => $this->community
+                PartecipazioneCommunityKeys::utente => $this->utente,
+                PartecipazioneCommunityKeys::community => $this->community
             ));
         }
     }
@@ -71,8 +76,8 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Utente' => $this->utente,
-                'Community' => $this->community
+                PartecipazioneCommunityKeys::utente => $this->utente,
+                PartecipazioneCommunityKeys::community => $this->community
             ));
         }
 

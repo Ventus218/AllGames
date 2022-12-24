@@ -1,5 +1,13 @@
 <?php
 
+    class ContenutoMultimedialePostKeys {
+        public const url = 'Url';
+        public const ordine = 'Ordine';
+        public const post = 'Post';
+        public const video = 'Video';
+        public const immagine = 'Immagine';
+    }
+
     class ContenutoMultimedialePostDTO {
         private const schema = Schemas::CONTENUTO_MULTIMEDIALE_POST;
 
@@ -27,7 +35,7 @@
          */
         public static function getOneByID(Database $db, string $url): self {
             $row = $db->getOneByID(self::schema, array(
-                'Url' => $url
+                ContenutoMultimedialePostKeys::url => $url
             ));
 
             return self::fromDBRow($row);
@@ -35,11 +43,11 @@
 
         public static function fromDBRow(array $row): ContenutoMultimedialePostDTO {
             return new ContenutoMultimedialePostDTO(
-                $row["Url"],
-                $row["Ordine"],
-                $row["Post"],
-                $row["Video"],
-                $row["Immagine"]
+                $row[ContenutoMultimedialePostKeys::url],
+                $row[ContenutoMultimedialePostKeys::ordine],
+                $row[ContenutoMultimedialePostKeys::post],
+                $row[ContenutoMultimedialePostKeys::video],
+                $row[ContenutoMultimedialePostKeys::immagine]
             );
         }
     }
@@ -60,11 +68,11 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Url' => $this->url,
-                'Ordine' => $this->ordine,
-                'Post' => $this->post,
-                'Video' => $this->video,
-                'Immagine' => $this->immagine
+                ContenutoMultimedialePostKeys::url => $this->url,
+                ContenutoMultimedialePostKeys::ordine => $this->ordine,
+                ContenutoMultimedialePostKeys::post => $this->post,
+                ContenutoMultimedialePostKeys::video => $this->video,
+                ContenutoMultimedialePostKeys::immagine => $this->immagine
             ));
         }
     }
@@ -81,7 +89,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Url' => $this->url
+                ContenutoMultimedialePostKeys::url => $this->url
             ));
         }
 

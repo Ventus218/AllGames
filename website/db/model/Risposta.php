@@ -1,5 +1,13 @@
 <?php
 
+    class RispostaKeys {
+        public const id = 'Id';
+        public const testo = 'Testo';
+        public const timestamp = 'Timestamp';
+        public const risponditore = 'Risponditore';
+        public const commento = 'Commento';
+    }
+
     class RispostaDTO {
         private const schema = Schemas::RISPOSTA;
 
@@ -27,7 +35,7 @@
          */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
-                'Id' => $id
+                RispostaKeys::id => $id
             ));
 
             return self::fromDBRow($row);
@@ -35,11 +43,11 @@
 
         public static function fromDBRow(array $row): RispostaDTO {
             return new RispostaDTO(
-                $row["Id"],
-                $row["Testo"],
-                $row["Timestamp"],
-                $row["Risponditore"],
-                $row["Commento"]
+                $row[RispostaKeys::id],
+                $row[RispostaKeys::testo],
+                $row[RispostaKeys::timestamp],
+                $row[RispostaKeys::risponditore],
+                $row[RispostaKeys::commento]
             );
         }
     }
@@ -60,11 +68,11 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Id' => $this->id,
-                'Testo' => $this->testo,
-                'Timestamp' => sqlDateFromDateTime($this->timestamp),
-                'Risponditore' => $this->risponditore,
-                'Commento' => $this->commento
+                RispostaKeys::id => $this->id,
+                RispostaKeys::testo => $this->testo,
+                RispostaKeys::timestamp => sqlDateFromDateTime($this->timestamp),
+                RispostaKeys::risponditore => $this->risponditore,
+                RispostaKeys::commento => $this->commento
             ));
         }
     }
@@ -81,7 +89,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Id' => $this->id
+                RispostaKeys::id => $this->id
             ));
         }
 

@@ -1,5 +1,9 @@
 <?php
 
+    class TagKeys {
+        public const nome = 'Nome';
+    }
+
     class TagDTO {
         private const schema = Schemas::TAG;
 
@@ -23,7 +27,7 @@
          */
         public static function getOneByID(Database $db, string $nome): self {
             $row = $db->getOneByID(self::schema, array(
-                'Nome' => $nome
+                TagKeys::nome => $nome
             ));
 
             return self::fromDBRow($row);
@@ -31,7 +35,7 @@
 
         public static function fromDBRow(array $row): TagDTO {
             return new TagDTO(
-                $row["Nome"]
+                $row[TagKeys::nome]
             );
         }
     }
@@ -48,7 +52,7 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'Nome' => $this->nome
+                TagKeys::nome => $this->nome
             ));
         }
     }
@@ -65,7 +69,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Nome' => $this->nome
+                TagKeys::nome => $this->nome
             ));
         }
 

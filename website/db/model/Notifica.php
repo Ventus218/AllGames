@@ -1,5 +1,25 @@
 <?php
 
+    class NotificaKeys {
+        public const id = 'Id';
+        public const letta = 'Letta';
+        public const timestamp = 'Timestamp';
+        public const ricevente = 'Ricevente';
+        public const attoreSorgente = 'AttoreSorgente';
+        public const isNotificaFollow = 'NotificaFollow';
+        public const utenteSeguace = 'UtenteSeguace';
+        public const utenteSeguito = 'UtenteSeguito';
+        public const isNotificaMiPiace = 'NotificaMiPiace';
+        public const liker = 'Utente';
+        public const postPiaciuto = 'Post';
+        public const isNotificaPostCommunity = 'NotificaPostCommunity';
+        public const postCommunity = 'PostCommunity';
+        public const isNotificaCommento = 'NotificaCommento';
+        public const commento = 'Commento';
+        public const isNotificaRisposta = 'NotificaRisposta';
+        public const risposta = 'Risposta';
+    }
+
     class NotificaDTO {
         private const schema = Schemas::NOTIFICA;
 
@@ -39,7 +59,7 @@
          */
         public static function getOneByID(Database $db, int $id): self {
             $row = $db->getOneByID(self::schema, array(
-                'Id' => $id
+                NotificaKeys::id => $id
             ));
 
             return self::fromDBRow($row);
@@ -47,23 +67,23 @@
 
         public static function fromDBRow(array $row): NotificaDTO {
             return new NotificaDTO(
-                $row["Id"],
-                $row["Letta"],
-                dateTimeFromSQLDate($row["Timestamp"]),
-                $row["Ricevente"],
-                $row["AttoreSorgente"],
-                $row["NotificaFollow"],
-                $row["UtenteSeguace"],
-                $row["UtenteSeguito"],
-                $row["NotificaMiPiace"],
-                $row["Utente"],
-                $row["Post"],
-                $row["NotificaPostCommunity"],
-                $row["PostCommunity"],
-                $row["NotificaCommento"],
-                $row["Commento"],
-                $row["NotificaRisposta"],
-                $row["Risposta"]
+                $row[NotificaKeys::id],
+                $row[NotificaKeys::letta],
+                dateTimeFromSQLDate($row[NotificaKeys::timestamp]),
+                $row[NotificaKeys::ricevente],
+                $row[NotificaKeys::attoreSorgente],
+                $row[NotificaKeys::isNotificaFollow],
+                $row[NotificaKeys::utenteSeguace],
+                $row[NotificaKeys::utenteSeguito],
+                $row[NotificaKeys::isNotificaMiPiace],
+                $row[NotificaKeys::liker],
+                $row[NotificaKeys::postPiaciuto],
+                $row[NotificaKeys::isNotificaPostCommunity],
+                $row[NotificaKeys::postCommunity],
+                $row[NotificaKeys::isNotificaCommento],
+                $row[NotificaKeys::commento],
+                $row[NotificaKeys::isNotificaRisposta],
+                $row[NotificaKeys::risposta]
             );
         }
     }
@@ -80,7 +100,7 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'Id' => $this->id
+                NotificaKeys::id => $this->id
             ));
         }
 
@@ -119,25 +139,25 @@
          */
         public function updateOn(Database $db) {
             return $db->update(self::schema, array(
-                'Id' => $this->id,
-                'Letta' => $this->letta,
-                'Timestamp' => sqlDateFromDateTime($this->timestamp),
-                'Ricevente' => $this->ricevente,
-                'AttoreSorgente' => $this->attoreSorgente,
-                'NotificaFollow' => $this->isNotificaFollow,
-                'UtenteSeguace' => $this->utenteSeguace,
-                'UtenteSeguito' => $this->utenteSeguito,
-                'NotificaMiPiace' => $this->isNotificaMiPiace,
-                'Utente' => $this->liker,
-                'Post' => $this->postPiaciuto,
-                'NotificaPostCommunity' => $this->isNotificaPostCommunity,
-                'PostCommunity' => $this->postCommunity,
-                'NotificaCommento' => $this->isNotificaCommento,
-                'Commento' => $this->commento,
-                'NotificaRisposta' => $this->isNotificaRisposta,
-                'Risposta' => $this->risposta,
+                NotificaKeys::id => $this->id,
+                NotificaKeys::letta => $this->letta,
+                NotificaKeys::timestamp => sqlDateFromDateTime($this->timestamp),
+                NotificaKeys::ricevente => $this->ricevente,
+                NotificaKeys::attoreSorgente => $this->attoreSorgente,
+                NotificaKeys::isNotificaFollow => $this->isNotificaFollow,
+                NotificaKeys::utenteSeguace => $this->utenteSeguace,
+                NotificaKeys::utenteSeguito => $this->utenteSeguito,
+                NotificaKeys::isNotificaMiPiace => $this->isNotificaMiPiace,
+                NotificaKeys::liker => $this->liker,
+                NotificaKeys::postPiaciuto => $this->postPiaciuto,
+                NotificaKeys::isNotificaPostCommunity => $this->isNotificaPostCommunity,
+                NotificaKeys::postCommunity => $this->postCommunity,
+                NotificaKeys::isNotificaCommento => $this->isNotificaCommento,
+                NotificaKeys::commento => $this->commento,
+                NotificaKeys::isNotificaRisposta => $this->isNotificaRisposta,
+                NotificaKeys::risposta => $this->risposta,
             ), array(
-                'Id' => $this->id
+                NotificaKeys::id => $this->id
             ));
         }
 

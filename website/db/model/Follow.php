@@ -1,5 +1,10 @@
 <?php
 
+    class FollowKeys {
+        public const utenteSeguace = 'UtenteSeguace';
+        public const utenteSeguito = 'UtenteSeguito';
+    }
+
     class FollowDTO {
         private const schema = Schemas::FOLLOW;
 
@@ -24,8 +29,8 @@
          */
         public static function getOneByID(Database $db, int $utenteSeguace, int $utenteSeguito): self {
             $row = $db->getOneByID(self::schema, array(
-                'UtenteSeguace' => $utenteSeguace,
-                'UtenteSeguito' => $utenteSeguito
+                FollowKeys::utenteSeguace => $utenteSeguace,
+                FollowKeys::utenteSeguito => $utenteSeguito
             ));
 
             return self::fromDBRow($row);
@@ -33,8 +38,8 @@
 
         public static function fromDBRow(array $row): FollowDTO {
             return new FollowDTO(
-                $row["UtenteSeguace"],
-                $row["UtenteSeguito"]
+                $row[FollowKeys::utenteSeguace],
+                $row[FollowKeys::utenteSeguito]
             );
         }
     }
@@ -52,8 +57,8 @@
          */
         public function createOn(Database $db): ?int {
             return $db->create(self::schema, array(
-                'UtenteSeguace' => $this->utenteSeguace,
-                'UtenteSeguito' => $this->utenteSeguito
+                FollowKeys::utenteSeguace => $this->utenteSeguace,
+                FollowKeys::utenteSeguito => $this->utenteSeguito
             ));
         }
     }
@@ -71,8 +76,8 @@
          */
         public function deleteOn(Database $db) {
             return $db->delete(self::schema, array(
-                'UtenteSeguace' => $this->utenteSeguace,
-                'UtenteSeguito' => $this->utenteSeguito
+                FollowKeys::utenteSeguace => $this->utenteSeguace,
+                FollowKeys::utenteSeguito => $this->utenteSeguito
             ));
         }
 
