@@ -67,19 +67,6 @@
                 'Commentatore' => $this->commentatore
             ));
         }
-
-        public function creationPreparedStatement(mysqli $db): mysqli_stmt {
-            if (is_null($this->id)) {
-                $stmt = $db->prepare("INSERT INTO ".CommentoCreateDTO::schema->value."(Id, Testo, Timestamp, Post, Commentatore) VALUE(?,?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("issii", $this->id, $this->testo, $timestamp, $this->post, $this->commentatore);
-            } else {
-                $stmt = $db->prepare("INSERT INTO ".CommentoCreateDTO::schema->value."(Testo, Timestamp, Post, Commentatore) VALUE(?,?,?,?)");
-                $timestamp = sqlDateFromDateTime($this->timestamp);
-                $stmt->bind_param("ssii", $this->testo, $timestamp, $this->post, $this->commentatore);
-            }
-            return $stmt;
-        }
     }
 
     class CommentoDeleteDTO {
