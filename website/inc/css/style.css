@@ -62,6 +62,14 @@ article header img {
     width: 30px;
 }
 
+article header p.timestamp {
+    font-size: 0.6rem !important;
+}
+
+article header img.community-img {
+    width: 17px;
+}
+
 article section p {
     font-size: 0.8rem !important;
 }

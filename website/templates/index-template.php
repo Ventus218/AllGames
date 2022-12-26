@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="row mb-6">
+        <div class="row mt-6 mb-6 gap-4"> <!--Don't know why my-6 is not giving the same result-->
         <!--Template post-->
 
             <?php foreach($templateParams["posts_data"] as $postData):
@@ -67,22 +67,39 @@
                 $commenti = $postData["commenti"];
                 $miPiace = $postData["mi_piace"];
             ?>
-            <div class="col-12 mt-6 d-flex">
+            <div class="col-12 d-flex">
                 <article class="mx-auto">
                     <div class="bg-gray rounded-top p-3">
                         <header>
-                            <div class="clearfix">
-                                <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di <?php echo $utente->username; ?>" />
-                                <h2> <?php echo $utente->username; ?> </h2>
+                            <div class="row">
+                                <div class="col clearfix">
+                                    <img class="float-start me-2" src="../inc/img/demo.png" alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                    <h2> <?php echo $utente->username; ?> </h2>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="timestamp text-white-50"> <?php echo $post->timestamp->format('D M o H:i'); ?> </p>
+                                </div>
                             </div>
-                            <?php foreach($tags as $tag): ?>
-                            <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong> <?php echo $tag->tag; ?> </strong></a>
-                            <?php endforeach; ?>
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <?php foreach($tags as $tag): ?>
+                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong> <?php echo $tag->tag; ?> </strong></a>
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php if(isset($post->community)): ?>
+                                <div class="col-auto pb-1 pe-1 ps-0 align-self-end">
+                                    <a class="text-warning text-decoration-none" href="#">
+                                        <img class="community-img" src="../inc/img/people.png" alt="" />
+                                        <strong> <?php echo $post->community; ?> </strong>
+                                    </a>
+                                </div>
+                                <?php endif; ?>
+                            </div>
                         </header>
 
                         <section>
                             <!--Text of the post-->
-                            <p> <?php echo $post->testo; ?> </p>
+                            <p class="my-2"> <?php echo $post->testo; ?> </p>
 
                             <!-- Image/video carousel -->
                             <?php if(sizeof($multim) > 0): ?>
@@ -92,7 +109,7 @@
                                         <?php if($m->immagine): ?>
                                         <img src=" <?php echo $m->url; ?> " alt="" />
                                         <?php else: ?>
-                                        <img src=" <?php echo $m->url; ?> " alt="" />
+                                        <!-- <video class="ratio" src=" <?php echo $m->url; ?> "></video> video needs to be fixed -->
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
