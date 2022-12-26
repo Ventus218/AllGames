@@ -10,6 +10,10 @@
     require_once(__DIR__."/model/ContenutoMultimedialePost.php");
 
 
+    /**
+     * Helper class for interacting with the database from a higher level perspective.
+     * Can be used to perform specific queries which can be more efficient.
+    */ 
     class DatabaseHelper {
         public function __construct(private Database $db) {}
 
