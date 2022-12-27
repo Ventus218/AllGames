@@ -33,7 +33,7 @@
                         
                         <div class="row">
                             <div class="col mb-3">
-                                <input class="form-control" type="text" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
+                                <input class="form-control" type="email" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
                                 <div class="invalid-feedback pb-0">
                                     E-mail già in uso
                                 </div>
@@ -57,7 +57,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="telefono" id="telefono" placeholder="Inserisci il tuo numero di telefono" required>
+                                <input class="form-control mb-3" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il tuo numero di telefono" required>
                             </div>
                         </div>
 
