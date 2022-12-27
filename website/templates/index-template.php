@@ -41,16 +41,55 @@
                     </li>
                     <li class="col-1"></li>
                     <!--Notifications button-->
-                    <li class="col-2 nav-item">
-                        <a class="nav-link p-0 position-relative" href="#">
-                            <img id="notifiche" src="../inc/img/demo_2.png" alt="Notifiche" />
-                            <span class="position-absolute top-100 start-100 translate-middle badge rounded-pill bg-danger p-1">
-                                <!--Number of new notifications-->
-                                1299
-                                <!--For screen readers-->
-                                <span class="visually-hidden">Nuove notifiche</span>
-                            </span>
-                        </a>
+                    <li class="col-3 nav-item">
+                        <div class="dropdown dropdown-menu-end">
+                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="false">
+                                <img id="notifiche" src="../inc/img/demo_2.png" alt="Notifiche" />
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
+                                    <!--Number of new notifications-->
+                                    1299
+                                    <!--For screen readers-->
+                                    <span class="visually-hidden">Nuove notifiche</span>
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownMenuLink" role="notificationLists">
+                                <li class="mb-2">
+                                    <span class="dropdown-item-text clearfix">
+                                        <a href="#" class="text-decoration-none d-flex item-align-center ">
+                                            <img src="../inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                            <span class="text-white"> 
+                                                <strong><span class="text-warning">Draco4ever</span> ha messo mi piace ad un tuo post</strong>
+                                            </span>
+                                        </a>
+                                        <span class="text-danger float-end"><strong>Non letto</strong></span>
+                                    </span>
+                                </li>
+                                <li><hr class="mb-2 mt-0 mx-5 border-white border-3 border rounded opacity-100"></li>
+                                <li class="mb-2">
+                                    <span class="dropdown-item-text clearfix">
+                                        <a href="#" class="text-decoration-none text-light d-flex item-align-center">
+                                            <img src="../inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                            <span> 
+                                                <strong><span class="text-warning">YOU_DIED</span> ha pubblicato un nuovo post in una community che segui</strong>
+                                            </span>
+                                        </a>
+                                    </span>
+                                </li>
+                                <li><hr class="mb-2 mt-0 mx-5 border-white border-3 border rounded opacity-100"></li>
+                                <li class="mb-2">
+                                    <span class="dropdown-item-text clearfix">
+                                        <a href="#" class="text-decoration-none text-light d-flex item-align-center">
+                                            <img src="../inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                            <span> 
+                                                <strong><span class="text-warning">Draco4ever</span> ha commentato un tuo post</strong>
+                                            </span>
+                                        </a>
+                                        <span class="text-danger float-end"><strong>Non letto</strong></span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -10,9 +10,24 @@ ul button>img {
     width: 15px;
 }
 
-ul li a {
+ul>li>a {
     font-weight: bold !important;
     font-size: 1.2rem !important;
+}
+
+ul li ul {
+    margin-top: .79rem !important;
+    border-top-left-radius: 0% !important;
+    border-top-right-radius: 0% !important;
+    width: 17.5rem;
+    height: auto;
+    max-height: 250px;
+    overflow-y: auto;
+    font-size: .7rem !important;
+}
+
+.item-align-center {
+    align-items: center;
 }
 
 ul li a, article footer a {
@@ -34,7 +49,7 @@ h1 {
 
 .bg-blur {
     backdrop-filter: blur(25px);
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.85) !important;
 }
 
 .my-6 {
@@ -59,7 +74,7 @@ article header h2 {
     font-weight: bold;
 }
 
-article header img.profile-pic {
+.profile-pic {
     object-fit: cover;
     width: 30px;
     height: 30px;
