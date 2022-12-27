@@ -23,7 +23,7 @@
         $u_rob = 5;
         $u_drac = 6;
 
-        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", NULL, $u_youdied);
+        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", "../inc/img/DarkSouls.jpg", $u_youdied);
         registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz);
         registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got);
         registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer);
@@ -33,7 +33,7 @@
         $comm_amantiDS = "Amanti di Dark Souls";
         $comm_retroGaming = "Retro gaming";
         $comm_tutorial = "TuttoTutorial";
-        $comm_amazzoni = "Le comm_amazzoni (WoW)";
+        $comm_amazzoni = "Le Amazzoni (WoW)";
 
         $communitys = array(
             new CommunityCreateDTO($comm_amantiDS, "", $u_youdied), // URL MANCANTE
@@ -168,7 +168,8 @@
             new ContenutoMultimedialePostCreateDTO("https://pressquit.com/wp-content/uploads/2016/06/Review-Uncharted-4-FI.jpg", 1, 7, false, true),
             new ContenutoMultimedialePostCreateDTO("https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/070/large-1465604295-uc4workflow-feature2.jpg", 2, 7, false, true),
             new ContenutoMultimedialePostCreateDTO("https://preview.redd.it/9e60csttrwx81.jpg?auto=webp&s=38730f571ceac06dce9cef0fdce3e0ce65e92ddd", 3, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://youtu.be/9angHtiHgd8", 0, 11, true, false) // Don't think a youtube video will work..
+            new ContenutoMultimedialePostCreateDTO("https://gamelegends.it/wp-content/uploads/2021/05/Uncharted-nuovo-capitolo-1.jpg", 4, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO("../inc/vid/bug.mp4", 0, 11, true, false) // Don't think a youtube video will work..
         );
 
         foreach ($multimedias as $m) {

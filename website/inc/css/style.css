@@ -37,12 +37,13 @@ h1 {
     background-color: rgba(0, 0, 0, 0.85);
 }
 
-.mt-6 {
-    margin-top: 4.5rem;
+.my-6 {
+    margin-top: 4.7rem;
+    margin-bottom: 4.7rem;
 }
 
-.mb-6 {
-    margin-bottom: 4.5rem;
+.mt-6 {
+    margin-top: 4.7rem;
 }
 
 article {
@@ -58,8 +59,18 @@ article header h2 {
     font-weight: bold;
 }
 
-article header img {
+article header img.profile-pic {
+    object-fit: cover;
     width: 30px;
+    height: 30px;
+}
+
+article header p.timestamp {
+    font-size: 0.6rem !important;
+}
+
+article header img.community-img {
+    width: 17px;
 }
 
 article section p {
@@ -71,7 +82,7 @@ article section img {
 }
 
 article footer a img {
-    width: 27px;
+    width: 27px !important;
 }
 
 footer img{
