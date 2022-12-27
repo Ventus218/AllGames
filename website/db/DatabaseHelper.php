@@ -21,13 +21,13 @@
             $queryPostsFromFollowedUsers = "SELECT P.* FROM POST P JOIN UTENTE U JOIN FOLLOW F ON(P.".PostKeys::utente." = U.".UtenteKeys::id." AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguito.") WHERE F.".FollowKeys::utenteSeguace." = ? ORDER BY P.".PostKeys::timestamp." DESC";
             $queryPostsFromFollowedCommunities = "SELECT P.* FROM POST P JOIN UTENTE U JOIN COMMUNITY C JOIN PARTECIPAZIONE_COMMUNITY PC ON(P.".PostKeys::utente." = U.".UtenteKeys::id." AND P.".PostKeys::community." = C.".CommunityKeys::nome." AND C.".CommunityKeys::nome." = PC.".PartecipazioneCommunityKeys::community.") WHERE PC.".PartecipazioneCommunityKeys::utente." = ? ORDER BY P.".PostKeys::timestamp." DESC";
     
-            $u = $this->db->executeQuery($queryPostsFromFollowedUsers, array(getSessionUserId()));
+            $u = $this->db->executeQuery($queryPostsFromFollowedUsers, array($idUtente));
     
             $ids = array_map(function($row) {
                 return $row['Id'];
             }, $u);
     
-            $c = $this->db->executeQuery($queryPostsFromFollowedCommunities, array(getSessionUserId()));
+            $c = $this->db->executeQuery($queryPostsFromFollowedCommunities, array($idUtente));
     
             $posts = $u;
             foreach ($c as $row) {
