@@ -169,7 +169,7 @@
             new ContenutoMultimedialePostCreateDTO("https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/070/large-1465604295-uc4workflow-feature2.jpg", 2, 7, false, true),
             new ContenutoMultimedialePostCreateDTO("https://preview.redd.it/9e60csttrwx81.jpg?auto=webp&s=38730f571ceac06dce9cef0fdce3e0ce65e92ddd", 3, 7, false, true),
             new ContenutoMultimedialePostCreateDTO("https://gamelegends.it/wp-content/uploads/2021/05/Uncharted-nuovo-capitolo-1.jpg", 4, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://youtu.be/9angHtiHgd8", 0, 11, true, false) // Don't think a youtube video will work..
+            new ContenutoMultimedialePostCreateDTO("../inc/vid/bug.mp4", 0, 11, true, false) // Don't think a youtube video will work..
         );
 
         foreach ($multimedias as $m) {
