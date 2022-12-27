@@ -107,9 +107,13 @@
                                 <div class="carousel-inner">
                                     <?php foreach($multim as $m): ?>
                                         <?php if($m->immagine): ?>
-                                        <img src=" <?php echo $m->url; ?> " alt="" />
+                                        <a href="<?php echo $m->url; ?>" class="text-decoration-none">
+                                            <img src=" <?php echo $m->url; ?> " alt="" />
+                                        </a>
                                         <?php else: ?>
-                                        <!-- <video class="ratio" src=" <?php echo $m->url; ?> "></video> video needs to be fixed -->
+                                        <a href="<?php echo $m->url; ?>" class="text-decoration-none">
+                                            <img src="../inc/img/play.png" alt="" />
+                                        </a>
                                     <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
