@@ -28,7 +28,10 @@
                         <p>Inserisci i dati per registrarti</p>
                     </header>
                     <section>
-                        <!-- ci va un header? -->
+                        <header>
+                            <h3 class="text-start"> Dati account </h3>
+                        </header>
+                        
                         <div class="row">
                             <div class="col-12">
                                 <input class="form-control mb-3" type="text" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
