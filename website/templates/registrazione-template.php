@@ -82,7 +82,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" placeholder="Inserisci la tua data di nascita" required>
+                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" required>
                             </div>
                         </div>
 
@@ -128,6 +128,9 @@
 
         <div class="row mt-3">
             <section>
+                <header class="visually-hidden">
+                    <h2>Riferimenti</h2>
+                </header>
                 <div class="col-12">
                     <p class="m-0">Possiedi già un account su AllGames?</p>
                 </div>
