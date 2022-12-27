@@ -57,6 +57,7 @@ article header h2 {
 
 article header img {
     width: 30px;
+    border-radius: 50%;
 }
 
 article header p.timestamp {
