@@ -95,7 +95,7 @@
             $rows = $this->db->executeQuery($query, array($post->id));
     
             return array_map(function($row) {
-                return ContenutoMultimedialePostDTO::fromDBRow($row); /// SONO DA ORDINAREEE
+                return ContenutoMultimedialePostDTO::fromDBRow($row);
             }, $rows);
         }
     }
