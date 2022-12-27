@@ -23,7 +23,7 @@
         $u_rob = 5;
         $u_drac = 6;
 
-        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", NULL, $u_youdied);
+        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", "../inc/img/DarkSouls.jpg", $u_youdied);
         registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz);
         registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got);
         registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer);
