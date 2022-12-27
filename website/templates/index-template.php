@@ -99,6 +99,9 @@
 
                         <section>
                             <!--Text of the post-->
+                            <header class="visually-hidden">
+                                <h3>Testo del post</h3>
+                            </header>
                             <p class="my-2"> <?php echo $post->testo; ?> </p>
 
                             <!-- Image/video carousel -->
