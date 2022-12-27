@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="row mt-6 mb-6 gap-4"> <!--Don't know why my-6 is not giving the same result-->
+        <div class="row my-6">
         <!--Template post-->
 
             <?php foreach($templateParams["posts_data"] as $postData):
@@ -67,7 +67,7 @@
                 $commenti = $postData["commenti"];
                 $miPiace = $postData["mi_piace"];
             ?>
-            <div class="col-12 d-flex">
+            <div class="col-12 d-flex mb-4">
                 <article class="mx-auto">
                     <div class="bg-gray rounded-top p-3">
                         <header>
@@ -77,7 +77,7 @@
                                     <h2> <?php echo $utente->username; ?> </h2>
                                 </div>
                                 <div class="col-auto">
-                                    <p class="timestamp text-white-50"> <?php echo $post->timestamp->format('D M o H:i'); ?> </p>
+                                    <p class="timestamp text-white-50"> <?php echo $post->timestamp->format('d/m/o H:i'); ?> </p>
                                 </div>
                             </div>
                             <div class="row">
