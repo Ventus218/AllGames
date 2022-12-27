@@ -42,6 +42,10 @@ h1 {
     margin-bottom: 4.7rem;
 }
 
+.mt-6 {
+    margin-top: 4.7rem;
+}
+
 article {
     width: 90% !important;
 }
