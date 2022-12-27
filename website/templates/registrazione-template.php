@@ -32,14 +32,26 @@
                         </header>
                         
                         <div class="row">
-                            <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
+                            <div class="col mb-3">
+                                <input class="form-control" type="text" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
+                                <div class="invalid-feedback pb-0">
+                                    E-mail già in uso
+                                </div>
+                            </div>
+                            <div id="email-spinner" class="spinner-border spinner-border-sm p-2 me-3 d-none" role="status">
+                                <span class="visually-hidden">Controllando se l'e-mail è gia utilizzata...</span>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="username" id="username" placeholder="Inserisci il tuo username" required>
+                            <div class="col mb-3">
+                                <input class="form-control" type="text" name="username" id="username" placeholder="Inserisci il tuo username" required>
+                                <div class="invalid-feedback pb-0">
+                                    Username già in uso
+                                </div>
+                            </div>
+                            <div id="username-spinner" class="spinner-border spinner-border-sm p-2 me-3 d-none" role="status">
+                                <span class="visually-hidden">Controllando se l'username è gia utilizzato...</span>
                             </div>
                         </div>
 
@@ -108,13 +120,16 @@
                         </div>
                     </section>
 
-                    <?php if (isset($templateParams["registrazione-error"])): ?>
                     <div class="row">
-                        <div class="col-12 text-start">
-                            <p class="text-danger"> I dati sono incorretti <?php // echo $templateParams["registrazione-error"]; ?> </p>
+                        <div id="error-list" class="col-12 text-start">
+                            <p id="passw-error" class="mb-1 text-danger d-none"> Le password non coincidono </p>
+                            <?php if (isset($templateParams["registrazione-errors"])): ?>
+                                <?php foreach ($templateParams["registrazione-errors"] as $error): ?>
+                                <p class="mb-1 text-danger"> <?php echo $error; ?> </p>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
-                    <?php endif; ?>
 
                     <div class="row">
                         <div class="col-12">
