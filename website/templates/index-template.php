@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="row my-6">
+        <div class="row my-6 gap-3">
         <!--Template post-->
 
             <?php foreach($templateParams["posts_data"] as $postData):
@@ -67,7 +67,7 @@
                 $commenti = $postData["commenti"];
                 $miPiace = $postData["mi_piace"];
             ?>
-            <div class="col-12 d-flex mb-4">
+            <div class="col-12 d-flex">
                 <article class="mx-auto">
                     <div class="bg-gray rounded-top p-3">
                         <header>
