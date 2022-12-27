@@ -123,3 +123,8 @@ input.form-control:focus {
     border-bottom: 3px solid #545454;
     box-shadow: none;
 }
+
+form .form-check-input:checked {
+    background-color: rgb(244, 182, 14);
+    border-color: transparent;
+}

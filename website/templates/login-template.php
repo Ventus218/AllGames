@@ -36,7 +36,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Inserisci il tuo password" required>
+                            <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Inserisci la tua password" required>
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@
                     <p class="m-0">Non hai ancora un account su AllGames?</p>
                 </div>
                 <div class="col-12">
-                    <a href="#" class="text-warning text-decoration-none">Creane uno ora!</a>
+                    <a href="../registrazione.php" class="text-warning text-decoration-none">Creane uno ora!</a>
                 </div>
             </section>
         </div>
