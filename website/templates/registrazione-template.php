@@ -21,9 +21,9 @@
         </div>
 
         <div class="row mt-6">
-            <div class="col-12 text-center">
+            <div class="col-12 text-start">
                 <form action="" method="post">
-                    <header>
+                    <header class="text-center">
                         <h2>Benvenuto!</h2>
                         <p>Inserisci i dati per registrarti</p>
                     </header>
@@ -94,15 +94,15 @@
                             </div>
                             <div class="col">
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="maschio" value="maschio" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required>
                                         <label class="form-check-label" for="maschio"> Maschio </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="femmina" value="femmina" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required>
                                         <label class="form-check-label" for="femmina"> Femmina </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="non-definito" value="non-definito" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required>
                                         <label class="form-check-label" for="non-definito"> Non definito </label>
                                 </div>
                             </div>
