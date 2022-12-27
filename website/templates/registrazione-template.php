@@ -87,9 +87,9 @@
                         </div>
 
                         <div class="row mb-2">
-                            <div class="col-12"> <!-- avrei potuto metterci row? -->
+                            <div class="col-12">
                                 <header>
-                                    <h4 class="text-start">Genere</h4> <!-- è corretto mettere qui l'header? -->
+                                    <h4 class="text-start">Genere</h4>
                                 </header>
                             </div>
                             <div class="col">
