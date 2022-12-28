@@ -10,20 +10,20 @@
 </head>
 <body class="bg-black text-white">
 
-    <div class="container-fluid pt-0 pb-2 px-4 overflow-hidden">
+    <div class="container-fluid p-0 px-4 overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row px-2 py-3 fixed-top bg-blur align-items-center">
+        <div class="row p-2 fixed-top bg-blur">
             <div class="col ps-4">
                 <header>
-                    <h1 class="m-0">AllGames</h1>
+                    <h1>AllGames</h1>
                 </header>
             </div>
 
             <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
             <!--Menu with create post button, create community button and notifications-->
             <div class="col-6">
-                <ul class="nav nav-pills"> 
+                <ul class="nav nav-pills mt-2"> 
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
                         <a class="nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" id="plus-community-image" href="#">
@@ -42,7 +42,7 @@
                     <!--Notifications button-->
                     <li class="col-3 nav-item">
                         <div class="dropdown dropdown-menu-end">
-                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="false">
+                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
                                 <img id="notifiche" src="inc/img/demo_2.png" alt="Notifiche" />
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
