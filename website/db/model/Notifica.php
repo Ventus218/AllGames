@@ -86,6 +86,34 @@
                 $row[NotificaKeys::risposta]
             );
         }
+
+        /**
+         * @return string A string rappresenting the text of the notification
+         */
+        public function getText(): string {
+            
+            if ($this->isNotificaFollow) {
+                return "ha iniziato a seguirti!";
+            }
+
+            if ($this->isNotificaMiPiace) {
+                return "ha messo mi piace ad un tuo post";
+            }
+
+            if ($this->isNotificaPostCommunity) {
+                return "ha pubblicato un nuovo post in una community in cui fai parte";
+            }
+
+            if ($this->isNotificaCommento) {
+                return "ha commentato un tuo post";
+            }
+
+            if ($this->isNotificaRisposta) {
+                return "ha risposto ad un tuo commento";
+            }
+
+            return "";
+        }
     }
 
     class NotificaDeleteDTO {
