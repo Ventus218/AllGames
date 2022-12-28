@@ -1,6 +1,6 @@
 <?php
-    require_once(__DIR__."/bootstrap.php");
-    require_once(__DIR__."/inc/php/session.php");
+    require_once("bootstrap.php");
+    require_once("inc/php/session.php");
 
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
@@ -25,6 +25,6 @@
         $templateParams["page-title"] = "Home";
         $templateParams["content"] = "templates/index-template.php";
         $templateParams["js"] = array("inc/js/slider.js");
-        require(__DIR__."/templates/container.php");
+        require("templates/container.php");
     }
 ?>

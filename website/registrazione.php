@@ -1,8 +1,8 @@
 <?php
-    require_once(__DIR__."/bootstrap.php");
-    require_once(__DIR__."/inc/php/utils.php");
-    require_once(__DIR__."/inc/php/auth.php");
-    require_once(__DIR__."/inc/php/session.php");
+    require_once("bootstrap.php");
+    require_once("inc/php/utils.php");
+    require_once("inc/php/auth.php");
+    require_once("inc/php/session.php");
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -67,5 +67,5 @@
     $templateParams["page-title"] = "Registrazione";
     $templateParams["content"] = "templates/registrazione-template.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
-    require(__DIR__."/templates/container.php");
+    require("templates/container.php");
 ?>
