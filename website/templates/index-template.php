@@ -82,7 +82,7 @@
                                     <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                 </a>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="inc/img/demo.png" alt="Like"> <strong> <?php echo $miPiace ?> </strong>
+                                    <img src="inc/img/liked.png" alt="Like"> <strong> <?php echo $miPiace ?> </strong>
                                 </a>
                             </div>
                         </footer>

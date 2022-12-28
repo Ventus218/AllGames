@@ -1,9 +1,9 @@
-#crea-community  {
+.top-bar-button img  {
     width: 20px;
 }
 
 #notifiche {
-    width: 35px;
+    width: 42px;
 }
 
 ul button>img {
@@ -48,6 +48,7 @@ h1 {
 }
 
 .bg-blur {
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     background-color: rgba(0, 0, 0, 0.85) !important;
 }

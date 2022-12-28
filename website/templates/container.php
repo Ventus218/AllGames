@@ -23,27 +23,27 @@
             <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
             <!--Menu with create post button, create community button and notifications-->
             <div class="col-6">
-                <ul class="nav nav-pills mt-2"> 
+                <ul class="nav nav-pills align-items-center">
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
-                        <a class="nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" id="plus-community-image" href="#">
-                            +
-                            <img src="inc/img/demo.png" alt="Crea community" id="crea-community" />
+                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
+                            <img src="inc/img/plus.png" alt="Crea community" />
+                            <img src="inc/img/people.png" alt="Crea community" />
                         </a>
                     </li>
                     <li class="col-1"></li>
                     <!--Create a post button-->
                     <li class="col-3 nav-item">
-                        <a class="nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
-                            +
+                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
+                            <img src="inc/img/new-post.png" alt="Pubblica un nuovo post" />
                         </a>
                     </li>
                     <li class="col-1"></li>
                     <!--Notifications button-->
                     <li class="col-3 nav-item">
                         <div class="dropdown dropdown-menu-end">
-                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
-                                <img id="notifiche" src="inc/img/demo_2.png" alt="Notifiche" />
+                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="false">
+                                <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
                                     <?php 
@@ -116,25 +116,25 @@
                         <!--Home-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
                             <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="Home" />
+                                <img src="inc/img/home.png" alt="Home" />
                             </a>
                         </li>
                         <!--Searh-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
                             <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="Search" />
+                                <img src="inc/img/search.png" alt="Search" />
                             </a>
                         </li>
                         <!--User-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
                             <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="User" />
+                                <img src="inc/img/user.png" alt="User" />
                             </a>
                         </li>
                         <!--Settings-->
                         <li class="col-3 nav-item">
                             <a class="nav-link text-center" href="#">
-                                <img src="inc/img/demo.png" alt="Settings" />
+                                <img src="inc/img/settings.png" alt="Settings" />
                             </a>
                         </li>
                     </ul>
