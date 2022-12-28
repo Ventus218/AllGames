@@ -118,6 +118,10 @@ input.form-control {
     color: white !important;
 }
 
+input.form-control.is-valid {
+    box-shadow: none !important;
+}
+
 input.form-control:focus {
     background-color: black;
     border-bottom: 3px solid #545454;

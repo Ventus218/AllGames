@@ -8,6 +8,7 @@
     require_once(__DIR__."/model/Commento.php");
     require_once(__DIR__."/model/MiPiace.php");
     require_once(__DIR__."/model/ContenutoMultimedialePost.php");
+    require_once(__DIR__."/model/Utente.php");
 
 
     /**
@@ -119,6 +120,17 @@
             return array_map(function($row) {
                 return ContenutoMultimedialePostDTO::fromDBRow($row);
             }, $rows);
+        }
+
+        public function usernameIsAvailable(string $username): bool {
+            return null === UtenteDTO::getOneByUsername($this->db, $username);
+        }
+
+        public function emailIsAvailable(string $email): bool {
+            $rows = $this->db->select(Schemas::UTENTE, array(
+                UtenteKeys::email => $email
+            ));
+            return (sizeof($rows) === 0);
         }
     }
 ?>
