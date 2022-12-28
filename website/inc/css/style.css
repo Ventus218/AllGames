@@ -128,3 +128,7 @@ form .form-check-input:checked {
     background-color: rgb(244, 182, 14);
     border-color: transparent;
 }
+
+#settings-list img {
+    height: 40px;
+}

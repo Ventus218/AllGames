@@ -115,7 +115,7 @@
                     <ul class="nav nav-pills"> 
                         <!--Home-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="index.php">
                                 <img src="inc/img/home.png" alt="Home" />
                             </a>
                         </li>
@@ -133,7 +133,7 @@
                         </li>
                         <!--Settings-->
                         <li class="col-3 nav-item">
-                            <a class="nav-link text-center" href="#">
+                            <a class="nav-link text-center" href="impostazioni.php">
                                 <img src="inc/img/settings.png" alt="Settings" />
                             </a>
                         </li>
