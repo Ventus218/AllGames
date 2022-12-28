@@ -61,3 +61,82 @@ Per JavaScript non si usa alcun framework o libreria.
 
 Il file JavaScript slider.js necessita delle classi di Bootstrap per esempio per cambiare il display a dei tag di HTML 
 (oppure bisognerebbe crearsi delle classi CSS da zero che siano il più simili possibile e con lo stesso nome di quelle del bootstrap usate dagli script, il che non è un'ottima idea).
+
+## BackEnd
+
+### Struttura della directory servita da Xampp
+```
+website
+├── pagine php
+├── db
+│   ├── classi php per la gestione del database
+│   ├── model
+│   │   └── classi php DAO
+│   └── scripts
+│       └── script php utili in fase di development
+├── inc
+│   ├── css
+│   │   └── fogli di stile
+│   ├── img
+│   │   └── immagini statiche
+│   ├── js
+│   │   └── file javascript
+│   ├── php
+│   │   └── utility php
+│   └── vid
+│       └── video statici
+└── templates
+    └── file template php
+```
+
+Si è deciso quindi che tutte le pagine del sito raggiunte direttamente dall'utente si trovino alla radice della struttura. E' importante effettuare questa scelta per aver chiaro come gestire gli indirizzi relativi all'interno delle pagine che, in questo modo, saranno sempre relativi alla radice.
+
+Tutte le pagine nella radice richiederanno il file bootstrap nel quale sono inizializzate le variabili che sono sempre necessarie (il database ad esempio).
+
+### Accesso al database
+Si è realizzata una classe [Database](../website/db/Database.php) che offre dei metodi molto generici per interagire con il database. L'idea è che questa classe non venga usata direttamente ma che invece funga da fondamenta alle classi [DAO](../website/db/model) e a [DatabaseHelper](../website/db/DatabaseHelper.php).
+
+Per realizzare il pattern DAO si sono utilizzate diverse classi *DTO (Data Tranfer Object)*, una per ogni operazione eseguibile per entità.
+
+Ad esempio siccome deve essere possibile richiedere, creare e aggiornare un utente si sono quindi create le classi `UtenteDTO`, `UtenteUpdateDTO` e `UtenteCreateDTO` (vedi [Utente.php](../website/db/model/Utente.php)). Ognuna di queste fornisce il metodo per eseguire l'operazione in questione e ne incapsula tutti i dati necessari.
+Invece per quanto riguarda le community che non possono essere modificate non è stata creata la classe `CommunityUpdateDTO` (vedi [Community.php](../website/db/model/Community.php)).
+
+Inoltre per ogni entità si è creata una classe contenente le stringhe per l'accesso agli attributi nel database, e si è cercato in tutta l'applicazione di utilizzare queste classi in maniera da tenere in unico posto queste stringhe ed evitare fastidiosi errori di scrittura o di refactoring.
+
+In ogni caso si è scelto di accedere al database sempre attraverso la classe [DatabaseHelper](../website/db/DatabaseHelper.php) la quale incapsula le operazioni con il database, in modo da poter implementare nelle pagine php alla radice solo e unicamente la logica applicativa.
+
+Per quanto riguarda le query più complesse, come quelle che necessitano join su più tabelle, oppure per quelle operazioni per cui si vuole il massimo delle prestazioni, è possibile scrivere manualmente la query ed eseguirla sulla classe [Database](../website/db/Database.php), si noti però che fintanto che è possibile selezionare gli attributi di solo un'entità allora è anche possibile trasformare il risultato nel rispettivo DTO.
+
+Si prenda come esempio la seguente [operazione](../website/db/DatabaseHelper.php#L91) di **DatabaseHelper** per ottenere i contenuti multimediali di un dato post:
+```php
+public function getContenutiMultimedialiOfPost(PostDTO $post): array {
+
+    $query = "SELECT C.*
+        FROM ".Schemas::POST->value." P
+        JOIN ".Schemas::CONTENUTO_MULTIMEDIALE_POST->value." C
+        ON(P.".PostKeys::id." = C.".ContenutoMultimedialePostKeys::post.")
+        WHERE P.".PostKeys::id." = ?
+        ORDER BY C.".ContenutoMultimedialePostKeys::ordine." ASC";
+
+    $rows = $this->db->executeQuery($query, array($post->id));
+
+    return array_map(function($row) {
+        return ContenutoMultimedialePostDTO::fromDBRow($row);
+    }, $rows);
+}
+```
+È possibile gestire i join, le condizioni e l'ordinamento senza rinunciare all'utilizzo dell DTO che permette di utilizzare le classi php invece al posto degli array associativi che non sono tipizzati e quindi maggiormente esposti ad errori.
+
+### Script per facilitare lo sviluppo
+Si sono realizzati degli script per [autenticare un amministratore](../website/db/scripts/authenticateAdmin.php), [resettare il database](../website/db/scripts/resetDB.php) e [caricare un database di esempio](../website/db/scripts/loadSampleDB.php).
+
+Il primo script serve a inserire un piccolo strato di sicurezza sugli altri due che, anche se non verrano serviti in fase di produzione, possono alterare definitivamente il database.
+
+Gli altri due script facilitano la fase di sviluppo e testing in quanto consentono di avere sempre il database in uno stato ben noto e consistente.
+
+### Gestione della sessione
+In [session.php](../website/inc/php/session.php) è possibile trovare tutti i metodi per la gestione della sessione.
+
+In particolare si è deciso che ogni pagina si occuperà, se necessario, di controllare se l'utente ha una sessione attiva e nel caso non fosse così ridirigerlo alla pagina di login. Nel caso del reindirizzamento viene inoltre settato un parametro che permetterà, una volta eseguito il login, di tornare sulla pagina inizialmente richiesta.
+
+Si è deciso inoltre di implementare un meccanismo che consente di far scadere la sessione dell'utente dopo un certo tempo di inattività (ad esempio 30 minuti).
