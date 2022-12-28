@@ -12,7 +12,7 @@
 
     <div class="container-fluid p-0 px-4 overflow-hidden">
         <div class="row p-2 fixed-top bg-blur">
-            <div class="col-12 px-4">
+            <div class="col-12 ps-4">
                 <header>
                     <h1>AllGames</h1>
                 </header>

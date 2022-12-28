@@ -17,7 +17,7 @@
         <div class="row p-2 fixed-top bg-blur">
             <div class="col-6 ps-4">
                 <header>
-                    <h1 class="text-center">AllGames</h1>
+                    <h1>AllGames</h1>
                 </header>
             </div>
 
