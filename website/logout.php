@@ -7,4 +7,6 @@
     }
 
     logOut();
+
+    header("Location: index.php");
 ?>
