@@ -24,6 +24,7 @@
 
         $templateParams["page-title"] = "Home";
         $templateParams["content"] = "templates/index-template.php";
+        $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
         $templateParams["js"] = array("inc/js/slider.js");
         require("templates/container.php");

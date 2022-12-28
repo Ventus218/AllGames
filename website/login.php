@@ -29,6 +29,7 @@
     }
 
     $templateParams["page-title"] = "Login";
+    $templateParams["show-top-bar-buttons"] = false;
     $templateParams["show-footer"] = false;
     $templateParams["content"] = "templates/login-template.php";
     require("templates/container.php");
