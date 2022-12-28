@@ -18,8 +18,25 @@
         public function __construct(private Database $db) {}
 
         public function getPostFeedOfUtente(int $idUtente): array {
-            $queryPostsFromFollowedUsers = "SELECT P.* FROM POST P JOIN UTENTE U JOIN FOLLOW F ON(P.".PostKeys::utente." = U.".UtenteKeys::id." AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguito.") WHERE F.".FollowKeys::utenteSeguace." = ? ORDER BY P.".PostKeys::timestamp." DESC";
-            $queryPostsFromFollowedCommunities = "SELECT P.* FROM POST P JOIN UTENTE U JOIN COMMUNITY C JOIN PARTECIPAZIONE_COMMUNITY PC ON(P.".PostKeys::utente." = U.".UtenteKeys::id." AND P.".PostKeys::community." = C.".CommunityKeys::nome." AND C.".CommunityKeys::nome." = PC.".PartecipazioneCommunityKeys::community.") WHERE PC.".PartecipazioneCommunityKeys::utente." = ? ORDER BY P.".PostKeys::timestamp." DESC";
+            $queryPostsFromFollowedUsers = "SELECT P.* 
+                FROM ".Schemas::POST->value." P
+                JOIN ".Schemas::UTENTE->value." U
+                JOIN ".Schemas::FOLLOW->value." F
+                ON(P.".PostKeys::utente." = U.".UtenteKeys::id."
+                    AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguito.")
+                WHERE F.".FollowKeys::utenteSeguace." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
+
+            $queryPostsFromFollowedCommunities = "SELECT P.*
+                FROM ".Schemas::POST->value." P
+                JOIN ".Schemas::UTENTE->value." U
+                JOIN ".Schemas::COMMUNITY->value." C
+                JOIN ".Schemas::PARTECIPAZIONE_COMMUNITY->value." PC
+                ON(P.".PostKeys::utente." = U.".UtenteKeys::id."
+                    AND P.".PostKeys::community." = C.".CommunityKeys::nome."
+                    AND C.".CommunityKeys::nome." = PC.".PartecipazioneCommunityKeys::community.")
+                WHERE PC.".PartecipazioneCommunityKeys::utente." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
     
             $u = $this->db->executeQuery($queryPostsFromFollowedUsers, array($idUtente));
     
@@ -90,7 +107,12 @@
 
         public function getContenutiMultimedialiOfPost(PostDTO $post): array {
 
-            $query = "SELECT C.* FROM ".Schemas::POST->value." P JOIN ".Schemas::CONTENUTO_MULTIMEDIALE_POST->value." C ON(P.".PostKeys::id." = C.".ContenutoMultimedialePostKeys::post.") WHERE P.".PostKeys::id." = ? ORDER BY C.".ContenutoMultimedialePostKeys::ordine." ASC";
+            $query = "SELECT C.*
+                FROM ".Schemas::POST->value." P
+                JOIN ".Schemas::CONTENUTO_MULTIMEDIALE_POST->value." C
+                ON(P.".PostKeys::id." = C.".ContenutoMultimedialePostKeys::post.")
+                WHERE P.".PostKeys::id." = ?
+                ORDER BY C.".ContenutoMultimedialePostKeys::ordine." ASC";
     
             $rows = $this->db->executeQuery($query, array($post->id));
     
