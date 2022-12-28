@@ -64,6 +64,7 @@
         internalServerError("Sono accettate solo richieste GET o POST");
     }
 
+    $templateParams["page-title"] = "Registrazione";
     $templateParams["content"] = "templates/registrazione-template.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
     require(__DIR__."/templates/container.php");

@@ -22,6 +22,7 @@
 
         $templateParams["posts_data"] = $postsData;
 
+        $templateParams["page-title"] = "Home";
         $templateParams["content"] = "templates/index-template.php";
         $templateParams["js"] = array("inc/js/slider.js");
         require(__DIR__."/templates/container.php");

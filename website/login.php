@@ -23,11 +23,12 @@
         } else {
             $templateParams["login-error"] = "Username o password errati";
         }
-        
+
     } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         internalServerError("Sono accettate solo richieste GET o POST");
     }
 
+    $templateParams["page-title"] = "Login";
     $templateParams["content"] = "templates/login-template.php";
     require(__DIR__."/templates/container.php");
 ?>
