@@ -1,11 +1,10 @@
 <?php
-    require_once(__DIR__."/bootstrap.php");
-    require_once(__DIR__."/inc/php/session.php");
+    require_once("bootstrap.php");
+    require_once("inc/php/session.php");
 
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
-        // set various templateParams...
 
         $posts = $dbh->getPostFeedOfUtente(getSessionUserId());
 
@@ -23,6 +22,11 @@
 
         $templateParams["posts_data"] = $postsData;
 
-        require(__DIR__."/templates/index-template.php");
+        $templateParams["page-title"] = "Home";
+        $templateParams["content"] = "templates/index-template.php";
+        $templateParams["show-top-bar-buttons"] = true;
+        $templateParams["show-footer"] = true;
+        $templateParams["js"] = array("inc/js/slider.js");
+        require("templates/container.php");
     }
 ?>

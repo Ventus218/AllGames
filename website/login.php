@@ -1,14 +1,11 @@
 <?php
-    require_once(__DIR__."/bootstrap.php");
-    require_once(__DIR__."/inc/php/utils.php");
-    require_once(__DIR__."/inc/php/auth.php");
-    require_once(__DIR__."/inc/php/session.php");
+    require_once("bootstrap.php");
+    require_once("inc/php/utils.php");
+    require_once("inc/php/auth.php");
+    require_once("inc/php/session.php");
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require(__DIR__."/templates/login-template.php");
-
-    } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST["username"]) || !isset($_POST["password"])) {
             internalServerError("Richiesti Username e Password");    
         }
@@ -25,9 +22,15 @@
             }
         } else {
             $templateParams["login-error"] = "Username o password errati";
-            require(__DIR__."/templates/login-template.php");
         }
-    } else {
+
+    } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         internalServerError("Sono accettate solo richieste GET o POST");
     }
+
+    $templateParams["page-title"] = "Login";
+    $templateParams["show-top-bar-buttons"] = false;
+    $templateParams["show-footer"] = false;
+    $templateParams["content"] = "templates/login-template.php";
+    require("templates/container.php");
 ?>

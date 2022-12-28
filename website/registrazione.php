@@ -1,15 +1,11 @@
 <?php
-    require_once(__DIR__."/bootstrap.php");
-    require_once(__DIR__."/inc/php/utils.php");
-    require_once(__DIR__."/inc/php/auth.php");
-    require_once(__DIR__."/inc/php/session.php");
+    require_once("bootstrap.php");
+    require_once("inc/php/utils.php");
+    require_once("inc/php/auth.php");
+    require_once("inc/php/session.php");
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
-        require(__DIR__."/templates/registrazione-template.php");
-
-    } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (
             !isset($_POST["email"]) || 
@@ -62,11 +58,16 @@
         if (sizeof($templateParams["registrazione-errors"]) === 0) {
             registerUtente($db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null);
             header("Location: login.php");
-        } else {
-            $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
-            require(__DIR__."/templates/registrazione-template.php");
         }
-    } else {
+
+    } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
         internalServerError("Sono accettate solo richieste GET o POST");
     }
+
+    $templateParams["page-title"] = "Registrazione";
+    $templateParams["show-top-bar-buttons"] = false;
+    $templateParams["show-footer"] = false;
+    $templateParams["content"] = "templates/registrazione-template.php";
+    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
+    require("templates/container.php");
 ?>
