@@ -1,11 +1,3 @@
-        <div class="row p-2 fixed-top bg-blur">
-            <div class="col-12 ps-4">
-                <header>
-                    <h1>AllGames</h1>
-                </header>
-            </div>
-        </div>
-
         <div class="row mt-6">
             <div class="col-12 text-start">
                 <form action="" method="post">

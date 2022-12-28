@@ -20,7 +20,7 @@
                 </header>
             </div>
 
-            <?php if (isset($templateParams["show-top-bar-buttons"])): ?>
+            <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
             <!--Menu with create post button, create community button and notifications-->
             <div class="col-6">
                 <ul class="nav nav-pills mt-2"> 
