@@ -48,7 +48,7 @@ h1 {
 }
 
 .bg-blur {
-    -webkit-backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     background-color: rgba(0, 0, 0, 0.85) !important;
 }
