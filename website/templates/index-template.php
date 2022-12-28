@@ -172,38 +172,4 @@
             </div>
             <?php endforeach; ?>
         </div>
-        <!--Footer of the page, with Home, Search, User and Settings buttons.-->
-        <div class="row fixed-bottom bg-black">
-            <hr class="mb-1">
-            <div class="col-12 mb-1">
-                <footer>
-                    <ul class="nav nav-pills"> 
-                        <!--Home-->
-                        <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="Home" />
-                            </a>
-                        </li>
-                        <!--Searh-->
-                        <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="Search" />
-                            </a>
-                        </li>
-                        <!--User-->
-                        <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
-                                <img src="inc/img/demo.png" alt="User" />
-                            </a>
-                        </li>
-                        <!--Settings-->
-                        <li class="col-3 nav-item">
-                            <a class="nav-link text-center" href="#">
-                                <img src="inc/img/demo.png" alt="Settings" />
-                            </a>
-                        </li>
-                    </ul>
-                </footer>
-            </div>  
-        </div>
         

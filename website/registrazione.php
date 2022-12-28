@@ -65,6 +65,7 @@
     }
 
     $templateParams["page-title"] = "Registrazione";
+    $templateParams["show-footer"] = false;
     $templateParams["content"] = "templates/registrazione-template.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js", "inc/js/registrazione.js");
     require("templates/container.php");
