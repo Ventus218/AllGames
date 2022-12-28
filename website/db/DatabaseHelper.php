@@ -9,6 +9,7 @@
     require_once(__DIR__."/model/MiPiace.php");
     require_once(__DIR__."/model/ContenutoMultimedialePost.php");
     require_once(__DIR__."/model/Utente.php");
+    require_once(__DIR__."/model/Notifica.php");
 
 
     /**
@@ -76,6 +77,10 @@
             return UtenteDTO::getOneByID($this->db, $post->utente);
         }
 
+        public function getSourceUserOfNotification(NotificaDTO $notifica): UtenteDTO {
+            return UtenteDTO::getOneByID($this->db, $notifica->attoreSorgente);
+        }
+
         public function getTagsOfPost(PostDTO $post): array {
             $rows = $this->db->select(Schemas::TAG_IN_POST, array(
                 'Post' => $post->id
@@ -83,6 +88,30 @@
 
             return array_map(function($row) {
                 return TagInPostDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getNotificationsOfUser(int $idUtente): array {
+            $queryNotificationOfUserOrdered = "SELECT *
+                FROM ".Schemas::NOTIFICA->value." 
+                WHERE ".NotificaKeys::ricevente." = ? 
+                ORDER BY ".NotificaKeys::timestamp." DESC";
+
+            $rows = $this->db->executeQuery($queryNotificationOfUserOrdered, array($idUtente));
+
+            return array_map(function($row) {
+                return NotificaDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getNewNotificationsOfUser(int $idUtente): array {
+            $rows = $this->db->select(Schemas::NOTIFICA, array(
+                'Ricevente' => $idUtente,
+                'Letta' => 0
+            ));
+
+            return array_map(function($row) {
+                return NotificaDTO::fromDBRow($row);
             }, $rows);
         }
 

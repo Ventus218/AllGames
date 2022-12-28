@@ -10,20 +10,20 @@
 </head>
 <body class="bg-black text-white">
 
-    <div class="container-fluid pt-0 pb-2 px-4 overflow-hidden">
+    <div class="container-fluid p-0 px-4 overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row px-2 py-3 fixed-top bg-blur align-items-center">
+        <div class="row p-2 fixed-top bg-blur">
             <div class="col ps-4">
                 <header>
-                    <h1 class="m-0">AllGames</h1>
+                    <h1>AllGames</h1>
                 </header>
             </div>
 
             <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
             <!--Menu with create post button, create community button and notifications-->
             <div class="col-6">
-                <ul class="nav nav-pills align-items-center"> 
+                <ul class="nav nav-pills align-items-center">
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
                         <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
@@ -46,47 +46,51 @@
                                 <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
-                                    1299
+                                    <?php 
+                                        $notifications = $dbh->getNotificationsOfUser(getSessionUserId());
+                                        $total_notifications = sizeof($notifications);
+                                        $new_notifications = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
+                                        echo $new_notifications;
+                                    ?>
                                     <!--For screen readers-->
                                     <span class="visually-hidden">Nuove notifiche</span>
                                 </span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownMenuLink" role="notificationLists">
+                                <?php if ($total_notifications == 0): ?>
+                                <li class="mb-2">
+                                    <span class="text-white dropdown-item-text"> 
+                                        <strong>Non sono presenti notifiche</strong>
+                                    </span>
+                                </li>
+                                
+                                <?php else: 
+                                    foreach($notifications as $notification):
+                                        $utente = $dbh->getSourceUserOfNotification($notification);      
+                                ?>
+
+                                <!--Notification-->
                                 <li class="mb-2">
                                     <span class="dropdown-item-text clearfix">
+                                        <!--Link to the user who did the action that generated the notification-->
                                         <a href="#" class="text-decoration-none d-flex item-align-center ">
-                                            <img src="inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                            <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="" class="profile-pic rounded-circle float-start me-3"/>
                                             <span class="text-white"> 
-                                                <strong><span class="text-warning">Draco4ever</span> ha messo mi piace ad un tuo post</strong>
+                                                <strong><span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $notification->getText(); ?></strong>
                                             </span>
                                         </a>
+                                        <?php if($notification->letta == 0): ?>
                                         <span class="text-danger float-end"><strong>Non letto</strong></span>
+                                        <?php endif;?>
                                     </span>
                                 </li>
+                                <!--Break Line-->
                                 <li><hr class="mb-2 mt-0 mx-5 border-white border-3 border rounded opacity-100"></li>
-                                <li class="mb-2">
-                                    <span class="dropdown-item-text clearfix">
-                                        <a href="#" class="text-decoration-none text-light d-flex item-align-center">
-                                            <img src="inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
-                                            <span> 
-                                                <strong><span class="text-warning">YOU_DIED</span> ha pubblicato un nuovo post in una community che segui</strong>
-                                            </span>
-                                        </a>
-                                    </span>
-                                </li>
-                                <li><hr class="mb-2 mt-0 mx-5 border-white border-3 border rounded opacity-100"></li>
-                                <li class="mb-2">
-                                    <span class="dropdown-item-text clearfix">
-                                        <a href="#" class="text-decoration-none text-light d-flex item-align-center">
-                                            <img src="inc/img/profile-pic.png" alt="" class="profile-pic rounded-circle float-start me-3"/>
-                                            <span> 
-                                                <strong><span class="text-warning">Draco4ever</span> ha commentato un tuo post</strong>
-                                            </span>
-                                        </a>
-                                        <span class="text-danger float-end"><strong>Non letto</strong></span>
-                                    </span>
-                                </li>
+
+                                <?php endforeach;
+                                    endif; 
+                                ?>
                             </ul>
                         </div>
                     </li>
