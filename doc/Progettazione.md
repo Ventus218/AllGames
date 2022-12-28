@@ -55,7 +55,7 @@ Questo significa che se viene eliminata una tupla nel database riguardante un co
 
 La scelta di utilizzare il Bootstrap per il CSS è stata fatta principalmente per poter realizzare il sito più velocemente.
 
-Per JavaScript non si usa alcun framework o libreria.
+Per quanto riguarda JavaScript si è utilizzata la libreria [axios](https://axios-http.com) per avere un approccio semplificato ad ajax.
 
 ### JavaScript
 
