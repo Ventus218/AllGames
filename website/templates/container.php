@@ -10,20 +10,20 @@
 </head>
 <body class="bg-black text-white">
 
-    <div class="container-fluid p-0 px-4 overflow-hidden">
+    <div class="container-fluid pt-0 pb-2 px-4 overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row p-2 fixed-top bg-blur">
+        <div class="row px-2 py-3 fixed-top bg-blur align-items-center">
             <div class="col ps-4">
                 <header>
-                    <h1>AllGames</h1>
+                    <h1 class="m-0">AllGames</h1>
                 </header>
             </div>
 
             <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
             <!--Menu with create post button, create community button and notifications-->
             <div class="col-6">
-                <ul class="nav nav-pills mt-2"> 
+                <ul class="nav nav-pills"> 
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
                         <a class="nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" id="plus-community-image" href="#">
