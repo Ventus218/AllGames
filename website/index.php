@@ -5,7 +5,6 @@
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
-        // set various templateParams...
 
         $posts = $dbh->getPostFeedOfUtente(getSessionUserId());
 
@@ -23,6 +22,8 @@
 
         $templateParams["posts_data"] = $postsData;
 
-        require(__DIR__."/templates/index-template.php");
+        $templateParams["content"] = "templates/index-template.php";
+        $templateParams["js"] = array("inc/js/slider.js");
+        require(__DIR__."/templates/container.php");
     }
 ?>
