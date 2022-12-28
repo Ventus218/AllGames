@@ -11,7 +11,7 @@
 </head>
 <body class="bg-black text-white">
     <!--Container of all the page-->
-    <div class="container-fluid p-0 overflow-hidden">
+    <div class="container-fluid p-0 px-4 overflow-hidden">
 
         <!--Top bar of the page-->
         <div class="row p-2 fixed-top bg-blur">
@@ -105,8 +105,8 @@
                 $commenti = $postData["commenti"];
                 $miPiace = $postData["mi_piace"];
             ?>
-            <div class="col-12 d-flex">
-                <article class="mx-auto">
+            <div class="col-12 d-flex justify-content-center">
+                <article class="">
                     <div class="bg-gray rounded-top p-3">
                         <header>
                             <div class="row">
@@ -186,7 +186,7 @@
                 </article>
             </div>
             <?php endforeach; ?>
-        
+        </div>
         <!--Footer of the page, with Home, Search, User and Settings buttons.-->
         <div class="row fixed-bottom bg-black">
             <hr class="mb-1">

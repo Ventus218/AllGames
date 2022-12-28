@@ -10,7 +10,7 @@
 </head>
 <body class="bg-black text-white">
 
-    <div class="container-fluid p-0 overflow-hidden px-4">
+    <div class="container-fluid p-0 px-4 overflow-hidden">
         <div class="row p-2 fixed-top bg-blur">
             <div class="col-12 px-4">
                 <header>
