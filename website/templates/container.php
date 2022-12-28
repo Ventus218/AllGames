@@ -42,7 +42,7 @@
                     <!--Notifications button-->
                     <li class="col-3 nav-item">
                         <div class="dropdown dropdown-menu-end">
-                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="false">
+                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
                                 <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
