@@ -103,7 +103,7 @@
                                     <h4 class="text-start">Genere</h4>
                                 </header>
                             </div>
-                            <div class="col">
+                            <div class="col d-flex justify-content-between">
                                 <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required>
                                         <label class="form-check-label" for="maschio"> Maschio </label>
