@@ -76,7 +76,7 @@
                                         <!--Link to the user who did the action that generated the notification-->
                                         <a href="#" class="text-decoration-none d-flex align-items-center justify-content-between">
                                             <span class="align-items-center d-flex">
-                                                <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                                <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="" class="notifica-profile-pic rounded-circle float-start me-3"/>
                                                 <span class="text-white"> 
                                                     <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $notification->getText(); ?>
                                                 </span>

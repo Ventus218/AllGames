@@ -70,7 +70,7 @@ article header h2 {
     font-weight: bold;
 }
 
-.post-profile-pic {
+.post-profile-pic, .notifica-profile-pic {
     object-fit: cover;
     width: 30px;
     height: 30px;
