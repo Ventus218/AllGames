@@ -53,6 +53,10 @@ h1 {
     margin-top: 4.7rem;
 }
 
+.mb-6 {
+    margin-bottom: 4.7rem;
+}
+
 article {
     width: 100% !important;
 }
