@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col">
                             <form action="#" method="post">
-                                <input type="hidden" name="follow" value="<?php echo ($templateParams["is-followed"] === true ? "0" : "1"); ?>">
+                                <input type="hidden" name="follow" value="<?php echo ($templateParams["is-followed"] === true ? "0" : "1"); ?>" />
                                 <button class="btn btn-warning w-100" type="submit">
                                     <strong>
                                     <?php
