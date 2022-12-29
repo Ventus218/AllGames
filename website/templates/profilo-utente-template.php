@@ -58,7 +58,10 @@
                             <h2 class="m-0"> Communities </h2>
                         </header>
                     </div>
-                    <div class="row d-flex justify-content-evenly">
+                    <div class="row d-flex justify-content-evenly align-items-center">
+                        <div class="col-auto">
+                            <p class="fs-1"> < </p>
+                        </div>
                         <div class="col-auto p-0">
                             <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
@@ -70,6 +73,9 @@
                                 <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
                                 <p class="m-0"> Amanti di Dark Souls </p>
                             </a>
+                        </div>
+                        <div class="col-auto">
+                            <p class="fs-1"> > </p>
                         </div>
                     </div>
                 </section>
