@@ -1,6 +1,6 @@
         <div class="row">
             <div class="col-12 text-center">
-                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                <form action="#" method="post">
                     <header>
                         <h2>Bentornato!</h2>
                         <p>Effettua il login</p>

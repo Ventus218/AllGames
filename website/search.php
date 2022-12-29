@@ -10,12 +10,12 @@
             //Code to search
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             internalServerError("Sono accettate solo richieste GET o POST");
-        } else {
-            $templateParams["page-title"] = "Search";
-            $templateParams["content"] = "templates/search-template.php";
-            $templateParams["show-top-bar-buttons"] = true;
-            $templateParams["show-footer"] = true;
-            require("templates/container.php");
-        }        
+        }
+        
+        $templateParams["page-title"] = "Search";
+        $templateParams["content"] = "templates/search-template.php";
+        $templateParams["show-top-bar-buttons"] = true;
+        $templateParams["show-footer"] = true;
+        require("templates/container.php");
     }
 ?>

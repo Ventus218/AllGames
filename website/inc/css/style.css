@@ -70,7 +70,7 @@ article header h2 {
     font-weight: bold;
 }
 
-.post-profile-pic, .notifica-profile-pic {
+.post-profile-pic, .notifica-profile-pic, .ricerca-pic {
     object-fit: cover;
     width: 30px;
     height: 30px;
@@ -139,6 +139,6 @@ form .form-check-input:checked {
     height: 40px;
 }
 
-form img {
-    width: 30px !important;
+input.search-img {
+    width:30px;
 }

@@ -1,6 +1,6 @@
         <div class="row">
             <div class="col-12 text-start">
-                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+                <form action="#" method="post">
                     <header class="text-center">
                         <h2>Benvenuto!</h2>
                         <p>Inserisci i dati per registrarti</p>
