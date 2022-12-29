@@ -132,7 +132,7 @@
                         </li>
                         <!--Searh-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="search.php">
                                 <img src="inc/img/search.png" alt="Search" />
                             </a>
                         </li>

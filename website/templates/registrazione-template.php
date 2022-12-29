@@ -1,6 +1,6 @@
         <div class="row">
             <div class="col-12 text-start">
-                <form action="" method="post">
+                <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
                     <header class="text-center">
                         <h2>Benvenuto!</h2>
                         <p>Inserisci i dati per registrarti</p>
@@ -12,7 +12,7 @@
                         
                         <div class="row">
                             <div class="col mb-3">
-                                <input class="form-control" type="email" name="email" id="email" placeholder="Inserisci la tua e-mail" required>
+                                <input class="form-control" type="email" name="email" id="email" placeholder="Inserisci la tua e-mail" required />
                                 <div class="invalid-feedback pb-0">
                                     E-mail già in uso
                                 </div>
@@ -24,7 +24,7 @@
 
                         <div class="row">
                             <div class="col mb-3">
-                                <input class="form-control" type="text" name="username" id="username" placeholder="Inserisci il tuo username" required>
+                                <input class="form-control" type="text" name="username" id="username" placeholder="Inserisci il tuo username" required />
                                 <div class="invalid-feedback pb-0">
                                     Username già in uso
                                 </div>
@@ -36,19 +36,19 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-3" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il tuo numero di telefono" required>
+                                <input class="form-control mb-3" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il tuo numero di telefono" required />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Inserisci la password" required>
+                                <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Inserisci la password" required />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="password" name="conferma-password" id="conferma-password" placeholder="Inserisci nuovamente la password" required>
+                                <input class="form-control mb-4" type="password" name="conferma-password" id="conferma-password" placeholder="Inserisci nuovamente la password" required />
                             </div>
                         </div>
                     </section>
@@ -60,19 +60,19 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome" required>
+                                <input class="form-control mb-4" type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome" required />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="text" name="cognome" id="cognome" placeholder="Inserisci il tuo cognome" required>
+                                <input class="form-control mb-4" type="text" name="cognome" id="cognome" placeholder="Inserisci il tuo cognome" required />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12">
-                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" required>
+                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" required />
                             </div>
                         </div>
 
@@ -84,15 +84,15 @@
                             </div>
                             <div class="col d-flex justify-content-between">
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required />
                                         <label class="form-check-label" for="maschio"> Maschio </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required />
                                         <label class="form-check-label" for="femmina"> Femmina </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required>
+                                        <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required />
                                         <label class="form-check-label" for="non-definito"> Non definito </label>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <input type="submit" class="btn btn-warning w-100" value="Registrati">
+                            <input type="submit" class="btn btn-warning w-100" value="Registrati" />
                         </div>
                     </div>
                 </form>

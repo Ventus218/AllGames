@@ -132,3 +132,7 @@ form .form-check-input:checked {
 #settings-list img {
     height: 40px;
 }
+
+form img {
+    width: 30px !important;
+}
