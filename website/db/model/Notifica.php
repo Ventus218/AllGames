@@ -88,9 +88,9 @@
         }
 
         /**
-         * @return string A string rappresenting the text of the notification
+         * @return ?string A string rappresenting the text of the notification
          */
-        public function getText(): string {
+        public function getText(): ?string {
             
             if ($this->isNotificaFollow) {
                 return "ha iniziato a seguirti!";
@@ -112,7 +112,7 @@
                 return "ha risposto ad un tuo commento";
             }
 
-            return "";
+            return null;
         }
     }
 

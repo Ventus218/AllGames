@@ -63,23 +63,25 @@
                                 
                                 <?php else: 
                                     for($i = 0; $i < $templateParams["total_notifications"]; $i++):
-                                        $notification = $templateParams["notifications"][$i];
-                                        $utente = $dbh->getSourceUserOfNotification($notification);      
+                                        $notifica = $templateParams["notifications"][$i];
+                                        $utente = $dbh->getSourceUserOfNotification($notifica);
+                                        $testoNotifica = $notifica->getText();
+                                        $linkNotifica = "#"; //Da finire
                                 ?>
 
                                 <!--Notification-->
                                 <li class="mb-2">
                                     <span class="dropdown-item-text clearfix">
-                                        <!--Link to the user who did the action that generated the notification-->
-                                        <a href="#" class="text-decoration-none d-flex align-items-center justify-content-between">
+                                        <!--Link of the notification-->
+                                        <a href="<?php echo $linkNotifica; ?>" class="text-decoration-none d-flex align-items-center justify-content-between">
                                             <span class="align-items-center d-flex">
                                                 <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="Immagine profilo di <?php echo $utente->username; ?>" class="notifica-profile-pic rounded-circle float-start me-3"/>
                                                 <span class="text-white"> 
-                                                    <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $notification->getText(); ?>
+                                                    <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $testoNotifica; ?>
                                                 </span>
                                             </span>
                                             
-                                            <?php if($notification->letta == 0): ?>
+                                            <?php if($notifica->letta == 0): ?>
                                             <!--<span class="text-danger float-end"><strong>Non letto</strong></span>-->
                                             <span class="badge rounded-pill bg-warning p-1 float-right ms-2">
                                                 <!--For screen readers-->
