@@ -27,13 +27,13 @@
         /**
          * @throws DatabaseException
          */
-        public static function getOneByID(Database $db, string $tag, int $post): self {
+        public static function getOneByID(Database $db, string $tag, int $post): ?self {
             $row = $db->getOneByID(self::schema, array(
                 TagInPostKeys::tag => $tag,
                 TagInPostKeys::post => $post
             ));
 
-            return self::fromDBRow($row);
+            return isset($row) ? self::fromDBRow($row) : null;
         }
 
         public static function fromDBRow(array $row): TagInPostDTO {

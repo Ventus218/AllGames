@@ -27,13 +27,13 @@
         /**
          * @throws DatabaseException
          */
-        public static function getOneByID(Database $db, int $utente, string $community): self {
+        public static function getOneByID(Database $db, int $utente, string $community): ?self {
             $row = $db->getOneByID(self::schema, array(
                 PartecipazioneCommunityKeys::utente => $utente,
                 PartecipazioneCommunityKeys::community => $community
             ));
 
-            return self::fromDBRow($row);
+            return isset($row) ? self::fromDBRow($row) : null;
         }
 
         public static function fromDBRow(array $row): PartecipazioneCommunityDTO {

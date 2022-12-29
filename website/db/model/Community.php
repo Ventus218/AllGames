@@ -29,12 +29,12 @@
         /**
          * @throws DatabaseException
          */
-        public static function getOneByID(Database $db, string $nome): self {
+        public static function getOneByID(Database $db, string $nome): ?self {
             $row = $db->getOneByID(self::schema, array(
                 CommunityKeys::nome => $nome
             ));
 
-            return self::fromDBRow($row);
+            return isset($row) ? self::fromDBRow($row) : null;
         }
 
         public static function fromDBRow(array $row): CommunityDTO {

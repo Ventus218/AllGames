@@ -33,12 +33,12 @@
         /**
          * @throws DatabaseException
          */
-        public static function getOneByID(Database $db, string $url): self {
+        public static function getOneByID(Database $db, string $url): ?self {
             $row = $db->getOneByID(self::schema, array(
                 ContenutoMultimedialePostKeys::url => $url
             ));
 
-            return self::fromDBRow($row);
+            return isset($row) ? self::fromDBRow($row) : null;
         }
 
         public static function fromDBRow(array $row): ContenutoMultimedialePostDTO {
