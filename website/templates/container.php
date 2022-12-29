@@ -66,7 +66,8 @@
                                 </li>
                                 
                                 <?php else: 
-                                    foreach($notifications as $notification):
+                                    for($i = 0; $i < $total_notifications; $i++):
+                                        $notification = $notifications[$i];
                                         $utente = $dbh->getSourceUserOfNotification($notification);      
                                 ?>
 
@@ -93,11 +94,14 @@
                                         
                                     </span>
                                 </li>
+                                <?php //Do not make the break line if this is the last notification 
+                                if($i < $total_notifications-1):?>
                                 <!--Break Line-->
                                 <li><hr class="mb-2 mt-0 mx-3 rounded opacity-100"></li>
 
-                                <?php endforeach;
-                                    endif; 
+                                <?php   endif;
+                                    endfor;
+                                endif; 
                                 ?>
                             </ul>
                         </div>
