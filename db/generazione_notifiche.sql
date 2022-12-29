@@ -4,8 +4,10 @@
 CREATE PROCEDURE generaNotificaFollow (IN newUtenteSeguace INT, IN newUtenteSeguito INT)
 BEGIN
 
-    INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, UtenteSeguace, UtenteSeguito, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, NotificaRisposta)
-        VALUE (FALSE, current_timestamp(), newUtenteSeguito, newUtenteSeguace, TRUE, newUtenteSeguace, newUtenteSeguito, FALSE, FALSE, FALSE, FALSE);
+    IF newUtenteSeguace != newUtenteSeguito THEN
+        INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, UtenteSeguace, UtenteSeguito, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, NotificaRisposta)
+            VALUE (FALSE, current_timestamp(), newUtenteSeguito, newUtenteSeguace, TRUE, newUtenteSeguace, newUtenteSeguito, FALSE, FALSE, FALSE, FALSE);
+    END IF;
 
 END;
 
@@ -22,7 +24,8 @@ BEGIN
     SET UtentePost = (SELECT P.Utente FROM POST P WHERE P.Id = post);
 
     INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, NotificaMiPiace, Utente, Post, NotificaPostCommunity, NotificaCommento, NotificaRisposta)
-        SELECT FALSE, current_timestamp(), UtentePost, liker, FALSE, TRUE, liker, post, FALSE, FALSE, FALSE;
+        SELECT FALSE, current_timestamp(), UtentePost, liker, FALSE, TRUE, liker, post, FALSE, FALSE, FALSE
+        WHERE liker != UtentePost;
 END;
 
 
@@ -61,7 +64,8 @@ BEGIN
     SET UtentePost = (SELECT P.Utente FROM POST P WHERE P.Id = post);
 
     INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, Commento, NotificaRisposta)
-        SELECT FALSE, current_timestamp(), UtentePost, commentatore, FALSE, FALSE, FALSE, TRUE, commento, FALSE;
+        SELECT FALSE, current_timestamp(), UtentePost, commentatore, FALSE, FALSE, FALSE, TRUE, commento, FALSE
+        WHERE commentatore != UtentePost;
 END;
 
 CREATE OR REPLACE TRIGGER generaNotificaCommento AFTER INSERT ON COMMENTO
@@ -77,7 +81,8 @@ BEGIN
     SET UtenteCommento = (SELECT P.Utente FROM POST P JOIN COMMENTO C ON (P.Id = C.Post) WHERE C.Id = commento);
 
     INSERT INTO NOTIFICA(Letta, Timestamp, Ricevente, AttoreSorgente, NotificaFollow, NotificaMiPiace, NotificaPostCommunity, NotificaCommento, NotificaRisposta, Risposta)
-        SELECT FALSE, current_timestamp(), UtenteCommento, risponditore, FALSE, FALSE, FALSE, FALSE, TRUE, risposta;
+        SELECT FALSE, current_timestamp(), UtenteCommento, risponditore, FALSE, FALSE, FALSE, FALSE, TRUE, risposta
+        WHERE risponditore != UtenteCommento;
 END;
 
 CREATE OR REPLACE TRIGGER generaNotificaRisposta AFTER INSERT ON RISPOSTA
