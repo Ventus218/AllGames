@@ -105,7 +105,7 @@ form input[type="submit"] {
     border-radius: .8rem !important;
 }
 
-input.form-control {
+input.form-control, button.form-control {
     background-color: black;
     border: none;
     border-bottom: 3px solid #545454;
@@ -118,7 +118,7 @@ input.form-control.is-valid {
     box-shadow: none !important;
 }
 
-input.form-control:focus {
+input.form-control:focus, button.form-control:focus {
     background-color: black;
     border-bottom: 3px solid #545454;
     box-shadow: none;
@@ -131,4 +131,8 @@ form .form-check-input:checked {
 
 #settings-list img {
     height: 40px;
+}
+
+form img {
+    width: 30px !important;
 }
