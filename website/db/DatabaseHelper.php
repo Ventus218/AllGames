@@ -289,25 +289,6 @@
             return null !== FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
         }
 
-        /**
-         * Returns a dto if the follow has been set. Returns null if the follow has been unset.
-         * 
-         * @return ?FollowDTO
-         */
-        public function toggleFollow(UtenteDTO $follower, UtenteDTO $followed): ?FollowDTO {
-            $follow = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
-            
-            if (isset($follow)) {
-                FollowDeleteDTO::from($follow)->deleteOn($this->db);
-                $follow = null;
-            } else {
-                (new FollowCreateDTO($follower->id, $followed->id))->createOn($this->db);
-                $follow = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
-            }
-
-            return $follow;
-        }
-
         public function getNumberOfFollowOfUtente(UtenteDTO $utente): int {
             $query = "SELECT COUNT(*) AS NFollowers
                 FROM ".Schemas::FOLLOW->value." F
