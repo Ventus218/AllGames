@@ -30,7 +30,7 @@
                                 </div>
                                 <?php if(isset($post->community)): ?>
                                 <div class="col-auto pb-1 pe-1 ps-0 align-self-end">
-                                    <a class="text-warning text-decoration-none" href="#">
+                                    <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".$post->community; ?> ">
                                         <img class="community-img" src="inc/img/people.png" alt="" />
                                         <strong> <?php echo $post->community; ?> </strong>
                                     </a>
