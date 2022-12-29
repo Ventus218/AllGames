@@ -81,7 +81,7 @@
                             <h2 class="m-0"> Communities </h2>
                         </header>
                     </div>
-                    <div class="row d-flex justify-content-evenly overflow-scroll" style="max-height: 190px;">  <!-- da spostare in CSS -->
+                    <div class="row d-flex justify-content-evenly overflow-auto" style="max-height: 190px;">  <!-- da spostare in CSS -->
                         <div class="col-auto p-0">
                             <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
@@ -122,7 +122,7 @@
                             <h2 class="m-0"> Communities </h2>
                         </header>
                     </div>
-                    <div class="row d-flex justify-content-evenly gap-1 overflow-scroll" style="max-height: 90px;">  <!-- da spostare in CSS -->
+                    <div class="row d-flex justify-content-evenly gap-1 overflow-auto" style="max-height: 90px;">  <!-- da spostare in CSS -->
                         <div class="col-12">
                             <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
