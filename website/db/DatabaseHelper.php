@@ -73,6 +73,21 @@
             return $posts;
         }
 
+        public function getPostFeedOfCommunity(string $nomeCommunity): array {
+            $query = "SELECT P.*
+                FROM ".Schemas::POST->value." P
+                WHERE P.".PostKeys::community." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($nomeCommunity));
+    
+            $posts = array_map(function($row) {
+                return PostDTO::fromDBRow($row);
+            }, $rows);
+            
+            return $posts;
+        }
+
         public function getAuthorOfPost(PostDTO $post): UtenteDTO {
             return UtenteDTO::getOneByID($this->db, $post->utente);
         }

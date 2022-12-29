@@ -15,7 +15,7 @@
                         <header>
                             <div class="row">
                                 <div class="col clearfix">
-                                    <img class="profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                    <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                                     <h2> <?php echo $utente->username; ?> </h2>
                                 </div>
                                 <div class="col-auto">
