@@ -92,6 +92,21 @@
             return $posts;
         }
 
+        public function getPostFeedOfUserProfile(UtenteDTO $utente): array {
+            $query = "SELECT P.*
+                FROM ".Schemas::POST->value." P
+                WHERE P.".PostKeys::utente." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            $posts = array_map(function($row) {
+                return PostDTO::fromDBRow($row);
+            }, $rows);
+            
+            return $posts;
+        }
+
         public function getAuthorOfPost(PostDTO $post): UtenteDTO {
             return UtenteDTO::getOneByID($this->db, $post->utente);
         }
@@ -251,6 +266,46 @@
             return array_map(function($row) {
                 return CommunityDTO::fromDBRow($row);
             }, $rows);
+        }
+
+        public function getCommunitiesOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT C.*
+                FROM ".Schemas::COMMUNITY->value." C
+                JOIN ".Schemas::PARTECIPAZIONE_COMMUNITY->value." PC
+                ON(C.".CommunityKeys::nome." = PC.".PartecipazioneCommunityKeys::community.")
+                WHERE PC.".PartecipazioneCommunityKeys::utente." = ?
+                ORDER BY C.".CommunityKeys::nome." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+
+            $communities = array_map(function($row) {
+                return CommunityDTO::fromDBRow($row);
+            }, $rows);
+
+            return $communities;
+        }
+
+        public function checkIfUserFollows(UtenteDTO $follower, UtenteDTO $followed): bool {
+            return null !== FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+        }
+
+        /**
+         * Returns a dto if the follow has been set. Returns null if the follow has been unset.
+         * 
+         * @return ?FollowDTO
+         */
+        public function toggleFollow(UtenteDTO $follower, UtenteDTO $followed): ?FollowDTO {
+            $follow = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+            
+            if (isset($follow)) {
+                FollowDeleteDTO::from($follow)->deleteOn($this->db);
+                $follow = null;
+            } else {
+                (new FollowCreateDTO($follower->id, $followed->id))->createOn($this->db);
+                $follow = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+            }
+
+            return $follow;
         }
     }
 ?>
