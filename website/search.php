@@ -7,7 +7,14 @@
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //Code to search
+            if (!isset($_POST["search"])) {
+                internalServerError("Richiesta una ricerca");
+            }
+
+            $filter = $_POST["search"];
+            $templateParams['searchedUsers'] = $dbh->getUtentiWithSubstring($filter);
+            $templateParams['searchedCommunities'] = $dbh->getCommunityWithSubstring($filter);
+            
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             internalServerError("Sono accettate solo richieste GET o POST");
         }

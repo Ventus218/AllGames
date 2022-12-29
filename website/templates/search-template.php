@@ -9,46 +9,57 @@
         </div>
     </div>
     </form>
-
+    
     <div class="row">
+        <?php if (isset($templateParams["searchedUsers"]) && sizeof($templateParams["searchedUsers"]) != 0): ?>
         <!--Utenti-->
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-12">
                 <header>
                     <h2><strong>Utenti</strong></h2>
                 </header>
             </div>
-
-            <div class="col-12">
+            <?php 
+                for($i = 0; $i < sizeof($templateParams["searchedUsers"]); $i++): 
+                    $utente = $templateParams["searchedUsers"][$i];
+            ?>
+            <div class="col-12 mb-2">
                 <a href="#" class="text-decoration-none text-white">
-                    <img class="ricerca-pic" src="inc/img/profile-pic.png" alt="" />
-                    <span>YOU_DIED</span>
+                    <img class="ricerca-pic" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                    <span><?php echo $utente->username; ?></span>
                 </a>
             </div>
-
-            <div class="col-12 mt-2">
-                <a href="#" class="text-decoration-none text-white">
-                    <img class="ricerca-pic" src="inc/img/profile-pic.png" alt="" />
-                    <span>YOU_DIED</span>
-                </a>
-            </div>
+            <?php endfor; ?>
         </div>
         
+        <?php 
 
-        <!--Utenti-->
-        <div class="row mt-2">
+        endif;
+
+        if (isset($templateParams["searchedCommunities"]) && sizeof($templateParams["searchedCommunities"]) != 0):
+
+        ?>
+        <!--Community-->
+        <div class="row">
+            <hr class="mb-2 rounded opacity-50" />
             <div class="col-12">
                 <header>
                     <h2><strong>Community</strong></h2>
                 </header>
             </div>
 
-            <div class="col-12">
-                <a href="#" class="text-decoration-none text-white">
-                    <img class="ricerca-pic" src="inc/img/people.png" alt="" />
-                    <span class="align-bottom">You_died</span>
+            <?php 
+                for($i = 0; $i < sizeof($templateParams["searchedCommunities"]); $i++): 
+                    $community = $templateParams["searchedCommunities"][$i];
+            ?>
+            <div class="col-12 mb-2">
+                <a href="<?php echo "community.php?community=".$community->nome; ?>" class="text-decoration-none text-white">
+                    <img class="ricerca-pic" src="<?php echo (isset($community->urlImmagine) ? $community->urlImmagine : "inc/img/people.png"); ?> " alt="Immagine della community <?php echo $community->nome; ?>" />
+                    <span><?php echo $community->nome; ?></span>
                 </a>
             </div>
+            <?php endfor; ?>
         </div>
+        <?php endif; ?>
     </div>
 </div>

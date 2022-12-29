@@ -218,5 +218,39 @@
 
             return $partecipazione;
         }
+        
+        public function getUtentiWithSubstring(string $filter): ?array {
+            $querySelectUtentiWithSubstring = "SELECT * 
+                FROM ".Schemas::UTENTE->value." 
+                WHERE ".UtenteKeys::username." LIKE ? 
+                ORDER BY ".UtenteKeys::username." DESC";
+
+            $rows = $this->db->executeQuery($querySelectUtentiWithSubstring, array("%".$filter."%"));
+
+            if (sizeof($rows) == 0) {
+                return null;
+            }
+
+            return array_map(function($row) {
+                return UtenteDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getCommunityWithSubstring(string $filter): ?array {
+            $querySelectCommunityWithSubstring = "SELECT * 
+                FROM ".Schemas::COMMUNITY->value." 
+                WHERE ".CommunityKeys::nome." LIKE ? 
+                ORDER BY ".CommunityKeys::nome." DESC";
+
+            $rows = $this->db->executeQuery($querySelectCommunityWithSubstring, array("%".$filter."%"));
+
+            if (sizeof($rows) == 0) {
+                return null;
+            }
+
+            return array_map(function($row) {
+                return CommunityDTO::fromDBRow($row);
+            }, $rows);
+        }
     }
 ?>
