@@ -36,10 +36,10 @@
         $comm_amazzoni = "Le Amazzoni (WoW)";
 
         $communitys = array(
-            new CommunityCreateDTO($comm_amantiDS, "", $u_youdied), // URL MANCANTE
-            new CommunityCreateDTO($comm_retroGaming, "", $u_rob), // URL MANCANTE
-            new CommunityCreateDTO($comm_tutorial, "", $u_killer), // URL MANCANTE
-            new CommunityCreateDTO($comm_amazzoni, "", $u_amaz) // URL MANCANTE
+            new CommunityCreateDTO($comm_amantiDS, "https://static.bandainamcoent.eu/high/dark-souls/brand-setup/ds3_thumb_brand_624x468.jpg", $u_youdied),
+            new CommunityCreateDTO($comm_retroGaming, "https://ichef.bbci.co.uk/news/976/cpsprodpb/EAEE/production/_96724106_gettyimages-157437668.jpg", $u_rob),
+            new CommunityCreateDTO($comm_tutorial, "https://i.ytimg.com/vi/B6nLuyVOk4k/maxresdefault.jpg", $u_killer),
+            new CommunityCreateDTO($comm_amazzoni, "https://www.kotaku.com.au/wp-content/uploads/sites/3/2017/12/14/z3tplwgx6bbhufjaejhy.jpg", $u_amaz)
         );
 
         foreach ($communitys as $community) {
