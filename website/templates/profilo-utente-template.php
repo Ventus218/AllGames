@@ -5,7 +5,7 @@
             $followers = $templateParams["followers"];
             $communities = $templateParams["communities"];
         ?>
-        <div class="row mb-4">
+        <div class="row mb-4 gap-1">
             <div class="col-12">
                 <section class="p-3 bg-gray rounded border border-2">
                     <div class="row">
@@ -47,6 +47,111 @@
                                     </strong>
                                 </button>
                             </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-12">
+                <section class="p-3 bg-gray rounded border border-2">
+                    <div class="row mb-1">
+                        <header>
+                            <h2 class="m-0"> Communities </h2>
+                        </header>
+                    </div>
+                    <div class="row d-flex justify-content-evenly">
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Amanti di Dark Souls </p>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-12">
+                <section class="p-3 bg-gray rounded border border-2">
+                    <div class="row mb-1">
+                        <header>
+                            <h2 class="m-0"> Communities </h2>
+                        </header>
+                    </div>
+                    <div class="row d-flex justify-content-evenly overflow-scroll" style="max-height: 190px;">  <!-- da spostare in CSS -->
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Amanti di Dark Souls </p>
+                            </a>
+                        </div>
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Amanti di Dark Souls </p>
+                            </a>
+                        </div>
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Amanti di Dark Souls </p>
+                            </a>
+                        </div>
+                        <div class="col-auto p-0">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-column align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="profile-pic">
+                                <p class="m-0"> Amanti di Dark Souls </p>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-12">
+                <section class="p-3 bg-gray rounded border border-2">
+                    <div class="row mb-1">
+                        <header>
+                            <h2 class="m-0"> Communities </h2>
+                        </header>
+                    </div>
+                    <div class="row d-flex justify-content-evenly gap-1 overflow-scroll" style="max-height: 90px;">  <!-- da spostare in CSS -->
+                        <div class="col-12">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                                <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
+                                <p class="m-0"> Le Amazzoni (WoW) </p>
+                            </a>
                         </div>
                     </div>
                 </section>
