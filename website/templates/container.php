@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="inc/css/style.css" />
 </head>
 <body class="bg-black text-white">
-
-    <div class="container-fluid pt-0 pb-2 px-4 overflow-hidden">
+    <div class="container-fluid pt-0 pb-2 px-4 mt-6 <?php echo (isset($templateParams["show-footer"]) && $templateParams["show-footer"]) ? "mb-6" : ""; ?> overflow-hidden">
 
         <!--Top bar of the page-->
         <div class="row px-2 py-3 fixed-top bg-blur align-items-center">

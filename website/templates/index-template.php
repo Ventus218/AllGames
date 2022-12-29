@@ -1,4 +1,4 @@
-        <div class="row my-6 gap-3">
+        <div class="row gap-3">
         <!--Template post-->
 
             <?php foreach($templateParams["posts_data"] as $postData):

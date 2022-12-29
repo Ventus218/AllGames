@@ -1,4 +1,4 @@
-        <div class="row mt-6">
+        <div class="row">
             <div class="col-12 text-start">
                 <form action="" method="post">
                     <header class="text-center">
