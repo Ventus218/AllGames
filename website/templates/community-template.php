@@ -28,7 +28,7 @@
                         <div class="col">
                             <form action="#" method="post">
                                 <button class="btn btn-warning w-100" type="submit">
-                                    <strong> Unisciti alla community </strong>
+                                    <strong> <?php echo ($templateParams["utente-partecipa"] === true ? "Lascia la community" : "Unisciti alla community" ); ?> </strong>
                                 </button>
                             </form>
                         </div>
