@@ -45,11 +45,8 @@
                                 <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
-                                    <?php 
-                                        $notifications = $dbh->getNotificationsOfUser(getSessionUserId());
-                                        $total_notifications = sizeof($notifications);
-                                        $new_notifications = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
-                                        echo $new_notifications;
+                                    <?php                                         
+                                        echo $templateParams["new_notifications"];
                                     ?>
                                     <!--For screen readers-->
                                     <span class="visually-hidden">Nuove notifiche</span>
@@ -57,7 +54,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownMenuLink" role="notificationLists">
-                                <?php if ($total_notifications == 0): ?>
+                                <?php if ($templateParams["total_notifications"] == 0): ?>
                                 <li class="mb-2">
                                     <span class="text-white dropdown-item-text"> 
                                         <strong>Non sono presenti notifiche</strong>
@@ -65,8 +62,8 @@
                                 </li>
                                 
                                 <?php else: 
-                                    for($i = 0; $i < $total_notifications; $i++):
-                                        $notification = $notifications[$i];
+                                    for($i = 0; $i < $templateParams["total_notifications"]; $i++):
+                                        $notification = $templateParams["notifications"][$i];
                                         $utente = $dbh->getSourceUserOfNotification($notification);      
                                 ?>
 
@@ -94,7 +91,7 @@
                                     </span>
                                 </li>
                                 <?php //Do not make the break line if this is the last notification 
-                                if($i < $total_notifications-1):?>
+                                if($i < $templateParams["total_notifications"]-1):?>
                                 <!--Break Line-->
                                 <li><hr class="mb-2 mt-0 mx-3 rounded opacity-100" /></li>
 

@@ -19,6 +19,9 @@
             internalServerError("Sono accettate solo richieste GET o POST");
         }
         
+        $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
+        $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
+        $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
         $templateParams["page-title"] = "Search";
         $templateParams["content"] = "templates/search-template.php";
         $templateParams["show-top-bar-buttons"] = true;
