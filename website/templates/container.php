@@ -74,19 +74,27 @@
                                 <li class="mb-2">
                                     <span class="dropdown-item-text clearfix">
                                         <!--Link to the user who did the action that generated the notification-->
-                                        <a href="#" class="text-decoration-none d-flex item-align-center ">
-                                            <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="" class="profile-pic rounded-circle float-start me-3"/>
-                                            <span class="text-white"> 
-                                                <strong><span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $notification->getText(); ?></strong>
+                                        <a href="#" class="text-decoration-none d-flex align-items-center justify-content-between">
+                                            <span class="align-items-center d-flex">
+                                                <img src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="" class="profile-pic rounded-circle float-start me-3"/>
+                                                <span class="text-white"> 
+                                                    <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $notification->getText(); ?>
+                                                </span>
                                             </span>
+                                            
+                                            <?php if($notification->letta == 0): ?>
+                                            <!--<span class="text-danger float-end"><strong>Non letto</strong></span>-->
+                                            <span class="badge rounded-pill bg-warning p-1 float-right ms-2">
+                                                <!--For screen readers-->
+                                                <span class="visually-hidden">Non letta</span>
+                                            </span>
+                                            <?php endif;?>
                                         </a>
-                                        <?php if($notification->letta == 0): ?>
-                                        <span class="text-danger float-end"><strong>Non letto</strong></span>
-                                        <?php endif;?>
+                                        
                                     </span>
                                 </li>
                                 <!--Break Line-->
-                                <li><hr class="mb-2 mt-0 mx-5 border-white border-3 border rounded opacity-100"></li>
+                                <li><hr class="mb-2 mt-0 mx-3 rounded opacity-100"></li>
 
                                 <?php endforeach;
                                     endif; 

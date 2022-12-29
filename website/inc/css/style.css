@@ -21,10 +21,6 @@ ul li ul {
     font-size: .7rem !important;
 }
 
-.item-align-center {
-    align-items: center;
-}
-
 ul li a, article footer a {
     border-radius: .8rem !important;
 }
@@ -43,8 +39,8 @@ h1 {
 }
 
 .bg-blur {
-    -webkit-backdrop-filter: blur(25px);
-    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px) !important;
+    backdrop-filter: blur(25px) !important;
     background-color: rgba(0, 0, 0, 0.85) !important;
 }
 
