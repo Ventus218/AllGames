@@ -307,5 +307,25 @@
 
             return $follow;
         }
+
+        public function getNumberOfFollowOfUtente(UtenteDTO $utente): int {
+            $query = "SELECT COUNT(*) AS NFollowers
+                FROM ".Schemas::FOLLOW->value." F
+                WHERE F.".FollowKeys::utenteSeguace." = ?";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            return $rows[0]["NFollowers"];
+        }
+
+        public function getNumberOfFollowersOfUtente(UtenteDTO $utente): int {
+            $query = "SELECT COUNT(*) AS NFollowers
+                FROM ".Schemas::FOLLOW->value." F
+                WHERE F.".FollowKeys::utenteSeguito." = ?";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            return $rows[0]["NFollowers"];
+        }
     }
 ?>

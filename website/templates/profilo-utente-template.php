@@ -1,5 +1,8 @@
         <?php
             $utente = $templateParams["utente"];
+            $numberOfPosts = sizeof($templateParams["posts_data"]);
+            $follow = $templateParams["follow"];
+            $followers = $templateParams["followers"];
             $communities = $templateParams["communities"];
         ?>
         <div class="row mb-4">
@@ -17,11 +20,15 @@
                             </div>
                         </header>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>
-                                Partecipanti: 
-                            </p>
+                    <div class="row d-flex justify-content-evenly my-3">
+                        <div class="col-auto border border-lightgray rounded text-center text-white border-2">
+                            <p class="m-0"> <strong> <?php echo $numberOfPosts; ?> </strong> Post </p>
+                        </div>
+                        <div class="col-auto border border-lightgray rounded text-center text-white border-2">
+                            <p class="m-0"> <strong> <?php echo $follow; ?> </strong> Follow </p>
+                        </div>
+                        <div class="col-auto border border-lightgray rounded text-center text-white border-2">
+                            <p class="m-0"> <strong> <?php echo $followers; ?> </strong> Follower </p>
                         </div>
                     </div>
                     <div class="row">
