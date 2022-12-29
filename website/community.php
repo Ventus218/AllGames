@@ -9,17 +9,13 @@
             internalServerError("Nessuna community selezionata");
         }
         $communityName = $_GET["community"];
-        $community = CommunityDTO::getOneByID($db, $communityName);
+        $community = $dbh->getCommunityFromName($communityName);
 
-        $partecipazione = PartecipazioneCommunityDTO::getOneByID($db, getSessionUserId(), $community->nome);
-
+        $utente = $dbh->getUtenteFromId(getSessionUserId());
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($partecipazione)) {
-                PartecipazioneCommunityDeleteDTO::from($partecipazione)->deleteOn($db);
-                $partecipazione = null;
-            } else {
-                $partecipazione = (new PartecipazioneCommunityCreateDTO(getSessionUserId(), $community->nome))->createOn($db);
-            }
+            $partecipazione = $dbh->togglePartecipazioneCommunity($community, $utente);
+        } else {
+            $partecipazione = $dbh->getPartecipazioneCommunity($utente, $community);
         }
         
         $posts = $dbh->getPostFeedOfCommunity($community->nome);
@@ -38,7 +34,8 @@
 
         $templateParams["posts_data"] = $postsData;
         $templateParams["community"] = $community;
-        $templateParams["fondatore"] = UtenteDTO::getOneByID($db, $community->fondatore);
+        $templateParams["fondatore"] = $dbh->fondatoreOfCommunity($community);
+        $templateParams["partecipanti"] = $dbh->partecipantiOfCommunity($community);
         $templateParams["utente-partecipa"] = isset($partecipazione);
 
         $templateParams["page-title"] = $community->nome;

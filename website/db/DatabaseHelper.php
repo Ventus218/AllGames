@@ -19,6 +19,10 @@
     class DatabaseHelper {
         public function __construct(private Database $db) {}
 
+        public function getUtenteFromId(int $idUtente): ?UtenteDTO {
+            return UtenteDTO::getOneByID($this->db, $idUtente);
+        }
+
         public function getPostFeedOfUtente(int $idUtente): array {
             $queryPostsFromFollowedUsers = "SELECT P.* 
                 FROM ".Schemas::POST->value." P
@@ -175,6 +179,44 @@
                 UtenteKeys::email => $email
             ));
             return (sizeof($rows) === 0);
+        }
+
+        public function getCommunityFromName(string $communityName): ?CommunityDTO {
+            return CommunityDTO::getOneByID($this->db, $communityName);
+        }
+
+        public function fondatoreOfCommunity(CommunityDTO $community): UtenteDTO {
+            return UtenteDTO::getOneByID($this->db, $community->fondatore);
+        }
+
+        public function partecipantiOfCommunity(CommunityDTO $community): int {
+            $rows = $this->db->select(Schemas::PARTECIPAZIONE_COMMUNITY, array(
+                PartecipazioneCommunityKeys::community => $community->nome
+            ));
+            return sizeof($rows);
+        }
+
+        public function getPartecipazioneCommunity(UtenteDTO $utente, CommunityDTO $community): ?PartecipazioneCommunityDTO {
+            return PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
+        }
+
+        /**
+         * Returns a dto if the partecipazione has been set. Returns null if the partecipazione has been unset.
+         * 
+         * @return ?PartecipazioneCommunityDTO
+         */
+        public function togglePartecipazioneCommunity(CommunityDTO $community, UtenteDTO $utente): ?PartecipazioneCommunityDTO {
+            $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
+            
+            if (isset($partecipazione)) {
+                PartecipazioneCommunityDeleteDTO::from($partecipazione)->deleteOn($this->db);
+                $partecipazione = null;
+            } else {
+                (new PartecipazioneCommunityCreateDTO($utente->id, $community->nome))->createOn($this->db);
+                $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
+            }
+
+            return $partecipazione;
         }
     }
 ?>

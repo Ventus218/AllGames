@@ -19,8 +19,15 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col">
-                            <p>
+                            <p class="mb-0">
                                 Fondatore: <a class="text-warning text-decoration-none" href="#"> <strong> <?php echo $fondatore->username; ?> </strong> </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                Partecipanti: <strong> <?php echo $templateParams["partecipanti"]; ?> </strong>
                             </p>
                         </div>
                     </div>
