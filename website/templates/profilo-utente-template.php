@@ -14,7 +14,7 @@
                         <header>
                             <div class="row align-items-center">
                                 <div class="col-auto pe-0">
-                                    <img class="profile-pic <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/people.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
+                                    <img class="profile-pic <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
                                 </div>
                                 <div class="col">
                                     <h2 class="m-0"> <?php echo $utente->username; ?> </h2>

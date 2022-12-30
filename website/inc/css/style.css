@@ -70,7 +70,7 @@ article header h2 {
     font-weight: bold;
 }
 
-.post-profile-pic, .notifica-profile-pic, .ricerca-pic {
+.post-profile-pic, .notifica-profile-pic, .ricerca-pic, .back-pic {
     object-fit: cover;
     width: 30px;
     height: 30px;
@@ -80,6 +80,12 @@ article header h2 {
     object-fit: cover;
     width: 70px;
     height: 70px;
+}
+
+.change-profile-pic {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
 }
 
 article header p.timestamp {
