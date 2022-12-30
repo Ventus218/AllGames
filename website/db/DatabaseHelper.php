@@ -10,6 +10,8 @@
     require_once(__DIR__."/model/ContenutoMultimedialePost.php");
     require_once(__DIR__."/model/Utente.php");
     require_once(__DIR__."/model/Notifica.php");
+    require_once(__DIR__."/model/Tag.php");
+    require_once(__DIR__."/model/TagInPost.php");
 
 
     /**
@@ -99,6 +101,23 @@
                 ORDER BY P.".PostKeys::timestamp." DESC";
     
             $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            $posts = array_map(function($row) {
+                return PostDTO::fromDBRow($row);
+            }, $rows);
+            
+            return $posts;
+        }
+
+        public function getPostFeedOfTag(TagDTO $tag): array {
+            $query = "SELECT P.*
+                FROM ".Schemas::POST->value." P
+                JOIN ".Schemas::TAG_IN_POST->value." T
+                ON (P.".PostKeys::id." = T.".TagInPostKeys::post.")
+                WHERE T.".TagInPostKeys::tag." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($tag->nome));
     
             $posts = array_map(function($row) {
                 return PostDTO::fromDBRow($row);
@@ -307,6 +326,10 @@
             $rows = $this->db->executeQuery($query, array($utente->id));
     
             return $rows[0]["NFollowers"];
+        }
+
+        public function getTagFromName(string $tagName): ?TagDTO {
+            return TagDTO::getOneByID($this->db, $tagName);
         }
     }
 ?>
