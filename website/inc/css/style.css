@@ -142,3 +142,7 @@ form .form-check-input:checked {
 input.search-img {
     width:30px;
 }
+
+.communities-height {
+    max-height: 90px !important;
+}
