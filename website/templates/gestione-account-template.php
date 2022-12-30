@@ -42,6 +42,17 @@ $utente = $templateParams["utente"];
                     <span class="visually-hidden">Controllando se l'username è gia utilizzato...</span>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6 pe-0">
+                    <input class="form-control" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="<?php echo $utente->telefono; ?>" required />
+                </div>
+                <div class="col-6 ps-0">
+                    <input class="form-control ms-4" type="date" name="data-nascita" id="data-nascita" required/>
+                </div>
+            </div>      
+        </div>
+        <div class="row">
+            <!--TODO Genere e Password-->
         </div>
     </form>
 </div>
