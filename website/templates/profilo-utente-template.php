@@ -1,8 +1,10 @@
         <?php
             $utente = $templateParams["utente-of-profile"];
             $numberOfPosts = sizeof($templateParams["posts_data"]);
-            $follow = $templateParams["follow"];
+            $follows = $templateParams["follow"];
             $followers = $templateParams["followers"];
+            $followsNumber = sizeof($follows);
+            $followersNumber = sizeof($followers);
             $communities = $templateParams["communities"];
         ?>
         <div class="row mb-4 gap-1">
@@ -28,12 +30,12 @@
                         </div>
                         <div class="col-auto text-center">
                             <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2">
-                                <strong> <?php echo $follow; ?> </strong> Follow
+                                <strong> <?php echo $followsNumber; ?> </strong> Follow
                             </a>
                         </div>
                         <div class="col-auto text-center">
                             <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2">
-                                <strong> <?php echo $followers; ?> </strong> Follower
+                                <strong> <?php echo $followersNumber; ?> </strong> Follower
                             </a>
                         </div>
                     </div>

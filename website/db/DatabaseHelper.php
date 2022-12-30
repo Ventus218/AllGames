@@ -308,24 +308,32 @@
             return null !== FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
         }
 
-        public function getNumberOfFollowOfUtente(UtenteDTO $utente): int {
-            $query = "SELECT COUNT(*) AS NFollowers
-                FROM ".Schemas::FOLLOW->value." F
-                WHERE F.".FollowKeys::utenteSeguace." = ?";
+        public function getFollowOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT U.* 
+                FROM ".Schemas::FOLLOW->value." F,
+                ".Schemas::UTENTE->value." U 
+                WHERE F.".FollowKeys::utenteSeguace." = ?
+                AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguito;
     
             $rows = $this->db->executeQuery($query, array($utente->id));
     
-            return $rows[0]["NFollowers"];
+            return array_map(function($row) {
+                return UtenteDTO::fromDBRow($row);
+            }, $rows);
         }
 
-        public function getNumberOfFollowersOfUtente(UtenteDTO $utente): int {
-            $query = "SELECT COUNT(*) AS NFollowers
-                FROM ".Schemas::FOLLOW->value." F
-                WHERE F.".FollowKeys::utenteSeguito." = ?";
+        public function getFollowersOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT U.* 
+                FROM ".Schemas::FOLLOW->value." F,
+                ".Schemas::UTENTE->value." U 
+                WHERE F.".FollowKeys::utenteSeguito." = ?
+                AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguace;
     
             $rows = $this->db->executeQuery($query, array($utente->id));
     
-            return $rows[0]["NFollowers"];
+            return array_map(function($row) {
+                return UtenteDTO::fromDBRow($row);
+            }, $rows);
         }
 
         public function getTagFromName(string $tagName): ?TagDTO {
