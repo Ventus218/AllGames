@@ -24,7 +24,7 @@
                     $utente = $templateParams["searchedUsers"][$i];
             ?>
             <div class="col-12 mb-2">
-                <a href="#" class="text-decoration-none text-white">
+                <a href="profilo-utente.php?utente=<?php echo $utente->id ?>" class="text-decoration-none text-white">
                     <img class="ricerca-pic" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                     <span><?php echo $utente->username; ?></span>
                 </a>
