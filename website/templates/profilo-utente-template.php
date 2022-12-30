@@ -1,5 +1,5 @@
         <?php
-            $utente = $templateParams["utente"];
+            $utente = $templateParams["utente-of-profile"];
             $numberOfPosts = sizeof($templateParams["posts_data"]);
             $follow = $templateParams["follow"];
             $followers = $templateParams["followers"];

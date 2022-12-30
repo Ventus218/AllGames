@@ -62,7 +62,7 @@
             $postsData[$i]["mi_piace"] = sizeof($dbh->getMiPiaceOfPost($post));
         }
 
-        $templateParams["utente"] = $utente;
+        $templateParams["utente-of-profile"] = $utente;
         $templateParams["follow"] = $dbh->getNumberOfFollowOfUtente($utente);
         $templateParams["followers"] = $dbh->getNumberOfFollowersOfUtente($utente);
         $templateParams["is-current-user-profile"] = $isCurrentUserProfile;
@@ -70,7 +70,7 @@
         $templateParams["posts_data"] = $postsData;
         $templateParams["communities"] = $communities;
 
-
+        $templateParams["utente"] = $currentUtente;
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
         $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));

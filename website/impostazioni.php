@@ -6,8 +6,7 @@
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
 
-        
-
+        $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
         $templateParams["page-title"] = "Impostazioni";
         $templateParams["content"] = "templates/impostazioni-template.php";
         $templateParams["show-top-bar-buttons"] = false;

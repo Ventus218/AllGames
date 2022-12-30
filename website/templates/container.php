@@ -137,7 +137,7 @@
                         </li>
                         <!--User-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href=" profilo-utente.php?utente=<?php echo $templateParams["utente"]->id ?> ">
                                 <img src="inc/img/user.png" alt="User" />
                             </a>
                         </li>

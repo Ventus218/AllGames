@@ -19,6 +19,7 @@
             internalServerError("Sono accettate solo richieste GET o POST");
         }
         
+        $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
         $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
