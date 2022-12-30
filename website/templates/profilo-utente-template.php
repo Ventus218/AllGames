@@ -129,32 +129,32 @@
                         </header>
                     </div>
                     <div class="row d-flex justify-content-evenly gap-1 overflow-auto" style="max-height: 90px;">  <!-- da spostare in CSS -->
-                        <div class="col-12">
-                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                        <div class="row">
+                            <a href="#" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
                                 <p class="m-0"> Le Amazzoni (WoW) </p>
                             </a>
                         </div>
-                        <div class="col-12">
-                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                        <div class="row">
+                            <a href="#" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
                                 <p class="m-0"> Le Amazzoni (WoW) </p>
                             </a>
                         </div>
-                        <div class="col-12">
-                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                        <div class="row">
+                            <a href="#" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
                                 <p class="m-0"> Le Amazzoni (WoW) </p>
                             </a>
                         </div>
-                        <div class="col-12">
-                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                        <div class="row">
+                            <a href="#" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
                                 <p class="m-0"> Le Amazzoni (WoW) </p>
                             </a>
                         </div>
-                        <div class="col-12">
-                            <a href="#" class="text-warning text-decoration-none d-flex flex-row align-items-center">
+                        <div class="row">
+                            <a href="#" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
                                 <img src="inc/img/people.png" alt="Immagine community" class="post-profile-pic me-2">
                                 <p class="m-0"> Le Amazzoni (WoW) </p>
                             </a>
