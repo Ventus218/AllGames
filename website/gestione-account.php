@@ -10,12 +10,13 @@
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             internalServerError("Sono accettate solo richieste GET o POST");
         }
-        
+
         $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
         $templateParams["page-title"] = "Gestione account";
         $templateParams["content"] = "templates/gestione-account-template.php";
         $templateParams["show-top-bar-buttons"] = false;
         $templateParams["show-footer"] = true;
+        $templateParams["js"] =array("inc/js/change-image.js");
         require("templates/container.php");
     }
 ?>

@@ -152,3 +152,7 @@ input.search-img {
 .communities-height {
     max-height: 90px !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
