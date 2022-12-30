@@ -63,8 +63,8 @@
         }
 
         $templateParams["utente-of-profile"] = $utente;
-        $templateParams["follow"] = $dbh->getNumberOfFollowOfUtente($utente);
-        $templateParams["followers"] = $dbh->getNumberOfFollowersOfUtente($utente);
+        $templateParams["follow"] = $dbh->getFollowOfUtente($utente);
+        $templateParams["followers"] = $dbh->getFollowersOfUtente($utente);
         $templateParams["is-current-user-profile"] = $isCurrentUserProfile;
         $templateParams["is-followed"] = $isFollowed;
         $templateParams["posts_data"] = $postsData;
