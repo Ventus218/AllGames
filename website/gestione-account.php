@@ -16,7 +16,7 @@
         $templateParams["content"] = "templates/gestione-account-template.php";
         $templateParams["show-top-bar-buttons"] = false;
         $templateParams["show-footer"] = true;
-        $templateParams["js"] =array("inc/js/change-image.js", "https://unpkg.com/axios/dist/axios.min.js", "inc/js/gestione-account.js", "inc/js/utils.js");
+        $templateParams["js"] =array("inc/js/change-image.js", "https://unpkg.com/axios/dist/axios.min.js", "inc/js/form-control.js");
         require("templates/container.php");
     }
 ?>

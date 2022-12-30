@@ -27,7 +27,19 @@ $utente = $templateParams["utente"];
             <div class="col-12">
                 <input class="form-control" type="email" name="email" id="email" placeholder="<?php echo $utente->email?>" required />
                 <div class="invalid-feedback pb-0">
-                    E-mail già in uso
+                    E-mail già in uso 
+                </div>
+                <div id="email-spinner" class="spinner-border spinner-border-sm p-2 me-3 d-none" role="status">
+                    <span class="visually-hidden">Controllando se l'e-mail è gia utilizzata...</span>
+                </div>
+            </div>
+            <div class="col-12">
+                <input class="form-control" type="text" name="username" id="username" placeholder="<?php echo $utente->nome?>" required />
+                <div class="invalid-feedback pb-0">
+                    Username già in uso 
+                </div>
+                <div id="username-spinner" class="spinner-border spinner-border-sm p-2 me-3 d-none" role="status">
+                    <span class="visually-hidden">Controllando se l'username è gia utilizzato...</span>
                 </div>
             </div>
         </div>
