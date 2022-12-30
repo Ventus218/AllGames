@@ -24,19 +24,109 @@
                     </div>
                     <div class="row d-flex justify-content-evenly my-3">
                         <div class="col-auto text-center">
-                            <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2">
+                            <div class="border border-lightgray rounded text-white border-2 btn px-2">
                                 <strong> <?php echo $numberOfPosts; ?> </strong> Post
-                            </a>
+                            </div>
                         </div>
                         <div class="col-auto text-center">
-                            <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2">
+                            <!--Click to open the modal-->
+                            <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2" data-bs-toggle="modal" data-bs-target="#follows">
                                 <strong> <?php echo $followsNumber; ?> </strong> Follow
                             </a>
+
+                            <!-- The follows modal -->
+                            <div class="modal fade" id="follows">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered w-75 mx-auto">
+                                    <div class="modal-content bg-black">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Tutti i follow</h4>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <?php if($followsNumber == 0): ?>
+
+                                                <div class="row text-start">
+                                                    <span>Non ci sono follow</span>
+                                                </div>
+
+                                            <?php else: 
+                                            for($i = 0; $i < $followsNumber; $i++): 
+                                                $follow = $follows[$i];
+                                            ?>
+
+                                                <div class="row text-start <?php if($i < $followsNumber-1) echo "mb-3"; ?>">
+                                                    <a href="profilo-utente.php?utente=<?php echo $follow->id ?>" class="text-decoration-none text-white">
+                                                        <img class="ricerca-pic" src="<?php echo (isset($follow->urlImmagine) ? $follow->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follow->username; ?>" />
+                                                        <span><?php echo $follow->username; ?></span>
+                                                    </a>
+                                                </div>
+
+                                            <?php endfor; 
+                                                endif; 
+                                            ?>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-auto text-center">
-                            <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2">
+                            <!--Click to open the modal-->
+                            <a href="#" class="border border-lightgray rounded text-white border-2 btn px-2" data-bs-toggle="modal" data-bs-target="#followers">
                                 <strong> <?php echo $followersNumber; ?> </strong> Follower
                             </a>
+
+                            <!-- The follows modal -->
+                            <div class="modal fade" id="followers">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered w-75 mx-auto">
+                                    <div class="modal-content bg-black">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Tutti i follower</h4>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <?php if($followersNumber == 0): ?>
+
+                                                <div class="row text-start">
+                                                    <span>Non ci sono follower</span>
+                                                </div>
+
+                                            <?php else:
+                                                for($i = 0; $i < $followersNumber; $i++): 
+                                                    $follower = $followers[$i];
+                                            ?>
+
+                                                <div class="row text-start <?php if($i < $followersNumber-1) echo "mb-3"; ?>">
+                                                    <a href="profilo-utente.php?utente=<?php echo $follower->id ?>" class="text-decoration-none text-white">
+                                                        <img class="ricerca-pic" src="<?php echo (isset($follower->urlImmagine) ? $follower->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follower->username; ?>" />
+                                                        <span><?php echo $follower->username; ?></span>
+                                                    </a>
+                                                </div>
+
+                                            <?php endfor; 
+                                                endif;
+                                            ?>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
