@@ -92,6 +92,21 @@
             return $posts;
         }
 
+        public function getPostFeedOfUserProfile(UtenteDTO $utente): array {
+            $query = "SELECT P.*
+                FROM ".Schemas::POST->value." P
+                WHERE P.".PostKeys::utente." = ?
+                ORDER BY P.".PostKeys::timestamp." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            $posts = array_map(function($row) {
+                return PostDTO::fromDBRow($row);
+            }, $rows);
+            
+            return $posts;
+        }
+
         public function getAuthorOfPost(PostDTO $post): UtenteDTO {
             return UtenteDTO::getOneByID($this->db, $post->utente);
         }
@@ -250,6 +265,55 @@
 
             return array_map(function($row) {
                 return CommunityDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getCommunitiesOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT C.*
+                FROM ".Schemas::COMMUNITY->value." C
+                JOIN ".Schemas::PARTECIPAZIONE_COMMUNITY->value." PC
+                ON(C.".CommunityKeys::nome." = PC.".PartecipazioneCommunityKeys::community.")
+                WHERE PC.".PartecipazioneCommunityKeys::utente." = ?
+                ORDER BY C.".CommunityKeys::nome." DESC";
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+
+            $communities = array_map(function($row) {
+                return CommunityDTO::fromDBRow($row);
+            }, $rows);
+
+            return $communities;
+        }
+
+        public function checkIfUserFollows(UtenteDTO $follower, UtenteDTO $followed): bool {
+            return null !== FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+        }
+
+        public function getFollowOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT U.* 
+                FROM ".Schemas::FOLLOW->value." F,
+                ".Schemas::UTENTE->value." U 
+                WHERE F.".FollowKeys::utenteSeguace." = ?
+                AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguito;
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            return array_map(function($row) {
+                return UtenteDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getFollowersOfUtente(UtenteDTO $utente): array {
+            $query = "SELECT U.* 
+                FROM ".Schemas::FOLLOW->value." F,
+                ".Schemas::UTENTE->value." U 
+                WHERE F.".FollowKeys::utenteSeguito." = ?
+                AND U.".UtenteKeys::id." = F.".FollowKeys::utenteSeguace;
+    
+            $rows = $this->db->executeQuery($query, array($utente->id));
+    
+            return array_map(function($row) {
+                return UtenteDTO::fromDBRow($row);
             }, $rows);
         }
     }

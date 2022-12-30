@@ -13,10 +13,12 @@
                 <article class="">
                     <div class="bg-gray rounded-top p-3">
                         <header>
-                            <div class="row">
-                                <div class="col clearfix">
-                                    <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
-                                    <h2> <?php echo $utente->username; ?> </h2>
+                            <div class="row d-flex justify-content-between">
+                                <div class="col-auto clearfix">
+                                    <a href=" <?php echo "profilo-utente.php?utente=".$post->utente; ?> " class="d-flex text-white text-decoration-none">
+                                        <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                        <h2> <?php echo $utente->username; ?> </h2>
+                                    </a>
                                 </div>
                                 <div class="col-auto">
                                     <p class="timestamp text-white-50"> <?php echo $post->timestamp->format('d/m/o H:i'); ?> </p>
