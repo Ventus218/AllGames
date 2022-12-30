@@ -33,20 +33,20 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <form action="#" method="post">
-                                <input type="hidden" name="follow" value="<?php echo ($templateParams["is-followed"] === true ? "0" : "1"); ?>" />
-                                <button class="btn btn-warning w-100" type="submit">
-                                    <strong>
-                                    <?php
-                                        if ($templateParams["is-current-user-profile"] === true) {
-                                            echo("Modifica profilo");
-                                        } else {
-                                            echo ($templateParams["is-followed"] === true ? "Non seguire più" : "Segui");
-                                        }
-                                    ?>
-                                    </strong>
-                                </button>
-                            </form>
+                            <?php if ($templateParams["is-current-user-profile"] === true): ?>
+                                <a href="#" class="btn btn-warning w-100">
+                                    <strong> Modifica profilo </strong>
+                                </a>
+                            <?php else: ?>
+                                <form action="#" method="post">
+                                    <input type="hidden" name="follow" value="<?php echo ($templateParams["is-followed"] === true ? "0" : "1"); ?>" />
+                                    <button class="btn btn-warning w-100" type="submit">
+                                        <strong>
+                                        <?php echo ($templateParams["is-followed"] === true ? "Non seguire più" : "Segui"); ?>
+                                        </strong>
+                                    </button>
+                                </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </section>
