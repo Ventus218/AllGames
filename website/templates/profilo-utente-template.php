@@ -132,7 +132,7 @@
                     <div class="row">
                         <div class="col">
                             <?php if ($templateParams["is-current-user-profile"] === true): ?>
-                                <a href="#" class="btn btn-warning w-100">
+                                <a href="gestione-account.php" class="btn btn-warning w-100">
                                     <strong> Modifica profilo </strong>
                                 </a>
                             <?php else: ?>
