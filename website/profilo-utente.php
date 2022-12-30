@@ -56,7 +56,7 @@
 
             $postsData[$i]["post"] = $post;
             $postsData[$i]["utente"] = $dbh->getAuthorOfPost($post);
-            $postsData[$i]["tags"] = $dbh->getTagsOfPost($post);
+            $postsData[$i]["tags-in-post"] = $dbh->getTagsOfPost($post);
             $postsData[$i]["c_multimediali"] = $dbh->getContenutiMultimedialiOfPost($post);
             $postsData[$i]["commenti"] = sizeof($dbh->getCommentiOfPost($post));
             $postsData[$i]["mi_piace"] = sizeof($dbh->getMiPiaceOfPost($post));
