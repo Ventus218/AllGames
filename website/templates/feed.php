@@ -4,7 +4,7 @@
             <?php foreach($templateParams["posts_data"] as $postData):
                 $post = $postData["post"];
                 $utente = $postData["utente"];
-                $tags = $postData["tags"];
+                $tagsInPost = $postData["tags-in-post"];
                 $multim = $postData["c_multimediali"];
                 $commenti = $postData["commenti"];
                 $miPiace = $postData["mi_piace"];
@@ -26,8 +26,8 @@
                             </div>
                             <div class="row">
                                 <div class="col align-self-center">
-                                    <?php foreach($tags as $tag): ?>
-                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="#"><strong> <?php echo $tag->tag; ?> </strong></a>
+                                    <?php foreach($tagsInPost as $tagInPost): ?>
+                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="tag.php?tag=<?php echo $tagInPost->tag; ?>"><strong> <?php echo $tagInPost->tag; ?> </strong></a>
                                     <?php endforeach; ?>
                                 </div>
                                 <?php if(isset($post->community)): ?>

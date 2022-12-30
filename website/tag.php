@@ -5,20 +5,13 @@
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
-        if (!isset($_GET["community"])) {
-            internalServerError("Nessuna community selezionata");
+        if (!isset($_GET["tag"])) {
+            internalServerError("Nessun tag selezionato");
         }
-        $communityName = $_GET["community"];
-        $community = $dbh->getCommunityFromName($communityName);
-
-        $utente = $dbh->getUtenteFromId(getSessionUserId());
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $partecipazione = $dbh->togglePartecipazioneCommunity($community, $utente);
-        } else {
-            $partecipazione = $dbh->getPartecipazioneCommunity($utente, $community);
-        }
+        $tagName = $_GET["tag"];
+        $tag = $dbh->getTagFromName($tagName);
         
-        $posts = $dbh->getPostFeedOfCommunity($community->nome);
+        $posts = $dbh->getPostFeedOfTag($tag);
 
         $postsData = array();
         for ($i=0; $i < sizeof($posts); $i++) {
@@ -33,17 +26,14 @@
         }
 
         $templateParams["posts_data"] = $postsData;
-        $templateParams["community"] = $community;
-        $templateParams["fondatore"] = $dbh->fondatoreOfCommunity($community);
-        $templateParams["partecipanti"] = $dbh->partecipantiOfCommunity($community);
-        $templateParams["utente-partecipa"] = isset($partecipazione);
+        $templateParams["tag"] = $tag;
 
         $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
         $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
-        $templateParams["page-title"] = $community->nome;
-        $templateParams["content"] = "templates/community-template.php";
+        $templateParams["page-title"] = "Tag: ".$tag->nome;
+        $templateParams["content"] = "templates/tag-template.php";
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
         $templateParams["js"] = array("inc/js/slider.js");
