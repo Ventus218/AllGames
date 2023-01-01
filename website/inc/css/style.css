@@ -21,6 +21,17 @@ ul li ul {
     font-size: .7rem !important;
 }
 
+.list-commenti ul li:last-child {
+    margin-bottom: initial !important;
+    padding-bottom: initial !important;
+    border-bottom: none !important;
+}
+
+.list-commenti ul li ul {
+    width: auto;
+    overflow-y: initial;
+}
+
 ul li a, article footer a {
     border-radius: .8rem !important;
 }
@@ -68,6 +79,12 @@ article header a {
 article header h2 {
     font-size: 1.2rem !important;
     font-weight: bold;
+}
+
+.commento-profile-pic {
+    object-fit: cover;
+    width: 20px;
+    height: 20px;
 }
 
 .post-profile-pic, .notifica-profile-pic, .ricerca-pic {
@@ -145,4 +162,21 @@ input.search-img {
 
 .communities-height {
     max-height: 90px !important;
+}
+
+form.commenta button img {
+    width: 45px;
+}
+
+form.commenta h3 {
+    font-size: .7rem !important;
+}
+
+form.commenta textarea::placeholder {
+    color: #99aab5 !important;
+}
+
+section.list-commenti .commento-button {
+    font-size: .8rem !important;
+    color: #99aab5 !important;
 }
