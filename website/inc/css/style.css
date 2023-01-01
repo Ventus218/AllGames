@@ -180,3 +180,13 @@ section.list-commenti .commento-button {
     font-size: .8rem !important;
     color: #99aab5 !important;
 }
+
+section.list-commenti .commento-button {
+    font-size: .8rem !important;
+    color: #99aab5 !important;
+}
+
+.tempo-passato-commento {
+    font-style: italic;
+    font-size: .7rem !important;
+}

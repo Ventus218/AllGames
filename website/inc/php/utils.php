@@ -39,4 +39,36 @@
         return $dateTime->format('Y-m-d H:i:s');
     }
 
+    function getTimeAgoFrom(DateTime $d): string {
+        $interval = $d->diff(new DateTime('now', $d->getTimezone()), true);
+
+        if ($interval->y >= 2) {
+            return $interval->y." anni fa";
+        } else if ($interval->y >= 1) {
+            return $interval->y." anno fa";
+        } else if ($interval->m >= 2) {
+            return $interval->m." mesi fa";
+        } else if ($interval->m >= 1) {
+            return $interval->m." mese fa";
+        } else if ($interval->d >= 2) {
+            return $interval->d." giorni fa";
+        } else if ($interval->d >= 1) {
+            return $interval->d." giorno fa";
+        } else if ($interval->h >= 2) {
+            return $interval->h." ore fa";
+        } else if ($interval->h >= 1) {
+            return $interval->h." ora fa";
+        } else if ($interval->i >= 2) {
+            return $interval->i." minuti fa";
+        } else if ($interval->i >= 1) {
+            return $interval->i." minuto fa";
+        } else if ($interval->s >= 2) {
+            return $interval->s." secondi fa";
+        } else if ($interval->s >= 1) {
+            return $interval->s." secondo fa";
+        } else {
+            return "adesso";
+        }
+    }
+
 ?>

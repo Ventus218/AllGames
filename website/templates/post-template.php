@@ -105,12 +105,13 @@
                         <li class="list-inline-item w-100 mb-3 pb-2 border-bottom border-lightgray">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-auto">
-                                        <header>
+                                    <div class="col-12">
+                                        <header class="d-flex flex-row align-items-center justify-content-between">
                                             <a href=" <?php echo "profilo-utente.php?utente=".$commentatore->id; ?> " class="d-flex align-items-center text-white text-decoration-none">
                                                 <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($commentatore->urlImmagine) ? $commentatore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $commentatore->username; ?>" />
                                                 <h4 class="m-0 fs-6"> <?php echo $commentatore->username; ?> </h4>
                                             </a>
+                                            <p class="tempo-passato-commento m-0 ms-3"> <?php echo getTimeAgoFrom($comm->timestamp); ?></p>
                                         </header>
                                     </div>        
                                 </div>
@@ -142,12 +143,13 @@
                                         <li class="list-inline-item w-100 mb-2 pb-2 border-bottom border-lightgray">
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-auto">
-                                                        <header>
+                                                    <div class="col-12">
+                                                        <header class="d-flex flex-row align-items-center justify-content-between">
                                                             <a href=" <?php echo "profilo-utente.php?utente=".$risponditore->id; ?> " class="d-flex align-items-center text-white text-decoration-none">
                                                                 <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($risponditore->urlImmagine) ? $risponditore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $risponditore->username; ?>" />
                                                                 <h4 class="m-0 fs-6"> <?php echo $risponditore->username; ?> </h4>
                                                             </a>
+                                                            <p class="tempo-passato-commento m-0 ms-3"> <?php echo getTimeAgoFrom($risposta->timestamp); ?></p>
                                                         </header>
                                                     </div>
                                                 </div>
