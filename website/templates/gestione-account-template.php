@@ -18,18 +18,18 @@ $utente = $templateParams["utente"];
                 <div class="row">
                     <div class="col mb-3">
                         <div class="d-flex">
-                            <label for="profile-image" class="mx-auto cursor-pointer">
+                            <label for="immagineProfilo" class="mx-auto cursor-pointer">
                                 <img id="previewImg" class="change-profile-pic rounded-circle" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
                             </label>
 
-                            <input class="d-none" type="file" accept="image/jpeg, image/png" name="profile-image" id="profile-image" />
+                            <input class="d-none" type="file" accept="image/jpeg, image/png" name="immagineProfilo" id="immagineProfilo" />
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col mb-3">
-                        <input class="form-control" type="email" name="email" id="email" placeholder="<?php echo $utente->email?>" required />
+                        <input class="form-control" type="email" name="email" id="email" placeholder="Inserisci l'email" required value="<?php echo $utente->email?>"/>
                         <div class="invalid-feedback pb-0">
                             E-mail già in uso 
                         </div>
@@ -41,7 +41,7 @@ $utente = $templateParams["utente"];
 
                 <div class="row">
                     <div class="col mb-3">
-                        <input class="form-control" type="text" name="username" id="username" placeholder="<?php echo $utente->nome?>" required />
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Inserisci l'username" required value="<?php echo $utente->username?>"/>
                         <div class="invalid-feedback pb-0">
                             Username già in uso 
                         </div>
@@ -54,7 +54,7 @@ $utente = $templateParams["utente"];
                 <div class="row">
                     <div class="col d-flex align-items-end">
                         <div class="col-6">
-                            <input class="form-control w-90" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="<?php echo $utente->telefono; ?>" required />
+                            <input class="form-control w-90" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il numero di telefono" required value="<?php echo $utente->telefono; ?>"/>
                         </div>
                         <div class="col-6">
                             <input class="form-control w-90 ms-auto" type="date" name="data-nascita" id="data-nascita" required/>
