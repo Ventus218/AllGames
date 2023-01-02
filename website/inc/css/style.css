@@ -32,7 +32,7 @@ ul li ul {
     overflow-y: initial;
 }
 
-ul li a, article footer a {
+ul li a, article footer a, article footer button {
     border-radius: .8rem !important;
 }
 

@@ -78,9 +78,9 @@
                     <div class="bg-gray rounded-bottom p-2 mt-1">
                         <footer class="d-flex">
                             <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="#">
+                                <button class="btn btn-outline-light border-lightgray border-2" data-bs-toggle="collapse" data-bs-target=".list-commenti" aria-expanded="true" aria-controls=".list-commenti" type="button">
                                     <strong> <?php echo sizeof($commentiPostData) ?> </strong> <?php echo (sizeof($commentiPostData) === 1) ? "Commento" : "Commenti"; ?>
-                                </a>
+                                </button>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
                                     <img src="inc/img/liked.png" alt="Like"> <strong> <?php echo $nMiPiacePost ?> </strong>
                                 </a>
@@ -92,7 +92,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-12">
-                <section class="list-commenti bg-gray rounded p-3">
+                <section class="collapse show list-commenti bg-gray rounded p-3">
                     <header>
                         <h3 class="visually-hidden"> Commenti del post </h3>
                     </header>
