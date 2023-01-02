@@ -91,6 +91,7 @@
             </div>
         </div>
         <div class="row mt-3">
+            <?php if (sizeof($commentiPostData) > 0): ?>
             <div class="col-12">
                 <section class="collapse show list-commenti bg-gray rounded p-3">
                     <header>
@@ -165,6 +166,7 @@
                     </ul>
                 </section>
             </div>
+            <?php endif; ?>
             <div class="col-12 mt-1">
                 <section class="bg-gray rounded px-3 py-2">
                     <form class="commenta" action="#" method="post">
