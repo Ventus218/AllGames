@@ -58,7 +58,7 @@
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
         $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
-        $templateParams["page-title"] = "Home";
+        $templateParams["page-title"] = "Post di ".$templateParams["utente-post"]->username;
         $templateParams["content"] = "templates/post-template.php";
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
