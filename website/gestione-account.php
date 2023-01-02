@@ -31,9 +31,11 @@
 
             $oldPassword = $_POST["oldPassword"];
 
+            $utente = $dbh->getUtenteFromId(getSessionUserId());
+
             if (isset($_POST["immagineProfilo"])) {
                 //Da finire 
-                //$urlImmagine = $_POST["immagineProfilo"]; 
+                //$urlImmagine = $_POST["immagineProfilo"];
             }
 
             if ($genere !== 'M' && $genere !== 'F' && $genere !== 'U') {
@@ -43,11 +45,11 @@
     
             $templateParams["change-errors"] = array();
     
-            if (!$dbh->usernameIsAvailable($username)) {
+            if (!$dbh->usernameIsAvailable($username) && $username != $utente->username) {
                 array_push($templateParams["change-errors"], "L'username scelto è già in uso.");
             }
     
-            if (!$dbh->emailIsAvailable($email)) {
+            if (!$dbh->emailIsAvailable($email) && $email != $utente->email) {
                 array_push($templateParams["change-errors"], "L'e-mail scelta è già in uso.");
             }
     
@@ -60,7 +62,7 @@
                 array_push($templateParams["change-errors"], "La data di nascita non può essere successiva ad oggi.");
             }
 
-            $utente = $dbh->getUtenteFromId(getSessionUserId());
+            
 
             if (!password_verify($oldPassword, $utente->passwordHash)) {
                 array_push($templateParams["change-errors"], "Non è stata inserita la password giusta.");
