@@ -80,7 +80,7 @@
                     <div class="bg-gray rounded-bottom p-2 mt-1">
                         <footer class="d-flex">
                             <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="#">
+                                <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo $post->id ?>">
                                     <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                 </a>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">

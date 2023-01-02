@@ -45,7 +45,7 @@
             return new RispostaDTO(
                 $row[RispostaKeys::id],
                 $row[RispostaKeys::testo],
-                $row[RispostaKeys::timestamp],
+                dateTimeFromSQLDate($row[RispostaKeys::timestamp]),
                 $row[RispostaKeys::risponditore],
                 $row[RispostaKeys::commento]
             );

@@ -12,6 +12,7 @@
     require_once(__DIR__."/model/Notifica.php");
     require_once(__DIR__."/model/Tag.php");
     require_once(__DIR__."/model/TagInPost.php");
+    require_once(__DIR__."/model/Risposta.php");
 
 
     /**
@@ -169,9 +170,12 @@
         }
 
         public function getCommentiOfPost(PostDTO $post): array {
-            $rows = $this->db->select(Schemas::COMMENTO, array(
-                'Post' => $post->id
-            ));
+            $query = "SELECT C.*
+                FROM ".Schemas::COMMENTO->value." C
+                WHERE C.".CommentoKeys::post." = ?
+                ORDER BY C.".CommentoKeys::timestamp." ASC";
+    
+            $rows = $this->db->executeQuery($query, array($post->id));
 
             return array_map(function($row) {
                 return CommentoDTO::fromDBRow($row);
@@ -338,6 +342,43 @@
 
         public function getTagFromName(string $tagName): ?TagDTO {
             return TagDTO::getOneByID($this->db, $tagName);
+        }
+
+        public function getPostFromId(int $postId): ?PostDTO {
+            return PostDTO::getOneByID($this->db, $postId);
+        }
+
+        public function getRisposteOfCommento(CommentoDTO $commento): array {
+            $query = "SELECT R.*
+                FROM ".Schemas::RISPOSTA->value." R
+                WHERE R.".RispostaKeys::commento." = ?
+                ORDER BY R.".RispostaKeys::timestamp." ASC";
+    
+            $rows = $this->db->executeQuery($query, array($commento->id));
+
+            return array_map(function($row) {
+                return RispostaDTO::fromDBRow($row);
+            }, $rows);
+        }
+
+        public function getAuthorOfCommento(CommentoDTO $commento): ?UtenteDTO {
+            return UtenteDTO::getOneByID($this->db, $commento->commentatore);
+        }
+
+        public function getAuthorOfRisposta(RispostaDTO $risposta): ?UtenteDTO {
+            return UtenteDTO::getOneByID($this->db, $risposta->risponditore);
+        }
+
+        public function getCommentoFromId(int $commentoId): ?CommentoDTO {
+            return CommentoDTO::getOneByID($this->db, $commentoId);
+        }
+
+        public function commentPost(PostDTO $post, UtenteDTO $commentatore, string $testo) {
+            (new CommentoCreateDTO($testo, new DateTime(), $post->id, $commentatore->id))->createOn($this->db);
+        }
+
+        public function replyCommento(CommentoDTO $commento, UtenteDTO $risponditore, string $testo) {
+            (new RispostaCreateDTO($testo, new DateTime(), $risponditore->id, $commento->id))->createOn($this->db);
         }
     }
 ?>
