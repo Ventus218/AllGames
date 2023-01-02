@@ -2,6 +2,7 @@
     <form action="#" method="post" class="px-2 mt-2">
     <div class="row me-1">
         <div class="col-11 pe-0">
+            <label for="search" class="visually-hidden">Cerca un username o una community</label>
             <input class="form-control mb-3" type="text" name="search" id="search" placeholder="Cerca un username o una community" required />
         </div>
         <div class="col-1 ps-0">
