@@ -5,10 +5,31 @@
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
+        $utente = $dbh->getUtenteFromId(getSessionUserId());
+
         if (!isset($_GET["post"])) {
             internalServerError("Nessun post selezionato");
         }
         $post = $dbh->getPostFromId($_GET["post"]);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST["testo"]) || $_POST["testo"] === "") {
+                internalServerError("Non puoi creare commenti o risposte vuoti.");
+            }
+            $testo = $_POST["testo"];
+
+            if (isset($_POST["commento"]) && $_POST["commento"] !== "") {
+                $idCommento = $_POST["commento"];
+                if (!is_numeric($idCommento)) {
+                    internalServerError("Formato errato dei dati nel form.");
+                }
+
+                intval($idCommento);
+                $dbh->replyCommento($dbh->getCommentoFromId($idCommento), $utente, $testo);
+            } else {
+                $dbh->commentPost($post, $utente, $testo);
+            }
+        }
 
         $commentiPost = $dbh->getCommentiOfPost($post);
         $commentiPostData = array();
@@ -33,7 +54,7 @@
         $templateParams["commenti-post-data"] = $commentiPostData;
         $templateParams["mi_piace-post"] = sizeof($dbh->getMiPiaceOfPost($post));
 
-        $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
+        $templateParams["utente"] = $utente;
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
         $templateParams['total_notifications'] = sizeof($templateParams['notifications']);
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));

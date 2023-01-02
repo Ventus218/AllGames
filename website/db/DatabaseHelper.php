@@ -368,5 +368,17 @@
         public function getAuthorOfRisposta(RispostaDTO $risposta): ?UtenteDTO {
             return UtenteDTO::getOneByID($this->db, $risposta->risponditore);
         }
+
+        public function getCommentoFromId(int $commentoId): ?CommentoDTO {
+            return CommentoDTO::getOneByID($this->db, $commentoId);
+        }
+
+        public function commentPost(PostDTO $post, UtenteDTO $commentatore, string $testo) {
+            (new CommentoCreateDTO($testo, new DateTime(), $post->id, $commentatore->id))->createOn($this->db);
+        }
+
+        public function replyCommento(CommentoDTO $commento, UtenteDTO $risponditore, string $testo) {
+            (new RispostaCreateDTO($testo, new DateTime(), $risponditore->id, $commento->id))->createOn($this->db);
+        }
     }
 ?>
