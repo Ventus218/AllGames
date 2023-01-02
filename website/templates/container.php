@@ -33,7 +33,7 @@
                     <li class="col-1"></li>
                     <!--Create a post button-->
                     <li class="col-3 nav-item">
-                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
+                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="creazione-post.php">
                             <img src="inc/img/new-post.png" alt="Pubblica un nuovo post" />
                         </a>
                     </li>
@@ -152,6 +152,7 @@
             </div>  
         </div>
     <?php endif; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <?php
     if(isset($templateParams["js"])):
         foreach ($templateParams["js"] as $script): ?>
@@ -159,6 +160,6 @@
     <?php
         endforeach;
     endif; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
 </body>
 </html>
