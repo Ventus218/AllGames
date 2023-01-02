@@ -6,6 +6,9 @@ const confermaPasswordInput = document.getElementById("conferma-password");
 const usernameSpinner = document.getElementById("username-spinner")
 const emailSpinner = document.getElementById("email-spinner")
 
+const currentUsername = usernameInput.value;
+const currentEmail = emailInput.value;
+
 function showSpinner(spinner, isShown) {
     if (isShown) {
         spinner.classList.remove("d-none");
@@ -36,7 +39,7 @@ let usernameTimer;
 
 usernameInput.addEventListener("input", () => {
     window.clearTimeout(usernameTimer);
-    if (usernameInput.value != "") {
+    if (usernameInput.value != "" && usernameInput.value != currentUsername) {
         usernameTimer = window.setTimeout(() => {
             axios.get("api/check-username-available.php?username=" + usernameInput.value).then( res => {
                 const isAvailable = res.data;
@@ -56,7 +59,7 @@ let emailTimer;
 
 emailInput.addEventListener("input", () => {
     window.clearTimeout(emailTimer);
-    if (emailInput.value != "") {
+    if (emailInput.value != "" && emailInput.value != currentEmail) {
         emailTimer = window.setTimeout(() => {
             axios.get("api/check-email-available.php?email=" + emailInput.value).then( res => {
                 const isAvailable = res.data;
