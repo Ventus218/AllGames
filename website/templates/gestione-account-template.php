@@ -57,7 +57,7 @@ $utente = $templateParams["utente"];
                             <input class="form-control w-90" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il numero di telefono" required value="<?php echo $utente->telefono; ?>"/>
                         </div>
                         <div class="col-6">
-                            <input class="form-control w-90 ms-auto" type="date" name="data-nascita" id="data-nascita" required/>
+                            <input class="form-control w-90 ms-auto" type="date" name="data-nascita" id="data-nascita" required value="<?php echo $utente->dataNascita->format("Y-m-d")?>"/>
                         </div>
                     </div>     
                 </div>   
@@ -70,15 +70,15 @@ $utente = $templateParams["utente"];
                     </div>
                     <div class="col d-flex justify-content-between">
                         <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required />
+                                <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required <?php echo ($utente->genere === GenereUtente::MASCHIO ? "checked" : ""); ?> />
                                 <label class="form-check-label" for="maschio"> Maschio </label>
                         </div>
                         <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required />
+                                <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required <?php echo ($utente->genere === GenereUtente::FEMMINA ? "checked" : ""); ?> />
                                 <label class="form-check-label" for="femmina"> Femmina </label>
                         </div>
                         <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required />
+                                <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required <?php echo ($utente->genere === GenereUtente::NON_DEFINITO ? "checked" : ""); ?> />
                                 <label class="form-check-label" for="non-definito"> Non definito </label>
                         </div>
                     </div>
