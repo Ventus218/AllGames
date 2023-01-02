@@ -1,6 +1,6 @@
 <div id="settings-list" class="row gap-1">
     <div class="col-12">
-        <a href="" class="btn fs-6 text-white text-decoration-none d-flex align-items-center">
+        <a href="gestione-account.php" class="btn fs-6 text-white text-decoration-none d-flex align-items-center">
             <img src="inc/img/profile-pic.png" alt="Gestione account" />
             <strong class="ms-3"> Gestione account </strong>
         </a>

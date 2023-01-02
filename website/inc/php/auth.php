@@ -30,4 +30,19 @@
         return password_verify($password, $user->passwordHash) ? $user : null;
     }
 
+    function updateUtente(
+        Database $db, 
+        string $username,
+        string $password,
+        DateTime $dataNascita,
+        GenereUtente $genere,
+        string $email,
+        string $telefono,
+        ?string $urlImmagine,
+        UtenteDTO $utente,
+        ) {
+            $update = new UtenteUpdateDTO($utente->id, $username, password_hash($password, PASSWORD_BCRYPT), $utente->nome, $utente->cognome, $dataNascita, $genere, $email, $telefono, $urlImmagine);
+            $update->updateOn($db);
+        }
+
 ?>
