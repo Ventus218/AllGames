@@ -25,7 +25,7 @@
                 <ul class="nav nav-pills align-items-center">
                     <!--Create a community button-->
                     <li class="col-4 nav-item">
-                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="#">
+                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="fondazione-community.php">
                             <img src="inc/img/plus.png" alt="Crea community" />
                             <img src="inc/img/people.png" alt="Crea community" />
                         </a>
