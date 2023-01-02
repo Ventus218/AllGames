@@ -16,7 +16,7 @@
     <div class="col-12">
         <form action="logout.php" method="post">
             <button class="btn fs-6 text-danger d-flex align-items-center" type="submit">
-                <img src="inc/img/profile-pic.png" alt="Logout" />
+                <img src="inc/img/logout.png" alt="Logout" />
                 <strong class="ms-3"> Logout </strong>
             </button>
 
