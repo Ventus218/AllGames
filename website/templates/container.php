@@ -66,7 +66,7 @@
                                         $notifica = $templateParams["notifications"][$i];
                                         $utente = $dbh->getSourceUserOfNotification($notifica);
                                         $testoNotifica = $notifica->getText();
-                                        $linkNotifica = "#"; //Da finire
+                                        $linkNotifica = "notifica.php?notifica=".$notifica->id;
                                 ?>
 
                                 <!--Notification-->

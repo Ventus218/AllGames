@@ -373,6 +373,10 @@
             return CommentoDTO::getOneByID($this->db, $commentoId);
         }
 
+        public function getRispostaFromId(int $rispostaId): ?RispostaDTO {
+            return RispostaDTO::getOneByID($this->db, $rispostaId);
+        }
+
         public function commentPost(PostDTO $post, UtenteDTO $commentatore, string $testo) {
             (new CommentoCreateDTO($testo, new DateTime(), $post->id, $commentatore->id))->createOn($this->db);
         }
@@ -394,6 +398,18 @@
             UtenteDTO $utente,
         ) {
             updateUtente($this->db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null, $utente);
+        }
+        
+        public function getNotificaFromId(int $notificaId): ?NotificaDTO {
+            return NotificaDTO::getOneByID($this->db, $notificaId);
+        }
+
+        public function setNotificaLetta(NotificaDTO $notifica) {
+            if (!$notifica->letta) {
+                $updateDTO = NotificaUpdateDTO::from($notifica);
+                $updateDTO->letta = true;
+                $updateDTO->updateOn($this->db);
+            }
         }
     }
 ?>
