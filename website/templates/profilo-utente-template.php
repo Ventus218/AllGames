@@ -14,7 +14,7 @@
                         <header>
                             <div class="row align-items-center">
                                 <div class="col-auto pe-0">
-                                    <img class="profile-pic rounded-circle" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
+                                    <img class="profile-pic rounded-circle" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>" />
                                 </div>
                                 <div class="col">
                                     <h2 class="m-0"> <?php echo $utente->username; ?> </h2>
@@ -168,7 +168,7 @@
                         ?>
                         <div class="row">
                             <a href="<?php echo "community.php?community=".$community->nome; ?>" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
-                                <img src="<?php echo (isset($community->urlImmagine) ? $community->urlImmagine : "inc/img/people.png"); ?>" alt="Immagine della community <?php echo $community->nome; ?>" class="post-profile-pic me-2">
+                                <img src="<?php echo (isset($community->urlImmagine) ? $community->urlImmagine : "inc/img/people.png"); ?>" alt="Immagine della community <?php echo $community->nome; ?>" class="post-profile-pic me-2" />
                                 <p class="m-0"> <?php echo $community->nome; ?> </p>
                             </a>
                         </div>

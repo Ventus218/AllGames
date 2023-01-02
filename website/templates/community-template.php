@@ -9,7 +9,7 @@
                         <header>
                             <div class="row align-items-center">
                                 <div class="col-auto pe-0">
-                                    <img class="profile-pic rounded-circle" src="<?php echo $community->urlImmagine; ?>" alt="Immagine della community">
+                                    <img class="profile-pic rounded-circle" src="<?php echo $community->urlImmagine; ?>" alt="Immagine della community" />
                                 </div>
                                 <div class="col">
                                     <h2 class="m-0"> <?php echo $community->nome; ?> </h2>

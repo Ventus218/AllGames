@@ -82,7 +82,7 @@
                                     <strong> <?php echo sizeof($commentiPostData) ?> </strong> <?php echo (sizeof($commentiPostData) === 1) ? "Commento" : "Commenti"; ?>
                                 </button>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="inc/img/liked.png" alt="Like"> <strong> <?php echo $nMiPiacePost ?> </strong>
+                                    <img src="inc/img/liked.png" alt="Like" /> <strong> <?php echo $nMiPiacePost ?> </strong>
                                 </a>
                             </div>
                         </footer>
@@ -170,14 +170,14 @@
             <div class="col-12 mt-1">
                 <section class="bg-gray rounded px-3 py-2">
                     <form class="commenta" action="#" method="post">
-                        <input type="hidden" name="commento" value="">
+                        <input type="hidden" name="commento" value="" />
                         <div class="row align-items-center">
                             <header>
                                 <div class="col-12 d-flex flex-row align-items-center">
                                     <h3 class="m-0"> Stai commentando </h3>
                                     <label class="visually-hidden" for="cancel-reply-button"> Bottone per smettere di rispondere a questo utente </label>
                                     <button class="btn d-none p-0 ms-2" type="button" id="cancel-reply-button">
-                                        <img src="inc/img/cancel.png" alt="Croce per smettere di rispondere a questo utente">
+                                        <img src="inc/img/cancel.png" alt="Croce per smettere di rispondere a questo utente" />
                                     </button>
                                 </div>
                             </header>
@@ -187,7 +187,7 @@
                             </div>
                             <div class="col-auto px-1">
                                 <button class="btn p-0" type="submit">
-                                    <img src="inc/img/keyboard.png" alt="Icona dei tasti W, A, S e D per inviare il commento">
+                                    <img src="inc/img/keyboard.png" alt="Icona dei tasti W, A, S e D per inviare il commento" />
                                 </button>
                             </div>
                         </div>
