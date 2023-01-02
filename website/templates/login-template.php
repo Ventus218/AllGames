@@ -8,12 +8,14 @@
 
                     <div class="row">
                         <div class="col-12">
+                            <label for="username" class="visually-hidden">Inserisci il tuo username</label>
                             <input class="form-control mb-3" type="text" name="username" id="username" placeholder="Inserisci il tuo username" required />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12">
+                            <label for="password" class="visually-hidden">Inserisci la tua password</label>
                             <input class="form-control mb-4" type="password" name="password" id="password" placeholder="Inserisci la tua password" required />
                         </div>
                     </div>
