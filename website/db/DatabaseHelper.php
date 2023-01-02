@@ -233,27 +233,29 @@
             ));
             return sizeof($rows);
         }
-
+        
         public function getPartecipazioneCommunity(UtenteDTO $utente, CommunityDTO $community): ?PartecipazioneCommunityDTO {
             return PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
         }
 
         /**
          * Returns a dto if the partecipazione has been set. Returns null if the partecipazione has been unset.
-         * 
+         * @param bool $partecipa flag that indicates whether the partecipazione should be set or not. 
          * @return ?PartecipazioneCommunityDTO
          */
-        public function togglePartecipazioneCommunity(CommunityDTO $community, UtenteDTO $utente): ?PartecipazioneCommunityDTO {
-            $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
-            
-            if (isset($partecipazione)) {
-                PartecipazioneCommunityDeleteDTO::from($partecipazione)->deleteOn($this->db);
-                $partecipazione = null;
-            } else {
-                (new PartecipazioneCommunityCreateDTO($utente->id, $community->nome))->createOn($this->db);
-                $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
-            }
+        public function setUtentePartecipaCommunity(UtenteDTO $utente, CommunityDTO $community, bool $partecipa): ?PartecipazioneCommunityDTO {
 
+            $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
+
+            if ($partecipa !== (null !== $partecipazione)) {
+                if ($partecipa) {
+                    (new PartecipazioneCommunityCreateDTO($utente->id, $community->nome))->createOn($this->db);
+                    $partecipazione = PartecipazioneCommunityDTO::getOneByID($this->db, $utente->id, $community->nome);
+                } else {
+                    (new PartecipazioneCommunityDeleteDTO($utente->id, $community->nome))->deleteOn($this->db);
+                    $partecipazione = null;
+                }
+            }
             return $partecipazione;
         }
         

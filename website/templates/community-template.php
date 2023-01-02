@@ -34,8 +34,9 @@
                     <div class="row">
                         <div class="col">
                             <form action="#" method="post">
+                                <input type="hidden" name="partecipa" value="<?php echo ($templateParams["already-partecipa"] === true ? "0" : "1"); ?>" />
                                 <button class="btn btn-warning w-100" type="submit">
-                                    <strong> <?php echo ($templateParams["utente-partecipa"] === true ? "Lascia la community" : "Unisciti alla community" ); ?> </strong>
+                                    <strong> <?php echo ($templateParams["already-partecipa"] === true ? "Lascia la community" : "Unisciti alla community" ); ?> </strong>
                                 </button>
                             </form>
                         </div>
