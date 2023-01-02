@@ -172,16 +172,15 @@ form.commenta h3 {
     font-size: .7rem !important;
 }
 
+form.commenta header button img {
+    width: 20px;
+}
+
 form.commenta textarea::placeholder {
     color: #99aab5 !important;
 }
 
-section.list-commenti .commento-button {
-    font-size: .8rem !important;
-    color: #99aab5 !important;
-}
-
-section.list-commenti .commento-button {
+section.list-commenti .visualizza-risposte-button, section.list-commenti .rispondi-button {
     font-size: .8rem !important;
     color: #99aab5 !important;
 }

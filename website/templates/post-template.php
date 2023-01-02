@@ -121,13 +121,13 @@
                                 <div class="row d-flex justify-content-between">
                                     <?php if (sizeof($risposteData) > 0): ?>
                                     <div class="col-auto">
-                                        <button class="btn commento-button text-secondary fst-italic m-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#risposte-commento-<?php echo $comm->id; ?>" aria-expanded="false" aria-controls="risposte-commento-<?php echo $comm->id; ?>">
+                                        <button class="btn visualizza-risposte-button text-secondary fst-italic m-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#risposte-commento-<?php echo $comm->id; ?>" aria-expanded="false" aria-controls="risposte-commento-<?php echo $comm->id; ?>">
                                             --- Visualizza/Nascondi <?php echo sizeof($risposteData).(sizeof($risposteData) > 1 ? " risposte" : " risposta"); ?>
                                         </button>
                                     </div>
                                     <?php endif; ?>
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn commento-button text-secondary fst-italic m-0 p-0" type="button">
+                                        <button class="btn rispondi-button text-secondary fst-italic m-0 p-0" type="button" onclick="rispondiWasPressed('<?php echo $comm->id ?>', '<?php echo $commentatore->username ?>')">
                                             Rispondi
                                         </button>
                                     </div>
@@ -168,15 +168,20 @@
             <div class="col-12 mt-1">
                 <section class="bg-gray rounded px-3 py-2">
                     <form class="commenta" action="#" method="post">
+                        <input type="hidden" name="commento" value="">
                         <div class="row align-items-center">
-                            <div class="col-12">
-                                <header>
-                                    <h3 class="m-0"> Stai commentando / Stai rispondendo a: <strong> Tizio </strong> </h3>
-                                </header>
-                            </div>
+                            <header>
+                                <div class="col-12 d-flex flex-row align-items-center">
+                                    <h3 class="m-0"> Stai commentando </h3>
+                                    <label class="visually-hidden" for="cancel-reply-button"> Bottone per smettere di rispondere a questo utente </label>
+                                    <button class="btn d-none p-0 ms-2" type="button" id="cancel-reply-button">
+                                        <img src="inc/img/cancel.png" alt="Croce per smettere di rispondere a questo utente">
+                                    </button>
+                                </div>
+                            </header>
                             <div class="col pe-0 mt-1">
-                                <label class="visually-hidden" for="text-area-commento"> Commenta o rispondi a Tizio.. </label>
-                                <textarea class="form-control text-white bg-transparent border-2 border-lightgray rounded-2" name="testo" id="text-area-commento" rows="2" placeholder="Commenta o rispondi a Tizio.." required></textarea>
+                                <label class="visually-hidden" for="text-area-commento"> Scrivi.. </label>
+                                <textarea class="form-control text-white bg-transparent border-2 border-lightgray rounded-2" name="testo" id="text-area-commento" rows="2" placeholder="Scrivi.." required></textarea>
                             </div>
                             <div class="col-auto px-1">
                                 <button class="btn p-0" type="submit">
