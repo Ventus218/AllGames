@@ -34,6 +34,8 @@
         Database $db, 
         string $username,
         string $password,
+        string $nome,
+        string $cognome,
         DateTime $dataNascita,
         GenereUtente $genere,
         string $email,
@@ -41,7 +43,18 @@
         ?string $urlImmagine,
         UtenteDTO $utente,
         ) {
-            $update = new UtenteUpdateDTO($utente->id, $username, password_hash($password, PASSWORD_BCRYPT), $utente->nome, $utente->cognome, $dataNascita, $genere, $email, $telefono, $urlImmagine);
+            $update = UtenteUpdateDTO::from($utente);
+
+            $update->username = $username;
+            $update->passwordHash = $password === "" ? $update->passwordHash : password_hash($password, PASSWORD_BCRYPT);
+            $update->nome = $nome;
+            $update->cognome = $cognome;
+            $update->dataNascita = $dataNascita;
+            $update->genere = $genere;
+            $update->email = $email;
+            $update->telefono = $telefono;
+            $update->urlImmagine = $urlImmagine;
+
             $update->updateOn($db);
         }
 

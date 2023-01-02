@@ -54,13 +54,25 @@ $utente = $templateParams["utente"];
                 <div class="row">
                     <div class="col d-flex align-items-end">
                         <div class="col-6">
-                            <input class="form-control w-90" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il numero di telefono" required value="<?php echo $utente->telefono; ?>"/>
+                            <input class="form-control w-90 mb-3" type="tel" pattern="[0-9]{1,}" name="telefono" id="telefono" placeholder="Inserisci il numero di telefono" required value="<?php echo $utente->telefono; ?>"/>
                         </div>
                         <div class="col-6">
-                            <input class="form-control w-90 ms-auto" type="date" name="data-nascita" id="data-nascita" required value="<?php echo $utente->dataNascita->format("Y-m-d")?>"/>
+                            <input class="form-control w-90 ms-auto mb-3" type="date" name="data-nascita" id="data-nascita" required value="<?php echo $utente->dataNascita->format("Y-m-d")?>"/>
                         </div>
                     </div>     
                 </div>   
+
+                <div class="row">
+                    <div class="col-12">
+                        <input class="form-control mb-3" type="text" name="nome" id="nome" placeholder="Inserisci il tuo nome" required value="<?php echo $utente->nome; ?>"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="cognome" id="cognome" placeholder="Inserisci il tuo cognome" required value="<?php echo $utente->cognome; ?>"/>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-12 mt-3">
@@ -93,10 +105,10 @@ $utente = $templateParams["utente"];
 
                     <div class="col d-flex">
                         <div class="col-6">
-                            <input class="form-control w-90" type="password" name="password" id="password" placeholder="Nuova password" required />
+                            <input class="form-control w-90" type="password" name="password" id="password" placeholder="Nuova password" />
                         </div>
                         <div class="col-6">
-                            <input class="form-control w-90 ms-auto" type="password" name="conferma-password" id="conferma-password" placeholder="Conferma password" required/>
+                            <input class="form-control w-90 ms-auto" type="password" name="conferma-password" id="conferma-password" placeholder="Conferma password"/>
                         </div>
                     </div>
                 </div>

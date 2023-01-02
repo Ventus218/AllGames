@@ -13,6 +13,8 @@
                 !isset($_POST["username"]) || 
                 !isset($_POST["telefono"]) || 
                 !isset($_POST["password"]) || 
+                !isset($_POST["nome"]) || 
+                !isset($_POST["cognome"]) || 
                 !isset($_POST["conferma-password"]) ||
                 !isset($_POST["data-nascita"]) || 
                 !isset($_POST["genere"]) ||
@@ -25,6 +27,8 @@
             $username = $_POST["username"];
             $telefono = $_POST["telefono"];
             $password = $_POST["password"];
+            $nome = $_POST["nome"];
+            $cognome = $_POST["cognome"];
             $confermaPassword = $_POST["conferma-password"];
             $dataNascita = new DateTime($_POST["data-nascita"]);
             $genere = $_POST["genere"];
@@ -36,6 +40,9 @@
             if (isset($_POST["immagineProfilo"])) {
                 //Da finire 
                 //$urlImmagine = $_POST["immagineProfilo"];
+
+                // SOLO PER ORA
+                $urlImmagine = $utente->urlImmagine;
             }
 
             if ($genere !== 'M' && $genere !== 'F' && $genere !== 'U') {
@@ -62,15 +69,16 @@
                 array_push($templateParams["change-errors"], "La data di nascita non può essere successiva ad oggi.");
             }
 
-            
+            if ($nome === "" || $cognome === "") {
+                array_push($templateParams["change-errors"], "Nome e cognome non possono essere vuoti.");
+            }
 
             if (!password_verify($oldPassword, $utente->passwordHash)) {
                 array_push($templateParams["change-errors"], "Non è stata inserita la password giusta.");
             }
 
             if (sizeof($templateParams["change-errors"]) === 0) {
-                //TODO get the url from the image
-                updateUtente($db, $username, $password, $dataNascita, $genere, $email, $telefono, null, $utente);
+                $dbh->updateUtente($username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, $urlImmagine, $utente);
             }
 
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

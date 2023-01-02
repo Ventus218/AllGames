@@ -380,5 +380,20 @@
         public function replyCommento(CommentoDTO $commento, UtenteDTO $risponditore, string $testo) {
             (new RispostaCreateDTO($testo, new DateTime(), $risponditore->id, $commento->id))->createOn($this->db);
         }
+
+        public function updateUtente(
+            string $username,
+            string $password,
+            string $nome,
+            string $cognome,
+            DateTime $dataNascita,
+            GenereUtente $genere,
+            string $email,
+            string $telefono,
+            ?string $urlImmagine,
+            UtenteDTO $utente,
+        ) {
+            updateUtente($this->db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null, $utente);
+        }
     }
 ?>
