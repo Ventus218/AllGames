@@ -27,23 +27,8 @@
                 internalServerError("Mancano alcune informazioni per completare l'operazione");
             }
 
-            if ($_POST["follow"]) {
-                if (!$dbh->checkIfUserFollows($currentUtente, $utente)) {
-                    (new FollowCreateDTO($currentUtente->id, $utente->id))->createOn($db);
-                    $isFollowed = true;
-                } else {
-                    // this was probably a page reload after post so we are not crashing
-                    // internalServerError("Sembra che tu stia già seguendo questo utente");
-                }
-            } else {
-                if ($dbh->checkIfUserFollows($currentUtente, $utente)) {
-                    (new FollowDeleteDTO($currentUtente->id, $utente->id))->deleteOn($db);
-                    $isFollowed = false;
-                } else {
-                    // this was probably a page reload after post so we are not crashing
-                    // internalServerError("Sembra che tu già non segua questo utente");
-                }
-            }
+            $dbh->setUtenteFollowUtente($currentUtente, $utente, $_POST["follow"]);
+            $isFollowed = ($_POST["follow"] == true);
         }
 
         $communities = $dbh->getCommunitiesOfUtente($utente);

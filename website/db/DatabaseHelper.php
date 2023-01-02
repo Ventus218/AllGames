@@ -314,6 +314,27 @@
             return null !== FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
         }
 
+        /**
+         * Returns a dto if the partecipazione has been set. Returns null if the partecipazione has been unset.
+         * @param bool $partecipa flag that indicates whether the partecipazione should be set or not. 
+         * @return ?PartecipazioneCommunityDTO
+         */
+        public function setUtenteFollowUtente(UtenteDTO $follower, UtenteDTO $followed, bool $follow): ?FollowDTO {
+
+            $f = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+
+            if ($follow !== (null !== $f)) {
+                if ($follow) {
+                    (new FollowCreateDTO($follower->id, $followed->id))->createOn($this->db);
+                    $f = FollowDTO::getOneByID($this->db, $follower->id, $followed->id);
+                } else {
+                    (new FollowDeleteDTO($follower->id, $followed->id))->deleteOn($this->db);
+                    $f = null;
+                }
+            }
+            return $f;
+        }
+
         public function getFollowOfUtente(UtenteDTO $utente): array {
             $query = "SELECT U.* 
                 FROM ".Schemas::FOLLOW->value." F,
