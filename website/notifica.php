@@ -23,9 +23,11 @@
     } else if ($notifica->isNotificaPostCommunity) {
         $location = "post.php?post=".$notifica->postCommunity;    
     } else if ($notifica->isNotificaCommento) {
-        $location = "post.php?post=".$dbh->getCommentoFromId($notifica->commento)->post;    
+        $commento = $dbh->getCommentoFromId($notifica->commento);
+        $location = "post.php?post=".$commento->post."#commento-".$commento->id;    
     } else if ($notifica->isNotificaRisposta) {
-        $location = "post.php?post=".$dbh->getCommentoFromId($dbh->getRispostaFromId($notifica->risposta)->commento)->post;
+        $commento = $dbh->getCommentoFromId($dbh->getRispostaFromId($notifica->risposta)->commento);
+        $location = "post.php?post=".$commento->post."#commento-".$commento->id;
     }
 
     header("Location: ".$location);

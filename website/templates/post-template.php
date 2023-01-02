@@ -103,7 +103,7 @@
                             $commentatore = $commentoData["commentatore"];
                             $risposteData = $commentoData["risposte-data"];
                         ?>
-                        <li class="list-inline-item w-100 mb-3 pb-2 border-bottom border-lightgray">
+                        <li class="list-inline-item w-100 mb-3 pb-2 border-bottom border-lightgray" id="commento-<?php echo $comm->id; ?>">
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-12">
