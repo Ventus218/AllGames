@@ -19,7 +19,7 @@
                                     </a>
                                 </div>
                                 <div class="col-auto">
-                                    <p class="timestamp text-white-50"> <?php echo $post->timestamp->format('d/m/o H:i'); ?> </p>
+                                    <p class="timestamp text-white-50"> <?php echo getTimeAgoFrom($post->timestamp); ?> </p>
                                 </div>
                             </div>
                             <div class="row">
