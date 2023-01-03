@@ -20,7 +20,7 @@
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-auto clearfix">
                                         <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($post->utente); ?> " class="d-flex text-white text-decoration-none">
-                                            <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                            <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                                             <h3> <?php echo $utente->username; ?> </h3>
                                         </a>
                                     </div>
@@ -58,11 +58,11 @@
                                     <div class="carousel-inner">
                                         <?php foreach($multim as $m): ?>
                                             <?php if($m->immagine): ?>
-                                            <a href="<?php echo $m->getFullUrl(); ?>" class="text-decoration-none">
-                                                <img src=" <?php echo $m->getFullUrl(); ?> " alt="" />
+                                            <a href="<?php echo getMultimediaURL($m->url); ?>" class="text-decoration-none">
+                                                <img src=" <?php echo getMultimediaURL($m->url); ?> " alt="" />
                                             </a>
                                             <?php else: ?>
-                                            <a href="<?php echo $m->getFullUrl(); ?>" class="text-decoration-none">
+                                            <a href="<?php echo getMultimediaURL($m->url); ?>" class="text-decoration-none">
                                                 <img src="inc/img/play.png" alt="" />
                                             </a>
                                         <?php endif; ?>

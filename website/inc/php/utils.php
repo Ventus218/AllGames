@@ -1,5 +1,7 @@
 <?php
 
+    define('MULTIMEDIA_DB', './multimedia-db/');
+
     /**
     * Must be called before any output.
     * An exception can be given as parameter for debugging purposes.
@@ -75,9 +77,13 @@
         return str_replace(" ", "%20", $param);
     }
 
-    function uploadMultimedia($path, $multimedia){
+    function getMultimediaURL(string $filename): string {
+        return MULTIMEDIA_DB.$filename;
+    }
+
+    function uploadMultimedia($multimedia){
         $multimediaName = uniqid().".".strtolower(pathinfo(basename($multimedia["name"]),PATHINFO_EXTENSION));
-        $fullPath = $path."/".$multimediaName;
+        $fullPath = MULTIMEDIA_DB."/".$multimediaName;
         
         $result = 0;
         $msg = "";
@@ -128,6 +134,10 @@
         }
 
         return array("result" => $result, "msg" => $msg, "type" => $type);
+    }
+
+    function deleteMultimedia(string $filename): bool {
+        return unlink(MULTIMEDIA_DB.$filename);
     }
 
     /*

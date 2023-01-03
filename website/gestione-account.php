@@ -40,7 +40,7 @@
             if (UPLOAD_ERR_OK === $_FILES["immagineProfilo"]["error"]) {
                 $immagine = $_FILES["immagineProfilo"];
 
-                $result = uploadMultimedia("multimedia-db", $immagine);
+                $result = uploadMultimedia($immagine);
 
                 if ($result["result"] !== 1) {
                     internalServerError($result["msg"]);

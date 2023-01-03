@@ -19,7 +19,7 @@ $utente = $templateParams["utente"];
                     <div class="col mb-3">
                         <div class="d-flex">
                             <label for="immagineProfilo" class="mx-auto cursor-pointer">
-                                <img id="previewImg" class="change-profile-pic rounded-circle" src="<?php echo (isset($utente->urlImmagine) ? $utente->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
+                                <img id="previewImg" class="change-profile-pic rounded-circle" src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
                             </label>
 
                             <input class="d-none" type="file" accept="image/jpeg, image/png" name="immagineProfilo" id="immagineProfilo" />
