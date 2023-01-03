@@ -66,7 +66,7 @@
                                         $notifica = $templateParams["notifications"][$i];
                                         $utente = $dbh->getSourceUserOfNotification($notifica);
                                         $testoNotifica = $notifica->getText();
-                                        $linkNotifica = "notifica.php?notifica=".$notifica->id;
+                                        $linkNotifica = "notifica.php?notifica=".escapeSpacesForURIParam($notifica->id);
                                 ?>
 
                                 <!--Notification-->
@@ -137,7 +137,7 @@
                         </li>
                         <!--User-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href=" profilo-utente.php?utente=<?php echo $templateParams["utente"]->id ?> ">
+                            <a class="nav-link" href=" profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($templateParams["utente"]->id) ?> ">
                                 <img src="inc/img/user.png" alt="User" />
                             </a>
                         </li>
