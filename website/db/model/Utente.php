@@ -90,6 +90,10 @@
                 $row[UtenteKeys::urlImmagine]
             );
         }
+
+        public function getFullUrlImmagine(): string {
+            return "multimedia-db/".$this->urlImmagine;
+        }
     }
 
     class UtenteCreateDTO  {

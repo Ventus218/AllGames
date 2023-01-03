@@ -52,6 +52,21 @@
                 }
             }
 
+            if(isset($_FILES["multimedia"])) {
+                $i = 0;
+                $files = reArrayFiles($_FILES['multimedia']);
+                foreach($files as $multimedia) {
+                    $result = uploadMultimedia("multimedia-db", $multimedia);
+                    if ($result["result"] !== 1) {
+                        internalServerError($result["msg"]);
+                    }
+
+                    $multimediaName = $result["msg"];
+                    $dbh->createMultimediaInPost($multimediaName, $i, $idPost, $result["type"]);
+                    $i++;
+                }                
+            }
+
             header("Location: profilo-utente.php?utente=".$utente->id);
 
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

@@ -45,6 +45,10 @@
                 $row[CommunityKeys::fondatore]
             );
         }
+
+        public function getFullUrlImmagine(): string {
+            return "multimedia-db/".$this->urlImmagine;
+        }
     }
 
     class CommunityCreateDTO  {

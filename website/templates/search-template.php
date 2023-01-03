@@ -26,7 +26,7 @@
             ?>
             <div class="col-12 mb-2">
                 <a href="profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($utente->id) ?>" class="text-decoration-none text-white">
-                    <img class="ricerca-pic <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                    <img class="ricerca-pic <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? $utente->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                     <span><?php echo $utente->username; ?></span>
                 </a>
             </div>
@@ -55,7 +55,7 @@
             ?>
             <div class="col-12 mb-2">
                 <a href="<?php echo "community.php?community=".escapeSpacesForURIParam($community->nome); ?>" class="text-decoration-none text-white">
-                    <img class="ricerca-pic <?php echo (isset($community->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($community->urlImmagine) ? $community->urlImmagine : "inc/img/people.png"); ?> " alt="Immagine della community <?php echo $community->nome; ?>" />
+                    <img class="ricerca-pic <?php echo (isset($community->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($community->urlImmagine) ? $community->getFullUrlImmagine() : "inc/img/people.png"); ?> " alt="Immagine della community <?php echo $community->nome; ?>" />
                     <span><?php echo $community->nome; ?></span>
                 </a>
             </div>

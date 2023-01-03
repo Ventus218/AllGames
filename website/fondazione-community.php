@@ -11,13 +11,25 @@
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if (!isset($_POST["nome-community"]) /*|| !isset($_POST["immagine-community"]) TODO*/ ) {
+            if (!isset($_POST["nome-community"]) || !isset($_FILES["immagine-community"]) ) {
                 internalServerError("Mancano alcuni dati");
             }
 
             $nome = $_POST["nome-community"];
-            // $urlImmagine = $_POST["immagine-community"]; // TODO
-            $urlImmagine = ""; // just for now
+
+            //Get the image
+            $immagine = $_FILES["immagine-community"];
+            $result = uploadMultimedia("multimedia-db", $immagine);
+
+            if ($result["result"] !== 1) {
+                internalServerError($result["msg"]);
+            }
+
+            if ($result["type"] === "video") {
+                internalServerError("Non si può inserire un video come immagine della community");
+            }
+
+            $urlImmagine = $result["msg"];
     
             $templateParams["errors"] = array();
     

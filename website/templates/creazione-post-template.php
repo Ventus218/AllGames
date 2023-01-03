@@ -8,7 +8,7 @@ $tags = $templateParams["tags"];
 
 <div class="row">
     <div class="col-12 text-start">
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             <header>
                 <h2 class="fw-bold">Creazione post</h2>
             </header>
@@ -36,7 +36,7 @@ $tags = $templateParams["tags"];
                 <div class="row">
                     <div class="col mb-5">
                         <label for="multimedia" class="fw-bold fs-5 form-label"> Aggiungi contenuti multimediali </label>
-                        <input type="file" name="multimedia" id="multimedia" accept="image/*, video/*" multiple/>
+                        <input type="file" name="multimedia[]" id="multimedia" accept="image/*, video/*" multiple/>
                     </div>
                 </div>
 
