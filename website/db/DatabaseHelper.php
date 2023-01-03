@@ -439,5 +439,9 @@
             $tagInPost = new TagInPostCreateDTO($tag, $post);
             $tagInPost->createOn($this->db);
         }
+        
+        public function createCommunity(string $nome, string $urlImmagine, UtenteDTO $fondatore) {
+            (new CommunityCreateDTO($nome, $urlImmagine, $fondatore->id))->createOn($this->db);
+        }
     }
 ?>
