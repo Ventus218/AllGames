@@ -53,7 +53,7 @@
                                 </span>
                             </a>
 
-                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownMenuLink" role="notificationLists">
+                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownNotificationsButton">
                                 <?php if ($templateParams["total_notifications"] == 0): ?>
                                 <li class="mb-2">
                                     <span class="text-white dropdown-item-text"> 
