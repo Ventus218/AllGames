@@ -28,6 +28,7 @@
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
         $templateParams["page-title"] = "Home";
         $templateParams["content"] = "templates/index-template.php";
+        $templateParams["feed-title"] = "Il tuo feed";
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
         $templateParams["js"] = array("inc/js/slider.js");

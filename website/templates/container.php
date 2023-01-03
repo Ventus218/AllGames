@@ -53,7 +53,7 @@
                                 </span>
                             </a>
 
-                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownMenuLink" role="notificationLists">
+                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownNotificationsButton">
                                 <?php if ($templateParams["total_notifications"] == 0): ?>
                                 <li class="mb-2">
                                     <span class="text-white dropdown-item-text"> 
@@ -66,7 +66,7 @@
                                         $notifica = $templateParams["notifications"][$i];
                                         $utente = $dbh->getSourceUserOfNotification($notifica);
                                         $testoNotifica = $notifica->getText();
-                                        $linkNotifica = "notifica.php?notifica=".$notifica->id;
+                                        $linkNotifica = "notifica.php?notifica=".escapeSpacesForURIParam($notifica->id);
                                 ?>
 
                                 <!--Notification-->
@@ -137,7 +137,7 @@
                         </li>
                         <!--User-->
                         <li class="col-3 nav-item border-end border-3 border-light text-center">
-                            <a class="nav-link" href=" profilo-utente.php?utente=<?php echo $templateParams["utente"]->id ?> ">
+                            <a class="nav-link" href=" profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($templateParams["utente"]->id) ?> ">
                                 <img src="inc/img/user.png" alt="User" />
                             </a>
                         </li>

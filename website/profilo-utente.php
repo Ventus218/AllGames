@@ -70,6 +70,7 @@
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
         $templateParams["page-title"] = $utente->username;
         $templateParams["content"] = "templates/profilo-utente-template.php";
+        $templateParams["feed-title"] = "Il feed di ".$utente->username;
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
         $templateParams["js"] = array("inc/js/slider.js");

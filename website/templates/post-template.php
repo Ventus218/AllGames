@@ -13,7 +13,7 @@
                         <header>
                             <div class="row d-flex justify-content-between">
                                 <div class="col-auto clearfix">
-                                    <a href=" <?php echo "profilo-utente.php?utente=".$post->utente; ?> " class="d-flex text-white text-decoration-none">
+                                    <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($post->utente); ?> " class="d-flex text-white text-decoration-none">
                                         <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utentePost->urlImmagine) ? $utentePost->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                                         <h2> <?php echo $utentePost->username; ?> </h2>
                                     </a>
@@ -25,12 +25,12 @@
                             <div class="row">
                                 <div class="col align-self-center">
                                     <?php foreach($tagsInPost as $tagInPost): ?>
-                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="tag.php?tag=<?php echo $tagInPost->tag; ?>"><strong> <?php echo $tagInPost->tag; ?> </strong></a>
+                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="tag.php?tag=<?php echo escapeSpacesForURIParam($tagInPost->tag); ?>"><strong> <?php echo $tagInPost->tag; ?> </strong></a>
                                     <?php endforeach; ?>
                                 </div>
                                 <?php if(isset($post->community)): ?>
                                 <div class="col-auto pb-1 pe-1 ps-0 align-self-end">
-                                    <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".$post->community; ?> ">
+                                    <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".escapeSpacesForURIParam($post->community); ?> ">
                                         <img class="community-img" src="inc/img/people.png" alt="" />
                                         <strong> <?php echo $post->community; ?> </strong>
                                     </a>
@@ -78,7 +78,7 @@
                     <div class="bg-gray rounded-bottom p-2 mt-1">
                         <footer class="d-flex">
                             <div class="mx-auto">
-                                <button class="btn btn-outline-light border-lightgray border-2" data-bs-toggle="collapse" data-bs-target=".list-commenti" aria-expanded="true" aria-controls=".list-commenti" type="button">
+                                <button class="btn btn-outline-light border-lightgray border-2" data-bs-toggle="collapse" data-bs-target="#list-commenti" aria-expanded="true" aria-controls="list-commenti" type="button">
                                     <strong> <?php echo sizeof($commentiPostData) ?> </strong> <?php echo (sizeof($commentiPostData) === 1) ? "Commento" : "Commenti"; ?>
                                 </button>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
@@ -93,7 +93,7 @@
         <div class="row mt-3">
             <?php if (sizeof($commentiPostData) > 0): ?>
             <div class="col-12">
-                <section class="collapse show list-commenti bg-gray rounded p-3">
+                <section id="list-commenti" class="collapse show bg-gray rounded p-3">
                     <header>
                         <h3 class="visually-hidden"> Commenti del post </h3>
                     </header>
@@ -108,7 +108,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <header class="d-flex flex-row align-items-center justify-content-between">
-                                            <a href=" <?php echo "profilo-utente.php?utente=".$commentatore->id; ?> " class="d-flex align-items-center text-white text-decoration-none">
+                                            <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($commentatore->id); ?> " class="d-flex align-items-center text-white text-decoration-none">
                                                 <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($commentatore->urlImmagine) ? $commentatore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $commentatore->username; ?>" />
                                                 <h4 class="m-0 fs-6"><strong> <?php echo $commentatore->username; ?> </strong></h4>
                                             </a>
@@ -146,7 +146,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <header class="d-flex flex-row align-items-center justify-content-between">
-                                                            <a href=" <?php echo "profilo-utente.php?utente=".$risponditore->id; ?> " class="d-flex align-items-center text-white text-decoration-none">
+                                                            <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($risponditore->id); ?> " class="d-flex align-items-center text-white text-decoration-none">
                                                                 <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($risponditore->urlImmagine) ? $risponditore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $risponditore->username; ?>" />
                                                                 <h4 class="m-0 fs-6"><strong> <?php echo $risponditore->username; ?> </strong></h4>
                                                             </a>

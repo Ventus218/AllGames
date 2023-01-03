@@ -51,6 +51,7 @@
         $templateParams["new_notifications"] = sizeof($dbh->getNewNotificationsOfUser(getSessionUserId()));
         $templateParams["page-title"] = $community->nome;
         $templateParams["content"] = "templates/community-template.php";
+        $templateParams["feed-title"] = "Il feed di ".$community->nome;
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
         $templateParams["js"] = array("inc/js/slider.js");

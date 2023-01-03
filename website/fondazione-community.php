@@ -27,7 +27,7 @@
 
             if (sizeof($templateParams["errors"]) === 0) {
                 $dbh->createCommunity($nome, $urlImmagine, $utente);
-                header("Location: community.php?community=".$nome);
+                header("Location: community.php?community=".escapeSpacesForURIParam($nome));
             }
 
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

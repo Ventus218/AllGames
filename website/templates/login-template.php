@@ -39,6 +39,9 @@
 
         <div class="row mt-3">
             <section>
+                <header>
+                    <h2 class="visually-hidden"> Riferimenti </h2>
+                </header>
                 <div class="col-12">
                     <p class="m-0">Non hai ancora un account su AllGames?</p>
                 </div>
