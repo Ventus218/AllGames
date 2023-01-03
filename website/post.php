@@ -10,7 +10,18 @@
         if (!isset($_GET["post"])) {
             internalServerError("Nessun post selezionato");
         }
-        $post = $dbh->getPostFromId($_GET["post"]);
+
+        $idPost = $_GET["post"];
+
+        if (!is_numeric($idPost)) {
+            internalServerError("Formato errato del parametro post.");
+        }
+
+        $post = $dbh->getPostFromId($idPost);
+
+        if (!isset($post)) {
+            internalServerError("Questo post non esiste.");
+        }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST["testo"]) || $_POST["testo"] === "") {
@@ -21,11 +32,15 @@
             if (isset($_POST["commento"]) && $_POST["commento"] !== "") {
                 $idCommento = $_POST["commento"];
                 if (!is_numeric($idCommento)) {
-                    internalServerError("Formato errato dei dati nel form.");
+                    internalServerError("Formato errato del parametro commento.");
                 }
 
-                intval($idCommento);
-                $dbh->replyCommento($dbh->getCommentoFromId($idCommento), $utente, $testo);
+                $commento = $dbh->getCommentoFromId(intval($idCommento));
+                if (!isset($commento)) {
+                    internalServerError("Il commento al quale stai cercando di rispondere non esiste.");
+                }
+
+                $dbh->replyCommento($commento, $utente, $testo);
             } else {
                 $dbh->commentPost($post, $utente, $testo);
             }
