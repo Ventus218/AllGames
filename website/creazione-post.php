@@ -30,15 +30,24 @@
             }
 
             $nuoviTag = null;
+            $allTags = null;
 
             //Aggiungo i nuovi tag se non esistono nel database, dopodichè li aggiungo al post
             if (isset($_POST["nuoviTag"])) {
                 $nuoviTag = array();
+                $allTags = array();
                 $nuoviTag = explode(" ", $_POST["nuoviTag"]);
                 foreach($nuoviTag as $tag) {
-                    if($tag !== "" && !$dbh->checkIfTagExists($tag)) {
-                        $dbh->createTag($tag);
+                    if($tag !== "") {
+                        if (!$dbh->checkIfTagExists($tag))
+                        {
+                            $dbh->createTag($tag);
+                        }
+                        else {
+                            $tag = $dbh->getTagThatAlreadyExists($tag);
+                        }
                         $dbh->createTagInPost($tag, $idPost);
+                        array_push($allTags, $tag);
                     }
                 }
             }
@@ -46,7 +55,7 @@
             //Aggiungo i tag selezionati tra quelli già esistenti ai post
             if(isset($_POST["tags"])) {
                 foreach($_POST["tags"] as $tag) {
-                    if($tag !== "" && $dbh->checkIfTagExists($tag)) {
+                    if($tag !== "" && $dbh->checkIfTagExists($tag) && !in_array($tag, $allTags)) {
                         $dbh->createTagInPost($tag, $idPost);
                     }                    
                 }

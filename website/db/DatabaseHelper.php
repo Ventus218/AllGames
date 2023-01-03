@@ -453,6 +453,10 @@
             return TagDTO::getOneByID($this->db, $tag) != null;
         }
 
+        public function getTagThatAlreadyExists(string $tag): string {
+            return TagDTO::getOneByID($this->db, $tag)->nome;
+        }
+
         public function createTag(string $tag) {
             $t = new TagCreateDTO($tag);
             $t->createOn($this->db);
