@@ -21,13 +21,13 @@ ul li ul {
     font-size: .7rem !important;
 }
 
-.list-commenti ul li:last-child {
+#list-commenti ul li:last-child {
     margin-bottom: initial !important;
     padding-bottom: initial !important;
     border-bottom: none !important;
 }
 
-.list-commenti ul li ul {
+#list-commenti ul li ul {
     width: auto;
     overflow-y: initial;
 }
@@ -191,7 +191,7 @@ form.commenta textarea::placeholder {
     color: #99aab5 !important;
 }
 
-section.list-commenti .visualizza-risposte-button, section.list-commenti .rispondi-button {
+#list-commenti .visualizza-risposte-button, #list-commenti .rispondi-button {
     font-size: .8rem !important;
     color: #99aab5 !important;
 }
