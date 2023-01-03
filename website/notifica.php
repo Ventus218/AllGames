@@ -7,7 +7,18 @@
     if (!isset($_GET["notifica"])) {
         internalServerError("Nessuna notifica selezionata");
     }
-    $notifica = $dbh->getNotificaFromId($_GET["notifica"]);
+
+    $idNotifica = $_GET["notifica"];
+
+    if (!is_numeric($idNotifica)) {
+        internalServerError("Formato errato del parametro notifica.");
+    }
+
+    $notifica = $dbh->getNotificaFromId(intval($idNotifica));
+
+    if (!isset($notifica)) {
+        internalServerError("Questa notifica non esiste.");
+    }
 
     if ($notifica->ricevente != getSessionUserId()) {
         internalServerError("Non sei autorizzato ad accedere alle notifiche di altri utenti");
