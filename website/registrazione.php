@@ -42,6 +42,10 @@
             array_push($templateParams["registrazione-errors"], "Username e email non possono essere vuoti.");
         }
 
+        if ($telefono === "") {
+            array_push($templateParams["registrazione-errors"], "Il telefono non può essere vuoto.");
+        }
+
         if (!$dbh->usernameIsAvailable($username)) {
             array_push($templateParams["registrazione-errors"], "L'username scelto è già in uso");
         }

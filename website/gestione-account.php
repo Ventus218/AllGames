@@ -54,6 +54,10 @@
             if ($username === "" || $email === "") {
                 array_push($templateParams["change-errors"], "Username e email non possono essere vuoti.");
             }
+
+            if ($telefono === "") {
+                array_push($templateParams["change-errors"], "Il telefono non può essere vuoto.");
+            }
     
             if (!$dbh->usernameIsAvailable($username) && $username != $utente->username) {
                 array_push($templateParams["change-errors"], "L'username scelto è già in uso.");
