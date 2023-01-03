@@ -20,7 +20,7 @@
                     <div class="row mt-2">
                         <div class="col">
                             <p class="mb-0">
-                                Fondatore: <a class="text-warning text-decoration-none" href=" <?php echo "profilo-utente.php?utente=".$fondatore->id; ?> "> <strong> <?php echo $fondatore->username; ?> </strong> </a>
+                                Fondatore: <a class="text-warning text-decoration-none" href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($fondatore->id); ?> "> <strong> <?php echo $fondatore->username; ?> </strong> </a>
                             </p>
                         </div>
                     </div>
