@@ -15,7 +15,7 @@
                         <header>
                             <div class="row d-flex justify-content-between">
                                 <div class="col-auto clearfix">
-                                    <a href=" <?php echo "profilo-utente.php?utente=".$post->utente; ?> " class="d-flex text-white text-decoration-none">
+                                    <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($post->utente); ?> " class="d-flex text-white text-decoration-none">
                                         <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utente->urlImmagine) ? $utente->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                                         <h2> <?php echo $utente->username; ?> </h2>
                                     </a>
@@ -27,12 +27,12 @@
                             <div class="row">
                                 <div class="col align-self-center">
                                     <?php foreach($tagsInPost as $tagInPost): ?>
-                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="tag.php?tag=<?php echo $tagInPost->tag; ?>"><strong> <?php echo $tagInPost->tag; ?> </strong></a>
+                                    <a class="btn btn-warning rounded-pill p-1 py-0 clearfix" href="tag.php?tag=<?php echo escapeSpacesForURIParam($tagInPost->tag); ?>"><strong> <?php echo $tagInPost->tag; ?> </strong></a>
                                     <?php endforeach; ?>
                                 </div>
                                 <?php if(isset($post->community)): ?>
                                 <div class="col-auto pb-1 pe-1 ps-0 align-self-end">
-                                    <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".$post->community; ?> ">
+                                    <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".escapeSpacesForURIParam($post->community); ?> ">
                                         <img class="community-img" src="inc/img/people.png" alt="" />
                                         <strong> <?php echo $post->community; ?> </strong>
                                     </a>
@@ -80,7 +80,7 @@
                     <div class="bg-gray rounded-bottom p-2 mt-1">
                         <footer class="d-flex">
                             <div class="mx-auto">
-                                <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo $post->id ?>">
+                                <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo escapeSpacesForURIParam($post->id) ?>">
                                     <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                 </a>
                                 <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">

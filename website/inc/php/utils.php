@@ -71,4 +71,8 @@
         }
     }
 
+    function escapeSpacesForURIParam(string $param): string {
+        return str_replace(" ", "%20", $param);
+    }
+
 ?>
