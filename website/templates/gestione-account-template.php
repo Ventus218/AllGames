@@ -7,7 +7,7 @@ $utente = $templateParams["utente"];
 
 <div class="row">
     <div class="col-12 text-start">
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             <section>
                 <header>
                     <h2 class="fw-bold">Gestione account</h2>

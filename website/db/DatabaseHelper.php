@@ -420,7 +420,7 @@
             ?string $urlImmagine,
             UtenteDTO $utente,
         ) {
-            updateUtente($this->db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null, $utente);
+            updateUtente($this->db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, $urlImmagine, $utente);
         }
         
         public function getNotificaFromId(int $notificaId): ?NotificaDTO {

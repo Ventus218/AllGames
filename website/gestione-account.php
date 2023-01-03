@@ -35,13 +35,22 @@
             $oldPassword = $_POST["oldPassword"];
 
             $utente = $dbh->getUtenteFromId(getSessionUserId());
+            $urlImmagine = $utente->urlImmagine;
 
-            if (isset($_POST["immagineProfilo"])) {
-                //Da finire 
-                //$urlImmagine = $_POST["immagineProfilo"];
+            if (isset($_FILES["immagineProfilo"])) {
+                $immagine = $_FILES["immagineProfilo"];
 
-                // SOLO PER ORA
-                $urlImmagine = $utente->urlImmagine;
+                $result = uploadMultimedia("multimedia-db", $immagine);
+
+                if ($result["result"] !== 1) {
+                    internalServerError($result["msg"]);
+                }
+
+                if ($result["type"] === "video") {
+                    internalServerError("Non si può inserire un video come foto profilo");
+                }
+
+                $urlImmagine = $result["msg"];
             }
 
             if ($genere !== 'M' && $genere !== 'F' && $genere !== 'U') {
