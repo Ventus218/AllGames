@@ -6,7 +6,7 @@
                 <section class="p-3 bg-gray rounded border border-2">
                     <div class="row">
                         <header>
-                            <h2> Post con tag <strong> <?php echo $tag->nome ?> </strong> </h2>
+                            <h2> Pagina del tag <strong> <?php echo $tag->nome ?> </strong> </h2>
                         </header>
                     </div>
                 </section>
