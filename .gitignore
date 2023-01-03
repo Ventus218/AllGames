@@ -1,2 +1,5 @@
 # MacOs
 .DS_Store
+
+# User data
+website/multimedia-db/*
