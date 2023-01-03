@@ -66,13 +66,13 @@
             if (!$dbh->emailIsAvailable($email) && $email != $utente->email) {
                 array_push($templateParams["change-errors"], "L'e-mail scelta è già in uso.");
             }
-
-            if ($password === "") {
-                array_push($templateParams["change-errors"], "La password non può essere vuota.");
-            }
     
             if ($password !== $confermaPassword) {
                 array_push($templateParams["change-errors"], "Le password non coincidono.");
+            }
+
+            if ($password === "" && $confermaPassword !== "") {
+                array_push($templateParams["change-errors"], "La password non può essere vuota.");
             }
 
             if ($dataNascita > new DateTime('now', $dataNascita->getTimezone())) {
