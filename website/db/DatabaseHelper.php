@@ -466,5 +466,18 @@
         public function createCommunity(string $nome, string $urlImmagine, UtenteDTO $fondatore) {
             (new CommunityCreateDTO($nome, $urlImmagine, $fondatore->id))->createOn($this->db);
         }
+
+        public function createMultimediaInPost(string $url, int $ordine, int $post, string $tipo) {
+            $immagine = false;
+            $video = false;
+
+            if ($tipo === "video") {
+                $video = true;
+            } else if ($tipo === "img") {
+                $immagine = true;
+            }
+
+            (new ContenutoMultimedialePostCreateDTO($url, $ordine, $post, $video, $immagine))->createOn($this->db);
+        }
     }
 ?>

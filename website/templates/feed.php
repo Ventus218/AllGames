@@ -58,11 +58,11 @@
                                     <div class="carousel-inner">
                                         <?php foreach($multim as $m): ?>
                                             <?php if($m->immagine): ?>
-                                            <a href="<?php echo $m->url; ?>" class="text-decoration-none">
-                                                <img src=" <?php echo $m->url; ?> " alt="" />
+                                            <a href="<?php echo $m->getFullUrl(); ?>" class="text-decoration-none">
+                                                <img src=" <?php echo $m->getFullUrl(); ?> " alt="" />
                                             </a>
                                             <?php else: ?>
-                                            <a href="<?php echo $m->url; ?>" class="text-decoration-none">
+                                            <a href="<?php echo $m->getFullUrl(); ?>" class="text-decoration-none">
                                                 <img src="inc/img/play.png" alt="" />
                                             </a>
                                         <?php endif; ?>

@@ -50,6 +50,10 @@
                 $row[ContenutoMultimedialePostKeys::immagine]
             );
         }
+
+        public function getFullUrl(): string {
+            return "multimedia-db/".$this->url;
+        }
     }
 
     class ContenutoMultimedialePostCreateDTO  {

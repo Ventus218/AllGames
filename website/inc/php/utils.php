@@ -75,4 +75,73 @@
         return str_replace(" ", "%20", $param);
     }
 
+    function uploadMultimedia($path, $multimedia){
+        $multimediaName = uniqid().".".strtolower(pathinfo(basename($multimedia["name"]),PATHINFO_EXTENSION));
+        $fullPath = $path."/".$multimediaName;
+        
+        $result = 0;
+        $msg = "";
+        $type="";
+
+        //Trovo il tipo del multimedia
+        $mime = mime_content_type($multimedia["tmp_name"]);
+        $acceptedExtensions = array();
+
+        if(strstr($mime, "video/")) {
+            $acceptedExtensions = array("mp4");
+            $maxKB = 100000;
+
+            //Controllo dimensione del video < 100000KB
+            if ($multimedia["size"] > $maxKB * 1024) {
+                $msg .= "Il file caricato pesa troppo! La dimensione massima è $maxKB KB. ";
+            }
+
+            $type = "video";
+
+        } else if(strstr($mime, "image/")) {
+            $acceptedExtensions = array("jpg", "jpeg", "png");
+            $maxKB = 5000;
+
+            //Controllo dimensione dell'immagine < 5000KB
+            if ($multimedia["size"] > $maxKB * 1024) {
+                $msg .= "Il file caricato pesa troppo! La dimensione massima è $maxKB KB. ";
+            }
+
+            $type = "img";
+        }
+        
+        //Controllo estensione del file
+        $multimediaFileType = strtolower(pathinfo($fullPath,PATHINFO_EXTENSION));
+        if(!in_array($multimediaFileType, $acceptedExtensions)){
+            $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
+        }
+    
+        //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
+        if(strlen($msg)==0){
+            if(!move_uploaded_file($multimedia["tmp_name"], $fullPath)){
+                $msg.= "Errore nel caricamento del multimedia.";
+            }
+            else{
+                $result = 1;
+                $msg = $multimediaName;
+            }
+        }
+
+        return array("result" => $result, "msg" => $msg, "type" => $type);
+    }
+
+    function reArrayFiles(&$file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+    
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+    
+        return $file_ary;
+    }
 ?>
