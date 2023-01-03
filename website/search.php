@@ -8,10 +8,14 @@
     } else {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST["search"])) {
-                internalServerError("Richiesta una ricerca");
+                internalServerError("Nessun testo per la ricerca inserito");
             }
 
             $filter = $_POST["search"];
+            if ($filter === "") {
+                internalServerError("Il testo da ricercare non può essere vuoto.");
+            }
+
             $templateParams['searchedUsers'] = $dbh->getUtentiWithSubstring($filter);
             $templateParams['searchedCommunities'] = $dbh->getCommunityWithSubstring($filter);
             
