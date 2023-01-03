@@ -1,6 +1,8 @@
 <?php
 
 $utente = $templateParams["utente"];
+$communities = $templateParams["communities"];
+$tags = $templateParams["tags"];
 
 ?>
 
@@ -48,12 +50,9 @@ $utente = $templateParams["utente"];
                 <div class="row">
                     <div class="col mb-3">
                         <select name="tags" id="tags" class="form-select w-100 bg-transparent text-white" multiple>
-                            <option value="">Dark Souls</option>
-                            <option value="">Elden Ring</option>
-                            <option value="">Wow</option>
-                            <option value="">Giochiamo assieme</option>
-                            <option value="">World of warcraft</option>
-                            <option value="">Amazzoni</option>
+                            <?php foreach($tags as $tag): ?>
+                            <option value="<?php echo $tag->nome; ?>"><?php echo $tag->nome; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="col-2">
@@ -109,12 +108,13 @@ $utente = $templateParams["utente"];
                     <div class="col mb-3">
                         <select name="community" id="community" class="form-select w-100 bg-transparent text-white">
                             <option value="" disabled selected>Scegli una community</option>
-                            <option value="">Dark Souls</option>
-                            <option value="">Elden Ring</option>
-                            <option value="">Wow</option>
-                            <option value="">Giochiamo assieme</option>
-                            <option value="">World of warcraft</option>
-                            <option value="">Amazzoni</option>
+
+                            <?php foreach($communities as $community): ?>
+
+                            <option value="<?php echo $community->nome; ?>"><?php echo $community->nome; ?></option>
+
+                            <?php endforeach; ?>
+
                         </select>
                     </div>
                     <div class="col-2">

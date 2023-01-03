@@ -31,6 +31,8 @@
         }
 
         $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
+        $templateParams["communities"] = $dbh->getCommunitiesOfUtente($templateParams["utente"]);
+        $templateParams["tags"] = $dbh->getAllTags();
         $templateParams["page-title"] = "Creazione post";
         $templateParams["content"] = "templates/creazione-post-template.php";
         $templateParams["show-top-bar-buttons"] = false;

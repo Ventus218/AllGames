@@ -411,5 +411,9 @@
                 $updateDTO->updateOn($this->db);
             }
         }
+
+        public function getAllTags(): array {
+            return TagDTO::getAllOn($this->db);
+        }
     }
 ?>
