@@ -411,5 +411,33 @@
                 $updateDTO->updateOn($this->db);
             }
         }
+
+        public function getAllTags(): array {
+            return TagDTO::getAllOn($this->db);
+        }
+
+        public function createPost(string $testo, int $utente, string $community): ?int {
+            $post = new PostCreateDTO($testo, new DateTime(), $utente, $community);
+            return $post->createOn($this->db);
+        }
+
+        /**
+         * @param string $tag the tag to check if exists
+         * 
+         * @return true if the tag exists, false otherwise
+         */
+        public function checkIfTagExists(string $tag): bool {
+            return TagDTO::getOneByID($this->db, $tag) != null;
+        }
+
+        public function createTag(string $tag) {
+            $t = new TagCreateDTO($tag);
+            $t->createOn($this->db);
+        }
+
+        public function createTagInPost(string $tag, string $post) {
+            $tagInPost = new TagInPostCreateDTO($tag, $post);
+            $tagInPost->createOn($this->db);
+        }
     }
 ?>
