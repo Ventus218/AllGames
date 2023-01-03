@@ -152,7 +152,6 @@ $tags = $templateParams["tags"];
                 </div>
 
             </section>
-            <hr class="opacity-75 border border-1 rounded">
 
             <div class="row">
                 <div class="col-12">
