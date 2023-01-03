@@ -8,8 +8,17 @@
         if (!isset($_GET["tag"])) {
             internalServerError("Nessun tag selezionato");
         }
+
         $tagName = $_GET["tag"];
+        if ($tagName === "") {
+            internalServerError("Il parametro tag non può essere vuoto.");
+        }
+    
         $tag = $dbh->getTagFromName($tagName);
+    
+        if (!isset($tag)) {
+            internalServerError("Questo tag non esiste.");
+        }
         
         $posts = $dbh->getPostFeedOfTag($tag);
 
