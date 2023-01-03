@@ -24,8 +24,27 @@
                                             <h3> <?php echo $utente->username; ?> </h3>
                                         </a>
                                     </div>
-                                    <div class="col-auto">
-                                        <p class="timestamp text-white-50"> <?php echo getTimeAgoFrom($post->timestamp); ?> </p>
+                                    <div class="col-auto d-flex flex-row pe-0">
+                                        <div class="col-auto pe-2">
+                                            <p class="timestamp text-white-50"> <?php echo getTimeAgoFrom($post->timestamp); ?> </p>
+                                        </div>
+                                        <?php if ($post->utente === $templateParams["utente"]->id): ?>
+                                        <div class="col-auto px-0">
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="post<?php echo $post->id; ?>-options-menu" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <img class="options-img" src="inc/img/dots.png" alt="Opzioni del post">
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="post<?php echo $post->id; ?>-options-menu">
+                                                    <li>
+                                                        <form action="post.php?post=<?php echo escapeSpacesForURIParam($post->id)."&return=".$_SERVER["REQUEST_URI"]; ?>" method="post">
+                                                            <input type="hidden" name="delete" value="1">
+                                                            <button class="dropdown-item text-danger" type="submit">Elimina</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="row">

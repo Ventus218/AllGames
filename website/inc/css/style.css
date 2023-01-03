@@ -114,6 +114,11 @@ article header p.timestamp {
     font-size: 0.6rem !important;
 }
 
+article header img.options-img {
+    width: 30px;
+    height: 30px;
+}
+
 article header img.community-img {
     width: 17px;
 }
