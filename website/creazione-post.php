@@ -6,11 +6,14 @@
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST["testo"]) && !empty($_POST["testo"])) {
+            if (!isset($_POST["testo"])) {
                 internalServerError("Mancano alcuni dati");    
             }
 
-            $testo = $_POST["testo"];
+            $testo = trim($_POST["testo"]);
+            if ($testo === "") {
+                internalServerError("Non puoi creare post con testo vuoto.");
+            }
 
             $utente = $dbh->getUtenteFromId(getSessionUserId());
             
@@ -33,7 +36,7 @@
                 $nuoviTag = array();
                 $nuoviTag = explode(" ", $_POST["nuoviTag"]);
                 foreach($nuoviTag as $tag) {
-                    if(!empty($tag) && !$dbh->checkIfTagExists($tag)) {
+                    if($tag !== "" && !$dbh->checkIfTagExists($tag)) {
                         $dbh->createTag($tag);
                         $dbh->createTagInPost($tag, $idPost);
                     }
@@ -43,7 +46,7 @@
             //Aggiungo i tag selezionati tra quelli già esistenti ai post
             if(isset($_POST["tags"])) {
                 foreach($_POST["tags"] as $tag) {
-                    if(!empty($tag) && $dbh->checkIfTagExists($tag)) {
+                    if($tag !== "" && $dbh->checkIfTagExists($tag)) {
                         $dbh->createTagInPost($tag, $idPost);
                     }                    
                 }
