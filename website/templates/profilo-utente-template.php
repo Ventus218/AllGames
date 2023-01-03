@@ -59,7 +59,7 @@
 
                                                 <div class="row text-start <?php if($i < $followsNumber-1) echo "mb-3"; ?>">
                                                     <a href="profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($follow->id) ?>" class="text-decoration-none text-white">
-                                                        <img class="ricerca-pic" src="<?php echo (isset($follow->urlImmagine) ? $follow->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follow->username; ?>" />
+                                                        <img class="ricerca-pic rounded-circle" src="<?php echo (isset($follow->urlImmagine) ? $follow->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follow->username; ?>" />
                                                         <span><?php echo $follow->username; ?></span>
                                                     </a>
                                                 </div>
@@ -109,7 +109,7 @@
 
                                                 <div class="row text-start <?php if($i < $followersNumber-1) echo "mb-3"; ?>">
                                                     <a href="profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($follower->id) ?>" class="text-decoration-none text-white">
-                                                        <img class="ricerca-pic" src="<?php echo (isset($follower->urlImmagine) ? $follower->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follower->username; ?>" />
+                                                        <img class="ricerca-pic rounded-circle" src="<?php echo (isset($follower->urlImmagine) ? $follower->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $follower->username; ?>" />
                                                         <span><?php echo $follower->username; ?></span>
                                                     </a>
                                                 </div>
@@ -168,7 +168,7 @@
                         ?>
                         <div class="row">
                             <a href="<?php echo "community.php?community=".escapeSpacesForURIParam($community->nome); ?>" class="col-auto text-warning text-decoration-none d-flex flex-row align-items-center">
-                                <img src="<?php echo (isset($community->urlImmagine) ? $community->getFullUrlImmagine() : "inc/img/people.png"); ?>" alt="Immagine della community <?php echo $community->nome; ?>" class="post-profile-pic me-2" />
+                                <img src="<?php echo (isset($community->urlImmagine) ? $community->getFullUrlImmagine() : "inc/img/people.png"); ?>" alt="Immagine della community <?php echo $community->nome; ?>" class="post-profile-pic rounded-circle me-2" />
                                 <p class="m-0"> <?php echo $community->nome; ?> </p>
                             </a>
                         </div>
