@@ -25,14 +25,6 @@ $tags = $templateParams["tags"];
                         <textarea class="form-control text-white bg-transparent border-2 border-lightgray rounded-2" name="testo" id="testo" rows="3" placeholder="Scrivi.." required></textarea>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="multimedia" class="fw-bold fs-5 form-label"> Aggiungi contenuti multimediali </label>
-                        <input type="file" name="multimedia" id="multimedia" accept="image/*, video/*" multiple/>
-                    </div>
-                </div>
-
             </section>
             <hr class="opacity-75 border border-1 rounded">
 
@@ -42,14 +34,21 @@ $tags = $templateParams["tags"];
                 </header>
 
                 <div class="row">
+                    <div class="col mb-5">
+                        <label for="multimedia" class="fw-bold fs-5 form-label"> Aggiungi contenuti multimediali </label>
+                        <input type="file" name="multimedia" id="multimedia" accept="image/*, video/*" multiple/>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col">
                         <label for="tags" class="fw-bold fs-5 form-label"> Lista dei tag </label>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col mb-3">
-                        <select name="tags" id="tags" class="form-select w-100 bg-transparent text-white" multiple>
+                    <div class="col mb-4">
+                        <select name="tags[]" id="tags" class="form-select w-100 bg-transparent text-white" multiple>
                             <?php foreach($tags as $tag): ?>
                             <option value="<?php echo $tag->nome; ?>"><?php echo $tag->nome; ?></option>
                             <?php endforeach; ?>
@@ -92,7 +91,7 @@ $tags = $templateParams["tags"];
                 </div>
 
                 <div class="row">
-                    <div class="col mb-3">
+                    <div class="col mb-5">
                         <label for="nuoviTag" class="fw-bold fs-5 form-label"> Aggiungi uno o più tag (separati da spazi)</label>
                         <input class="form-control text-white" name="nuoviTag" id="nuoviTag" placeholder="Scrivi.." />
                     </div>
@@ -105,7 +104,7 @@ $tags = $templateParams["tags"];
                 </div>
 
                 <div class="row">
-                    <div class="col mb-3">
+                    <div class="col mb-4">
                         <select name="community" id="community" class="form-select w-100 bg-transparent text-white">
                             <option value="" disabled selected>Scegli una community</option>
 
