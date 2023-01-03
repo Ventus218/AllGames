@@ -52,7 +52,7 @@
                 }
             }
 
-            if(isset($_FILES["multimedia"])) {
+            if(UPLOAD_ERR_OK === $_FILES["multimedia"]["error"]) {
                 $i = 0;
                 $files = reArrayFiles($_FILES['multimedia']);
                 foreach($files as $multimedia) {

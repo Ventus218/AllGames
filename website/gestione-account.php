@@ -37,7 +37,7 @@
             $utente = $dbh->getUtenteFromId(getSessionUserId());
             $urlImmagine = $utente->urlImmagine;
 
-            if (isset($_FILES["immagineProfilo"])) {
+            if (UPLOAD_ERR_OK === $_FILES["immagineProfilo"]["error"]) {
                 $immagine = $_FILES["immagineProfilo"];
 
                 $result = uploadMultimedia("multimedia-db", $immagine);

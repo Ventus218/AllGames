@@ -11,7 +11,7 @@
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if (!isset($_POST["nome-community"]) || !isset($_FILES["immagine-community"]) ) {
+            if (!isset($_POST["nome-community"]) || !(UPLOAD_ERR_OK === $_FILES["immagine-community"]["error"])) {
                 internalServerError("Mancano alcuni dati");
             }
 
