@@ -416,7 +416,7 @@
             return TagDTO::getAllOn($this->db);
         }
 
-        public function createPost(string $testo, int $utente, string $community): ?int {
+        public function createPost(string $testo, int $utente, ?string $community): ?int {
             $post = new PostCreateDTO($testo, new DateTime(), $utente, $community);
             return $post->createOn($this->db);
         }
