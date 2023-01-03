@@ -41,7 +41,7 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Tutti i follow</h4>
+                                            <h3 class="modal-title">Tutti i follow</h3>
                                         </div>
 
                                         <!-- Modal body -->
@@ -91,7 +91,7 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Tutti i follower</h4>
+                                            <h3 class="modal-title">Tutti i follower</h3>
                                         </div>
 
                                         <!-- Modal body -->
