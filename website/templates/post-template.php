@@ -14,7 +14,7 @@
                             <div class="row d-flex justify-content-between">
                                 <div class="col-auto clearfix">
                                     <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($post->utente); ?> " class="d-flex text-white text-decoration-none">
-                                        <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utentePost->urlImmagine) ? $utentePost->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                                        <img class="post-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($utentePost->urlImmagine) ? $utentePost->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                                         <h2> <?php echo $utentePost->username; ?> </h2>
                                     </a>
                                 </div>
@@ -109,7 +109,7 @@
                                     <div class="col-12">
                                         <header class="d-flex flex-row align-items-center justify-content-between">
                                             <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($commentatore->id); ?> " class="d-flex align-items-center text-white text-decoration-none">
-                                                <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($commentatore->urlImmagine) ? $commentatore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $commentatore->username; ?>" />
+                                                <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($commentatore->urlImmagine) ? $commentatore->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $commentatore->username; ?>" />
                                                 <h4 class="m-0 fs-6"><strong> <?php echo $commentatore->username; ?> </strong></h4>
                                             </a>
                                             <p class="tempo-passato-commento m-0 ms-3"> <?php echo getTimeAgoFrom($comm->timestamp); ?></p>
@@ -147,7 +147,7 @@
                                                     <div class="col-12">
                                                         <header class="d-flex flex-row align-items-center justify-content-between">
                                                             <a href=" <?php echo "profilo-utente.php?utente=".escapeSpacesForURIParam($risponditore->id); ?> " class="d-flex align-items-center text-white text-decoration-none">
-                                                                <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($risponditore->urlImmagine) ? $risponditore->urlImmagine : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $risponditore->username; ?>" />
+                                                                <img class="commento-profile-pic rounded-circle float-start me-2" src=" <?php echo (isset($risponditore->urlImmagine) ? $risponditore->getFullUrlImmagine() : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $risponditore->username; ?>" />
                                                                 <h4 class="m-0 fs-6"><strong> <?php echo $risponditore->username; ?> </strong></h4>
                                                             </a>
                                                             <p class="tempo-passato-commento m-0 ms-3"> <?php echo getTimeAgoFrom($risposta->timestamp); ?></p>
