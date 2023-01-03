@@ -11,12 +11,16 @@
         $communityName = $_GET["community"];
         $community = $dbh->getCommunityFromName($communityName);
 
+        if (!isset($community)) {
+            internalServerError("Non esiste nessuna commnity con questo nome.");
+        }
+
         $utente = $dbh->getUtenteFromId(getSessionUserId());
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!isset($_POST["partecipa"])) {
                 internalServerError("Mancano alcune informazioni per completare l'operazione");
             }
-            $partecipazione = $dbh->setUtentePartecipaCommunity($utente, $community, $_POST["partecipa"]);
+            $partecipazione = $dbh->setUtentePartecipaCommunity($utente, $community, boolval($_POST["partecipa"]));
         } else {
             $partecipazione = $dbh->getPartecipazioneCommunity($utente, $community);
         }

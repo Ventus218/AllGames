@@ -38,6 +38,14 @@
 
         $templateParams["registrazione-errors"] = array();
 
+        if ($username === "" || $email === "") {
+            array_push($templateParams["registrazione-errors"], "Username e email non possono essere vuoti.");
+        }
+
+        if ($telefono === "") {
+            array_push($templateParams["registrazione-errors"], "Il telefono non può essere vuoto.");
+        }
+
         if (!$dbh->usernameIsAvailable($username)) {
             array_push($templateParams["registrazione-errors"], "L'username scelto è già in uso");
         }
@@ -46,13 +54,21 @@
             array_push($templateParams["registrazione-errors"], "L'e-mail scelta è già in uso");
         }
 
+        if ($password === "") {
+            array_push($templateParams["registrazione-errors"], "La password non può essere vuota.");
+        }
+
         if ($password !== $confermaPassword) {
             array_push($templateParams["registrazione-errors"], "Le password non coincidono");
         }
 
         $dataNascita = new DateTime($_POST["data-nascita"]);
-        if ($dataNascita > new DateTime()) {
+        if ($dataNascita > new DateTime('now', $dataNascita->getTimezone())) {
             array_push($templateParams["registrazione-errors"], "La data di nascita non può essere successiva ad oggi.");
+        }
+
+        if ($nome === "" || $cognome === "") {
+            array_push($templateParams["registrazione-errors"], "Nome e cognome non possono essere vuoti.");
         }
 
         if (sizeof($templateParams["registrazione-errors"]) === 0) {

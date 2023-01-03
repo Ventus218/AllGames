@@ -9,7 +9,16 @@
             internalServerError("Nessun utente selezionato");
         }
 
-        $utente = $dbh->getUtenteFromId($_GET["utente"]);
+        $idUtente = $_GET["utente"];
+        if (!is_numeric($idUtente)) {
+            internalServerError("Formato errato del parametro utente.");
+        }
+
+        $utente = $dbh->getUtenteFromId($idUtente);
+        if (!isset($utente)) {
+            internalServerError("Questo utente non esiste.");
+        }
+
         $currentUtente = $dbh->getUtenteFromId(getSessionUserId());
 
         $isCurrentUserProfile = $utente->id === $currentUtente->id;
@@ -27,8 +36,8 @@
                 internalServerError("Mancano alcune informazioni per completare l'operazione");
             }
 
-            $dbh->setUtenteFollowUtente($currentUtente, $utente, $_POST["follow"]);
-            $isFollowed = ($_POST["follow"] == true);
+            $dbh->setUtenteFollowUtente($currentUtente, $utente, boolval($_POST["follow"]));
+            $isFollowed = boolval($_POST["follow"]);
         }
 
         $communities = $dbh->getCommunitiesOfUtente($utente);

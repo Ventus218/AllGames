@@ -6,8 +6,7 @@
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //TO DO       
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
             if (
                 !isset($_POST["email"]) || 
                 !isset($_POST["username"]) || 
@@ -51,6 +50,14 @@
             $genere = GenereUtente::from($genere);
     
             $templateParams["change-errors"] = array();
+
+            if ($username === "" || $email === "") {
+                array_push($templateParams["change-errors"], "Username e email non possono essere vuoti.");
+            }
+
+            if ($telefono === "") {
+                array_push($templateParams["change-errors"], "Il telefono non può essere vuoto.");
+            }
     
             if (!$dbh->usernameIsAvailable($username) && $username != $utente->username) {
                 array_push($templateParams["change-errors"], "L'username scelto è già in uso.");
@@ -63,9 +70,12 @@
             if ($password !== $confermaPassword) {
                 array_push($templateParams["change-errors"], "Le password non coincidono.");
             }
-    
-            $dataNascita = new DateTime($_POST["data-nascita"]);
-            if ($dataNascita > new DateTime()) {
+
+            if ($password === "" && $confermaPassword !== "") {
+                array_push($templateParams["change-errors"], "La password non può essere vuota.");
+            }
+
+            if ($dataNascita > new DateTime('now', $dataNascita->getTimezone())) {
                 array_push($templateParams["change-errors"], "La data di nascita non può essere successiva ad oggi.");
             }
 
