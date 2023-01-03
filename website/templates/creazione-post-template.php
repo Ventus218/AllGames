@@ -106,11 +106,11 @@ $tags = $templateParams["tags"];
                 <div class="row">
                     <div class="col mb-4">
                         <select name="community" id="community" class="form-select w-100 bg-transparent text-white">
-                            <option value="" disabled selected>Scegli una community</option>
+                            <option class="bg-black" value="" disabled selected>Scegli una community</option>
 
                             <?php foreach($communities as $community): ?>
 
-                            <option value="<?php echo $community->nome; ?>"><?php echo $community->nome; ?></option>
+                            <option class="bg-black" value="<?php echo $community->nome; ?>"><?php echo $community->nome; ?></option>
 
                             <?php endforeach; ?>
 
