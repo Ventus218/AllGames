@@ -80,7 +80,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="data-nascita" class="visually-hidden">Inserisci la tua data di nascita</label>
-                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" required />
+                                <input class="form-control mb-4" type="date" name="data-nascita" id="data-nascita" required value="<?php echo (new DateTime())->format("Y-m-d"); ?>"/>
                             </div>
                         </div>
 
