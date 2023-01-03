@@ -27,7 +27,7 @@ $utente = $templateParams["utente"];
                 <div class="row">
                     <div class="col mb-3">
                         <label for="multimedia" class="fw-bold fs-5 form-label"> Aggiungi contenuti multimediali </label>
-                        <input class="form-control" type="file" name="multimedia" id="multimedia" accept="image/*, video/*" multiple/>
+                        <input type="file" name="multimedia" id="multimedia" accept="image/*, video/*" multiple/>
                     </div>
                 </div>
 
@@ -135,7 +135,9 @@ $utente = $templateParams["utente"];
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        <p> Le community...
+                                        <p> Le community possono essere create da qualsiasi utente e funzionano come un gruppo in cui non c'è
+                                            qualcuno con dei privilegi particolari. Ognuno può guardare i post di una community se accede alla pagina della community,
+                                            ma solo chi la segue può publicarci post o avere i post della community nel feed della Home.
                                         </p>
                                     </div>
 
