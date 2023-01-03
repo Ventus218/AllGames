@@ -13,7 +13,10 @@
 
         $utente = $dbh->getUtenteFromId(getSessionUserId());
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $partecipazione = $dbh->togglePartecipazioneCommunity($community, $utente);
+            if(!isset($_POST["partecipa"])) {
+                internalServerError("Mancano alcune informazioni per completare l'operazione");
+            }
+            $partecipazione = $dbh->setUtentePartecipaCommunity($utente, $community, $_POST["partecipa"]);
         } else {
             $partecipazione = $dbh->getPartecipazioneCommunity($utente, $community);
         }
@@ -36,7 +39,7 @@
         $templateParams["community"] = $community;
         $templateParams["fondatore"] = $dbh->fondatoreOfCommunity($community);
         $templateParams["partecipanti"] = $dbh->partecipantiOfCommunity($community);
-        $templateParams["utente-partecipa"] = isset($partecipazione);
+        $templateParams["already-partecipa"] = isset($partecipazione);
 
         $templateParams["utente"] = $dbh->getUtenteFromId(getSessionUserId());
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());
