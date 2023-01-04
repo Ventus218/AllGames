@@ -20,7 +20,7 @@
         $post = $dbh->getPostFromId($idPost);
 
         if (!isset($post)) {
-            internalServerError("Questo post non esiste.");
+            notFound();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

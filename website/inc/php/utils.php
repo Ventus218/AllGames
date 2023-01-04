@@ -18,6 +18,14 @@
         exit($message);
     }
 
+    /**
+    * Must be called before any output.
+    */
+    function notFound() {
+        require("not-found.php");
+        exit();
+    }
+
     function authenticateAdminOrAbort() {
         /* AUTHORIZATION https://www.php.net/manual/en/features.http-auth.php */
         if (!isset($_SERVER["PHP_AUTH_USER"]) || !isset($_SERVER["PHP_AUTH_PW"])) {

@@ -17,7 +17,7 @@
     $notifica = $dbh->getNotificaFromId(intval($idNotifica));
 
     if (!isset($notifica)) {
-        internalServerError("Questa notifica non esiste.");
+        notFound();
     }
 
     if ($notifica->ricevente != getSessionUserId()) {

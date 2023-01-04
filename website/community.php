@@ -12,7 +12,7 @@
         $community = $dbh->getCommunityFromName($communityName);
 
         if (!isset($community)) {
-            internalServerError("Non esiste nessuna commnity con questo nome.");
+            notFound();
         }
 
         $utente = $dbh->getUtenteFromId(getSessionUserId());

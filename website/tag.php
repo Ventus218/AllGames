@@ -17,7 +17,7 @@
         $tag = $dbh->getTagFromName($tagName);
     
         if (!isset($tag)) {
-            internalServerError("Questo tag non esiste.");
+            notFound();
         }
         
         $posts = $dbh->getPostFeedOfTag($tag);
