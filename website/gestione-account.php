@@ -51,7 +51,9 @@
                 }
 
                 $urlImmagine = $result["msg"];
-                deleteMultimedia($utente->urlImmagine);
+                if (isset($utente->urlImmagine)) {
+                    deleteMultimedia($utente->urlImmagine);
+                }
             }
 
             if ($genere !== 'M' && $genere !== 'F' && $genere !== 'U') {
