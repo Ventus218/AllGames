@@ -105,9 +105,7 @@
         //Trovo il tipo del multimedia
         $mime = getTypeOfMultimedia($multimedia);
         
-        $acceptedExtensions = array("jpg", "jpeg", "png");
-
-        if(strstr($mime, "video/") || (strstr($mime, "application/octet-stream") && strtolower(pathinfo($fullPath,PATHINFO_EXTENSION)) === "mp4")) {
+        if(strstr($mime, "video/")) {
             $acceptedExtensions = array("mp4");
             $maxKB = 100000;
 
@@ -118,8 +116,9 @@
 
             $type = "video";
 
-        } else if(strstr($mime, "image/") || (strstr($mime, "application/octet-stream") && in_array(strtolower(pathinfo($fullPath,PATHINFO_EXTENSION)), $acceptedExtensions))) {
+        } else if(strstr($mime, "image/")) {
             $maxKB = 5000;
+            $acceptedExtensions = array("jpg", "jpeg", "png");
 
             //Controllo dimensione dell'immagine < 5000KB
             if ($multimedia["size"] > $maxKB * 1024) {
