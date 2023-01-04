@@ -83,7 +83,7 @@
 
     function uploadMultimedia($multimedia){
         $multimediaName = uniqid().".".strtolower(pathinfo(basename($multimedia["name"]),PATHINFO_EXTENSION));
-        $fullPath = MULTIMEDIA_DB."/".$multimediaName;
+        $fullPath = MULTIMEDIA_DB.$multimediaName;
         
         $result = 0;
         $msg = "";
