@@ -72,8 +72,13 @@
         }
 
         if (sizeof($templateParams["registrazione-errors"]) === 0) {
-            registerUtente($db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null);
-            header("Location: login.php");
+            $id = registerUtente($db, $username, $password, $nome, $cognome, $dataNascita, $genere, $email, $telefono, null);
+
+            $utente = $dbh->getUtenteFromId($id);
+            startSessionForUtente($utente);
+            
+            header("Location: index.php");
+            exit();
         }
 
     } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

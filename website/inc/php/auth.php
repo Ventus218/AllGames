@@ -15,9 +15,9 @@
         string $telefono,
         ?string $urlImmagine,
         ?int $id = null,
-        ) {
+        ): int {
         $u = new UtenteCreateDTO($username, password_hash($password, PASSWORD_BCRYPT), $nome, $cognome, $dataNascita, $genere, $email, $telefono, $urlImmagine, $id);
-        $u->createOn($db);
+        return $u->createOn($db);
     }
     
     function authenticateUtente(string $username, string $password, Database $db): ?UtenteDTO {
