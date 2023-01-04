@@ -28,8 +28,8 @@
     $dbh->setNotificaLetta($notifica);
 
     $location = "";
-    if ($notifica->isNotificaFollow && isset($notifica->utenteSeguace)) {
-        $location = "profilo-utente.php?utente=".escapeSpacesForURIParam($notifica->utenteSeguace);    
+    if ($notifica->isNotificaFollow) {
+        $location = "profilo-utente.php?utente=".escapeSpacesForURIParam($notifica->attoreSorgente);    
 
     } else if ($notifica->isNotificaMiPiace && isset($notifica->postPiaciuto)) {
         $location = "post.php?post=".escapeSpacesForURIParam($notifica->postPiaciuto);  
