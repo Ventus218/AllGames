@@ -81,19 +81,33 @@
         return MULTIMEDIA_DB.$filename;
     }
 
+    function getTypeOfMultimedia($multimedia): string {
+        if (function_exists('finfo_open')) {
+
+            $finfo = finfo_open(FILEINFO_MIME);
+            $mime = finfo_file($finfo, $multimedia["tmp_name"]);
+            finfo_close($finfo); 
+        } else if (function_exists('mime_content_type')) {
+            $mime = mime_content_type($multimedia["tmp_name"]);
+        }
+
+        return $mime;
+    }
+
     function uploadMultimedia($multimedia){
         $multimediaName = uniqid().".".strtolower(pathinfo(basename($multimedia["name"]),PATHINFO_EXTENSION));
         $fullPath = MULTIMEDIA_DB.$multimediaName;
         
         $result = 0;
         $msg = "";
-        $type="";
+        $type="img";
 
         //Trovo il tipo del multimedia
-        $mime = mime_content_type($multimedia["tmp_name"]);
-        $acceptedExtensions = array();
+        $mime = getTypeOfMultimedia($multimedia);
+        
+        $acceptedExtensions = array("jpg", "jpeg", "png");
 
-        if(strstr($mime, "video/")) {
+        if(strstr($mime, "video/") || (strstr($mime, "application/octet-stream") && strtolower(pathinfo($fullPath,PATHINFO_EXTENSION)) === "mp4")) {
             $acceptedExtensions = array("mp4");
             $maxKB = 100000;
 
@@ -104,8 +118,7 @@
 
             $type = "video";
 
-        } else if(strstr($mime, "image/")) {
-            $acceptedExtensions = array("jpg", "jpeg", "png");
+        } else if(strstr($mime, "image/") || (strstr($mime, "application/octet-stream") && in_array(strtolower(pathinfo($fullPath,PATHINFO_EXTENSION)), $acceptedExtensions))) {
             $maxKB = 5000;
 
             //Controllo dimensione dell'immagine < 5000KB
@@ -119,7 +132,7 @@
         //Controllo estensione del file
         $multimediaFileType = strtolower(pathinfo($fullPath,PATHINFO_EXTENSION));
         if(!in_array($multimediaFileType, $acceptedExtensions)){
-            $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions);
+            $msg .= "Accettate solo le seguenti estensioni: ".implode(",", $acceptedExtensions)." per il tipo: ".$type;
         }
     
         //Se non ci sono errori, sposto il file dalla posizione temporanea alla cartella di destinazione
