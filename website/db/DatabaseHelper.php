@@ -483,5 +483,16 @@
 
             (new ContenutoMultimedialePostCreateDTO($url, $ordine, $post, $video, $immagine))->createOn($this->db);
         }
+
+        public function deletePost(PostDTO $post) {
+            $multimedias = $this->getContenutiMultimedialiOfPost($post);
+
+            foreach ($multimedias as $m) {
+                deleteMultimedia($m->url);
+                ContenutoMultimedialePostDeleteDTO::from($m)->deleteOn($this->db);
+            }
+
+            PostDeleteDTO::from($post)->deleteOn($this->db);
+        }
     }
 ?>

@@ -5,6 +5,8 @@
     if (!checkIfSessionIsActive()) {
         redirectToLogin($_SERVER["REQUEST_URI"]);
     } else {
+        var_dump($_POST);
+        var_dump($_GET);
         $utente = $dbh->getUtenteFromId(getSessionUserId());
 
         if (!isset($_GET["post"])) {
@@ -24,25 +26,36 @@
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (!isset($_POST["testo"]) || $_POST["testo"] === "") {
-                internalServerError("Non puoi creare commenti o risposte vuoti.");
-            }
-            $testo = $_POST["testo"];
+            if (isset($_POST["delete"]) && boolval($_POST["delete"])) {
+                $dbh->deletePost($post);
 
-            if (isset($_POST["commento"]) && $_POST["commento"] !== "") {
-                $idCommento = $_POST["commento"];
-                if (!is_numeric($idCommento)) {
-                    internalServerError("Formato errato del parametro commento.");
+                if(isset($_GET["return"])) {
+                    header("Location: ".$_GET["return"]);
+                } else {
+                    header("Location: index.php");
                 }
-
-                $commento = $dbh->getCommentoFromId(intval($idCommento));
-                if (!isset($commento)) {
-                    internalServerError("Il commento al quale stai cercando di rispondere non esiste.");
-                }
-
-                $dbh->replyCommento($commento, $utente, $testo);
             } else {
-                $dbh->commentPost($post, $utente, $testo);
+
+                if (!isset($_POST["testo"]) || $_POST["testo"] === "") {
+                    internalServerError("Non puoi creare commenti o risposte vuoti.");
+                }
+                $testo = $_POST["testo"];
+
+                if (isset($_POST["commento"]) && $_POST["commento"] !== "") {
+                    $idCommento = $_POST["commento"];
+                    if (!is_numeric($idCommento)) {
+                        internalServerError("Formato errato del parametro commento.");
+                    }
+
+                    $commento = $dbh->getCommentoFromId(intval($idCommento));
+                    if (!isset($commento)) {
+                        internalServerError("Il commento al quale stai cercando di rispondere non esiste.");
+                    }
+
+                    $dbh->replyCommento($commento, $utente, $testo);
+                } else {
+                    $dbh->commentPost($post, $utente, $testo);
+                }
             }
         }
 
