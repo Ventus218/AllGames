@@ -3,7 +3,6 @@
 $utente = $templateParams["utente"];
 $communities = $templateParams["communities"];
 $tags = $templateParams["tags"];
-
 ?>
 
 <div class="row">

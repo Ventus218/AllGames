@@ -61,7 +61,7 @@
                 }
             }
 
-            if(UPLOAD_ERR_OK === $_FILES["multimedia"]["error"]) {
+            if(UPLOAD_ERR_OK === $_FILES["multimedia"]["error"][0]) {
                 $i = 0;
                 $files = reArrayFiles($_FILES['multimedia']);
                 foreach($files as $multimedia) {
@@ -74,6 +74,8 @@
                     $dbh->createMultimediaInPost($multimediaName, $i, $idPost, $result["type"]);
                     $i++;
                 }                
+            } else {
+                internalServerError("Non sono stati inseriti correttamente dei file da caricare");
             }
 
             header("Location: profilo-utente.php?utente=".$utente->id);
