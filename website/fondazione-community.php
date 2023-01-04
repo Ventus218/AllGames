@@ -19,7 +19,7 @@
 
             //Get the image
             $immagine = $_FILES["immagine-community"];
-            $result = uploadMultimedia("multimedia-db", $immagine);
+            $result = uploadMultimedia($immagine);
 
             if ($result["result"] !== 1) {
                 internalServerError($result["msg"]);

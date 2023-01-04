@@ -65,7 +65,7 @@
                 $i = 0;
                 $files = reArrayFiles($_FILES['multimedia']);
                 foreach($files as $multimedia) {
-                    $result = uploadMultimedia("multimedia-db", $multimedia);
+                    $result = uploadMultimedia($multimedia);
                     if ($result["result"] !== 1) {
                         internalServerError($result["msg"]);
                     }
