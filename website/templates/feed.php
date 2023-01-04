@@ -12,6 +12,7 @@
                     $multim = $postData["c_multimediali"];
                     $commenti = $postData["commenti"];
                     $miPiace = $postData["mi_piace"];
+                    $isMiPiace = $postData["is_mi_piace"];
                 ?>
                 <div class="col-12 d-flex justify-content-center">
                     <article class="">
@@ -106,9 +107,9 @@
                                     <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo escapeSpacesForURIParam($post->id) ?>">
                                         <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                     </a>
-                                    <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                        <img src="inc/img/liked.png" alt="Like" /> <strong> <?php echo $miPiace ?> </strong>
-                                    </a>
+                                    <button class="btn btn-outline-light border-lightgray border-2 p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
+                                        <img src="<?php echo (!$isMiPiace ? "inc/img/liked.png" : "inc/img/like.png"); ?>" alt="Like" /> <strong> <?php echo $miPiace ?> </strong>
+                                    </button>
                                 </div>
                             </footer>
                         </div>

@@ -18,6 +18,7 @@
             $postsData[$i]["c_multimediali"] = $dbh->getContenutiMultimedialiOfPost($post);
             $postsData[$i]["commenti"] = sizeof($dbh->getCommentiOfPost($post));
             $postsData[$i]["mi_piace"] = sizeof($dbh->getMiPiaceOfPost($post));
+            $postsData[$i]["is_mi_piace"] = $dbh->checkIfMiPiaceIsActive($post->id, getSessionUserId());
         }
 
         $templateParams["posts_data"] = $postsData;
@@ -31,7 +32,7 @@
         $templateParams["feed-title"] = "Il tuo feed";
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
-        $templateParams["js"] = array("inc/js/slider.js");
+        $templateParams["js"] = array("inc/js/slider.js", "https://unpkg.com/axios/dist/axios.min.js", "inc/js/mi-piace.js");
         require("templates/container.php");
     }
 ?>
