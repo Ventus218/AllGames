@@ -73,9 +73,7 @@
                     $multimediaName = $result["msg"];
                     $dbh->createMultimediaInPost($multimediaName, $i, $idPost, $result["type"]);
                     $i++;
-                }                
-            } else {
-                internalServerError("Non sono stati inseriti correttamente dei file da caricare");
+                }
             }
 
             header("Location: profilo-utente.php?utente=".$utente->id);
