@@ -106,7 +106,7 @@
                                     <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo escapeSpacesForURIParam($post->id) ?>">
                                         <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                     </a>
-                                    <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
+                                    <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3 likeButton" href="#" id="<?php echo $post->id; ?>">
                                         <img src="inc/img/liked.png" alt="Like" /> <strong> <?php echo $miPiace ?> </strong>
                                     </a>
                                 </div>

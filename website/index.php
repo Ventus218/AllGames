@@ -31,7 +31,7 @@
         $templateParams["feed-title"] = "Il tuo feed";
         $templateParams["show-top-bar-buttons"] = true;
         $templateParams["show-footer"] = true;
-        $templateParams["js"] = array("inc/js/slider.js");
+        $templateParams["js"] = array("inc/js/slider.js", "https://unpkg.com/axios/dist/axios.min.js", "inc/js/mi-piace.js");
         require("templates/container.php");
     }
 ?>
