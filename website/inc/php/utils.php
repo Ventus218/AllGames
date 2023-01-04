@@ -141,7 +141,7 @@
     }
 
     /*
-        Funzione presa dalla documentazione ufficiale di PHP, serve a far diventare l'array di $_FILES più "intuitivo":
+        Funzione presa dalle note dei contributori della documentazione ufficiale di PHP, serve a far diventare l'array di $_FILES più "intuitivo":
         in caso di più file all'interno di $_FILES, $_FILES presenta nella prima posizione tutti i nomi dei vari file, e così via
         con questa funzione invece alla prima posizione si trovano tutte le informazioni del primo file, alla seconda quelle del secondo file ecc.
     */
