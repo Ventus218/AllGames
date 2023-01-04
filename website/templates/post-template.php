@@ -98,10 +98,10 @@
                     <div class="bg-gray rounded-bottom p-2 mt-1">
                         <footer class="d-flex">
                             <div class="mx-auto">
-                                <button class="btn btn-outline-light border-lightgray border-2" data-bs-toggle="collapse" data-bs-target="#list-commenti" aria-expanded="true" aria-controls="list-commenti" type="button">
+                                <button class="btn btn-warning" data-bs-toggle="collapse" data-bs-target="#list-commenti" aria-expanded="true" aria-controls="list-commenti" type="button">
                                     <strong> <?php echo sizeof($commentiPostData) ?> </strong> <?php echo (sizeof($commentiPostData) === 1) ? "Commento" : "Commenti"; ?>
                                 </button>
-                                <button class="btn btn-outline-light border-lightgray border-2 p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
+                                <button class="btn btn-warning p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
                                     <img src="<?php echo (!$isMiPiace ? "inc/img/liked.png": "inc/img/like.png"); ?>" alt="Like" /> <strong> <?php echo $nMiPiacePost ?> </strong>
                                 </button>
                             </div>

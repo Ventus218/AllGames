@@ -104,10 +104,10 @@
                         <div class="bg-gray rounded-bottom p-2 mt-1">
                             <footer class="d-flex">
                                 <div class="mx-auto">
-                                    <a class="btn btn-outline-light border-lightgray border-2" href="post.php?post=<?php echo escapeSpacesForURIParam($post->id) ?>">
+                                    <a class="btn btn-warning" href="post.php?post=<?php echo escapeSpacesForURIParam($post->id) ?>">
                                         <strong> <?php echo $commenti ?> </strong> <?php echo ($commenti === 1) ? "Commento" : "Commenti"; ?>
                                     </a>
-                                    <button class="btn btn-outline-light border-lightgray border-2 p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
+                                    <button class="btn btn-warning p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
                                         <img src="<?php echo (!$isMiPiace ? "inc/img/liked.png" : "inc/img/like.png"); ?>" alt="Like" /> <strong> <?php echo $miPiace ?> </strong>
                                     </button>
                                 </div>
