@@ -488,7 +488,7 @@
             $multimedias = $this->getContenutiMultimedialiOfPost($post);
 
             foreach ($multimedias as $m) {
-                // TODO: DELETE STORED MULTIMEDIA
+                deleteMultimedia($m->url);
                 ContenutoMultimedialePostDeleteDTO::from($m)->deleteOn($this->db);
             }
 
