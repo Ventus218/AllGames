@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST["postid"])) {
             internalServerError("Non è stato inserito alcun post id a cui mettere/togliere mi piace");
         }
-        
+
         header('Content-Type: application/json');
-        echo json_encode($dbh->toggleMiPiaceOfPost($_POST["postid"]));
+        echo json_encode($dbh->toggleMiPiaceOfPost($_POST["postid"], getSessionUserId()));
     }
 } else {
     internalServerError("Sono accettate solo richieste POST");

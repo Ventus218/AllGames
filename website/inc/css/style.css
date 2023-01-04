@@ -131,7 +131,7 @@ article section img {
     width: 61px;
 }
 
-article footer a img {
+article footer a img, article footer button img {
     width: 27px !important;
 }
 

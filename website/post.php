@@ -79,6 +79,7 @@
         $templateParams["c_multimediali-post"] = $dbh->getContenutiMultimedialiOfPost($post);
         $templateParams["commenti-post-data"] = $commentiPostData;
         $templateParams["mi_piace-post"] = sizeof($dbh->getMiPiaceOfPost($post));
+        $templateParams["is_mi_piace"] = $dbh->checkIfMiPiaceIsActive($post->id, getSessionUserId());
 
         $templateParams["utente"] = $utente;
         $templateParams['notifications'] = $dbh->getNotificationsOfUser(getSessionUserId());

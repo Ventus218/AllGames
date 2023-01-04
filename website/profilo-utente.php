@@ -54,6 +54,7 @@
             $postsData[$i]["c_multimediali"] = $dbh->getContenutiMultimedialiOfPost($post);
             $postsData[$i]["commenti"] = sizeof($dbh->getCommentiOfPost($post));
             $postsData[$i]["mi_piace"] = sizeof($dbh->getMiPiaceOfPost($post));
+            $postsData[$i]["is_mi_piace"] = $dbh->checkIfMiPiaceIsActive($post->id, getSessionUserId());
         }
 
         $templateParams["utente-of-profile"] = $utente;

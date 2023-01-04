@@ -494,5 +494,19 @@
 
             PostDeleteDTO::from($post)->deleteOn($this->db);
         }
+
+        public function checkIfMiPiaceIsActive(int $postid, int $utenteid): bool {
+            return MiPiaceDTO::getOneByID($this->db, $postid, $utenteid) === null;
+        }
+
+        public function toggleMiPiaceOfPost(int $postid, int $utenteid): bool {
+            if ($this->checkIfMiPiaceIsActive($postid, $utenteid)) {
+                (new MiPiaceCreateDTO($postid, $utenteid))->createOn($this->db);
+                return true;
+            } else {
+                (new MiPiaceDeleteDTO($postid, $utenteid))->deleteOn($this->db);
+                return false;
+            }
+        }
     }
 ?>

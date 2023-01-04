@@ -5,6 +5,7 @@
             $multimPost = $templateParams["c_multimediali-post"];
             $commentiPostData = $templateParams["commenti-post-data"];
             $nMiPiacePost = $templateParams["mi_piace-post"];
+            $isMiPiace = $templateParams["is_mi_piace"];
         ?>
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
@@ -100,9 +101,9 @@
                                 <button class="btn btn-outline-light border-lightgray border-2" data-bs-toggle="collapse" data-bs-target="#list-commenti" aria-expanded="true" aria-controls="list-commenti" type="button">
                                     <strong> <?php echo sizeof($commentiPostData) ?> </strong> <?php echo (sizeof($commentiPostData) === 1) ? "Commento" : "Commenti"; ?>
                                 </button>
-                                <a class="btn btn-outline-light border-lightgray border-2 p-1 pe-3" href="#">
-                                    <img src="inc/img/liked.png" alt="Like" /> <strong> <?php echo $nMiPiacePost ?> </strong>
-                                </a>
+                                <button class="btn btn-outline-light border-lightgray border-2 p-1 pe-3 like-button" id="<?php echo $post->id; ?>">
+                                    <img src="<?php echo (!$isMiPiace ? "inc/img/liked.png": "inc/img/like.png"); ?>" alt="Like" /> <strong> <?php echo $nMiPiacePost ?> </strong>
+                                </button>
                             </div>
                         </footer>
                     </div>
