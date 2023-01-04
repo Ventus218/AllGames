@@ -15,11 +15,10 @@
                             </div>
                             <div class="col mb-3">
                                 <div class="d-flex">
-                                    <label for="immagine-community" class="mx-auto cursor-pointer border rounded">
+                                    <label class="mx-auto cursor-pointer rounded-circle border rounded">
                                         <img id="previewImg" class="change-profile-pic rounded-circle" src="inc/img/plus.png" alt="Immagine di profilo della community"/>
+                                        <input class="visually-hidden" type="file" accept="image/jpeg, image/png" name="immagine-community" id="immagine-community" required/>
                                     </label>
-
-                                    <input class="d-none" type="file" accept="image/jpeg, image/png" name="immagine-community" id="immagine-community" />
                                 </div>
                             </div>
                         </div>
