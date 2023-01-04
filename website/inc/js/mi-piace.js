@@ -7,7 +7,7 @@ for(let i = 0; i < likeButtons.length; i++) {
     likeButton.addEventListener("click", () => {
 
         const formData = new FormData();
-        formData.append("postId", postId);
+        formData.append("postid", postId);
         axios.post("api/toggle-mi-piace.php", formData).then( 
         response => {
             
