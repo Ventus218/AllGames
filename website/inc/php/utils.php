@@ -104,6 +104,7 @@
 
         //Trovo il tipo del multimedia
         $mime = getTypeOfMultimedia($multimedia);
+        $acceptedExtensions = array("jpg", "jpeg", "png");
         
         if(strstr($mime, "video/")) {
             $acceptedExtensions = array("mp4");
@@ -118,14 +119,11 @@
 
         } else if(strstr($mime, "image/")) {
             $maxKB = 5000;
-            $acceptedExtensions = array("jpg", "jpeg", "png");
-
+            
             //Controllo dimensione dell'immagine < 5000KB
             if ($multimedia["size"] > $maxKB * 1024) {
                 $msg .= "Il file caricato pesa troppo! La dimensione massima è $maxKB KB. ";
             }
-
-            $type = "img";
         }
         
         //Controllo estensione del file

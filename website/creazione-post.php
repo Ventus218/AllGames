@@ -67,6 +67,7 @@
                 foreach($files as $multimedia) {
                     $result = uploadMultimedia($multimedia);
                     if ($result["result"] !== 1) {
+                        $dbh->deletePost($dbh->getPostFromId($idPost));
                         internalServerError($result["msg"]);
                     }
 
