@@ -43,6 +43,7 @@
                         <div class="dropdown dropdown-menu-end">
                             <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
                                 <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
+                                <?php if($templateParams["new_notifications"] > 0): ?>
                                 <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
                                     <!--Number of new notifications-->
                                     <?php                                         
@@ -51,6 +52,7 @@
                                     <!--For screen readers-->
                                     <span class="visually-hidden">Nuove notifiche</span>
                                 </span>
+                                <?php endif; ?>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownNotificationsButton">
