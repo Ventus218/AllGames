@@ -5,6 +5,7 @@
     }
     require_once("./authenticateAdmin.php");
     require_once("../../inc/php/auth.php");
+    require_once("../../inc/php/utils.php");
 
     require_once("../Database.php");
     foreach (glob("../model/*.php") as $file) {
@@ -15,6 +16,11 @@
 
     function loadSampleDB() {
         $db = new Database("localhost", "root", "", "ALL_GAMES", 3306);
+        
+        // Deleting all user multimedia files
+        foreach (glob("../../".MULTIMEDIA_DB."*") as $file) {
+            unlink($file);
+        }
 
         $u_youdied = 1;
         $u_amaz = 2;
@@ -23,7 +29,10 @@
         $u_rob = 5;
         $u_drac = 6;
 
-        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", "inc/img/DarkSouls.jpg", $u_youdied);
+        $u_imgYouDied = uniqid().".jpg";
+        copy("../../inc/img/DarkSouls.jpg", "../../".MULTIMEDIA_DB.$u_imgYouDied);
+
+        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", $u_imgYouDied, $u_youdied);
         registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz);
         registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got);
         registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer);
@@ -35,11 +44,23 @@
         $comm_tutorial = "TuttoTutorial";
         $comm_amazzoni = "Le Amazzoni (WoW)";
 
+        $comm_imgAmantiDS = uniqid().".jpg";
+        copy("https://static.bandainamcoent.eu/high/dark-souls/brand-setup/ds3_thumb_brand_624x468.jpg", "../../".MULTIMEDIA_DB.$comm_imgAmantiDS);
+
+        $comm_imgRetroGaming = uniqid().".jpg";
+        copy("https://ichef.bbci.co.uk/news/976/cpsprodpb/EAEE/production/_96724106_gettyimages-157437668.jpg", "../../".MULTIMEDIA_DB.$comm_imgRetroGaming);
+
+        $comm_imgTutorial = uniqid().".jpg";
+        copy("https://i.ytimg.com/vi/B6nLuyVOk4k/maxresdefault.jpg", "../../".MULTIMEDIA_DB.$comm_imgTutorial);
+
+        $comm_imgAmazzoni = uniqid().".jpg";
+        copy("https://www.kotaku.com.au/wp-content/uploads/sites/3/2017/12/14/z3tplwgx6bbhufjaejhy.jpg", "../../".MULTIMEDIA_DB.$comm_imgAmazzoni);
+
         $communitys = array(
-            new CommunityCreateDTO($comm_amantiDS, "https://static.bandainamcoent.eu/high/dark-souls/brand-setup/ds3_thumb_brand_624x468.jpg", $u_youdied),
-            new CommunityCreateDTO($comm_retroGaming, "https://ichef.bbci.co.uk/news/976/cpsprodpb/EAEE/production/_96724106_gettyimages-157437668.jpg", $u_rob),
-            new CommunityCreateDTO($comm_tutorial, "https://i.ytimg.com/vi/B6nLuyVOk4k/maxresdefault.jpg", $u_killer),
-            new CommunityCreateDTO($comm_amazzoni, "https://www.kotaku.com.au/wp-content/uploads/sites/3/2017/12/14/z3tplwgx6bbhufjaejhy.jpg", $u_amaz)
+            new CommunityCreateDTO($comm_amantiDS, $comm_imgAmantiDS, $u_youdied),
+            new CommunityCreateDTO($comm_retroGaming, $comm_imgRetroGaming, $u_rob),
+            new CommunityCreateDTO($comm_tutorial, $comm_imgTutorial, $u_killer),
+            new CommunityCreateDTO($comm_amazzoni, $comm_imgAmazzoni, $u_amaz)
         );
 
         foreach ($communitys as $community) {
@@ -161,15 +182,39 @@
             $t->createOn($db);
         }
 
+        $imgEldenRing = uniqid().".jpg";
+        copy("https://images4.alphacoders.com/115/1151249.jpg", "../../".MULTIMEDIA_DB.$imgEldenRing);
+
+        $imgPersWow = uniqid().".jpg";
+        copy("https://asset.vg247.com/Wow-History-Vanilla-07.jpg/BROK/resize/690%3E/format/jpg/quality/70/Wow-History-Vanilla-07.jpg", "../../".MULTIMEDIA_DB.$imgPersWow);
+
+        $imgUncharted0 = uniqid().".jpeg";
+        copy("https://www.psu.com/wp/wp-content/uploads/2019/11/uncharted-4-review-2.jpeg", "../../".MULTIMEDIA_DB.$imgUncharted0);
+
+        $imgUncharted1 = uniqid().".jpg";
+        copy("https://pressquit.com/wp-content/uploads/2016/06/Review-Uncharted-4-FI.jpg", "../../".MULTIMEDIA_DB.$imgUncharted1);
+
+        $imgUncharted2 = uniqid().".jpg";
+        copy("https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/070/large-1465604295-uc4workflow-feature2.jpg", "../../".MULTIMEDIA_DB.$imgUncharted2);
+
+        $imgUncharted3 = uniqid().".jpg";
+        copy("https://preview.redd.it/9e60csttrwx81.jpg?auto=webp&s=38730f571ceac06dce9cef0fdce3e0ce65e92ddd", "../../".MULTIMEDIA_DB.$imgUncharted3);
+
+        $imgUncharted4 = uniqid().".jpg";
+        copy("https://gamelegends.it/wp-content/uploads/2021/05/Uncharted-nuovo-capitolo-1.jpg", "../../".MULTIMEDIA_DB.$imgUncharted4);
+
+        $videoBug = uniqid().".mp4";
+        copy("../../inc/vid/bug.mp4", "../../".MULTIMEDIA_DB.$videoBug);
+
         $multimedias = array(
-            new ContenutoMultimedialePostCreateDTO("https://images4.alphacoders.com/115/1151249.jpg", 0, 1, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://asset.vg247.com/Wow-History-Vanilla-07.jpg/BROK/resize/690%3E/format/jpg/quality/70/Wow-History-Vanilla-07.jpg", 0, 5, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://www.psu.com/wp/wp-content/uploads/2019/11/uncharted-4-review-2.jpeg", 0, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://pressquit.com/wp-content/uploads/2016/06/Review-Uncharted-4-FI.jpg", 1, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/070/large-1465604295-uc4workflow-feature2.jpg", 2, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://preview.redd.it/9e60csttrwx81.jpg?auto=webp&s=38730f571ceac06dce9cef0fdce3e0ce65e92ddd", 3, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("https://gamelegends.it/wp-content/uploads/2021/05/Uncharted-nuovo-capitolo-1.jpg", 4, 7, false, true),
-            new ContenutoMultimedialePostCreateDTO("inc/vid/bug.mp4", 0, 11, true, false) // Don't think a youtube video will work..
+            new ContenutoMultimedialePostCreateDTO($imgEldenRing, 0, 1, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgPersWow, 0, 5, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgUncharted0, 0, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgUncharted1, 1, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgUncharted2, 2, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgUncharted3, 3, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO($imgUncharted4, 4, 7, false, true),
+            new ContenutoMultimedialePostCreateDTO($videoBug, 0, 11, true, false)
         );
 
         foreach ($multimedias as $m) {
