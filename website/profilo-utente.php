@@ -16,7 +16,8 @@
 
         $utente = $dbh->getUtenteFromId($idUtente);
         if (!isset($utente)) {
-            internalServerError("Questo utente non esiste.");
+            require("not-found.php");
+            exit();
         }
 
         $currentUtente = $dbh->getUtenteFromId(getSessionUserId());

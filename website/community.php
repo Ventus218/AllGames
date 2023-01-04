@@ -12,7 +12,8 @@
         $community = $dbh->getCommunityFromName($communityName);
 
         if (!isset($community)) {
-            internalServerError("Non esiste nessuna commnity con questo nome.");
+            require("not-found.php");
+            exit();
         }
 
         $utente = $dbh->getUtenteFromId(getSessionUserId());
