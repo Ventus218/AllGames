@@ -20,7 +20,8 @@
         $post = $dbh->getPostFromId($idPost);
 
         if (!isset($post)) {
-            notFound();
+            require("not-found.php");
+            exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

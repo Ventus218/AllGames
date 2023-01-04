@@ -12,7 +12,8 @@
         $community = $dbh->getCommunityFromName($communityName);
 
         if (!isset($community)) {
-            notFound();
+            require("not-found.php");
+            exit();
         }
 
         $utente = $dbh->getUtenteFromId(getSessionUserId());

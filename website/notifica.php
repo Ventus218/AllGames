@@ -17,7 +17,8 @@
     $notifica = $dbh->getNotificaFromId(intval($idNotifica));
 
     if (!isset($notifica)) {
-        notFound();
+        require("not-found.php");
+        exit();
     }
 
     if ($notifica->ricevente != getSessionUserId()) {
