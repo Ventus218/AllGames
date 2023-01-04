@@ -28,18 +28,26 @@
     $dbh->setNotificaLetta($notifica);
 
     $location = "";
-    if ($notifica->isNotificaFollow) {
+    if ($notifica->isNotificaFollow && isset($notifica->utenteSeguace)) {
         $location = "profilo-utente.php?utente=".escapeSpacesForURIParam($notifica->utenteSeguace);    
-    } else if ($notifica->isNotificaMiPiace) {
-        $location = "post.php?post=".escapeSpacesForURIParam($notifica->postPiaciuto);    
-    } else if ($notifica->isNotificaPostCommunity) {
+
+    } else if ($notifica->isNotificaMiPiace && isset($notifica->postPiaciuto)) {
+        $location = "post.php?post=".escapeSpacesForURIParam($notifica->postPiaciuto);  
+
+    } else if ($notifica->isNotificaPostCommunity && isset($notifica->postCommunity)) {
         $location = "post.php?post=".escapeSpacesForURIParam($notifica->postCommunity);    
-    } else if ($notifica->isNotificaCommento) {
+
+    } else if ($notifica->isNotificaCommento && isset($notifica->commento)) {
         $commento = $dbh->getCommentoFromId($notifica->commento);
-        $location = "post.php?post=".escapeSpacesForURIParam($commento->post)."#commento-".$commento->id;    
-    } else if ($notifica->isNotificaRisposta) {
-        $commento = $dbh->getCommentoFromId($dbh->getRispostaFromId($notifica->risposta)->commento);
+        $location = "post.php?post=".escapeSpacesForURIParam($commento->post)."#commento-".$commento->id; 
+
+    } else if ($notifica->isNotificaRisposta && isset($notifica->risposta)) {
+        $risposta = $dbh->getRispostaFromId($notifica->risposta);
+        $commento = $dbh->getCommentoFromId($risposta->commento);
         $location = "post.php?post=".escapeSpacesForURIParam($commento->post)."#commento-".$commento->id;
+    } else {
+        require("not-found.php");
+        exit();
     }
 
     header("Location: ".$location);
