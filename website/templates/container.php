@@ -12,9 +12,9 @@
     <div class="container-fluid pt-0 pb-2 px-4 mt-6 <?php echo (isset($templateParams["show-footer"]) && $templateParams["show-footer"]) ? "mb-6" : ""; ?> overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row px-2 py-3 fixed-top bg-blur align-items-center justify-content-center">
-            <div class="col-md-7 col d-flex flex-row">
-                <div class="col ps-4">
+        <div class="row px-2 py-3 fixed-top bg-blur align-items-center justify-content-md-center">
+            <div class="col-md-8 col-lg-7 d-flex flex-row">
+                <div class="col ps-2 ps-md-0">
                     <header>
                         <h1 class="m-0">AllGames</h1>
                     </header>
@@ -116,7 +116,7 @@
         </div>
         <div class="row justify-content-center">
             <!--<div class="col-md-3"></div>-->
-            <div class="col-md-6">
+            <div class="col-lg-7 col-md-8">
                 <?php
                 if(isset($templateParams["content"])){
                     require($templateParams["content"]);
