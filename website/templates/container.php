@@ -12,8 +12,8 @@
     <div class="container-fluid pt-0 pb-2 px-4 mt-6 <?php echo (isset($templateParams["show-footer"]) && $templateParams["show-footer"]) ? "mb-6" : ""; ?> overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row px-2 py-3 fixed-top bg-blur align-items-center justify-content-md-center">
-            <div class="col-md-8 col-lg-7 d-flex flex-row">
+        <div class="row px-2 py-3 fixed-top bg-blur align-items-center justify-content-sm-center">
+            <div class="col-sm-9 col-md-8 col-lg-7 d-flex flex-row">
                 <div class="col ps-2 ps-md-0">
                     <header>
                         <h1 class="m-0">AllGames</h1>
@@ -22,7 +22,7 @@
 
                 <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
                 <!--Menu with create post button, create community button and notifications-->
-                <div class="col-6 col-md-5">
+                <div class="col-6 col-md-5 col-lg-4">
                     <ul class="nav nav-pills align-items-center">
                         <!--Create a community button-->
                         <li class="col-4 nav-item">
@@ -116,7 +116,7 @@
         </div>
         <div class="row justify-content-center">
             <!--<div class="col-md-3"></div>-->
-            <div class="col-lg-7 col-md-8">
+            <div class="col-lg-7 col-md-8 col-sm-9">
                 <?php
                 if(isset($templateParams["content"])){
                     require($templateParams["content"]);
@@ -131,7 +131,7 @@
         <!--Footer of the page, with Home, Search, User and Settings buttons.-->
         <div class="row fixed-bottom bg-black justify-content-center">
             <hr class="mb-1">
-            <div class="col-12 col-md-6 mb-1">
+            <div class="col-12 col-lg-7 col-md-8 col-sm-9 mb-1">
                 <footer>
                     <ul class="nav nav-pills"> 
                         <!--Home-->
