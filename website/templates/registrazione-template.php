@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <label for="password" class="visually-hidden">Inserisci la password</label>
-                                <input class="form-control mb-3 mb-md-4" type="password" name="password" id="password" placeholder="Inserisci la password" required />
+                                <input class="form-control mb-3 mb-md-4" type="password" pattern=".{8,}" name="password" id="password" placeholder="Inserisci la password" title="Minimo 8 caratteri" required/>
                             </div>
                         </div>
 

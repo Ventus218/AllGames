@@ -58,6 +58,10 @@
             array_push($templateParams["registrazione-errors"], "La password non può essere vuota.");
         }
 
+        if (strlen($password) < 8) {
+            array_push($templateParams["registrazione-errors"], "La password deve essere di almeno 8 caratteri ");
+        }
+
         if ($password !== $confermaPassword) {
             array_push($templateParams["registrazione-errors"], "Le password non coincidono");
         }

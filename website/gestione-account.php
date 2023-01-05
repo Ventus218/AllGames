@@ -83,6 +83,10 @@
                 array_push($templateParams["change-errors"], "Le password non coincidono.");
             }
 
+            if ($password !== "" && strlen($password) < 8) {
+                array_push($templateParams["change-errors"], "La password deve essere di almeno 8 caratteri ");
+            }
+
             if ($password === "" && $confermaPassword !== "") {
                 array_push($templateParams["change-errors"], "La password non può essere vuota.");
             }
