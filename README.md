@@ -1,11 +1,11 @@
-# AllGames
+# **AllGames** 🕹️
 A social network about games!
 
 <img style="width:200px;" src="doc/img/screen3.PNG" alt="Screenshot home">
 <img style="width:200px;" src="doc/img/screen2.PNG" alt="Screenshot post">
 <img style="width:200px;" src="doc/img/screen1.PNG" alt="Screenshot tags">
 
-## Installation
+## Installation 🔧
 
 ### Creating docker container for xampp
 Be sure to have Docker installed.
@@ -20,7 +20,7 @@ Then run this to avoid problems from MariaDB:
 docker exec xampp /opt/lampp/bin/mysql_upgrade
 ```
 
-## Loading sample data (optional)
+## Loading sample data (optional) 💾
 If you want to load the database with sample data run:
 ```sh
 curl --location --request POST 'localhost:8080/www/db/scripts/loadSampleDB.php' \
@@ -30,7 +30,7 @@ curl --location --request POST 'localhost:8080/www/db/scripts/loadSampleDB.php' 
 ## AllGames is now installed 🎉
 You can now access AllGames at [http://localhost:8080/www/index.php](http://localhost:8080/www/index.php)
 
-## Documentation
+## Documentation 📖
 
 Here you can find all the documentation:
 - [Specifiche di progetto](doc/specifiche_progetto.pdf)
