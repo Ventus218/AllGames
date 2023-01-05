@@ -62,7 +62,6 @@
             array_push($templateParams["registrazione-errors"], "Le password non coincidono");
         }
 
-        $dataNascita = new DateTime($_POST["data-nascita"]);
         if ($dataNascita > new DateTime('now', $dataNascita->getTimezone())) {
             array_push($templateParams["registrazione-errors"], "La data di nascita non può essere successiva ad oggi.");
         }
