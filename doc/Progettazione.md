@@ -12,7 +12,7 @@ Almeno durante le fasi di progettazione, sviluppo e testing risulta comodo utili
 
 Di seguito lo script per eseguire il container, esso espone le porte http e ssh del container, e monta come volumi una directory contenente il il sito web e una contenente gli script SQL per inizializzare il database.
 ```sh
-docker run --name xampp -p 41061:22 -p 8080:80 -d -v <path-to-website>:/www -v <path-to-db-scripts>:/allgames/db/scripts tomsik68/xampp
+docker run --name xampp -p <port-for-ssh-access>:22 -p 8080:80 -d -v <path-to-website-folder>:/www -v <path-to-db-sql-scripts-folder>:/allgames/db/scripts -v <path-to-sample-data-folder>:/allgames/sample-data tomsik68/xampp
 ```
 
 Sembra inoltre necessario eseguire il seguente comando subito dopo aver avviato il container, risolve alcuni errori riscontrati dal DBMS.
