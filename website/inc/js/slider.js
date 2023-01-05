@@ -35,9 +35,6 @@ for (let i = 0; i < sliders.length; i++) {
         nextButton.classList.remove("d-none");
         nextButton.classList.add("d-inline-block");
 
-        //Visualizzo le immagine al centro del div
-        slide.classList.add("text-center");
-
         //Rendo invisibili tutte le immagini oltre la terza e aggiungo alla prima del margine a sinistra
         images[0].classList.add("ms-3");
 

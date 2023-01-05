@@ -74,7 +74,7 @@
 
                                 <!-- Image/video carousel -->
                                 <?php if(sizeof($multim) > 0): ?>
-                                <div class="slider carousel">
+                                <div class="slider carousel text-center">
                                     <div class="carousel-inner">
                                         <?php foreach($multim as $m): ?>
                                             <?php if($m->immagine): ?>

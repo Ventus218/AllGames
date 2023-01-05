@@ -12,119 +12,126 @@
     <div class="container-fluid pt-0 pb-2 px-4 mt-6 <?php echo (isset($templateParams["show-footer"]) && $templateParams["show-footer"]) ? "mb-6" : ""; ?> overflow-hidden">
 
         <!--Top bar of the page-->
-        <div class="row px-2 py-3 fixed-top bg-blur align-items-center">
-            <div class="col ps-4">
-                <header>
-                    <h1 class="m-0">AllGames</h1>
-                </header>
-            </div>
+        <div class="row px-2 py-3 fixed-top bg-blur align-items-center justify-content-sm-center">
+            <div class="col-sm-9 col-md-8 col-lg-7 d-flex flex-row">
+                <div class="col ps-2 ps-md-0">
+                    <header>
+                        <h1 class="m-0">AllGames</h1>
+                    </header>
+                </div>
 
-            <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
-            <!--Menu with create post button, create community button and notifications-->
-            <div class="col-6">
-                <ul class="nav nav-pills align-items-center">
-                    <!--Create a community button-->
-                    <li class="col-4 nav-item">
-                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="fondazione-community.php">
-                            <img src="inc/img/plus.png" alt="Crea community" />
-                            <img src="inc/img/people.png" alt="Crea community" />
-                        </a>
-                    </li>
-                    <li class="col-1"></li>
-                    <!--Create a post button-->
-                    <li class="col-3 nav-item">
-                        <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="creazione-post.php">
-                            <img src="inc/img/new-post.png" alt="Pubblica un nuovo post" />
-                        </a>
-                    </li>
-                    <li class="col-1"></li>
-                    <!--Notifications button-->
-                    <li class="col-3 nav-item">
-                        <div class="dropdown dropdown-menu-end">
-                            <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
-                                <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
-                                <?php if($templateParams["new_notifications"] > 0): ?>
-                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
-                                    <!--Number of new notifications-->
-                                    <?php                                         
-                                        echo $templateParams["new_notifications"];
-                                    ?>
-                                    <!--For screen readers-->
-                                    <span class="visually-hidden">Nuove notifiche</span>
-                                </span>
-                                <?php endif; ?>
+                <?php if (isset($templateParams["show-top-bar-buttons"]) && $templateParams["show-top-bar-buttons"] === true): ?>
+                <!--Menu with create post button, create community button and notifications-->
+                <div class="col-6 col-md-5 col-lg-4">
+                    <ul class="nav nav-pills align-items-center">
+                        <!--Create a community button-->
+                        <li class="col-4 nav-item">
+                            <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="fondazione-community.php">
+                                <img src="inc/img/plus.png" alt="Crea community" />
+                                <img src="inc/img/people.png" alt="Crea community" />
                             </a>
-
-                            <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownNotificationsButton">
-                                <?php if ($templateParams["total_notifications"] == 0): ?>
-                                <li class="mb-2">
-                                    <span class="text-white dropdown-item-text"> 
-                                        <strong>Non sono presenti notifiche</strong>
+                        </li>
+                        <li class="col-1"></li>
+                        <!--Create a post button-->
+                        <li class="col-3 nav-item">
+                            <a class="top-bar-button nav-link border border-lightgray text-center text-white p-0 pb-1 border-2" href="creazione-post.php">
+                                <img src="inc/img/new-post.png" alt="Pubblica un nuovo post" />
+                            </a>
+                        </li>
+                        <li class="col-1"></li>
+                        <!--Notifications button-->
+                        <li class="col-3 nav-item">
+                            <div class="dropdown dropdown-menu-end">
+                                <a role="button" class="nav-link p-0 position-relative" data-bs-toggle="dropdown" id="dropdownNotificationsButton" href="#" aria-expanded="false" data-bs-auto-close="outside">
+                                    <img id="notifiche" src="inc/img/inventory.png" alt="Notifiche" />
+                                    <?php if($templateParams["new_notifications"] > 0): ?>
+                                    <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-danger p-1">
+                                        <!--Number of new notifications-->
+                                        <?php                                         
+                                            echo $templateParams["new_notifications"];
+                                        ?>
+                                        <!--For screen readers-->
+                                        <span class="visually-hidden">Nuove notifiche</span>
                                     </span>
-                                </li>
-                                
-                                <?php else: 
-                                    for($i = 0; $i < $templateParams["total_notifications"]; $i++):
-                                        $notifica = $templateParams["notifications"][$i];
-                                        $utente = $dbh->getSourceUserOfNotification($notifica);
-                                        $testoNotifica = $notifica->getText();
-                                        $linkNotifica = "notifica.php?notifica=".escapeSpacesForURIParam($notifica->id);
-                                ?>
+                                    <?php endif; ?>
+                                </a>
 
-                                <!--Notification-->
-                                <li class="mb-2">
-                                    <span class="dropdown-item-text">
-                                        <!--Link of the notification-->
-                                        <a href="<?php echo $linkNotifica; ?>" class="text-decoration-none d-flex align-items-center justify-content-between">
-                                            <span class="align-items-center d-flex">
-                                                <span class="me-3">
-                                                    <img src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?>" alt="Immagine profilo di <?php echo $utente->username; ?>" class="notifica-profile-pic rounded-circle"/>
+                                <ul class="dropdown-menu dropdown-menu-dark bg-blur pb-1" aria-labelledby="dropdownNotificationsButton">
+                                    <?php if ($templateParams["total_notifications"] == 0): ?>
+                                    <li class="mb-2">
+                                        <span class="text-white dropdown-item-text"> 
+                                            <strong>Non sono presenti notifiche</strong>
+                                        </span>
+                                    </li>
+                                    
+                                    <?php else: 
+                                        for($i = 0; $i < $templateParams["total_notifications"]; $i++):
+                                            $notifica = $templateParams["notifications"][$i];
+                                            $utente = $dbh->getSourceUserOfNotification($notifica);
+                                            $testoNotifica = $notifica->getText();
+                                            $linkNotifica = "notifica.php?notifica=".escapeSpacesForURIParam($notifica->id);
+                                    ?>
+
+                                    <!--Notification-->
+                                    <li class="mb-2">
+                                        <span class="dropdown-item-text">
+                                            <!--Link of the notification-->
+                                            <a href="<?php echo $linkNotifica; ?>" class="text-decoration-none d-flex align-items-center justify-content-between">
+                                                <span class="align-items-center d-flex">
+                                                    <span class="me-3">
+                                                        <img src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?>" alt="Immagine profilo di <?php echo $utente->username; ?>" class="notifica-profile-pic rounded-circle"/>
+                                                    </span>
+                                                    <span class="text-white"> 
+                                                        <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $testoNotifica; ?>
+                                                    </span>
                                                 </span>
-                                                <span class="text-white"> 
-                                                    <span class="text-warning"><?php echo $utente->username; ?></span> <?php echo $testoNotifica; ?>
+                                                
+                                                <?php if($notifica->letta == 0): ?>
+                                                <!--<span class="text-danger float-end"><strong>Non letto</strong></span>-->
+                                                <span class="badge rounded-pill bg-warning p-1 ms-2">
+                                                    <!--For screen readers-->
+                                                    <span class="visually-hidden">Non letta</span>
                                                 </span>
-                                            </span>
+                                                <?php endif;?>
+                                            </a>
                                             
-                                            <?php if($notifica->letta == 0): ?>
-                                            <!--<span class="text-danger float-end"><strong>Non letto</strong></span>-->
-                                            <span class="badge rounded-pill bg-warning p-1 ms-2">
-                                                <!--For screen readers-->
-                                                <span class="visually-hidden">Non letta</span>
-                                            </span>
-                                            <?php endif;?>
-                                        </a>
-                                        
-                                    </span>
-                                </li>
-                                <?php //Do not make the break line if this is the last notification 
-                                if($i < $templateParams["total_notifications"]-1):?>
-                                <!--Break Line-->
-                                <li><hr class="mb-2 mt-0 mx-3 rounded opacity-100" /></li>
+                                        </span>
+                                    </li>
+                                    <?php //Do not make the break line if this is the last notification 
+                                    if($i < $templateParams["total_notifications"]-1):?>
+                                    <!--Break Line-->
+                                    <li><hr class="mb-2 mt-0 mx-3 rounded opacity-100" /></li>
 
-                                <?php   endif;
-                                    endfor;
-                                endif; 
-                                ?>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                                    <?php   endif;
+                                        endfor;
+                                    endif; 
+                                    ?>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
-
         </div>
-        <?php
-        if(isset($templateParams["content"])){
-            require($templateParams["content"]);
-        }
-        ?>
+        <div class="row justify-content-center">
+            <!--<div class="col-md-3"></div>-->
+            <div class="col-lg-7 col-md-8 col-sm-9">
+                <?php
+                if(isset($templateParams["content"])){
+                    require($templateParams["content"]);
+                }
+                ?>
+            </div>
+            <!--<div class="col-md-3"></div>-->
+        </div>
     </div>
 
     <?php if(isset($templateParams["show-footer"]) && $templateParams["show-footer"] === true): ?>
         <!--Footer of the page, with Home, Search, User and Settings buttons.-->
-        <div class="row fixed-bottom bg-black">
+        <div class="row fixed-bottom bg-black justify-content-center">
             <hr class="mb-1">
-            <div class="col-12 mb-1">
+            <div class="col-12 col-lg-7 col-md-8 col-sm-9 mb-1">
                 <footer>
                     <ul class="nav nav-pills"> 
                         <!--Home-->

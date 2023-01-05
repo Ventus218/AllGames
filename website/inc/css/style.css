@@ -128,7 +128,8 @@ article section p {
 }
 
 article section img {
-    width: 61px;
+    max-width: 61px;
+    max-height: 200px;
 }
 
 article footer a img, article footer button img {
@@ -212,4 +213,22 @@ form.commenta textarea::placeholder {
 
 .w-90 {
     width: 90% !important;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    article section img {
+        max-width: 90px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    article section img {
+        max-width: 110px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    article section img {
+        max-width: 140px;
+    }
 }
