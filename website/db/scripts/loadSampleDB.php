@@ -55,7 +55,7 @@
         $u_drac = 6;
         registerUtente($db, "Draco4ever", "pass", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), GenereUtente::FEMMINA, "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac);
 
-
+        // Creating communities and community images
         $comm_amantiDS = "Amanti di Dark Souls";
         $comm_retroGaming = "Retro gaming";
         $comm_tutorial = "TuttoTutorial";
@@ -84,6 +84,7 @@
             $community->createOn($db);
         }
 
+        // Making users partecipate to communities
         $partecipazioni_community = array(
             new PartecipazioneCommunityCreateDTO($u_youdied, $comm_amantiDS),
             new PartecipazioneCommunityCreateDTO($u_got, $comm_amantiDS),
@@ -101,6 +102,7 @@
             $p->createOn($db);
         }
 
+        // Making users follow each other
         $follows = array(
             new FollowCreateDTO($u_amaz, $u_drac),
             new FollowCreateDTO($u_amaz, $u_got),
@@ -116,6 +118,7 @@
             $f->createOn($db);
         }
 
+        // Creating tags
         $tag_darksouls = "Dark Souls";
         $tag_eldenring = "Elden Ring";
         $tag_outw = "Outward";
@@ -151,6 +154,7 @@
             $t->createOn($db);
         }
 
+        // Creating posts
         $posts = array(
             new PostCreateDTO("Cosa pensate di Elden Ring, il nuovo gioco di FromSoftware?\nSarà il degno successore di Dark Souls?", dateTimeFromSQLDate("2022-02-26 18:31:00"), $u_youdied, $comm_amantiDS, 1),
             new PostCreateDTO("Oggi pomeriggio ci vediamo su Stwitch per la seconda live di Bloodborn", dateTimeFromSQLDate("2022-08-22 10:15:00"), $u_youdied, NULL, 2),
@@ -170,6 +174,7 @@
             $p->createOn($db);
         }
 
+        // Linking tags to posts
         $taginposts = array(
             new TagInPostCreateDTO($tag_eldenring, 1),
             new TagInPostCreateDTO($tag_darksouls, 1),
@@ -199,6 +204,7 @@
             $t->createOn($db);
         }
 
+        // Creating posts multimedia contents
         $imgEldenRing = uniqid().".jpg";
         copy(SAMPLE_IMG."EldenRing.jpg", RELATIVE_MULTIMEDIA_DB.$imgEldenRing);
 
@@ -238,6 +244,7 @@
             $m->createOn($db);
         }
 
+        // Placing likes
         $mipiaces = array(
             new MiPiaceCreateDTO(1, $u_youdied),
             new MiPiaceCreateDTO(1, $u_got),
@@ -263,7 +270,7 @@
             $m->createOn($db);
         }
 
-
+        // Creating comments
         $commenti = array(
             new CommentoCreateDTO("Vieni a vedere qualche mio tutorial se vuoi migliorare.", dateTimeFromSQLDate("2022-03-01 12:30:00"), 6, $u_youdied, 1),
             new CommentoCreateDTO("Cosa ne dici di provare World Of Warcraft\n Ho fondato una gilda (Le Amazzoni) che è diventata molto nota in Italia. Se vuoi possiamo aiutarti con le prime fasi di gioco!!! :)", dateTimeFromSQLDate("2022-10-09 10:32:00"), 12, $u_amaz, 2),
@@ -281,6 +288,7 @@
             $c->createOn($db);
         }
 
+        // Creating replys
         $risposte = array(
             new RispostaCreateDTO("Non sono io a dover migliorare, è il gioco...", dateTimeFromSQLDate("2022-03-01 12:35:00"), $u_got, 1, 1),
             new RispostaCreateDTO("Stai calmina, stava solo cercando di essere gentile...", dateTimeFromSQLDate("2022-03-01 12:58:00"), $u_killer, 1, 2),
