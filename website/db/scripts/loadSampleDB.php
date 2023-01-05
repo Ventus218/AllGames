@@ -12,49 +12,66 @@
         require_once($file);
     }
 
+    define('SAMPLE_IMG', '/allgames/sample-data/img/');
+    define('SAMPLE_VID', '/allgames/sample-data/vid/');
+    define('RELATIVE_MULTIMEDIA_DB', "../../".MULTIMEDIA_DB);
+
     require_once("./resetDB.php");
 
     function loadSampleDB() {
         $db = new Database("localhost", "root", "", "ALL_GAMES", 3306);
         
         // Deleting all user multimedia files
-        foreach (glob("../../".MULTIMEDIA_DB."*") as $file) {
+        foreach (glob(RELATIVE_MULTIMEDIA_DB."*") as $file) {
             unlink($file);
         }
 
+        // Creating users and user images.
         $u_youdied = 1;
-        $u_amaz = 2;
-        $u_got = 3;
-        $u_killer = 4;
-        $u_rob = 5;
-        $u_drac = 6;
-
         $u_imgYouDied = uniqid().".jpg";
-        copy("../../inc/img/DarkSouls.jpg", "../../".MULTIMEDIA_DB.$u_imgYouDied);
-
+        copy(SAMPLE_IMG."DarkSouls.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgYouDied);
         registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", $u_imgYouDied, $u_youdied);
-        registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", NULL, $u_amaz);
-        registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", NULL, $u_got);
-        registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", NULL, $u_killer);
-        registerUtente($db, "roberuti", "pass", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), GenereUtente::NON_DEFINITO, "RobertoMalaguti@gmail.com", "3333333333", NULL, $u_rob);
+
+        $u_amaz = 2;
+        $u_imgAmaz = uniqid().".jpg";
+        copy(SAMPLE_IMG."PersonaggioWow.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgAmaz);
+        registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", $u_imgAmaz, $u_amaz);
+
+        $u_got = 3;
+        $u_imgGot = uniqid().".jpg";
+        copy(SAMPLE_IMG."asscreed.jpeg", RELATIVE_MULTIMEDIA_DB.$u_imgGot);
+        registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", $u_imgGot, $u_got);
+
+        $u_killer = 4;
+        $u_imgKiller = uniqid().".jpeg";
+        copy(SAMPLE_IMG."Minecraft.jpeg", RELATIVE_MULTIMEDIA_DB.$u_imgKiller);
+        registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", $u_imgKiller, $u_killer);
+
+        $u_rob = 5;
+        $u_imgRob = uniqid().".jpg";
+        copy(SAMPLE_IMG."RobertoMalaguti.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgRob);
+        registerUtente($db, "roberuti", "pass", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), GenereUtente::NON_DEFINITO, "RobertoMalaguti@gmail.com", "3333333333", $u_imgRob, $u_rob);
+
+        $u_drac = 6;
         registerUtente($db, "Draco4ever", "pass", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), GenereUtente::FEMMINA, "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac);
 
+        // Creating communities and community images
         $comm_amantiDS = "Amanti di Dark Souls";
         $comm_retroGaming = "Retro gaming";
         $comm_tutorial = "TuttoTutorial";
         $comm_amazzoni = "Le Amazzoni (WoW)";
 
         $comm_imgAmantiDS = uniqid().".jpg";
-        copy("https://static.bandainamcoent.eu/high/dark-souls/brand-setup/ds3_thumb_brand_624x468.jpg", "../../".MULTIMEDIA_DB.$comm_imgAmantiDS);
+        copy(SAMPLE_IMG."DarkSoulsFace.jpg", RELATIVE_MULTIMEDIA_DB.$comm_imgAmantiDS);
 
         $comm_imgRetroGaming = uniqid().".jpg";
-        copy("https://ichef.bbci.co.uk/news/976/cpsprodpb/EAEE/production/_96724106_gettyimages-157437668.jpg", "../../".MULTIMEDIA_DB.$comm_imgRetroGaming);
+        copy(SAMPLE_IMG."RetroController.jpg", RELATIVE_MULTIMEDIA_DB.$comm_imgRetroGaming);
 
         $comm_imgTutorial = uniqid().".jpg";
-        copy("https://i.ytimg.com/vi/B6nLuyVOk4k/maxresdefault.jpg", "../../".MULTIMEDIA_DB.$comm_imgTutorial);
+        copy(SAMPLE_IMG."Tutorial.jpg", RELATIVE_MULTIMEDIA_DB.$comm_imgTutorial);
 
         $comm_imgAmazzoni = uniqid().".jpg";
-        copy("https://www.kotaku.com.au/wp-content/uploads/sites/3/2017/12/14/z3tplwgx6bbhufjaejhy.jpg", "../../".MULTIMEDIA_DB.$comm_imgAmazzoni);
+        copy(SAMPLE_IMG."WowGuild.jpg", RELATIVE_MULTIMEDIA_DB.$comm_imgAmazzoni);
 
         $communitys = array(
             new CommunityCreateDTO($comm_amantiDS, $comm_imgAmantiDS, $u_youdied),
@@ -67,6 +84,7 @@
             $community->createOn($db);
         }
 
+        // Making users partecipate to communities
         $partecipazioni_community = array(
             new PartecipazioneCommunityCreateDTO($u_youdied, $comm_amantiDS),
             new PartecipazioneCommunityCreateDTO($u_got, $comm_amantiDS),
@@ -84,6 +102,7 @@
             $p->createOn($db);
         }
 
+        // Making users follow each other
         $follows = array(
             new FollowCreateDTO($u_amaz, $u_drac),
             new FollowCreateDTO($u_amaz, $u_got),
@@ -99,6 +118,7 @@
             $f->createOn($db);
         }
 
+        // Creating tags
         $tag_darksouls = "Dark Souls";
         $tag_eldenring = "Elden Ring";
         $tag_outw = "Outward";
@@ -134,6 +154,7 @@
             $t->createOn($db);
         }
 
+        // Creating posts
         $posts = array(
             new PostCreateDTO("Cosa pensate di Elden Ring, il nuovo gioco di FromSoftware?\nSarà il degno successore di Dark Souls?", dateTimeFromSQLDate("2022-02-26 18:31:00"), $u_youdied, $comm_amantiDS, 1),
             new PostCreateDTO("Oggi pomeriggio ci vediamo su Stwitch per la seconda live di Bloodborn", dateTimeFromSQLDate("2022-08-22 10:15:00"), $u_youdied, NULL, 2),
@@ -153,6 +174,7 @@
             $p->createOn($db);
         }
 
+        // Linking tags to posts
         $taginposts = array(
             new TagInPostCreateDTO($tag_eldenring, 1),
             new TagInPostCreateDTO($tag_darksouls, 1),
@@ -182,29 +204,30 @@
             $t->createOn($db);
         }
 
+        // Creating posts multimedia contents
         $imgEldenRing = uniqid().".jpg";
-        copy("https://images4.alphacoders.com/115/1151249.jpg", "../../".MULTIMEDIA_DB.$imgEldenRing);
+        copy(SAMPLE_IMG."EldenRing.jpg", RELATIVE_MULTIMEDIA_DB.$imgEldenRing);
 
         $imgPersWow = uniqid().".jpg";
-        copy("https://asset.vg247.com/Wow-History-Vanilla-07.jpg/BROK/resize/690%3E/format/jpg/quality/70/Wow-History-Vanilla-07.jpg", "../../".MULTIMEDIA_DB.$imgPersWow);
+        copy(SAMPLE_IMG."PersonaggioWow.jpg", RELATIVE_MULTIMEDIA_DB.$imgPersWow);
 
         $imgUncharted0 = uniqid().".jpeg";
-        copy("https://www.psu.com/wp/wp-content/uploads/2019/11/uncharted-4-review-2.jpeg", "../../".MULTIMEDIA_DB.$imgUncharted0);
+        copy(SAMPLE_IMG."UnchartedDesert.jpg", RELATIVE_MULTIMEDIA_DB.$imgUncharted0);
 
         $imgUncharted1 = uniqid().".jpg";
-        copy("https://pressquit.com/wp-content/uploads/2016/06/Review-Uncharted-4-FI.jpg", "../../".MULTIMEDIA_DB.$imgUncharted1);
+        copy(SAMPLE_IMG."UnchartedMountain.jpeg", RELATIVE_MULTIMEDIA_DB.$imgUncharted1);
 
         $imgUncharted2 = uniqid().".jpg";
-        copy("https://d2kektcjb0ajja.cloudfront.net/images/posts/feature_images/000/000/070/large-1465604295-uc4workflow-feature2.jpg", "../../".MULTIMEDIA_DB.$imgUncharted2);
+        copy(SAMPLE_IMG."UnchartedGrass.jpg", RELATIVE_MULTIMEDIA_DB.$imgUncharted2);
 
         $imgUncharted3 = uniqid().".jpg";
-        copy("https://preview.redd.it/9e60csttrwx81.jpg?auto=webp&s=38730f571ceac06dce9cef0fdce3e0ce65e92ddd", "../../".MULTIMEDIA_DB.$imgUncharted3);
+        copy(SAMPLE_IMG."UnchartedJump.jpg", RELATIVE_MULTIMEDIA_DB.$imgUncharted3);
 
         $imgUncharted4 = uniqid().".jpg";
-        copy("https://gamelegends.it/wp-content/uploads/2021/05/Uncharted-nuovo-capitolo-1.jpg", "../../".MULTIMEDIA_DB.$imgUncharted4);
+        copy(SAMPLE_IMG."UnchartedRiver.jpg", RELATIVE_MULTIMEDIA_DB.$imgUncharted4);
 
         $videoBug = uniqid().".mp4";
-        copy("../../inc/vid/bug.mp4", "../../".MULTIMEDIA_DB.$videoBug);
+        copy(SAMPLE_VID."bug.mp4", RELATIVE_MULTIMEDIA_DB.$videoBug);
 
         $multimedias = array(
             new ContenutoMultimedialePostCreateDTO($imgEldenRing, 0, 1, false, true),
@@ -221,6 +244,7 @@
             $m->createOn($db);
         }
 
+        // Placing likes
         $mipiaces = array(
             new MiPiaceCreateDTO(1, $u_youdied),
             new MiPiaceCreateDTO(1, $u_got),
@@ -246,7 +270,7 @@
             $m->createOn($db);
         }
 
-
+        // Creating comments
         $commenti = array(
             new CommentoCreateDTO("Vieni a vedere qualche mio tutorial se vuoi migliorare.", dateTimeFromSQLDate("2022-03-01 12:30:00"), 6, $u_youdied, 1),
             new CommentoCreateDTO("Cosa ne dici di provare World Of Warcraft\n Ho fondato una gilda (Le Amazzoni) che è diventata molto nota in Italia. Se vuoi possiamo aiutarti con le prime fasi di gioco!!! :)", dateTimeFromSQLDate("2022-10-09 10:32:00"), 12, $u_amaz, 2),
@@ -264,6 +288,7 @@
             $c->createOn($db);
         }
 
+        // Creating replys
         $risposte = array(
             new RispostaCreateDTO("Non sono io a dover migliorare, è il gioco...", dateTimeFromSQLDate("2022-03-01 12:35:00"), $u_got, 1, 1),
             new RispostaCreateDTO("Stai calmina, stava solo cercando di essere gentile...", dateTimeFromSQLDate("2022-03-01 12:58:00"), $u_killer, 1, 2),
