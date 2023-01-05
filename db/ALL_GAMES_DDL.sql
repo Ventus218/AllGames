@@ -107,7 +107,7 @@ create table UTENTE (
      PasswordHash varchar(128) not null,
      Nome varchar(32) not null,
      Cognome varchar(32) not null,
-     DataNascita date not null,
+     DataNascita datetime not null,
      Genere char(1) not null,
      Email varchar(128) not null,
      Telefono varchar(32) not null,
