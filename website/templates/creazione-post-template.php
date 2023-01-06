@@ -15,7 +15,7 @@ $tags = $templateParams["tags"];
 
             <section>
                 <header>
-                    <h3 class="visually-hidden">Campi obbligatori</h2>
+                    <h3 class="visually-hidden">Campi obbligatori</h3>
                 </header>
 
                 <div class="row">
