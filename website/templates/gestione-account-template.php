@@ -13,13 +13,13 @@ $utente = $templateParams["utente"];
                     <h2 class="fw-bold">Gestione account</h2>
                 </header>
 
-                <hr class="opacity-75 border border-1 rounded">
+                <hr class="opacity-75 border border-1 rounded" />
 
                 <div class="row">
                     <div class="col-12 col-md-6 mb-3">
                         <div class="d-flex">
                             <label for="immagineProfilo" class="mx-auto cursor-pointer">
-                                <img id="previewImg" class="change-profile-pic rounded-circle" src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>">
+                                <img id="previewImg" class="change-profile-pic rounded-circle" src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?>" alt="Immagine di profilo dell'utente <?php echo $utente->username; ?>" />
                             </label>
 
                             <input class="d-none" type="file" accept="image/jpeg, image/png" name="immagineProfilo" id="immagineProfilo" />
@@ -129,7 +129,7 @@ $utente = $templateParams["utente"];
 
             </section>
 
-            <hr class="opacity-75 my-4 border border-1 rounded">
+            <hr class="opacity-75 my-4 border border-1 rounded" />
             
             <div class="row">
                 <div class="col d-flex align-items-end">

@@ -8,7 +8,7 @@
 
     <div class="col-12">
         <a href="informazioni.php" class="btn fs-6 text-white text-decoration-none d-flex align-items-center">
-            <img src="inc/img/profile-pic.png" alt="Informazioni" />
+            <img src="inc/img/info.png" alt="Informazioni" />
             <strong class="ms-3"> Informazioni </strong>
         </a>
     </div>

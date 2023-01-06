@@ -11,7 +11,7 @@ $tags = $templateParams["tags"];
             <header>
                 <h2 class="fw-bold">Creazione post</h2>
             </header>
-            <hr class="opacity-75 border border-1 rounded">
+            <hr class="opacity-75 border border-1 rounded" />
 
             <section>
                 <header>
@@ -25,7 +25,7 @@ $tags = $templateParams["tags"];
                     </div>
                 </div>
             </section>
-            <hr class="opacity-75 border border-1 rounded">
+            <hr class="opacity-75 border border-1 rounded" />
 
             <section>
                 <header>
@@ -55,7 +55,7 @@ $tags = $templateParams["tags"];
                     </div>
                     <div class="col-2">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#tagsInfo">
-                            <img class="info-pic" src="inc/img/info.png" alt="Info riguardo i tag">
+                            <img class="info-pic" src="inc/img/info.png" alt="Info riguardo i tag" />
                         </a>
 
                         <!-- The Modal -->
@@ -117,7 +117,7 @@ $tags = $templateParams["tags"];
                     </div>
                     <div class="col-2">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#communityInfo">
-                            <img class="info-pic" src="inc/img/info.png" alt="Info riguardo le community">
+                            <img class="info-pic" src="inc/img/info.png" alt="Info riguardo le community" />
                         </a>
 
                         <!-- The Modal -->

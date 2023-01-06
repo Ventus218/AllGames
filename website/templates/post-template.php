@@ -27,12 +27,12 @@
                                     <div class="col-auto px-0">
                                         <div class="dropdown">
                                             <button class="btn p-0" type="button" id="post<?php echo $post->id; ?>-options-menu" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <img class="options-img" src="inc/img/dots.png" alt="Opzioni del post">
+                                                <img class="options-img" src="inc/img/dots.png" alt="Opzioni del post" />
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="post<?php echo $post->id; ?>-options-menu">
                                                 <li>
                                                     <form class="mb-0" action="post.php?post=<?php echo escapeSpacesForURIParam($post->id); ?>" method="post">
-                                                        <input type="hidden" name="delete" value="1">
+                                                        <input type="hidden" name="delete" value="1" />
                                                         <button class="dropdown-item text-danger" type="submit">Elimina</button>
                                                     </form>
                                                 </li>

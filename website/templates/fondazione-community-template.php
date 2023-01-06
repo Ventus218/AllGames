@@ -6,7 +6,7 @@
                             <h2 class="fw-bold">Fondazione community</h2>
                         </header>
 
-                        <hr class="opacity-75 border border-1 rounded">
+                        <hr class="opacity-75 border border-1 rounded" />
 
                         <div class="row">
                             <div class="row text-center mb-2">

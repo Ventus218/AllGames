@@ -7,7 +7,7 @@
                         </header>
                     </div>
 
-                    <hr class="opacity-75 border border-1 rounded">
+                    <hr class="opacity-75 border border-1 rounded" />
         
                     <div class="row">
                         <section>
@@ -18,7 +18,7 @@
                         </section>
                     </div>
 
-                    <hr class="opacity-50 mb-3 me-2 border border-1 rounded">
+                    <hr class="opacity-50 mb-3 me-2 border border-1 rounded" />
 
                     <div class="row">
                         <section>
@@ -33,7 +33,7 @@
                         </section>
                     </div>
                             
-                    <hr class="opacity-50 mb-3 me-2 border border-1 rounded">
+                    <hr class="opacity-50 mb-3 me-2 border border-1 rounded" />
 
                     <div class="row">
                         <section>
