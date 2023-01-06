@@ -68,7 +68,7 @@
 
                             <!-- Image/video carousel -->
                             <?php if(sizeof($multimPost) > 0): ?>
-                            <div class="slider carousel">
+                            <div class="slider carousel text-center">
                                 <div class="carousel-inner">
                                     <?php foreach($multimPost as $m): ?>
                                         <?php if($m->immagine): ?>
