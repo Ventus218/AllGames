@@ -68,12 +68,16 @@ Il file JavaScript slider.js necessita delle classi di Bootstrap per esempio per
 ```
 website
 ├── pagine php
+├── api
+│   └── file php per le api utilizzate via ajax
 ├── db
 │   ├── classi php per la gestione del database
 │   ├── model
 │   │   └── classi php DAO
 │   └── scripts
 │       └── script php utili in fase di development
+├── multimedia-db
+│   └── immagini e video degli utenti
 ├── inc
 │   ├── css
 │   │   └── fogli di stile
@@ -81,10 +85,8 @@ website
 │   │   └── immagini statiche
 │   ├── js
 │   │   └── file javascript
-│   ├── php
-│   │   └── utility php
-│   └── vid
-│       └── video statici
+│   └── php
+│       └── utility php
 └── templates
     └── file template php
 ```
@@ -125,7 +127,7 @@ public function getContenutiMultimedialiOfPost(PostDTO $post): array {
     }, $rows);
 }
 ```
-È possibile gestire i join, le condizioni e l'ordinamento senza rinunciare all'utilizzo dell DTO che permette di utilizzare le classi php invece al posto degli array associativi che non sono tipizzati e quindi maggiormente esposti ad errori.
+È possibile gestire i join, le condizioni e l'ordinamento senza rinunciare all'utilizzo del DTO che permette di utilizzare le classi php al posto degli array associativi che non sono tipizzati e quindi maggiormente esposti ad errori.
 
 ### Script per facilitare lo sviluppo
 Si sono realizzati degli script per [autenticare un amministratore](../website/db/scripts/authenticateAdmin.php), [resettare il database](../website/db/scripts/resetDB.php) e [caricare un database di esempio](../website/db/scripts/loadSampleDB.php).
@@ -140,3 +142,8 @@ In [session.php](../website/inc/php/session.php) è possibile trovare tutti i me
 In particolare si è deciso che ogni pagina si occuperà, se necessario, di controllare se l'utente ha una sessione attiva e nel caso non fosse così ridirigerlo alla pagina di login. Nel caso del reindirizzamento viene inoltre settato un parametro che permetterà, una volta eseguito il login, di tornare sulla pagina inizialmente richiesta.
 
 Si è deciso inoltre di implementare un meccanismo che consente di far scadere la sessione dell'utente dopo un certo tempo di inattività (ad esempio 30 minuti).
+
+### Templates PHP
+Si è tentato di ridurre al minimo la duplicazione del codice, infatti il feed dei post che viene presentato in diverse pagine è stato parametrizzato e fattorizzato nell'unico file [feed.php](../website/templates/feed.php).
+
+Stessa cosa vale per il "[container](../website/templates/container.php)" ovvero le barre superiore e inferiore del sito che sono presenti nella maggior parte delle pagine.
