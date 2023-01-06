@@ -15,7 +15,7 @@
                 internalServerError("Mancano alcuni dati");
             }
 
-            $nome = $_POST["nome-community"];
+            $nome = trim($_POST["nome-community"]);
 
             //Get the image
             $immagine = $_FILES["immagine-community"];

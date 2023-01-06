@@ -22,17 +22,17 @@
                 internalServerError("Mancano alcuni dati");    
             }
 
-            $email = $_POST["email"];
-            $username = $_POST["username"];
-            $telefono = $_POST["telefono"];
-            $password = $_POST["password"];
-            $nome = $_POST["nome"];
-            $cognome = $_POST["cognome"];
-            $confermaPassword = $_POST["conferma-password"];
-            $dataNascita = new DateTime($_POST["data-nascita"]);
-            $genere = $_POST["genere"];
+            $email = trim($_POST["email"]);
+            $username = trim($_POST["username"]);
+            $telefono = trim($_POST["telefono"]);
+            $password = trim($_POST["password"]);
+            $nome = trim($_POST["nome"]);
+            $cognome = trim($_POST["cognome"]);
+            $confermaPassword = trim($_POST["conferma-password"]);
+            $dataNascita = new DateTime(trim($_POST["data-nascita"]));
+            $genere = trim($_POST["genere"]);
 
-            $oldPassword = $_POST["oldPassword"];
+            $oldPassword = trim($_POST["oldPassword"]);
 
             $utente = $dbh->getUtenteFromId(getSessionUserId());
             $urlImmagine = $utente->urlImmagine;

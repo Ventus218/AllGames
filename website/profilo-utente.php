@@ -37,8 +37,8 @@
                 internalServerError("Mancano alcune informazioni per completare l'operazione");
             }
 
-            $dbh->setUtenteFollowUtente($currentUtente, $utente, boolval($_POST["follow"]));
-            $isFollowed = boolval($_POST["follow"]);
+            $dbh->setUtenteFollowUtente($currentUtente, $utente, boolval(trim($_POST["follow"])));
+            $isFollowed = boolval(trim($_POST["follow"]));
         }
 
         $communities = $dbh->getCommunitiesOfUtente($utente);

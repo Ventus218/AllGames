@@ -11,7 +11,7 @@
                 internalServerError("Nessun testo per la ricerca inserito");
             }
 
-            $filter = $_POST["search"];
+            $filter = trim($_POST["search"]);
             if ($filter === "") {
                 internalServerError("Il testo da ricercare non può essere vuoto.");
             }
