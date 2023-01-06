@@ -30,30 +30,30 @@
         $u_youdied = 1;
         $u_imgYouDied = uniqid().".jpg";
         copy(SAMPLE_IMG."DarkSouls.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgYouDied);
-        registerUtente($db, "YOU_DIED", "pass", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", $u_imgYouDied, $u_youdied);
+        registerUtente($db, "YOU_DIED", "password", "Alberto", "Ambrosio", new DateTime((2022-28)."-01-01"), GenereUtente::MASCHIO, "AlbertoAmbrosio@gmail.com", "3333333333", $u_imgYouDied, $u_youdied);
 
         $u_amaz = 2;
         $u_imgAmaz = uniqid().".jpg";
         copy(SAMPLE_IMG."PersonaggioWow.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgAmaz);
-        registerUtente($db, "TheAmazonian", "pass", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", $u_imgAmaz, $u_amaz);
+        registerUtente($db, "TheAmazonian", "password", "Marlena", "Di Battista", new DateTime((2022-20)."-01-01"), GenereUtente::FEMMINA, "Marlena.DiBattista@virgilio.it", "3333333333", $u_imgAmaz, $u_amaz);
 
         $u_got = 3;
         $u_imgGot = uniqid().".jpg";
         copy(SAMPLE_IMG."asscreed.jpeg", RELATIVE_MULTIMEDIA_DB.$u_imgGot);
-        registerUtente($db, "gothic-4ever", "pass", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", $u_imgGot, $u_got);
+        registerUtente($db, "gothic-4ever", "password", "Francesca", "Scorbutica", new DateTime((2022-19)."-01-01"), GenereUtente::FEMMINA, "FrancescaScorbutica@gmail.com", "3333333333", $u_imgGot, $u_got);
 
         $u_killer = 4;
         $u_imgKiller = uniqid().".jpeg";
         copy(SAMPLE_IMG."Minecraft.jpeg", RELATIVE_MULTIMEDIA_DB.$u_imgKiller);
-        registerUtente($db, "Th3Pr0Kill3r", "pass", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", $u_imgKiller, $u_killer);
+        registerUtente($db, "Th3Pr0Kill3r", "password", "Francesco", "Ravioli", new DateTime((2022-10)."-01-01"), GenereUtente::MASCHIO, "FrancescoRavioli@gmail.com", "3333333333", $u_imgKiller, $u_killer);
 
         $u_rob = 5;
         $u_imgRob = uniqid().".jpg";
         copy(SAMPLE_IMG."RobertoMalaguti.jpg", RELATIVE_MULTIMEDIA_DB.$u_imgRob);
-        registerUtente($db, "roberuti", "pass", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), GenereUtente::NON_DEFINITO, "RobertoMalaguti@gmail.com", "3333333333", $u_imgRob, $u_rob);
+        registerUtente($db, "roberuti", "password", "Roberto", "Malaguti", new DateTime((2022-45)."-01-01"), GenereUtente::NON_DEFINITO, "RobertoMalaguti@gmail.com", "3333333333", $u_imgRob, $u_rob);
 
         $u_drac = 6;
-        registerUtente($db, "Draco4ever", "pass", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), GenereUtente::FEMMINA, "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac);
+        registerUtente($db, "Draco4ever", "password", "Madi", "Tamane", new DateTime((2022-16)."-01-01"), GenereUtente::FEMMINA, "MadiTamane@hotmail.com", "3333333333", NULL, $u_drac);
 
         // Creating communities and community images
         $comm_amantiDS = "Amanti di Dark Souls";
