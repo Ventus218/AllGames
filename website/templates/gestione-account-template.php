@@ -107,7 +107,7 @@ $utente = $templateParams["utente"];
 
                         <div class="row">
                             <div class="col-6 col-md-12">
-                                <input class="form-control" type="password" name="password" id="password" placeholder="Nuova password" />
+                                <input class="form-control" type="password" pattern=".{8,}" name="password" id="password" placeholder="Nuova password" title="Minimo 8 caratteri"/>
                             </div>
                             <div class="col-6 col-md-12">
                                 <input class="form-control ms-auto ms-md-0" type="password" name="conferma-password" id="conferma-password" placeholder="Conferma password"/>
