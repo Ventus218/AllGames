@@ -9,7 +9,7 @@
             internalServerError("Nessun utente selezionato");
         }
 
-        $idUtente = $_GET["utente"];
+        $idUtente = trim($_GET["utente"]);
         if (!is_numeric($idUtente)) {
             internalServerError("Formato errato del parametro utente.");
         }

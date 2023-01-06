@@ -8,7 +8,7 @@
         internalServerError("Nessuna notifica selezionata");
     }
 
-    $idNotifica = $_GET["notifica"];
+    $idNotifica = trim($_GET["notifica"]);
 
     if (!is_numeric($idNotifica)) {
         internalServerError("Formato errato del parametro notifica.");

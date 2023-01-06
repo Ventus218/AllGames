@@ -11,7 +11,7 @@
             internalServerError("Nessun post selezionato");
         }
 
-        $idPost = $_GET["post"];
+        $idPost = trim($_GET["post"]);
 
         if (!is_numeric($idPost)) {
             internalServerError("Formato errato del parametro post.");
@@ -29,7 +29,7 @@
                 $dbh->deletePost($post);
 
                 if(isset($_GET["return"])) {
-                    header("Location: ".$_GET["return"]);
+                    header("Location: ".trim($_GET["return"]));
                 } else {
                     header("Location: index.php");
                 }
