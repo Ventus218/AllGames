@@ -8,7 +8,7 @@
         if (!isset($_GET["community"])) {
             internalServerError("Nessuna community selezionata");
         }
-        $communityName = $_GET["community"];
+        $communityName = trim($_GET["community"]);
         $community = $dbh->getCommunityFromName($communityName);
 
         if (!isset($community)) {

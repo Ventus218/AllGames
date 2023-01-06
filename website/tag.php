@@ -9,7 +9,7 @@
             internalServerError("Nessun tag selezionato");
         }
 
-        $tagName = $_GET["tag"];
+        $tagName = trim($_GET["tag"]);
         if ($tagName === "") {
             internalServerError("Il parametro tag non può essere vuoto.");
         }

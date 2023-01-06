@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         header('Content-Type: application/json');
-        echo json_encode($dbh->toggleMiPiaceOfPost($_POST["postid"], getSessionUserId()));
+        echo json_encode($dbh->toggleMiPiaceOfPost(trim($_POST["postid"]), getSessionUserId()));
     }
 } else {
     internalServerError("Sono accettate solo richieste POST");

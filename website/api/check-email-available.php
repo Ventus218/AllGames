@@ -6,7 +6,7 @@
 
         if (isset($_GET["email"])) {
             header('Content-Type: application/json');
-            echo(json_encode($dbh->emailIsAvailable($_GET["email"])));
+            echo(json_encode($dbh->emailIsAvailable(trim($_GET["email"]))));
         } else {
             internalServerError("E' necessario fornire l'e-mail da controllare");
         }

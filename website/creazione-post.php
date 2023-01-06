@@ -19,8 +19,8 @@
             
             $community = null;
 
-            if (isset($_POST["community"]) && $dbh->getCommunityFromName($_POST["community"]) != null) {
-                $community = $_POST["community"];
+            if (isset($_POST["community"]) && $dbh->getCommunityFromName(trim($_POST["community"])) != null) {
+                $community = trim($_POST["community"]);
             }
 
             $idPost = $dbh->createPost($testo, $utente->id, $community);
@@ -36,7 +36,7 @@
             if (isset($_POST["nuoviTag"])) {
                 $nuoviTag = array();
                 $allTags = array();
-                $nuoviTag = explode(" ", $_POST["nuoviTag"]);
+                $nuoviTag = explode(" ", trim($_POST["nuoviTag"]));
                 foreach($nuoviTag as $tag) {
                     if($tag !== "") {
                         if (!$dbh->checkIfTagExists($tag))

@@ -11,7 +11,7 @@
             internalServerError("Nessun post selezionato");
         }
 
-        $idPost = $_GET["post"];
+        $idPost = trim($_GET["post"]);
 
         if (!is_numeric($idPost)) {
             internalServerError("Formato errato del parametro post.");
@@ -25,23 +25,23 @@
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST["delete"]) && boolval($_POST["delete"])) {
+            if (isset($_POST["delete"]) && boolval(trim($_POST["delete"]))) {
                 $dbh->deletePost($post);
 
                 if(isset($_GET["return"])) {
-                    header("Location: ".$_GET["return"]);
+                    header("Location: ".trim($_GET["return"]));
                 } else {
                     header("Location: index.php");
                 }
             } else {
 
-                if (!isset($_POST["testo"]) || $_POST["testo"] === "") {
+                if (!isset($_POST["testo"]) || trim($_POST["testo"]) === "") {
                     internalServerError("Non puoi creare commenti o risposte vuoti.");
                 }
-                $testo = $_POST["testo"];
+                $testo = trim($_POST["testo"]);
 
-                if (isset($_POST["commento"]) && $_POST["commento"] !== "") {
-                    $idCommento = $_POST["commento"];
+                if (isset($_POST["commento"]) && trim($_POST["commento"]) !== "") {
+                    $idCommento = trim($_POST["commento"]);
                     if (!is_numeric($idCommento)) {
                         internalServerError("Formato errato del parametro commento.");
                     }

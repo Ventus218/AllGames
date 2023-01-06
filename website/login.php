@@ -10,8 +10,8 @@
             internalServerError("Richiesti Username e Password");    
         }
 
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = trim($_POST["username"]);
+        $password = trim($_POST["password"]);
 
         if ($utente = authenticateUtente($username, $password, $db)) {
             startSessionForUtente($utente);

@@ -6,7 +6,7 @@
 
         if (isset($_GET["username"])) {
             header('Content-Type: application/json');
-            echo(json_encode($dbh->usernameIsAvailable($_GET["username"])));
+            echo(json_encode($dbh->usernameIsAvailable(trim($_GET["username"]))));
         } else {
             internalServerError("E' necessario fornire l'username da controllare");
         }
