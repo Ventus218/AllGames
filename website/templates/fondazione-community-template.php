@@ -17,6 +17,7 @@
                                 <div class="d-flex">
                                     <label class="mx-auto cursor-pointer rounded-circle border rounded">
                                         <img id="previewImg" class="change-profile-pic rounded-circle" src="inc/img/plus.png" alt="Immagine di profilo della community"/>
+                                        <label class="visually-hidden" for="immagine-community">Scegli immagine per la community</label>
                                         <input class="visually-hidden" type="file" accept="image/jpeg, image/png" name="immagine-community" id="immagine-community" required/>
                                     </label>
                                 </div>
