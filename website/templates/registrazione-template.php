@@ -8,10 +8,8 @@
                 </div>
 
                 <div class="col-md">
-                    <section>
-                        <header>
-                            <h3 class="text-start"> Dati account </h3>
-                        </header>
+                    <fieldset>
+                        <legend> Dati account </legend>
                         
                         <div class="row">
                             <div class="col mb-3 mb-md-4">
@@ -59,14 +57,12 @@
                                 <input class="form-control mb-3 mb-md-4" type="password" name="conferma-password" id="conferma-password" placeholder="Inserisci nuovamente la password" required />
                             </div>
                         </div>
-                    </section>
+                    </fieldset>
                 </div>
 
                 <div class="col-md-5">
-                    <section>
-                        <header>
-                            <h3 class="text-start"> Dati anagrafici </h3>
-                        </header>
+                    <fieldset>
+                        <legend> Dati anagrafici </legend>
 
                         <div class="row">
                             <div class="col-12">
@@ -90,27 +86,25 @@
                         </div>
 
                         <div class="row mb-2 mb-md-4">
-                            <div class="col-12">
-                                <header>
-                                    <h4 class="text-start">Genere</h4>
-                                </header>
-                            </div>
-                            <div class="col d-flex flex-md-column justify-content-between">
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                            <fieldset>
+                                <legend>Genere</legend>
+                                <div class="col d-flex flex-md-column justify-content-between">
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required />
                                         <label class="form-check-label" for="maschio"> Maschio </label>
-                                </div>
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                                    </div>
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required />
                                         <label class="form-check-label" for="femmina"> Femmina </label>
-                                </div>
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                                    </div>
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required />
                                         <label class="form-check-label" for="non-definito"> Non definito </label>
+                                    </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
-                    </section>
+                    </fieldset>
                 </div>
 
                 <div class="row">
