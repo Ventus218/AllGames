@@ -90,25 +90,23 @@
                         </div>
 
                         <div class="row mb-2 mb-md-4">
-                            <div class="col-12">
-                                <header>
-                                    <h4 class="text-start">Genere</h4>
-                                </header>
-                            </div>
-                            <div class="col d-flex flex-md-column justify-content-between">
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                            <fieldset>
+                                <legend>Genere</legend>
+                                <div class="col d-flex flex-md-column justify-content-between">
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="maschio" value="M" required />
                                         <label class="form-check-label" for="maschio"> Maschio </label>
-                                </div>
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                                    </div>
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="femmina" value="F" required />
                                         <label class="form-check-label" for="femmina"> Femmina </label>
-                                </div>
-                                <div class="col-auto col-md-12 form-check form-check-inline">
+                                    </div>
+                                    <div class="col-auto col-md-12 form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="genere" id="non-definito" value="U" required />
                                         <label class="form-check-label" for="non-definito"> Non definito </label>
+                                    </div>
                                 </div>
-                            </div>
+                            </fieldset>
                         </div>
                     </section>
                 </div>
