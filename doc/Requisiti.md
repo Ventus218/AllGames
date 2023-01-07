@@ -39,7 +39,6 @@
 - Cliccare sul tag di un post porta ad una pagina con tutti i post con quel tag (esclusi quelli nelle community che l'utente non segue)
 - Notifiche
     - Da memorizzare se è letta oppure no
-    - Invio anche per e-mail
     - Vengono inviate in caso di:
         - Follow al mio profilo
         - Commento ad un mio post
@@ -51,7 +50,6 @@
 - Gestione sicura delle password
 - Community
 - Mi piace 👍🏻 con AJAX
-- Notifiche via email
 - Tag (Etichette)
 - Cambio password via web
 

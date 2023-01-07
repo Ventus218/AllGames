@@ -3,3 +3,6 @@
 
 # User data
 website/multimedia-db/*
+
+# Draw.io backup files
+*.bkp
