@@ -37,7 +37,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-dark py-0" aria-labelledby="post<?php echo $post->id; ?>-options-menu">
                                                     <li>
-                                                        <form action="post.php?post=<?php echo escapeSpacesForURIParam($post->id)."&return=".$_SERVER["REQUEST_URI"]; ?>" method="post">
+                                                        <form class="mb-0" action="post.php?post=<?php echo escapeSpacesForURIParam($post->id)."&return=".$_SERVER["REQUEST_URI"]; ?>" method="post">
                                                             <input type="hidden" name="delete" value="1" />
                                                             <button class="dropdown-item text-danger" type="submit">Elimina</button>
                                                         </form>
