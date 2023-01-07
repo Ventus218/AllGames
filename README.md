@@ -1,9 +1,11 @@
 # **AllGames** 🕹️
 A social network about games!
 
-<img style="width:200px;" src="doc/img/screen3.PNG" alt="Screenshot home">
-<img style="width:200px;" src="doc/img/screen2.PNG" alt="Screenshot post">
-<img style="width:200px;" src="doc/img/screen1.PNG" alt="Screenshot tags">
+<div style="display: flex; justify-content: center">
+    <img style="width: 32%;" src="doc/img/screen3.PNG" alt="Screenshot home">
+    <img style="width: 32%;" src="doc/img/screen2.PNG" alt="Screenshot post">
+    <img style="width: 32%;" src="doc/img/screen1.PNG" alt="Screenshot tags">
+</div>
 
 ## Installation 🔧
 
