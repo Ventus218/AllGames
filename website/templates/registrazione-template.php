@@ -8,10 +8,8 @@
                 </div>
 
                 <div class="col-md">
-                    <section>
-                        <header>
-                            <h3 class="text-start"> Dati account </h3>
-                        </header>
+                    <fieldset>
+                        <legend> Dati account </legend>
                         
                         <div class="row">
                             <div class="col mb-3 mb-md-4">
@@ -59,14 +57,12 @@
                                 <input class="form-control mb-3 mb-md-4" type="password" name="conferma-password" id="conferma-password" placeholder="Inserisci nuovamente la password" required />
                             </div>
                         </div>
-                    </section>
+                    </fieldset>
                 </div>
 
                 <div class="col-md-5">
-                    <section>
-                        <header>
-                            <h3 class="text-start"> Dati anagrafici </h3>
-                        </header>
+                    <fieldset>
+                        <legend> Dati anagrafici </legend>
 
                         <div class="row">
                             <div class="col-12">
@@ -108,7 +104,7 @@
                                 </div>
                             </fieldset>
                         </div>
-                    </section>
+                    </fieldset>
                 </div>
 
                 <div class="row">
