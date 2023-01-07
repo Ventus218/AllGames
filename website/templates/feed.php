@@ -57,7 +57,7 @@
                                     <?php if(isset($post->community)): ?>
                                     <div class="col-auto pb-1 pe-1 ps-0 align-self-end">
                                         <a class="text-warning text-decoration-none" href=" <?php echo "community.php?community=".escapeSpacesForURIParam($post->community); ?> ">
-                                            <img class="community-img" src="inc/img/people.png" alt="" />
+                                            <img class="community-img" src="inc/img/people.png" alt="Riferimento alla pagina della community <?php echo $post->community?>" />
                                             <strong> <?php echo $post->community; ?> </strong>
                                         </a>
                                     </div>
@@ -79,11 +79,11 @@
                                         <?php foreach($multim as $m): ?>
                                             <?php if($m->immagine): ?>
                                             <a href="<?php echo getMultimediaURL($m->url); ?>" class="text-decoration-none">
-                                                <img src=" <?php echo getMultimediaURL($m->url); ?> " alt="" />
+                                                <img src=" <?php echo getMultimediaURL($m->url); ?> " alt="Immagine contenuta nel post" />
                                             </a>
                                             <?php else: ?>
                                             <a href="<?php echo getMultimediaURL($m->url); ?>" class="text-decoration-none">
-                                                <img src="inc/img/play.png" alt="" />
+                                                <img src="inc/img/play.png" alt="Video contenuto nel post" />
                                             </a>
                                         <?php endif; ?>
                                         <?php endforeach; ?>
