@@ -6,7 +6,8 @@
             <input class="form-control mb-3" type="text" name="search" id="search" placeholder="Cerca un username o una community" required />
         </div>
         <div class="col-1 ps-0">
-            <input type="image" class="opacity-50 search-img" alt="Tasto per cercare" src="inc/img/search.png" />
+            <label class="visually-hidden" for="search-button">Tasto per cercare</label>
+            <input type="image" class="opacity-50 search-img" alt="Tasto per cercare" src="inc/img/search.png" id="search-button"/>
         </div>
     </div>
     </form>
