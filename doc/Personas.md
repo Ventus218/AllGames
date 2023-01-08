@@ -1,7 +1,5 @@
 # Personas
 
-## YOU_DIED (DA TOGLIERE)
-
 <img style="width:200px; float: right;" src="img\personas\AlbertoAmbrosio.jpg" alt="Immagine di profilo">
 
 - **Nome:** Alberto
@@ -19,8 +17,6 @@
     
 ************************************************************
 
-## TheAmazonian (DA TOGLIERE)
-
 <img style="width:200px; float:right;" src="img\personas\MarleneDiBattista.jpg" alt="Immagine di profilo">
 
 - **Nome:** Marlena
@@ -37,8 +33,6 @@
     - Far publicità della propria gilda sui social
 
 ************************************************************
-
-## gothic-4ever (da togliere)
 
 <img style="width: 200px; float: right;" src="img/personas/FrancescaScorbutica.png" alt="Immagine di profilo"/>
 
@@ -59,8 +53,6 @@ Preferisce giocare da sola, infatti pochi dei suoi amici sanno della sua passion
 
 ************************************************************
 
-## Th3Pr0Kill3r (da togliere)
-
 <img style="width: 200px; float: right;" src="img/personas/FrancescoRavioli.jpg" alt="Immagine di profilo"/>
 
 - **Nome:** Francesco
@@ -79,8 +71,6 @@ E' abituato a giocare in single-player ed è un completista, per questo spesso c
 
 ************************************************************
 
-## roberuti (da togliere)
-
 <img style="width: 200px; float: right;" src="img/personas/RobertoMalaguti.jpg" alt="Immagine di profilo"/>
 
 - **Nome:** Roberto
@@ -98,8 +88,6 @@ Pensa che i giochi di una volta siano molto meglio di quelli odierni.
     - Preferisce entrare in contatto con le persone dai gusti più simili ai suoi 
 
 ************************************************************
-
-## Draco4ever (da togliere)
 
 <img style="width: 200px; float: right;" src="img/personas/MadiTamane.jpg" alt="Immagine di profilo"/>
 
