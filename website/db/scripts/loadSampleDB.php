@@ -121,7 +121,6 @@
         // Creating tags
         $tag_darksouls = "Dark Souls";
         $tag_eldenring = "Elden Ring";
-        $tag_outw = "Outward";
         $tag_wow = "Wow";
         $tag_worldOf = "World of Warcraft";
         $tag_minec = "Minecraft";
@@ -137,7 +136,6 @@
         $tags = array(
             new TagCreateDTO($tag_darksouls),
             new TagCreateDTO($tag_eldenring),
-            new TagCreateDTO($tag_outw),
             new TagCreateDTO($tag_wow),
             new TagCreateDTO($tag_worldOf),
             new TagCreateDTO($tag_minec),
