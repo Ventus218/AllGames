@@ -132,6 +132,6 @@ Si è tentato di ridurre al minimo la duplicazione del codice, infatti il feed d
 Stessa cosa vale per il "[container](../website/templates/container.php)" ovvero le barre superiore e inferiore del sito che sono presenti nella maggior parte delle pagine.
 
 ## Link alla documentazione completa
-- [Raccolta dei requisiti](Analisi.md)
+- [Raccolta dei requisiti](Requisiti.md)
 - [Analisi dei requisiti](Analisi.md)
-- [Progettazione](Analisi.md)
+- [Progettazione](Progettazione.md)
