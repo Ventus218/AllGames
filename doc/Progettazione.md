@@ -12,8 +12,16 @@ Almeno durante le fasi di progettazione, sviluppo e testing risulta comodo utili
 
 Di seguito lo script per eseguire il container, esso espone le porte http e ssh del container, e monta come volumi una directory contenente il il sito web e una contenente gli script SQL per inizializzare il database.
 ```sh
-docker run --name xampp -p <port-for-ssh-access>:22 -p 8080:80 -d -v <path-to-website-folder>:/www -v <path-to-db-sql-scripts-folder>:/allgames/db/scripts -v <path-to-sample-data-folder>:/allgames/sample-data tomsik68/xampp
+docker run -d --name xampp \
+-p <port-for-ssh-access>:22 \
+-p <host-port>:80 \
+-v <path-to-website-folder>:/www \
+-v <path-to-db-sql-scripts-folder>:/allgames/db/scripts \
+-v <path-to-sample-data-folder>:/allgames/sample-data \
+tomsik68/xampp
 ```
+
+Il sito sarà quindi accessibile a *localhost:\<host-port\>/www*
 
 Sembra inoltre necessario eseguire il seguente comando subito dopo aver avviato il container, risolve alcuni errori riscontrati dal DBMS.
 ```sh
@@ -107,6 +115,9 @@ Inoltre per ogni entità si è creata una classe contenente le stringhe per l'ac
 
 In ogni caso si è scelto di accedere al database sempre attraverso la classe [DatabaseHelper](../website/db/DatabaseHelper.php) la quale incapsula le operazioni con il database, in modo da poter implementare nelle pagine php alla radice solo e unicamente la logica applicativa.
 
+<details>
+<summary> Dettagli sulle query più complesse </summary>
+
 Per quanto riguarda le query più complesse, come quelle che necessitano join su più tabelle, oppure per quelle operazioni per cui si vuole il massimo delle prestazioni, è possibile scrivere manualmente la query ed eseguirla sulla classe [Database](../website/db/Database.php), si noti però che fintanto che è possibile selezionare gli attributi di solo un'entità allora è anche possibile trasformare il risultato nel rispettivo DTO.
 
 Si prenda come esempio la seguente [operazione](../website/db/DatabaseHelper.php#L91) di **DatabaseHelper** per ottenere i contenuti multimediali di un dato post:
@@ -128,6 +139,8 @@ public function getContenutiMultimedialiOfPost(PostDTO $post): array {
 }
 ```
 È possibile gestire i join, le condizioni e l'ordinamento senza rinunciare all'utilizzo del DTO che permette di utilizzare le classi php al posto degli array associativi che non sono tipizzati e quindi maggiormente esposti ad errori.
+
+</details>
 
 ### Script per facilitare lo sviluppo
 Si sono realizzati degli script per [autenticare un amministratore](../website/db/scripts/authenticateAdmin.php), [resettare il database](../website/db/scripts/resetDB.php) e [caricare un database di esempio](../website/db/scripts/loadSampleDB.php).
