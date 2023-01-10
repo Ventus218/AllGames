@@ -4,7 +4,7 @@ Dati i [requisiti](Requisiti.md) sono stati sviluppati i seguenti diagrammi di a
 
 ## Diagramma dei casi d'uso
 
-![Diagramma dei casi d'uso](img/AllGames%20-%20Diagramma%20dei%20casi%20d'uso.png)
+![Diagramma dei casi d'uso](img/AllGames%20-%20Diagramma%20dei%20casi%20uso.png)
 
 
 ## Diagramma delle classi
