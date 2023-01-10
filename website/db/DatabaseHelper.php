@@ -293,6 +293,23 @@
             }, $rows);
         }
 
+        public function getTagWithSubstring(string $filter): ?array {
+            $querySelectTagWithSubstring = "SELECT * 
+                FROM ".Schemas::TAG->value." 
+                WHERE ".TagKeys::nome." LIKE ? 
+                ORDER BY ".TagKeys::nome." DESC";
+
+            $rows = $this->db->executeQuery($querySelectTagWithSubstring, array("%".$filter."%"));
+
+            if (sizeof($rows) == 0) {
+                return null;
+            }
+
+            return array_map(function($row) {
+                return TagDTO::fromDBRow($row);
+            }, $rows);
+        }
+
         public function getCommunitiesOfUtente(UtenteDTO $utente): array {
             $query = "SELECT C.*
                 FROM ".Schemas::COMMUNITY->value." C

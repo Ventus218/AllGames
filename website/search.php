@@ -18,6 +18,7 @@
 
             $templateParams['searchedUsers'] = $dbh->getUtentiWithSubstring($filter);
             $templateParams['searchedCommunities'] = $dbh->getCommunityWithSubstring($filter);
+            $templateParams['searchedTags'] = $dbh->getTagWithSubstring($filter);
             
         } else if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             internalServerError("Sono accettate solo richieste GET o POST");

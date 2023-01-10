@@ -16,6 +16,7 @@
         <?php if (isset($templateParams["searchedUsers"]) && sizeof($templateParams["searchedUsers"]) != 0): ?>
         <!--Utenti-->
         <div class="row mb-2">
+            <hr class="mb-2 rounded opacity-50" />
             <div class="col-12">
                 <header>
                     <h2><strong>Utenti</strong></h2>
@@ -27,7 +28,7 @@
             ?>
             <div class="col-12 mb-2">
                 <a href="profilo-utente.php?utente=<?php echo escapeSpacesForURIParam($utente->id) ?>" class="text-decoration-none text-white">
-                    <img class="ricerca-pic <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
+                    <img class="ricerca-pic me-1 <?php echo (isset($utente->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($utente->urlImmagine) ? getMultimediaURL($utente->urlImmagine) : "inc/img/profile-pic.png"); ?> " alt="Immagine profilo di <?php echo $utente->username; ?>" />
                     <span><?php echo $utente->username; ?></span>
                 </a>
             </div>
@@ -42,7 +43,7 @@
 
         ?>
         <!--Community-->
-        <div class="row">
+        <div class="row mb-2">
             <hr class="mb-2 rounded opacity-50" />
             <div class="col-12">
                 <header>
@@ -56,8 +57,36 @@
             ?>
             <div class="col-12 mb-2">
                 <a href="<?php echo "community.php?community=".escapeSpacesForURIParam($community->nome); ?>" class="text-decoration-none text-white">
-                    <img class="ricerca-pic <?php echo (isset($community->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($community->urlImmagine) ? getMultimediaURL($community->urlImmagine) : "inc/img/people.png"); ?> " alt="Immagine della community <?php echo $community->nome; ?>" />
+                    <img class="ricerca-pic me-1 <?php echo (isset($community->urlImmagine) ? "rounded-circle" : ""); ?>" src="<?php echo (isset($community->urlImmagine) ? getMultimediaURL($community->urlImmagine) : "inc/img/people.png"); ?> " alt="Immagine della community <?php echo $community->nome; ?>" />
                     <span><?php echo $community->nome; ?></span>
+                </a>
+            </div>
+            <?php endfor; ?>
+        </div>
+        <?php 
+        
+        endif; 
+        
+        if (isset($templateParams["searchedTags"]) && sizeof($templateParams["searchedTags"]) != 0):
+
+        ?>
+        <!--Tags-->
+        <div class="row">
+            <hr class="mb-2 rounded opacity-50" />
+            <div class="col-12">
+                <header>
+                    <h2><strong>Tag</strong></h2>
+                </header>
+            </div>
+
+            <?php 
+                for($i = 0; $i < sizeof($templateParams["searchedTags"]); $i++): 
+                    $tag = $templateParams["searchedTags"][$i];
+            ?>
+            <div class="col-12 mb-2">
+                <a href="<?php echo "tag.php?tag=".escapeSpacesForURIParam($tag->nome); ?>" class="text-decoration-none text-white">
+                    <img class="ricerca-pic me-1" src="inc/img/tag.png" alt="" />
+                    <span><?php echo $tag->nome; ?></span>
                 </a>
             </div>
             <?php endfor; ?>
