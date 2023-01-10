@@ -26,9 +26,9 @@ Create the container and mount necessary volumes:
 ```sh
 docker run -d --name xampp \
 -p 8080:80 \
--v $(pwd)/website:/www \
--v $(pwd)/db:/allgames/db/scripts \
--v $(pwd)/sample-data:/allgames/sample-data \
+-v "$(pwd)"/website:/www \
+-v "$(pwd)"/db:/allgames/db/scripts \
+-v "$(pwd)"/sample-data:/allgames/sample-data \
 tomsik68/xampp
 ```
 
