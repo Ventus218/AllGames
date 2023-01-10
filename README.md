@@ -67,8 +67,8 @@ You can now access AllGames at [http://localhost:8080/www/index.php](http://loca
 ## Documentation 📖
 
 Here you can find all the documentation:
-- [Discussione elaborato](doc/Discussione-elaborato.md)
-- [Specifiche di progetto](doc/specifiche_progetto.pdf)
-- [Raccolta dei requisiti](doc/Requisiti.md)
-- [Analisi dei requisiti](doc/Analisi.md)
-- [Progettazione](doc/Progettazione.md)
+- [Presentation of the project](doc/Discussione-elaborato.md)
+- [Specifications](doc/specifiche_progetto.pdf)
+- [Requirements gathering](doc/Requisiti.md)
+- [Requirements analysis](doc/Analisi.md)
+- [Design](doc/Progettazione.md)
