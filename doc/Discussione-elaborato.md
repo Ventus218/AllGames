@@ -1,4 +1,4 @@
-# Discussione elaborato - **AllGames🕹️**
+# Discussione elaborato - **[AllGames🕹️](https://github.com/Ventus218/AllGames)**
 
 ## Raccolta requisiti
 - Registrazione
@@ -62,16 +62,16 @@
 
 ## Progettazione
 ### Mockup
-Per aiutarsi nella creazione dei mockup si è scelto di definire delle [Personas](Personas.md).
+Per aiutarsi nella creazione dei mockup si è scelto di definire delle [Personas](https://github.com/Ventus218/AllGames/blob/main/doc/Personas.md).
 
-- [Mockup mobile](img/Mockup-Mobile)
-- [Mockup PC](img/Mockup-PC)
+- [Mockup mobile](https://github.com/Ventus218/AllGames/tree/main/doc/img/Mockup-Mobile)
+- [Mockup PC](https://github.com/Ventus218/AllGames/tree/main/doc/img/Mockup-PC)
 
 ### Database
 La scelta di utilizzare un DBMS relazionale quale MySQL (MariaDB) è dettata dallo stack XAMPP.
 
 #### Schema Relazionale
-![Database - Schema Relazionale](img/db/Schema%20Relazionale.png)
+<img src="img/db/Schema%20Relazionale.png" style="width: 80%; margin-left: 10%; margin-right: 10%;" alt="Schema Relazionale">
 
 #### SQL
 La realizzazione dei vincoli e la generazione delle notifiche sono stati implementati grazie a dei *TRIGGER* SQL
@@ -118,20 +118,20 @@ Si è deciso quindi che tutte le pagine del sito raggiunte direttamente dall'ute
 Tutte le pagine nella radice richiederanno il file bootstrap nel quale sono inizializzate le variabili che sono sempre necessarie (il database ad esempio).
 
 #### Accesso al database
-Si è realizzata una classe [Database](../website/db/Database.php) che offre dei metodi molto generici per interagire con il database. L'idea è che questa classe non venga usata direttamente ma che invece funga da fondamenta alle classi [DAO](../website/db/model) e a [DatabaseHelper](../website/db/DatabaseHelper.php).
+Si è realizzata una classe [Database](https://github.com/Ventus218/AllGames/blob/main/website/db/Database.php) che offre dei metodi molto generici per interagire con il database. L'idea è che questa classe non venga usata direttamente ma che invece funga da fondamenta alle classi [DAO](https://github.com/Ventus218/AllGames/tree/main/website/db/model) e a [DatabaseHelper](https://github.com/Ventus218/AllGames/blob/main/website/db/DatabaseHelper.php).
 
 #### Script per facilitare lo sviluppo
-Si sono realizzati degli script per [autenticare un amministratore](../website/db/scripts/authenticateAdmin.php), [resettare il database](../website/db/scripts/resetDB.php) e [caricare un database di esempio](../website/db/scripts/loadSampleDB.php).
+Si sono realizzati degli script per [autenticare un amministratore](https://github.com/Ventus218/AllGames/blob/main/website/db/scripts/authenticateAdmin.php), [resettare il database](https://github.com/Ventus218/AllGames/blob/main/website/db/scripts/resetDB.php) e [caricare un database di esempio](https://github.com/Ventus218/AllGames/blob/main/website/db/scripts/loadSampleDB.php).
 
 #### Gestione della sessione
-In [session.php](../website/inc/php/session.php) è possibile trovare tutti i metodi per la gestione della sessione.
+In [session.php](https://github.com/Ventus218/AllGames/blob/main/website/inc/php/session.php) è possibile trovare tutti i metodi per la gestione della sessione.
 
 #### Templates PHP
-Si è tentato di ridurre al minimo la duplicazione del codice, infatti il feed dei post che viene presentato in diverse pagine è stato parametrizzato e fattorizzato nell'unico file [feed.php](../website/templates/feed.php).
+Si è tentato di ridurre al minimo la duplicazione del codice, infatti il feed dei post che viene presentato in diverse pagine è stato parametrizzato e fattorizzato nell'unico file [feed.php](https://github.com/Ventus218/AllGames/blob/main/website/templates/feed.php).
 
-Stessa cosa vale per il "[container](../website/templates/container.php)" ovvero le barre superiore e inferiore del sito che sono presenti nella maggior parte delle pagine.
+Stessa cosa vale per il "[container](https://github.com/Ventus218/AllGames/blob/main/website/templates/container.php)" ovvero le barre superiore e inferiore del sito che sono presenti nella maggior parte delle pagine.
 
 ## Link alla documentazione completa
-- [Raccolta dei requisiti](Requisiti.md)
-- [Analisi dei requisiti](Analisi.md)
-- [Progettazione](Progettazione.md)
+- [Raccolta dei requisiti](https://github.com/Ventus218/AllGames/blob/main/doc/Requisiti.md)
+- [Analisi dei requisiti](https://github.com/Ventus218/AllGames/blob/main/doc/Analisi.md)
+- [Progettazione](https://github.com/Ventus218/AllGames/blob/main/doc/Progettazione.md)
