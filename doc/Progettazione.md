@@ -107,6 +107,9 @@ Inoltre per ogni entità si è creata una classe contenente le stringhe per l'ac
 
 In ogni caso si è scelto di accedere al database sempre attraverso la classe [DatabaseHelper](../website/db/DatabaseHelper.php) la quale incapsula le operazioni con il database, in modo da poter implementare nelle pagine php alla radice solo e unicamente la logica applicativa.
 
+<details>
+<summary> Dettagli sulle query più complesse </summary>
+
 Per quanto riguarda le query più complesse, come quelle che necessitano join su più tabelle, oppure per quelle operazioni per cui si vuole il massimo delle prestazioni, è possibile scrivere manualmente la query ed eseguirla sulla classe [Database](../website/db/Database.php), si noti però che fintanto che è possibile selezionare gli attributi di solo un'entità allora è anche possibile trasformare il risultato nel rispettivo DTO.
 
 Si prenda come esempio la seguente [operazione](../website/db/DatabaseHelper.php#L91) di **DatabaseHelper** per ottenere i contenuti multimediali di un dato post:
@@ -128,6 +131,8 @@ public function getContenutiMultimedialiOfPost(PostDTO $post): array {
 }
 ```
 È possibile gestire i join, le condizioni e l'ordinamento senza rinunciare all'utilizzo del DTO che permette di utilizzare le classi php al posto degli array associativi che non sono tipizzati e quindi maggiormente esposti ad errori.
+
+</details>
 
 ### Script per facilitare lo sviluppo
 Si sono realizzati degli script per [autenticare un amministratore](../website/db/scripts/authenticateAdmin.php), [resettare il database](../website/db/scripts/resetDB.php) e [caricare un database di esempio](../website/db/scripts/loadSampleDB.php).
