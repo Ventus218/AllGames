@@ -70,13 +70,6 @@ Per aiutarsi nella creazione dei mockup si è scelto di definire delle [Personas
 ### Database
 La scelta di utilizzare un DBMS relazionale quale MySQL (MariaDB) è dettata dallo stack XAMPP.
 
-#### Schema ER
-![Database - Schema ER](./img/db/Schema%20ER.png)
-
-#### Schema Logico
-![Database - Schema Logico](./img/db/Schema%20Logico.png)
-Per tutte le generalizzazioni è stato scelto di accorpare le entità e utilizzare dei selettori booleani per distinguere le sottoclassi.
-
 #### Schema Relazionale
 ![Database - Schema Relazionale](./img/db/Schema%20Relazionale.png)
 
