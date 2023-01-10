@@ -71,7 +71,7 @@ Per aiutarsi nella creazione dei mockup si è scelto di definire delle [Personas
 La scelta di utilizzare un DBMS relazionale quale MySQL (MariaDB) è dettata dallo stack XAMPP.
 
 #### Schema Relazionale
-![Database - Schema Relazionale](./img/db/Schema%20Relazionale.png)
+![Database - Schema Relazionale](img/db/Schema%20Relazionale.png)
 
 #### SQL
 La realizzazione dei vincoli e la generazione delle notifiche sono stati implementati grazie a dei *TRIGGER* SQL
@@ -130,3 +130,8 @@ In [session.php](../website/inc/php/session.php) è possibile trovare tutti i me
 Si è tentato di ridurre al minimo la duplicazione del codice, infatti il feed dei post che viene presentato in diverse pagine è stato parametrizzato e fattorizzato nell'unico file [feed.php](../website/templates/feed.php).
 
 Stessa cosa vale per il "[container](../website/templates/container.php)" ovvero le barre superiore e inferiore del sito che sono presenti nella maggior parte delle pagine.
+
+## Link alla documentazione completa
+- [Raccolta dei requisiti](Analisi.md)
+- [Analisi dei requisiti](Analisi.md)
+- [Progettazione](Analisi.md)
